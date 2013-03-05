@@ -1,0 +1,111 @@
+<script language="javascript">
+//-----------------------------------------------------
+//Funcao: MascaraMoeda
+//Sinopse: Mascara de preenchimento de moeda
+//Parametro:
+//   objTextBox : Objeto (TextBox)
+//   SeparadorMilesimo : Caracter separador de milésimos
+//   SeparadorDecimal : Caracter separador de decimais
+//   e : Evento
+//Retorno: Booleano
+//Autor: Gabriel Fróes - www.codigofonte.com.br
+//-----------------------------------------------------
+function MascaraMoeda(objTextBox, SeparadorMilesimo, SeparadorDecimal, e){
+    var sep = 0;
+    var key = '';
+    var i = j = 0;
+    var len = len2 = 0;
+    var strCheck = '0123456789';
+    var aux = aux2 = '';
+    var whichCode = (window.Event) ? e.which : e.keyCode;
+    if (whichCode == 13) return true;
+    key = String.fromCharCode(whichCode); // Valor para o código da Chave
+    if (strCheck.indexOf(key) == -1) return false; // Chave inválida
+    len = objTextBox.value.length;
+    for(i = 0; i < len; i++)
+        if ((objTextBox.value.charAt(i) != '0') && (objTextBox.value.charAt(i) != SeparadorDecimal)) break;
+    aux = '';
+    for(; i < len; i++)
+        if (strCheck.indexOf(objTextBox.value.charAt(i))!=-1) aux += objTextBox.value.charAt(i);
+    aux += key;
+    len = aux.length;
+    if (len == 0) objTextBox.value = '';
+    if (len == 1) objTextBox.value = '0'+ SeparadorDecimal + '0' + aux;
+    if (len == 2) objTextBox.value = '0'+ SeparadorDecimal + aux;
+    if (len > 2) {
+        aux2 = '';
+        for (j = 0, i = len - 3; i >= 0; i--) {
+            if (j == 3) {
+                aux2 += SeparadorMilesimo;
+                j = 0;
+            }
+            aux2 += aux.charAt(i);
+            j++;
+        }
+        objTextBox.value = '';
+        len2 = aux2.length;
+        for (i = len2 - 1; i >= 0; i--)
+        objTextBox.value += aux2.charAt(i);
+        objTextBox.value += SeparadorDecimal + aux.substr(len - 2, len);
+    }
+    return false;
+}
+</script>
+
+
+<div class="tabs">
+    <table bgcolor="#DCDCDC" width="100%">
+        <tr bgcolor="#DCDCDC" >
+            <th width="5">Nº</th>
+            <th width="10">Data</th>
+            <th width="400">Descrição</th>
+            <th width="100">Obreiro</th>
+            <th width="20">Crédito</th>
+            <th width="20">Débito</th>
+            <% if current_user.has_role?('admin') %>
+               <th width="5">Alterar</th>
+            <%end%>
+        </tr>
+        <%$t=0%>
+        <%$cred=0%>
+        <%$deb=0%>
+        <%$saldo=0%>
+            <% @financeiros.each do |financeiro| %>
+            <%$t = $t+1%>
+            <%$cred= $cred + financeiro.credito%>
+            <%$deb= $deb + financeiro.debito%>
+            <%$saldo= $cred - $deb%>
+            <tr bgcolor="#F5F5F5">
+                    <td align="left"><%=h financeiro.id%></td>
+                <td align="left"><%=h financeiro.data.strftime("%d/%b/%y")%></td>
+                <td align="left"><%=h  financeiro.descricao%></td>
+                <td align="left"><%=h  financeiro.unidade.obreiro.nome%></td>
+                <td align="left" id><font color ="blue"><center><%=h  financeiro.credito%></center></font></td>
+                <td align="left"><font color ="red"><center><%=h  financeiro.debito%></center></font></td>
+                <% if current_user.has_role?('admin') %>
+                    <td bgcolor="#F5F5F5" align="center"><%= link_to image_tag("/stylesheets/images/edit.png", :size => "15x15"), edit_financeiro_path(financeiro), :title => "Alterar Lançamento" %></td>
+               <%end%>
+             </tr>
+            <% end %>
+      <tr  >
+        <td align="center" colspan="4"><b>TOTALIZAÇÃO </b></td>
+          <td align="center"><b> Subtotal</b></font></td>
+          <td align="center"><b>Subtotal</b></font></td>
+          <td align="center"><b>TOTAL</b></font></td>
+      </tr>
+      <tr bgcolor="#F5F5F5">
+        <td align="left" colspan="3">LANCAMENTOS: <b><%=$t %></b></td>
+        <td align="right"> <b>R$</b></td>
+          <td align="center"  id="teste"><font color ="blue "><b><%=$cred %></b></font></td>
+          <td align="center"><font color ="red "><b><%=$deb %></b></font></td>
+          <%if ($saldo >= 0) then%>
+            <td align="center"><font color ="blue "><b><%=$saldo %></b></font></td>
+          <%else%>
+              <td align="center"><font color ="red "><b><%=$saldo %></b></font></td>
+          <%end%>
+
+      </tr>
+
+     </table>
+
+  </div>

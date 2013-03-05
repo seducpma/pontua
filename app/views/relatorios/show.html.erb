@@ -1,0 +1,55 @@
+<div id="interno2">
+<% title "RELATÓRIO" %>
+<div class ="tabs">
+<font size="5"><strong><%=h "#{@relatorio.obreiro.nome}" %></strong></font></br>
+ <hr>
+ <table bgcolor="#DCDCDC" width="100%">
+   <tr bgcolor="#DCDCDC"  width="100%">
+     <td>
+       <fieldset><legend><font  size=3><b> Relatório de Atividades</b></font></legend>
+         <table width="100%">
+           <tr bgcolor="#F5F5F5"  width="100%">
+             <td valign="top">
+               <table  bgcolor="#DCDCDC" width="100%">
+                <tr bgcolor="#F5F5F5">
+                   <td align="left" width="4%"><b>Unidade:</b></td>
+                   <td align="left"><%=h @relatorio.unidade.nome %></td>
+                </tr>
+                <tr bgcolor="#F5F5F5" >
+                   <td align="left"><b>Data:</b></td>
+                   <td align="left"><%=h @relatorio.data.strftime("%d de %B de %Y") %></td>
+                </tr>
+                <tr  bgcolor="#F5F5F5">
+                   <td align="left" ><b>Atividades: </b></td>
+                   <td align="left"><%=h @relatorio.atividade %></td>
+                </tr>
+                <tr bgcolor="#F5F5F5">
+                  <td align="left"><b> Observações:</b></td>
+                  <td align="left"><%=h  @relatorio.obs%></td>
+                </tr>
+             </table>
+           </td>
+        </tr>
+      </table>
+     </fieldset>
+   </td>
+  </tr>
+ </table>
+
+    <table width="100%">
+      <tr width="100%">
+        <td align="left" width="4%"><%= link_to image_tag("/stylesheets/images/voltar.png", :size => "40x40"),  home_path, {:method => "get"}, :title => "Voltar"%></td>
+            <% if current_user.has_role?('admin') %>
+              <td align="left" width="4%" ><%= link_to image_tag("/stylesheets/images/edit.png", :size => "25x25"), edit_relatorio_path(@relatorio), :title => "Alterar Dados"%></td>
+            <%end%>
+            <td align="left" ><%= link_to image_tag("/stylesheets/images/imprimir.png", :size => "30x30"), onclick="javascript:window.print()", :title => "Imprimir" %></td>
+           </tr>
+         </table>
+
+</div>
+<br/>
+</div>
+
+
+
+

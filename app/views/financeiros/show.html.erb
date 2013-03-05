@@ -1,0 +1,52 @@
+<div id="interno2">
+<% title "LANÇAMENTO" %>
+ <table bgcolor="#DCDCDC" width="100%">
+   <tr bgcolor="#DCDCDC"  width="100%">
+     <td>
+       <fieldset><legend><font  size=3><b> Lançamento</b></font></legend>
+         <table width="100%">
+            <tr bgcolor="#F5F5F5"  width="100%">
+              <td align="left" width="4%"><b>Nº Ordem:</b></td>
+              <td align="left"><%=h  @financeiro.id %></td>
+           </tr>
+           <tr bgcolor="#F5F5F5"  width="100%">
+              <td align="left" width="4%"><b>Unidade:</b></td>
+              <td align="left"><%=h  @financeiro.unidade.nome %></td>
+           </tr>
+           <tr bgcolor="#F5F5F5"  width="100%">
+              <td align="left" width="4%"><b>Obreiro:</b></td>
+              <td align="left"><%=h  @financeiro.unidade.obreiro.nome %></td>
+           </tr>
+           <tr bgcolor="#F5F5F5" >
+              <td align="left"><b>Descrição:</b></td>
+              <td align="left"><%=h  @financeiro.descricao %></td>
+           </tr>
+           <tr bgcolor="#F5F5F5" >
+              <td align="left"><b>Data:</b></td>
+              <td align="left"><%=h  @financeiro.data.strftime("%d de %B de %Y") %></td>
+           </tr>
+           <tr  bgcolor="#F5F5F5">
+               <td align="left" ><font color="blue"><b>Crédito:</b></font> </td>
+                <td align="left"><font color="blue">R$ <%=h  @financeiro.credito %></font> </td>
+              </font>
+           </tr>
+           <tr  bgcolor="#F5F5F5">
+                <td align="left" ><font color ="red"><b>Débito: </b></font> </td>
+                <td align="left"><font color ="red">R$ <%=h  @financeiro.debito %></font> </td>
+              </font>
+            </tr>
+            <tr bgcolor="#F5F5F5">
+              <td align="left"><b> Observações:</b></td>
+              <td align="left"><%=h   @financeiro.obs%></td>
+            </tr>
+         </table>
+     </fieldset>
+   </td>
+  </tr>
+ </table>
+
+</div>
+<br/>
+
+
+

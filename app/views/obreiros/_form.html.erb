@@ -1,0 +1,83 @@
+<% form_for @obreiro do |f| %>
+ <%= f.error_messages %>
+  <font  size="2">
+    <fieldset><legend><font  size=3> Cadastro de Obreiro</font></legend>
+      <table width="100%" align="center"  bgcolor="#F5F5F5">
+        <tr>
+         <td width="50%">
+           <b>Nome: </b><%= f.text_field :nome, :size =>45 %>
+              <%= observe_field :obreiro_nome,
+               :with => :obreiro_nome,
+               :url => { :action => 'mesmo_nome' } %>
+         </td>
+         <td>
+           <b>Apelido: </b><%= f.text_field :apelido, :size =>42%>
+         </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <font size="4" color="red"><div id='nome_aviso'></div></font>
+         </td>
+       </tr>
+        <tr>
+          <td>
+            <b> Endereço: </b><%= f.text_field :endereco,:size =>42 %>
+            
+          </td>
+          <td>
+            <b>Nº </b><%= f.text_field :num, :size => 5 %>
+            <b>Bairro: </b><%= f.text_field :bairro, :size =>34%>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <b>Cidade/Estado: </b><%= f.text_field :cidade, :size =>38%>
+          
+          </td>
+          <td>
+            <b>Complemento: </b><%= f.text_field :complemento, :size =>21%>
+            <b>CEP: </b><%= f.text_field :cep, :size =>10 %>
+            
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+             <b>Fone: </b><%= f.text_field :fone, :size =>10%>
+            <b>Cel </b><%= f.text_field :cel, :size =>10%>
+            <b>E_mail: </b><%= f.text_field :email, :size =>63%>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <b>Nascimento: </b><%= f.date_select(:nascimento, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year - 80)) %>
+            <b>Estado Civil: </b><%= f.select :estado_civil, Funcionario::CIVIL%>
+            <b>Conjuge: </b><%= f.text_field :conjuge, :size =>31%>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <b>Igreja: </b><%= f.text_field :igreja, :size =>44%>
+          </td>
+          <td>
+            <b>Formação: </b><%= f.text_field :formação, :size =>40%>
+         </td>
+        </tr>
+        <tr >
+          <td colspan="2"><b>Observações:</b><br/>
+             <%= f.text_area(:obs, :cols =>"101", :rows => "2") %>
+          </td>
+       </tr>
+      </table>
+      <fieldset>
+       <table width="100%" >
+         <tr>
+            <td width="4%"align="left" > <%= link_to image_tag("/stylesheets/images/voltar.png", :size => "40x40"), home_path, :title => "Voltar" %></td>
+            <td width="4%"><input type="image" src="/stylesheets/images/salvar.PNG" title="Gravar"></td>
+            <td width="5%"><%= link_to image_tag("/stylesheets/images/listar.png", :size => "25x25"), obreiros_path,  :title => "Obreiros Cadastrados" %></td>
+            <td></td>
+         </tr>
+       </table>
+      </fieldset>
+    </fieldset>
+  </font>
+<%end%>

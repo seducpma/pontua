@@ -1,0 +1,19 @@
+<div style='display:none'>
+  <div id='inline_empresa' style='padding:10px; background:#EEE9E9;'>
+    <h3>Associar</h3>
+      <% form_remote_for(:obreiros,:url => { :action => 'update_empresa' }, :success => "$.fn.colorbox.close();$('select').multiselect('refresh')") do |f|%>
+      <%= error_messages_for 'contact' %>
+    <h5>
+        <table  width="100%" bgcolor="#F5F5F5">
+          <tr>
+            <td><b>Nome: </b> <%=h @obreiro.nome %>
+                <b>Empresa: </b><%= collection_select :unidade, :obreiro_id, @unidades, :id, :nome, :include_blank => ' --- Selecionar ---'  %></td>
+         </tr>
+         <tr>
+            <td colspan="2"><%= f.submit "Salvar" %></td>
+          </tr>
+        </table>
+      </h5>
+      <%end%>
+  </div>
+</div>

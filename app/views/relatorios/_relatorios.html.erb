@@ -1,0 +1,58 @@
+<%$t=0%>
+   <div class="tabs">
+    <table bgcolor="#DCDCDC" width="100%">
+
+      <% @relatorios.each do |relatorio| %>
+        <tr bgcolor="#DCDCDC" >
+          <th colspan="5" align="left">Atividades  Desenvolvidas  em
+           <font color ="red "size="2"><b><%=h relatorio.data.strftime("%d de %B de %Y") %> </b></th>
+        </tr>
+      <tr bgcolor="#DCDCDC" >
+          <th bgcolor="#DCDCDC" align="left"  >Obreiro:</th>
+          <td bgcolor="#F5F5F5" ><%=h relatorio.unidade.obreiro.nome %></td>
+          
+          <th bgcolor="#DCDCDC" align="left">Empresa:</th>
+          <td bgcolor="#F5F5F5" colspan=3 width="250"><%=h relatorio.unidade.nome %></td>
+    </tr>
+        <tr bgcolor="#DCDCDC">
+          <th valign="top"align="left">Atividades:</th>
+          <td bgcolor="#F5F5F5"colspan=5"><%=h relatorio.atividade %></td>
+       </tr>
+        <tr bgcolor="#DCDCDC" >
+          <th align="left" width="15" valign="top">Observações:</th>
+          <td bgcolor="#F5F5F5" width="500"><%=h relatorio.obs %></td>
+            <th bgcolor="#DCDCDC"  align="left"width="10">Administração:</th>
+            <td bgcolor="#F5F5F5" align="center"><%= link_to image_tag("/stylesheets/images/exibir.gif", :size => "15x15"), relatorio, :title => "Exibir Relatório" %></td>
+                <% if current_user.has_role?('admin') or current_user.has_role?('obreiro')%>
+                    <td bgcolor="#F5F5F5" align="center"><%= link_to image_tag("/stylesheets/images/edit.png", :size => "15x15"), edit_relatorio_path(relatorio), :title => "Editar Relatorio" %></td>
+                <%else%>
+                    <td bgcolor="#F5F5F5" align="center"> --- </td>
+                <%end%>
+                <% if current_user.has_role?('admin') or current_user.has_role?('relatorio')%>
+                    <td bgcolor="#F5F5F5" align="center"><%= link_to image_tag("/stylesheets/images/excluir.PNG", :size => "15x15"), relatorio, :confirm => 'Confirma?', :method => :delete, :title => "Excluir Funcionario" %></td>
+                <%else%>
+                    <td bgcolor="#F5F5F5" align="center"> --- </td>
+                <%end%>
+
+        </tr>
+        <tr bgcolor="#DCDCDC" >
+          
+        </tr>
+        <tr bgcolor="#DCDCDC" >
+           <th colspan="14"align="left"></th>
+        </tr>
+       <tr bgcolor="#F5F5F5">
+          <th colspan="14"align="left"></th>
+       </tr>
+      <%$t = $t+1%>
+      <%end%>
+    </table>
+
+    <table bgcolor="#DCDCDC" width="100%">
+      <tr >
+          <td align="left"><b>TOTAL RELATÓRIOS CADASTRADOS: </b>
+            <font color ="red "size="2"><b><%=$t %></b></font>
+          </td>
+      </tr>
+    </table>
+  </div>

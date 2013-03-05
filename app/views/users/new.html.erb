@@ -1,0 +1,55 @@
+<br/><br/>
+<div id="interno2">
+<table class="tabelas" width="70%" align="center">
+  <tr>
+    <td align="left">
+      <h1>NOVO USUÁRIO</h1>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <fieldset><legend><font  size=4>Usuário</font></legend>
+      <font  size="2">
+        <table>
+           <% @user.password = @user.password_confirmation = nil %>
+           <%= error_messages_for :user %>
+           <% form_for :user, :url => users_path do |f| -%>
+              <tr>
+                  <td><b>Usuário:</b></td>
+                  <td colspan="2" align="left"><%= f.text_field :login, :size => "42" %></td>
+                  
+                </tr>
+                <tr>
+                  <td><b>Unidade:</b></td>
+                  <td colspan="2" align="left"><%= f.collection_select :unidade_id,Unidade.all(:order => 'nome ASC'),:id,:nome, :include_blank => true %></td>
+                </tr>
+                <tr>
+                  <td><b>e-mail:</b></td>
+                  <td colspan="2" align="left"><%= f.text_field :email, :size => "42" %></td>
+                </tr>
+                <tr>
+                   <td ><b>Senha:</b></td>
+                   <td align="left"><%= f.password_field :password, :size => "8" %></td>
+                   <td><b><i><font  size="1">Escolha uma senha com no mínimo 6 digitos</font></i></b</td>
+                 </tr>
+                 <tr>
+                   <td width="25%"><b>Confirma Senha:</b></td>
+                   <td align="left"><%= f.password_field :password_confirmation, :size => "8" %></td>
+                   <td></td>
+                 </tr>
+         </table>
+       </font>
+     </fieldset>
+      <table>
+          <td width="8%"><%= submit_tag 'Cadastrar' %></td>
+          <td width="8%"><%= button_to 'Voltar', home_path, {:method => "get"}  %></td>
+          <td></td>
+        </table>
+     <% end -%>
+
+        </td>
+</tr>
+</table>
+
+</div>
+</br>

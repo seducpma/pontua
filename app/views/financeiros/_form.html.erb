@@ -1,0 +1,54 @@
+<% form_for @financeiro do |f| %>
+ <%= f.error_messages %>
+  <font  size="2">
+    <fieldset><legend><font  size=3> LANÇAMENTO RELATÓRIO FINANCEIRO</font></legend>
+      <table width="100%" align="center"  bgcolor="#F5F5F5">
+      <tr>
+        <td  colspan="2" align="left"><font size="2"> <b class="label_busca2">Empresa:</b></font>
+          <%= collection_select :financeiro, :unidade_id, @unidades, :obreiro_id, :nome, :include_blank => ' -- Selecionar -- ',:class=> "txt_busca2"  %>
+            <%= observe_field 'financeiro_unidade_id',
+                 :update => "obreiro",
+                 :url    => { :action => 'nome_obreiro' },
+                 :with   => 'financeiro_unidade_id' %>
+         </td>
+         <td colspan="2"><div id='obreiro' </div></td>
+       </tr>
+       <tr>
+          <td colspan="4"><b>Data:</b> <%= f.date_select(:data, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year)) %></td>
+       </tr>
+      <tr>
+          <td colspan="4"></td>
+       </tr>
+     <tr>
+         <td colspan="4"><b>Descrição: </b> <%= f.text_field :descricao, :size => "95" %></td>      
+     </tr>
+
+
+       <tr>
+         <td width ="23%"><font color="blue"><b>Crédito: R$  <input type="text" id="financeiro_credito" name="financeiro[credito]" size ="13"></input></td>
+         <td colspan="2"width ="50%"><center> <b> <i>====> <u>OBS:</u> Utilizar VÍRGULA para indicar centavos ex. 23,50 <====</i></b></center></td>
+         <td align="right"width ="23%">  <font color="red">  <b>Débito: R$<input type="text" id="financeiro_credito" name="financeiro[debito]" size="15"></input></b></font></td>
+
+       </tr>
+
+        <tr >
+          <td colspan="4"><b>Observações:</b><br/>
+             <%= f.text_area(:obs, :cols =>"102", :rows => "2") %>
+          </td>
+       </tr>
+      </table>
+      <fieldset>
+       <table width="100%" >
+         <tr>
+            <td width="4%"align="left" > <%= link_to image_tag("/stylesheets/images/voltar.png", :size => "40x40"), home_path, :title => "Voltar" %></td>
+            <td width="4%"><input type="image" src="/stylesheets/images/salvar.PNG" title="Gravar"></td>
+            <td width="5%"><%= link_to image_tag("/stylesheets/images/listar.png", :size => "25x25"), financeiros_path,  :title => "Lançamentos Relatórios Financeiro" %></td>
+            <td></td>
+         </tr>
+       </table>
+      </fieldset>
+    </fieldset>
+  </font>
+<%end%>
+
+
