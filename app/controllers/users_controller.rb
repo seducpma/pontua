@@ -45,12 +45,12 @@ class UsersController < ApplicationController
     case
     when (!params[:activation_code].blank?) && user && !user.active?
       user.activate!
-      flash[:notice] = "BEM VINDO AO BIBLOS."
+      flash[:notice] = "BEM VINDO AO SISCAP."
       redirect_to '/login'
     when params[:activation_code].blank?
       flash[:error] = "SENHA OU USUÁRIO NÃO AUTORIZADO, FAVOR ENTRAR EM CONTATO COM A SEDUC."
       redirect_back_or_default('/')
-    else 
+    else
       flash[:error]  = "SENHA OU USUÁRIO NÃO AUTORIZADO, VERIFIQUE A VALIDAÇÃO EM SEU E_MAIL OU ENTRE EM CONTATO COM A SEDUC."
       redirect_back_or_default('/')
     end
@@ -61,4 +61,6 @@ class UsersController < ApplicationController
   def load_resources
     @unidades = Unidade.all
   end
+
+
 end

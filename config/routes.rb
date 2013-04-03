@@ -1,9 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :financeiros
+  map.resources :financeiros, :collection => {:impressao => :get}
 
-  map.resources :relatorios
+  map.resources :relatorios, :collection => {:impressao => :get}
 
-  map.resources :obreiros
+  map.resources :obreiros;
 
   map.resources :funcionarios_familiares
   map.resources :familiares
@@ -15,7 +15,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :logs
   map.resources :unidades
  
-
   map.consultaempresa '/consultaempresa', :controller => 'unidades', :action => 'consultaempresa'
   map.consultaobreiro '/consultaobreiro', :controller => 'obreiros', :action => 'consultaobreiro'
   map.consultafuncionario '/consultafuncionario', :controller => 'funcionarios', :action => 'consultafuncionario'
@@ -29,6 +28,8 @@ ActionController::Routing::Routes.draw do |map|
   map.consulta_financeiro '/consulta_financeiro', :controller => 'financeiros', :action => 'consulta_financeiro'
   map.consultafinanceiro '/consultafinanceiro', :controller => 'financeiros', :action => 'consultafinanceiro', :collection => {:to_print => :get}
 
+
+  map.resources :roles_users, :collection => {:lista_users => :get}
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.register '/register', :controller => 'users', :action => 'create'

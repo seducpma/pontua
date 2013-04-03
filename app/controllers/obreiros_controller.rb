@@ -5,13 +5,29 @@ class ObreirosController < ApplicationController
   before_filter :load_obreiros
   before_filter :load_unidades
 
-  def load_unidades
-     @unidades = Unidade.find(:all, :order => 'nome ASC')
+ def load_unidades
+      if (current_user.unidade_id==9999)
+          @unidades = Unidade.find(:all, :order => 'nome ASC')
+       else if (current_user.obreiro_id == nil)
+            @unidades = Unidade.find(:all,:conditions => ["id = ?", current_user.unidade_id], :order => 'nome ASC')
+            else if (current_user.unidade_id ==  nil)
+                  @unidades = Unidade.find(:all,:conditions => ["obreiro_id = ?", current_user.obreiro_id], :order => 'nome ASC')
+                  end
+             end
+       end
   end
 
 
   def load_obreiros
-     @obreiros = Obreiro.find(:all, :order => 'nome ASC')
+      if (current_user.unidade_id==9999)
+         @obreiros = Obreiro.find(:all, :order => 'nome ASC')
+       else if (current_user.obreiro_id == nil)
+            @obreiros = Obreiro.find(:all,:include => [:unidades],:conditions => ["unidades.id = ?", current_user.unidade_id])
+            else if (current_user.unidade_id ==  nil)
+                  @obreiros = Obreiro.find(:all, :include => [:unidades], :conditions => ["unidades.obreiro_id = ?", current_user.obreiro_id])
+                  end
+            end
+       end
   end
 
   def index
@@ -57,7 +73,7 @@ class ObreirosController < ApplicationController
 
     respond_to do |format|
       if @obreiro.save
-        flash[:notice] = 'Obreiro was successfully created.'
+        flash[:notice] = 'CADASTRADO COM SUCESSO.'
         format.html { redirect_to(@obreiro) }
         format.xml  { render :xml => @obreiro, :status => :created, :location => @obreiro }
       else
@@ -74,7 +90,7 @@ class ObreirosController < ApplicationController
 
     respond_to do |format|
       if @obreiro.update_attributes(params[:obreiro])
-        flash[:notice] = 'Obreiro was successfully updated.'
+        flash[:notice] = 'CADASTRADO COM SUCESSO.'
         format.html { redirect_to(@obreiro) }
         format.xml  { head :ok }
       else
@@ -99,16 +115,28 @@ class ObreirosController < ApplicationController
  def consultaobreiro
    unless params[:search].present?
      if params[:type_of].to_i == 4
-       @contador = Obreiro.all.count
-       @obreiros = Obreiro.paginate(:all, :page => params[:page], :per_page => 50,:order => 'nome ASC')
+      if (current_user.unidade_id==9999)
+           @obreiros = Obreiro.paginate(:all, :page => params[:page], :per_page => 50, :order => 'nome ASC')
+       else if (current_user.obreiro_id == nil)
+             @obreiros = Obreiro.find(:all,:include => [:unidades],:conditions => ["unidades.id = ?", current_user.unidade_id])
+            else if (current_user.unidade_id ==  nil)
+                   @obreiros = Obreiro.find(:all,:include => [:unidades], :conditions => ["unidades.obreiro_id = ?", current_user.obreiro_id])
+                    
+                  end
+             end
+
+
+
+
+          
+      end
         render :update do |page|
          page.replace_html 'obreiros', :partial => "obreiros"
        end
      end
    else
       if params[:type_of].to_i == 1
-          @contador = Obreiro.all(:conditions => ["nome like ?", "%" + params[:search].to_s + "%"]).count
-          @obreiros = Obreiro.paginate( :all,:page => params[:page], :per_page => 50, :conditions => ["nome like ?", "%" + params[:search].to_s + "%"],:order => 'nome ASC')
+         @obreiros = Obreiro.paginate( :all,:page => params[:page], :per_page => 50, :conditions => ["nome like ?", "%" + params[:search].to_s + "%"],:order => 'nome ASC')
           render :update do |page|
             page.replace_html 'obreiros', :partial => "obreiros"
           end
@@ -138,17 +166,18 @@ end
 
   def lista_unidade_nome
     $obreiro = params[:unidade_obreiro_id]
-
     @obreiros = Obreiro.find(:all, :conditions => ['id=' + $obreiro])
     render :partial => 'obreiros'
   end
 
 
-
-
-
    def update_empresa
-    @funcionario = Funcionario.find(params[:id])
+
+     $unidade = params[:unidade][:id]
+
+    @unidade = Unidade.find(params[:unidade][:id])
+    nome=@unidade.nome
+    obreiro=@unidade.obreiro_id
     if @funcionario.update_attributes(params[:funcionario])
       flash[:notice] = 'Dados Atualizados.'
       render :update do |page|

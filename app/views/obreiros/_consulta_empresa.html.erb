@@ -1,7 +1,7 @@
 <table width="100%" align="center" >
    <tr>
      <td colspan="2"align="right"><font size="2"> <b class="label_busca2">Selecionar Empresa Parceira:</b></font>
-        <%= collection_select :unidade, :obreiro_id, @unidades, :id, :nome, :include_blank => ' -- Selecionar -- ',:class=> "txt_busca2"  %>
+        <%= collection_select :unidade, :obreiro_id, @unidades, :obreiro_id, :nome, :include_blank => ' -- Selecionar -- ',:class=> "txt_busca2"  %>
           <%= observe_field 'unidade_obreiro_id',
                :update => "obreiros",
                :url    => { :action => 'lista_unidade_nome' },

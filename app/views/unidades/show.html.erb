@@ -101,7 +101,7 @@
        <table>
           <tr>
             <td width="6%"align="left" > <%= link_to image_tag("/stylesheets/images/voltar.png", :size => "35x35"), root_path, :title => "Voltar" %></td>
-            <td width="6%"align="left" ><%= link_to image_tag("/stylesheets/images/listar.png", :size => "25x25"), consulta_unidade_nome_path, :title => "Consultar Empresas" %></td>
+            <td width="6%"align="left" ><%= link_to image_tag("/stylesheets/images/consulta.png", :size => "35x35"), consulta_unidade_nome_path, :title => "Consultar Empresas" %></td>
             <% if current_user.has_role?('admin') or current_user.has_role?('escola') or current_user.has_role?('responsavel')%>
                 <td width="6%"align="left" ><%= link_to image_tag("/stylesheets/images/edit.png", :size => "25x25"), edit_unidade_path(@unidade), :title => "Editar Empresa" %></td>
                 <td align="left"><%= link_to image_tag("/stylesheets/images/excluir.PNG", :size => "25x25"), @unidade, :confirm => 'Confirma Exclusão?', :method => :delete, :title => "Excluir Empresa" %></td>

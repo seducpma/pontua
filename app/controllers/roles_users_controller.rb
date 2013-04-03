@@ -43,6 +43,7 @@ class RolesUsersController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @role_users }
     end
+
   end
 
   # GET /role_users/1
@@ -114,7 +115,6 @@ class RolesUsersController < ApplicationController
     #$user_id = params[:user_id]
     for user in @user
       user.activate
-
 
   end
 

@@ -4,9 +4,16 @@ class CreateFinanceiros < ActiveRecord::Migration
       t.references :unidade
       t.datetime :data
       t.string :descricao
-      t.decimal :credito
-      t.decimal :debito
+      t.decimal :credito,  :default => 0
+      t.decimal :debito,  :default => 0
       t.string :obs
+      t.string :horario
+      t.time :horarioe
+      t.time :horarios
+      t.decimal :vhora
+      t.decimal :vkm
+      t.decimal :km,  :default => 0
+      t.decimal :horas,
 
       t.timestamps
     end

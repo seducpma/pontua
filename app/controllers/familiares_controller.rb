@@ -2,14 +2,40 @@ class FamiliaresController < ApplicationController
   # GET /familiares
   # GET /familiares.xml
     before_filter :load_funcionarios
+    before_filter :load_unidades
 
   def load_funcionarios
+    if (current_user.unidade_id==9999)
       @funcionarios = Funcionario.find(:all, :order => 'nome ASC')
+     else if (current_user.obreiro_id == nil)
+            @funcionarios = Funcionario.find(:all, :include => [:unidade], :conditions => ["unidade_id = ?", current_user.unidade_id], :order => 'nome ASC')
+            else if (current_user.unidade_id ==  nil)
+                  @funcionarios = Funcionario.find(:all, :include => [:unidade], :conditions => ["unidades.obreiro_id = ?", current_user.obreiro_id])
+                  end
+             end
+
+     end
+  end
+
+   def load_unidades
+      if (current_user.unidade_id==9999)
+          @unidades = Unidade.find(:all, :order => 'nome ASC')
+       else if (current_user.obreiro_id == nil)
+            @unidades = Unidade.find(:all,:conditions => ["id = ?", current_user.unidade_id], :order => 'nome ASC')
+            else if (current_user.unidade_id ==  nil)
+                  @unidades = Unidade.find(:all,:conditions => ["obreiro_id = ?", current_user.obreiro_id], :order => 'nome ASC')
+                  end
+             end
+       end
   end
 
   def index
-    @familiares = Familiare.all
-    respond_to do |format|
+     if (current_user.unidade_id==9999)
+       @familiares = Familiare.find(:all, :order => 'nome ASC')
+     else
+       @familiares = Familiare.find(:all, :conditions => ["funcionario_id = ?", current_user.unidade_id], :order => 'nome ASC')
+     end
+       respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :action => "new", :controller => :funcionarios }
 
@@ -50,7 +76,7 @@ class FamiliaresController < ApplicationController
 
     respond_to do |format|
       if @familiare.save
-        flash[:notice] = 'Familiare was successfully created.'
+        flash[:notice] = 'CADASTRADO COM SUCESSO.'
         format.html { redirect_to(@familiare) }
         format.xml  { render :xml => @familiare, :status => :created, :location => @familiare }
       else
@@ -67,7 +93,7 @@ class FamiliaresController < ApplicationController
 
     respond_to do |format|
       if @familiare.update_attributes(params[:familiare])
-        flash[:notice] = 'Familiare was successfully updated.'
+        flash[:notice] = 'CADASTRADO COM SUCESSO.'
         format.html { redirect_to(@familiare) }
         format.xml  { head :ok }
       else
@@ -109,17 +135,32 @@ class FamiliaresController < ApplicationController
   def consultafamiliar
    unless params[:search].present?
      if params[:type_of].to_i == 3
-       @contador = Familiare.all.count
-       @familiares = Familiare.paginate(:all, :page => params[:page], :per_page => 50,:order => 'nome ASC')
+       if (current_user.unidade_id==9999)
+          @familiares = Familiare.paginate(:all, :page => params[:page], :per_page => 50, :order => 'nome ASC')
+       else if (current_user.obreiro_id == nil)
+            @familiares = Familiare.find(:all,:include => [:funcionario=>[:unidade]], :conditions => ["funcionarios.unidade_id = ?", current_user.unidade_id])
+            else if (current_user.unidade_id ==  nil)
+                    @familiares =     Familiare.find(:all,:include => [:funcionario=>[:unidade]], :conditions => ["unidades.obreiro_id = ?", current_user.obreiro_id])
+                    
+                  end
+             end
+        end
         render :update do |page|
          page.replace_html 'familiares', :partial => "familiares"
        end
      end
    else
       if params[:type_of].to_i == 1
-          @contador = Familiare.all(:conditions => ["nome like ?", "%" + params[:search].to_s + "%"]).count
-          @familiares = Familiare.paginate( :all,:page => params[:page], :per_page => 50, :conditions => ["nome like ?", "%" + params[:search].to_s + "%"],:order => 'nome ASC')
-          render :update do |page|
+           if (current_user.unidade_id==9999)
+               @familiares = Familiare.paginate( :all,:page => params[:page], :per_page => 50, :conditions => ["nome like ?", "%" + params[:search].to_s + "%"],:order => 'nome ASC')
+           else if (current_user.obreiro_id == nil)
+                @familiares = Familiare.find( :all,:include => [:funcionario=>[:unidade]], :conditions => ["familiares.nome like ? and funcionarios.unidade_id = ?", "%" + params[:search].to_s + "%",  current_user.unidade_id])
+                else if (current_user.unidade_id ==  nil)
+                        @familiares = Familiare.find( :all,:include => [:funcionario=>[:unidade]], :conditions => ["familiares.nome like ? and unidades.obreiro_id = ?", "%" + params[:search].to_s + "%",  current_user.obreiro_id])
+                      end
+                 end
+          end
+            render :update do |page|
             page.replace_html 'familiares', :partial => "familiares"
           end
               else if params[:type_of].to_i == 2
@@ -134,6 +175,12 @@ end
   def lista_familiares_nome
     $funcionario = params[:funcionario_funcionario_id]
     @familiares = Familiare.find(:all, :conditions => ['funcionario_id=' + $funcionario])
+    render :partial => 'familiares'
+  end
+
+  def lista_unidade_nome
+    $unidade = params[:unidade_unidade_id]
+    @familiares =     Familiare.find(:all,:include => [:funcionario=>[:unidade]], :conditions => ["funcionarios.unidade_id = ?", $unidade])
     render :partial => 'familiares'
   end
 

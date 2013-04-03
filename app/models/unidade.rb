@@ -4,6 +4,7 @@ class Unidade < ActiveRecord::Base
   has_many :funcionarios
   has_many :financeiros
   belongs_to :obreiro
+  has_many :users
 
   ATIVIDADE = %w(COMÉRCIAL EDUCAÇÃO INDUSTRIAL PRESTAÇÃO_SERVIÇOS SERVIÇO_PÚBLICO OUTROS)
 

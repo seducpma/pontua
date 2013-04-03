@@ -1,26 +1,29 @@
-<% title "USUÁRIOS", :id =>"usuarios" %>
-<div class="tabs">
-    <% form_remote_tag :url => {:action => "lista_users"} , :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
-  <table width="100%" align="center" bgcolor="#DCDCDC" >
-          <tr>
-            <td>
-               <a href="#" class="sem_filtro" id="unidade"><%= radio_button_tag(:type_of, "1") %></a>Minha Unidade
-               <a href="#" class="sem_filtro"><%= radio_button_tag(:type_of, "6") %></a>Todos
-            </td>
-         </tr>
-         <tr>
-           <td><div class="consulta" style="display:none"> <%= render "/shared/consulta" %> </div></td>
-         </tr>
-        </table>
-    <% end %>
-    <div id="users"><div id='status' style='display:none;' align="center" ><%= image_tag("/stylesheets/images/loading.gif") %></div></div>
-     <table>
-       <tr>
-         <td width="6%"align="left" > <%= link_to image_tag("/stylesheets/images/voltar.png", :size => "40x40"), root_path, :title => "Voltar" %></td>
-         <td align="left" ><%= link_to image_tag("/stylesheets/images/gerenciar2.png", :size => "40x40"),new_roles_user_path, :title => "Associar" %></td>
-       </tr>
-    </table>
+<div id="interno2">
+<% title "GERENCIAMENTO DE USUÁRIOS", :id =>"users" %>
+ <div class="tabs">
+   <div id="caixa_titulo">
+    <font size="3"><strong>GERENCIAMENTO DE USUÁRIOS</strong></font><br/>
+   </div>
+  <div class="tabs">
+    <br/>
+    <div id="usuarios"><%= render :partial => "usuarios" %>
+      
+<div id='status' style='display:none;' align="center" ><%= image_tag("/stylesheets/images/loading.gif") %></div></div>
+    <br/>
+   
+
+
+  <table>
+    <tr>
+     <td width="6%"align="left" > <%= link_to image_tag("/stylesheets/images/voltar.png", :size => "35x35"), root_path, :title => "Voltar" %></td>
+     <td align="left">           <%= link_to image_tag("/stylesheets/images/consulta.png", :size => "40x40"), unidades_path, :title => "Nova Consulta" %></td>
+    </tr>
+  </table>
+ </div>
+ </div>
+  <br/>
 </div>
+
 
 
 

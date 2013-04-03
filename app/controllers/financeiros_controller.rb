@@ -6,11 +6,27 @@ class FinanceirosController < ApplicationController
   before_filter :load_obreiros
 
  def load_obreiros
-      @obreiros = Obreiro.find(:all, :order => 'nome ASC')
+      if (current_user.unidade_id==9999)
+         @obreiros = Obreiro.find(:all, :order => 'nome ASC')
+       else if (current_user.obreiro_id == nil)
+            @obreiros = Obreiro.find(:all,:include => [:unidades],:conditions => ["unidades.id = ?", current_user.unidade_id])
+            else if (current_user.unidade_id ==  nil)
+                  @obreiros = Obreiro.find(:all, :include => [:unidades], :conditions => ["unidades.obreiro_id = ?", current_user.obreiro_id])
+                  end
+            end
+       end
   end
 
-def load_unidades
-    @unidades = Unidade.find(:all, :order => 'nome ASC')
+ def load_unidades
+      if (current_user.unidade_id==9999)
+          @unidades = Unidade.find(:all, :order => 'nome ASC')
+       else if (current_user.obreiro_id == nil)
+            @unidades = Unidade.find(:all,:conditions => ["id = ?", current_user.unidade_id], :order => 'nome ASC')
+            else if (current_user.unidade_id ==  nil)
+                  @unidades = Unidade.find(:all,:conditions => ["obreiro_id = ?", current_user.obreiro_id], :order => 'nome ASC')
+                  end
+             end
+       end
   end
 
  def load_financeiro_ano
@@ -57,10 +73,9 @@ def load_unidades
   # POST /financeiros.xml
   def create
     @financeiro = Financeiro.new(params[:financeiro])
-
     respond_to do |format|
       if @financeiro.save
-        flash[:notice] = 'Financeiro was successfully created.'
+        flash[:notice] = 'CADASTRADO COM SUCESSO.'
         format.html { redirect_to(@financeiro) }
         format.xml  { render :xml => @financeiro, :status => :created, :location => @financeiro }
       else
@@ -77,7 +92,7 @@ def load_unidades
 
     respond_to do |format|
       if @financeiro.update_attributes(params[:financeiro])
-        flash[:notice] = 'Financeiro was successfully updated.'
+        flash[:notice] = 'CADASTRADO COM SUCESSO.'
         format.html { redirect_to(@financeiro) }
         format.xml  { head :ok }
       else
@@ -101,21 +116,19 @@ def load_unidades
 
 
  def nome_obreiro
-    $obreiro = Unidade.find(params[:financeiro_unidade_id])
-    @obreiro = Obreiro.find(:all, :conditions => ['id=?',  $obreiro])
+    obreiro = Unidade.find(params[:financeiro_unidade_id])
+    ob=obreiro.obreiro.id
+    @obreiro = Obreiro.find(:all, :conditions => ['id=?',  ob])
+
        render  :partial => 'nome_obreiro'
  end
 
  def consultafinanceiro
-   unless params[:search].present?
-     if params[:type_of].to_i == 6
-       @contador = Relatorio.all.count
-        @financeiros = Financeiro.paginate(:all, :page => params[:page], :per_page => 50,:order => 'created_at DESC')
-        render :update do |page|
-           page.replace_html 'relatorio', :partial => "relatorios"
-       end
-     end
-   else if params[:type_of].to_i == 1
+     session[:type] = params[:type_of]
+     session[:unidade]= params[:financeiro][:unidade_id]
+     session[:mes] = params[:mes_e]
+     session[:ano] = params[:ano_e]
+
           if (params[:mes_e]== 'JANEIRO')
              ano =params[:ano_e]
              inicio = "#{Time.now.strftime("%Y")}-01-01 00:00:00"
@@ -224,111 +237,85 @@ def load_unidades
           end
 
 
+  end
 
 
-
-
-
-
-    else if params[:type_of].to_i == 2
-          $mes = params[:mes]
-          if (params[:mes]== 'JANEIRO')
-             ano =params[:ano]
+  def impressao
+    
+    if (params[:mes_e]== 'JANEIRO')
+             ano =session[:ano_e]
              inicio = "#{Time.now.strftime("%Y")}-01-01 00:00:00"
              fim = "#{Time.now.strftime("%Y")}-01-31 23:59:59"
-             @relatorios = Relatorio.find(:all, :conditions => ["obreiro_id=? AND ( data between '#{inicio}' and '#{fim}')", params[:relatorio][:obreiro_id]],:order => 'created_at DESC')
-             render :update do |page|
-               page.replace_html 'relatorio', :partial => "relatorios"
-             end
-          else if(params[:mes]== 'FEVEREIRO')
-                  ano =params[:ano]
+             @financeiros = Financeiro.find(:all, :conditions => ["unidade_id=? AND ( data between '#{inicio}' and '#{fim}')", params[:unidade]],:order => 'created_at DESC')
+             render :layout => "impressao"
+
+          else if(params[:mes_e].to_s == 'FEVEREIRO')
+                  ano =params[:ano_e]
                   inicio = "#{ano}-02-01 00:00:00"
                   fim = "#{ano}-02-28 23:59:59"
-                   @financeiros = Finaneiro.find(:all, :conditions => ["obreiro_id=? AND ( data between '#{inicio}' and '#{fim}')", params[:relatorio][:obreiro_id]],:order => 'created_at DESC')
-                   render :update do |page|
-                      page.replace_html 'financeiro', :partial => "financeiros"
-                   end
-               else if(params[:mes]== 'MARÇO')
-                      ano =params[:ano]
+                  @financeiros = Financeiro.find(:all, :conditions => ["unidade_id=? AND ( data between '#{inicio}' and '#{fim}')", params[:unidade_id]],:order => 'created_at DESC')
+                  render :layout => "impressao"
+          else if(params[:mes_e]== 'MARÇO')
+                      ano =params[:ano_e]
                       inicio = "#{Time.now.strftime("%Y")}-03-01 00:00:00"
                       fim = "#{Time.now.strftime("%Y")}-03-31 23:59:59"
-                      @relatorios = Relatorio.find(:all, :conditions => ["obreiro_id=? AND ( data between '#{inicio}' and '#{fim}')", params[:relatorio][:obreiro_id]],:order => 'created_at DESC')
-                      render :update do |page|
-                        page.replace_html 'relatorio', :partial => "relatorios"
-                       end
-                   else if(params[:mes]== 'ABRIL')
-                          ano =params[:ano]
+                       @financeiros = Financeiro.find(:all, :conditions => ["unidade_id=? AND ( data between '#{inicio}' and '#{fim}')", params[:unidade_id]],:order => 'created_at DESC')
+                      render :layout => "impressao"
+                   else if(params[:mes_e]== 'ABRIL')
+                          ano =params[:ano_e]
                           inicio = "#{Time.now.strftime("%Y")}-04-01 00:00:00"
                           fim = "#{Time.now.strftime("%Y")}-04-30 23:59:59"
-                           @relatorios = Relatorio.find(:all, :conditions => ["obreiro_id=? AND ( data between '#{inicio}' and '#{fim}')", params[:relatorio][:obreiro_id]],:order => 'created_at DESC')
-                           render :update do |page|
-                             page.replace_html 'relatorio', :partial => "relatorios"
-                           end
-                         else if(params[:mes]== 'MAIO')
-                               ano =params[:ano]
+                           @financeiros = Financeiro.find(:all, :conditions => ["unidade_id=? AND ( data between '#{inicio}' and '#{fim}')", params[:unidade_id]],:order => 'created_at DESC')
+                            render :layout => "impressao"
+                         else if(params[:mes_e]== 'MAIO')
+                               ano =params[:ano_e]
                                inicio = "#{Time.now.strftime("%Y")}-05-01 00:00:00"
                                fim = "#{Time.now.strftime("%Y")}-05-31 23:59:59"
-                               @relatorios = Relatorio.find(:all, :conditions => ["obreiro_id=? AND ( data between '#{inicio}' and '#{fim}')", params[:relatorio][:obreiro_id]],:order => 'created_at DESC')
-                               render :update do |page|
-                                  page.replace_html 'relatorio', :partial => "relatorios"
-                               end
-                              else if(params[:mes]== 'JUNHO')
-                                    ano =params[:ano]
+                                @financeiros = Financeiro.find(:all, :conditions => ["unidade_id=? AND ( data between '#{inicio}' and '#{fim}')", params[:unidade_id]],:order => 'created_at DESC')
+                                render :layout => "impressao"
+                              else if(params[:mes_e]== 'JUNHO')
+                                    ano =params[:ano_e]
                                     inicio = "#{Time.now.strftime("%Y")}-06-01 00:00:00"
                                     fim = "#{Time.now.strftime("%Y")}-06-30 23:59:59"
-                                     @relatorios = Relatorio.find(:all, :conditions => ["obreiro_id=? AND ( data between '#{inicio}' and '#{fim}')", params[:relatorio][:obreiro_id]],:order => 'created_at DESC')
-                                     render :update do |page|
-                                        page.replace_html 'relatorio', :partial => "relatorios"
-                                     end
-                                   else if(params[:mes]== 'JULHO')
-                                          ano =params[:ano]
+                                     @financeiros = Financeiro.find(:all, :conditions => ["unidade_id=? AND ( data between '#{inicio}' and '#{fim}')", params[:unidade_id]],:order => 'created_at DESC')
+                                     render :layout => "impressao"
+                                   else if(params[:mes_e]== 'JULHO')
+                                          ano =params[:ano_e]
                                           inicio = "#{Time.now.strftime("%Y")}-07-01 00:00:00"
                                           fim = "#{Time.now.strftime("%Y")}-07-31 23:59:59"
-                                           @relatorios = Relatorio.find(:all, :conditions => ["obreiro_id=? AND ( data between '#{inicio}' and '#{fim}')",params[:relatorio][:obreiro_id]],:order => 'created_at DESC')
-                                           render :update do |page|
-                                              page.replace_html 'relatorio', :partial => "relatorios"
-                                           end
-                                         else if(params[:mes]== 'AGOSTO')
-                                                ano =params[:ano]
+                                          @financeiros = Financeiro.find(:all, :conditions => ["unidade_id=? AND ( data between '#{inicio}' and '#{fim}')", params[:unidade_id]],:order => 'created_at DESC')
+                                          render :layout => "impressao"
+                                         else if(params[:mes_e]== 'AGOSTO')
+                                                ano =params[:ano_e]
                                                 inicio = "#{Time.now.strftime("%Y")}-08-01 00:00:00"
                                                 fim = "#{Time.now.strftime("%Y")}-08-31 23:59:59"
-                                                @relatorios = Relatorio.find(:all, :conditions => ["obreiro_id=? AND ( data between '#{inicio}' and '#{fim}')", params[:relatorio][:obreiro_id]],:order => 'created_at DESC')
-                                                render :update do |page|
-                                                     page.replace_html 'relatorio', :partial => "relatorios"
-                                                end
-                                              else if(params[:mes]== 'SETEMBRO')
-                                                     ano =params[:ano]
+                                                 @financeiros = Financeiro.find(:all, :conditions => ["unidade_id=? AND ( data between '#{inicio}' and '#{fim}')", params[:unidade_id]],:order => 'created_at DESC')
+                                                render :layout => "impressao"
+                                              else if(params[:mes_e]== 'SETEMBRO')
+                                                     ano =params[:ano_e]
                                                      inicio = "#{Time.now.strftime("%Y")}-09-01 00:00:00"
                                                      fim = "#{Time.now.strftime("%Y")}-09-30 23:59:59"
-                                                     @relatorios = Relatorio.find(:all, :conditions => ["obreiro_id=? AND ( data between '#{inicio}' and '#{fim}')", params[:relatorio][:obreiro_id]],:order => 'created_at DESC')
-                                                     render :update do |page|
-                                                       page.replace_html 'relatorio', :partial => "relatorios"
-                                                     end
-                                                    else if(params[:mes]== 'OUTUBRO')
-                                                           ano =params[:ano]
+                                                     @financeiros = Financeiro.find(:all, :conditions => ["unidade_id=? AND ( data between '#{inicio}' and '#{fim}')", params[:unidade_id]],:order => 'created_at DESC')
+                                                     render :layout => "impressao"
+                                                    else if(params[:mes_e]== 'OUTUBRO')
+                                                           ano =params[:ano_e]
                                                            inicio = "#{Time.now.strftime("%Y")}-10-01 00:00:00"
                                                            fim = "#{Time.now.strftime("%Y")}-10-31 23:59:59"
-                                                           @relatorios = Relatorio.find(:all, :conditions => ["obreiro_id=? AND ( data between '#{inicio}' and '#{fim}')", params[:relatorio][:obreiro_id]],:order => 'created_at DESC')
-                                                           render :update do |page|
-                                                             page.replace_html 'relatorio', :partial => "relatorios"
-                                                           end
-                                                         else if(params[:mes]== 'NOVEMBRO')
-                                                                ano =params[:ano]
+                                                           @financeiros = Financeiro.find(:all, :conditions => ["unidade_id=? AND ( data between '#{inicio}' and '#{fim}')", params[:unidade_id]],:order => 'created_at DESC')
+                                                           render :layout => "impressao"
+                                                         else if(params[:mes_e]== 'NOVEMBRO')
+                                                                ano =params[:ano_e]
                                                                  inicio = "#{Time.now.strftime("%Y")}-11-01 00:00:00"
                                                                  fim = "#{Time.now.strftime("%Y")}-11-30 23:59:59"
-                                                                 @relatorios = Relatorio.find(:all, :conditions => ["obreiro_id=? AND ( data between '#{inicio}' and '#{fim}')", params[:relatorio][:obreiro_id]],:order => 'created_at DESC')
-                                                                 render :update do |page|
-                                                                      page.replace_html 'relatorio', :partial => "relatorios"
-                                                                 end
-                                                              else if(params[:mes]== 'DEZEMBRO')
-                                                                     ano =params[:ano]
+                                                                 @financeiros = Financeiro.find(:all, :conditions => ["unidade_id=? AND ( data between '#{inicio}' and '#{fim}')", params[:unidade_id]],:order => 'created_at DESC')
+                                                                 render :layout => "impressao"
+                                                                 else if(params[:mes_e]== 'DEZEMBRO')
+                                                                     ano =params[:ano_e]
                                                                      inicio = "#{Time.now.strftime("%Y")}-012-01 00:00:00"
                                                                      fim = "#{Time.now.strftime("%Y")}-12-31 23:59:59"
-                                                                     @relatorios = Relatorio.find(:all, :conditions => ["obreiro_id=? AND ( data between '#{inicio}' and '#{fim}')", params[:relatorio][:obreiro_id]],:order => 'created_at DESC')
-                                                                     render :update do |page|
-                                                                         page.replace_html 'relatorio', :partial => "relatorios"
-                                                                     end
-                                                                   end
+                                                                     @financeiros = Financeiro.find(:all, :conditions => ["unidade_id=? AND ( data between '#{inicio}' and '#{fim}')", params[:unidade_id]],:order => 'created_at DESC')
+                                                                    render :layout => "impressao"
+                                                                  end
                                                               end
                                                          end
                                                    end
@@ -340,12 +327,14 @@ def load_unidades
                     end
                end
           end
-         end
-      end
-    end
+
+
+
+
+
+      
+
   end
-
-
 
 
 
