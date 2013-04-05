@@ -8,7 +8,15 @@ class UnidadesController < ApplicationController
   end
 
   def load_unidades
-    @unidades = Unidade.find(:all, :order => 'nome ASC')
+      if (current_user.unidade_id==9999)
+          @unidades = Unidade.find(:all, :order => 'nome ASC')
+       else if (current_user.obreiro_id == nil)
+            @unidades = Unidade.find(:all,:conditions => ["id = ?", current_user.unidade_id], :order => 'nome ASC')
+            else if (current_user.unidade_id ==  nil)
+                  @unidades = Unidade.find(:all,:conditions => ["obreiro_id = ?", current_user.obreiro_id], :order => 'nome ASC')
+                  end
+             end
+       end
   end
 
   def index
@@ -73,9 +81,17 @@ class UnidadesController < ApplicationController
   def consultaempresa
    unless params[:search].present?
      if params[:type_of].to_i == 3
-       @contador = Unidade.all.count
-       @unidades = Unidade.paginate(:all, :page => params[:page], :per_page => 50,:order => 'nome ASC')
-        render :update do |page|
+       @contador = Unidade.all(:conditions => ["id = ?", current_user.unidade_id]).count
+             if (current_user.unidade_id==9999)
+          @unidades = Unidade.find(:all, :order => 'nome ASC')
+       else if (current_user.obreiro_id == nil)
+            @unidades = Unidade.find(:all,:conditions => ["id = ?", current_user.unidade_id], :order => 'nome ASC')
+            else if (current_user.unidade_id ==  nil)
+                  @unidades = Unidade.find(:all,:conditions => ["obreiro_id = ?", current_user.obreiro_id], :order => 'nome ASC')
+                  end
+             end
+       end
+          render :update do |page|
          page.replace_html 'empresas', :partial => "empresas"
        end
      end

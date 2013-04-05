@@ -9,7 +9,9 @@
          <table width="100%" align="center" bgcolor="#DCDCDC" >
           <tr>
             <td>
-              <a href="#" class="filtro"><%= radio_button_tag(:type_of, "1") %></a>Nome <i>(Digitar)</i>
+              <%  if (current_user.unidade_id==9999) %>
+                  <a href="#" class="filtro"><%= radio_button_tag(:type_of, "1") %></a>Nome <i>(Digitar)</i>
+              <%end%>
               <a href="#" class="filtro_nome"><%= radio_button_tag(:type_of, "2") %></a>Nome <i>(Selecionar)</i>
               <a href="#" class="filtro_empresa"><%= radio_button_tag(:type_of, "3") %></a>Empresa
               <a href="#" class="sem_filtro"><%= radio_button_tag(:type_of, "4") %></a>Todos
@@ -27,7 +29,7 @@
     <hr/>
     <div id="obreiros"><div id='status' style='display:none;' align="center" ><%= image_tag("/stylesheets/images/loading.gif") %></div></div>
     <br/>
-     <div id="grid" </div>
+
 
   <table>
     <tr>

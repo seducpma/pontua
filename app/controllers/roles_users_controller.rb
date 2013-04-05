@@ -43,6 +43,7 @@ class RolesUsersController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @role_users }
     end
+
   end
 
   # GET /role_users/1
@@ -115,7 +116,6 @@ class RolesUsersController < ApplicationController
     for user in @user
       user.activate
 
-
   end
 
 
@@ -128,7 +128,7 @@ class RolesUsersController < ApplicationController
     @role_user.role_id = $new_role_id
     respond_to do |format|
       if @role_user.update_attributes(params[:role_user])
-        flash[:notice] = 'DIREITO SALVO COM SUCESSO.'
+        flash[:notice] = 'CADASTRADO COM SUCESSO.'
         format.html { redirect_to(@role_user) }
         format.xml  { head :ok }
       else

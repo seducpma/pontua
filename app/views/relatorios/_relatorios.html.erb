@@ -9,7 +9,7 @@
         </tr>
       <tr bgcolor="#DCDCDC" >
           <th bgcolor="#DCDCDC" align="left"  >Obreiro:</th>
-          <td bgcolor="#F5F5F5" ><%=h relatorio.unidade.obreiro.nome %></td>
+          <td bgcolor="#F5F5F5" ><%=h relatorio.obreiro.nome %></td>
           
           <th bgcolor="#DCDCDC" align="left">Empresa:</th>
           <td bgcolor="#F5F5F5" colspan=3 width="250"><%=h relatorio.unidade.nome %></td>
@@ -53,6 +53,7 @@
           <td align="left"><b>TOTAL RELATÓRIOS CADASTRADOS: </b>
             <font color ="red "size="2"><b><%=$t %></b></font>
           </td>
+         <td colspan="7"align="right" ><b><%= link_to'| Vizualizar Impressão |', onclick="javascript:MM_openBrWindow('#{impressao_relatorios_path(:mes_e => session[:mes],:ano_e => session[:ano],:unidade_id => session[:unidade])}','impressao', 'scrollbars=yes');", :title => "Imprimir" %></b></td>
       </tr>
     </table>
   </div>

@@ -3,6 +3,32 @@ body {
 	background-color:white;
 
     }
+
+
+
+.tabelas {
+  border: solid 3px #000000;
+  border-collapse: collapse;
+
+}
+
+.tabelas th {
+  font-size:13px;
+  color: #000;
+  background-color: #bebebe;
+  padding: 4px 8px;
+  padding-bottom: 4px;
+  text-align: center;
+;
+}
+
+.tabelas td {
+  padding: 4px 8px;
+}
+
+.tabelas h1 {
+    background-color: #404C99;
+}
   select.lista_assuntos {
    width:330px;
    height: 100px;

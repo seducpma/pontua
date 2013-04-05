@@ -5,6 +5,11 @@ function MM_openBrWindow(theURL,winName,features) {
 window.open(theURL,winName,features);
 }
 
+function PrintDiv(div)
+{
+	$('#'+div).printElement();
+}
+
 function MascaraMoeda(objTextBox, SeparadorMilesimo, SeparadorDecimal, e){
     var sep = 0;
     var key = "";

@@ -5,12 +5,29 @@ class FuncionariosController < ApplicationController
     before_filter :load_unidades
     before_filter :load_funcionarios
 
-  def load_funcionarios
-    @funcionarios = Funcionario.find(:all, :order => 'nome ASC')
-  end
+ def load_funcionarios
+    if (current_user.unidade_id==9999)
+      @funcionarios = Funcionario.find(:all, :order => 'nome ASC')
+     else if (current_user.obreiro_id == nil)
+            @funcionarios = Funcionario.find(:all, :include => [:unidade], :conditions => ["unidade_id = ?", current_user.unidade_id], :order => 'nome ASC')
+            else if (current_user.unidade_id ==  nil)
+                  @funcionarios = Funcionario.find(:all, :include => [:unidade], :conditions => ["unidades.obreiro_id = ?", current_user.obreiro_id])
+                  end
+             end
 
-   def load_unidades
-      @unidades = Unidade.find(:all, :order => 'nome ASC')
+     end
+  end
+  
+ def load_unidades
+      if (current_user.unidade_id==9999)
+          @unidades = Unidade.find(:all, :order => 'nome ASC')
+       else if (current_user.obreiro_id == nil)
+            @unidades = Unidade.find(:all,:conditions => ["id = ?", current_user.unidade_id], :order => 'nome ASC')
+            else if (current_user.unidade_id ==  nil)
+                  @unidades = Unidade.find(:all,:conditions => ["obreiro_id = ?", current_user.obreiro_id], :order => 'nome ASC')
+                  end
+             end
+       end
   end
 
 
@@ -57,7 +74,7 @@ class FuncionariosController < ApplicationController
 
     respond_to do |format|
       if @funcionario.save
-        flash[:notice] = 'Funcionario was successfully created.'
+        flash[:notice] = 'CADASTRADO COM SUCESSO.'
         format.html { redirect_to(@funcionario) }
         format.xml  { render :xml => @funcionario, :status => :created, :location => @funcionario }
       else
@@ -74,7 +91,7 @@ class FuncionariosController < ApplicationController
 
     respond_to do |format|
       if @funcionario.update_attributes(params[:funcionario])
-        flash[:notice] = 'Funcionario was successfully updated.'
+        flash[:notice] = 'CADASTRADO COM SUCESSO.'
         format.html { redirect_to(@funcionario) }
         format.xml  { head :ok }
       else
@@ -117,9 +134,16 @@ class FuncionariosController < ApplicationController
   def consultafuncionario
    unless params[:search].present?
      if params[:type_of].to_i == 4
-       @contador = Funcionario.all.count
-       @funcionarios = Funcionario.paginate(:all, :page => params[:page], :per_page => 50,:order => 'nome ASC')
-        render :update do |page|
+      if (current_user.unidade_id==9999)
+          @funcionarios = Funcionario.find(:all, :order => 'nome ASC')
+      else if (current_user.obreiro_id == nil)
+            @funcionarios = Funcionario.find(:all, :include => [:unidade], :conditions => ["unidade_id = ?", current_user.unidade_id], :order => 'nome ASC')
+            else if (current_user.unidade_id ==  nil)
+                  @funcionarios = Funcionario.find(:all, :include => [:unidade], :conditions => ["unidades.obreiro_id = ?", current_user.obreiro_id])
+                  end
+             end
+      end
+       render :update do |page|
          page.replace_html 'funcionarios', :partial => "funcionarios"
        end
      end

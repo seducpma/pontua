@@ -1,39 +1,30 @@
-<% form_for @familiare, :html => { :multipart => true } do |f| %>
- <%= f.error_messages %>
-  <font  size="2">
-    <table width="60%" align="center" bgcolor="#F5F5F5">
-     <tr>
-       <td colspan="3" > <h3>FAMILIARES OU PESSOAS QUE MORAM NA MESMA RESIDÊNCIA</h3></td>
-     </tr>
-     <tr>
-         <td colspan="2"><b>Nome: </b> <%= f.text_field :nome, :size => "50" %></td>       </tr>
-    </tr>
-     <tr>
-         <td align="left"><b>Estado Civil:</b><%= f.select :estado_civil, Familiare::CIVIL   %></td>
-         <td align="left"><b>Parentesco: </b><%= f.select :parentesco, Familiare::PARENTESCO%></td>
-     </tr>
-       <tr>
+        <% form_for @familiare, :html => { :multipart => true } do |f| %>
+         <%= f.error_messages %>
+          <font  size="2">
+            <table width="100%" align="center" bgcolor="#F5F5F5">
+             <tr>
+               <td colspan="3" > <h3>FAMILIARES OU PESSOAS QUE MORAM NA MESMA RESIDÊNCIA</h3></td>
+             </tr>
+             <tr>
+                 <td colspan="3"><b>Nome: </b> <%= f.text_field :nome, :size => "100" %></td>
+            </tr>
+             <tr>
+                 <td align="left" ><b>Estado Civil:</b><%= f.select :estado_civil, Familiare::CIVIL%> </td>
+                 <td align="right" ><b>Parentesco: </b><%= f.select :parentesco, Familiare::PARENTESCO%></td>
+                 <td align="center"> <b>Data Nascimento: </b><%= f.date_select(:nascimento, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year - 100)) %>  </td>
+               </tr>
 
-         <td align="left"> <b>Data Nascimento: </b><%= f.date_select(:nascimento, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year - 100)) %>  </td>
-       </tr>
-
-         <tr>
-           <td colspan="3"><b>Funcionario: </b><%= collection_select :funcionario, :funcionario_id, @funcionarios, :id, :nome, :include_blank => ' --- Selecionar ---'  %></td>
-         </tr>
-      </table>
-      <table width="100%" >
-         <tr>
-            <td width="4%"align="left" > <%= link_to image_tag("/stylesheets/images/voltar.png", :size => "40x40"), home_path, :title => "Voltar" %></td>
-            <td width="4%"><input type="image" src="/stylesheets/images/salvar.png" title="Gravar"></td>
-            <td width="5%"><%= link_to image_tag("/stylesheets/images/listar.png", :size => "25x25"), familiares_path,  :title => "Familiares Cadastrados" %></td>
-            <td></td>
-         </tr>
-       </table>
-  </font>
-<%end%>
-
-
-
-
-
-
+                 <tr>
+                   <td colspan="3"><b>Funcionario: </b><%= collection_select :funcionario, :funcionario_id, @funcionarios, :id, :nome, :include_blank => ' --- Selecionar ---'  %></td>
+                 </tr>
+              </table>
+              <table width="100%" >
+                 <tr>
+                    <td width="4%"align="left" > <%= link_to image_tag("/stylesheets/images/voltar.png", :size => "40x40"), home_path, :title => "Voltar" %></td>
+                    <td width="4%"><input type="image" src="/stylesheets/images/salvar.PNG" title="Gravar"></td>
+                    <td width="5%"><%= link_to image_tag("/stylesheets/images/consulta.png", :size =>"35x35"), familiares_path,  :title => "Consultar" %></td>
+                    <td></td>
+                 </tr>
+               </table>
+          </font>
+        <%end%>

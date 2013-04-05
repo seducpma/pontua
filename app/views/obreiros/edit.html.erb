@@ -44,7 +44,7 @@
                     </td>
                     <td>
                       <b>Complemento: </b><%= f.text_field :complemento, :size =>21%>
-                      <b>CEP: </b><%= f.text_field :cep, :size =>10 %>
+                      <b>CEP: </b><%= f.text_field :cep, :size =>9%>
 
                     </td>
                   </tr>
@@ -71,18 +71,19 @@
                    </td>
                   </tr>
                   <tr>
-                   <td colspan="2"><b> Empresas:</b></td>
-                  </tr>
-                   <tr>
-                     <td colspan="2">
-                       <div id="lista">  <%= render :partial => 'lista_empresas' %></div>
-                  
-                       <%= "Associar outra empresa #{link_to image_tag('/stylesheets/images/cadastrar.gif', :size => "20x20", :title => 'Associar à nova empresa'), '#inline_empresa', :class => 'inline'}"%>
+                    <td>
+                      <table>
+                        <tr>
+                          <td valign="top"><b> Empresas:</b></td>
+                          <td> <% @obreiro.unidades.each do |unidade| %>
+                                  <b>-</b> <%="#{unidade.nome}" %><br/>
+                                 <%end%>
+
+                          </td>
+                        </tr>
+                      </table>
                     </td>
-               </tr>
-
-
-
+                  </tr>
                   <tr >
                     <td colspan="2"><b>Observações:</b><br/>
                        <%= f.text_area(:obs, :cols =>"101", :rows => "2") %>
@@ -94,7 +95,7 @@
                    <tr>
                       <td width="4%"align="left" > <%= link_to image_tag("/stylesheets/images/voltar.png", :size => "40x40"), home_path, :title => "Voltar" %></td>
                       <td width="4%"><input type="image" src="/stylesheets/images/salvar.PNG" title="Gravar"></td>
-                      <td width="5%"><%= link_to image_tag("/stylesheets/images/listar.png", :size => "25x25"), obreiros_path,  :title => "Obreiros Cadastrados" %></td>
+                      <td width="5%"><%= link_to image_tag("/stylesheets/images/consulta.png", :size => "35x35"), obreiros_path,  :title => "Obreiros Cadastrados" %></td>
                       <td></td>
                    </tr>
                  </table>

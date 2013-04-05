@@ -26,11 +26,8 @@
                    <td align="left" ><b>Sexo: </b></td>
                    <td align="left"  width="20%"><%=h @funcionario.sexo %></td>
                    <td align="left" width="3%"><b>Participante: </b></td>
-                     <% if @funcionario.participante == false %>
-                       <td align="left"> SIM </td>
-                     <%else%>
-                       <td align="left"><font color="red"> NÃO </font> </td>
-                     <%end%>
+                   <td align="left" > <font color="red"><%=h @funcionario.participante %></font></td>
+                       
 
                 </tr>
                 <tr bgcolor="#F5F5F5">
@@ -103,14 +100,19 @@
  </table>
 
     <table width="100%">
-      <tr width="100%">
-        <td align="left" width="4%"><%= link_to image_tag("/stylesheets/images/voltar.png", :size => "40x40"),  home_path, {:method => "get"}, :title => "Voltar"%></td>
+        <tr>
+            <td width="6%"align="left" > <%= link_to image_tag("/stylesheets/images/voltar.png", :size => "35x35"), root_path, :title => "Voltar" %></td>
+            <td width="6%"align="left" ><%= link_to image_tag("/stylesheets/images/consulta.png", :size => "35x35"), funcionarios_path, :title => "Consultar" %></td>
             <% if current_user.has_role?('admin') %>
-              <td align="left" width="4%" ><%= link_to image_tag("/stylesheets/images/edit.png", :size => "25x25"), edit_funcionario_path(@funcionario), :title => "Alterar Dados"%></td>
+                <td width="6%"align="left" ><%= link_to image_tag("/stylesheets/images/edit.png", :size => "25x25"), edit_funcionario_path(@funcionario), :title => "Editar Funiconairor" %></td>
+                <td><%= link_to image_tag("/stylesheets/images/excluir.PNG", :size => "25x25"), @funcionario, :confirm => 'Confirma Exclusão?', :method => :delete, :title => "Excluir Funcionario" %></td>
+              <%else%>
+                <td align="center"> </td>
+                <td align="center"> </td>
+
             <%end%>
-            <td align="left" ><%= link_to image_tag("/stylesheets/images/imprimir.png", :size => "30x30"), onclick="javascript:window.print()", :title => "Imprimir" %></td>
-           </tr>
-         </table>
+          </tr>
+   </table>
 
 </div>
 <br/>

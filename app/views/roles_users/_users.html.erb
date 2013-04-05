@@ -16,15 +16,15 @@
                  <td width="25%">Administrador</td>
                  <td>Acesso total ao sistema</td>
                <%else%>
-                   <%if  Role.find(role_user.role_id).name == 'escola' then%>
-                      <td>Direção UE.</td>
-                      <td> Acesso parcial administração</td>
+                   <%if  Role.find(role_user.role_id).name == 'obreiro' then%>
+                      <td>Obreiro.</td>
+                      <td> Acesso parcial do sistema</td>
                   <%else%>
-                     <%if  Role.find(role_user.role_id).name == 'responsavel' then%>
-                       <td>Responsábel Biblioteca</td>
-                       <td>Acesso parcial gerenciamento</td>
+                     <%if  Role.find(role_user.role_id).name == 'usuario' then%>
+                       <td>Empresa</td>
+                       <td>Acesso restrito ao sistema</td>
                      <%else%>
-                         <td>Usuário Biblioteca</td>
+                         <td>Empresa</td>
                          <td>Acesso restrito ao sistema.</td>
                      <%end%>
                   <%end%>
