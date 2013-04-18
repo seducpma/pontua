@@ -17,6 +17,16 @@
                  <%= error_messages_for :user %>
                  <% form_for :user, :url => users_path do |f| -%>
                     <tr>
+                        <td align="left" valign="top"><b><i><font  color="red" size="2" ><u>ORIENTAÇÕES:</font></i></b></u></td>
+                         <td align="left" colspan="2"><font  color="red" size="2" >
+                           <b>1) O nome do USUÁRIO <u>não</u> pode ser repetido, utilize o padrão nome_sobrenome. Ex:  jose_silva<br/>
+                              2) O e-mail deve ser pessoal e cadastrado uma única vez no SisCap. <br/>
+                              3) Selecionar o tipo de acesso: <br/>- Se EMPRESA, selecionar o nome da Empresa<br/>
+                                                               - Se OBREIRO, selecionar o nome do Obreiro<br/>
+                                Obs: Se não estiver o nome na caixa de seleção entrar em contato com o Administrador do Sistema  </b></font
+                         </td>
+                    </tr>
+                     <tr>
                         <td align="left"><b>Usuário:</b></td>
                         <td colspan="2" align="left"><%= f.text_field :login, :size => "50" %></td>
 
@@ -26,24 +36,18 @@
                         <td align="left"><b>e-mail:</b></td>
                         <td align="left" colspan="2" align="left"><%= f.text_field :email, :size => "50" %></td>
                       </tr>
+
                       <tr>
                          <td align="left" ><b>Senha:</b></td>
                          <td align="left"><%= f.password_field :password, :size => "10" %></td>
-                         <td align="left"><b><i><font  color="red" size="2" >Escolha uma senha com no mínimo 6 digitos</font></i></b</td>
+                         <td align="left"><b><i><font  color="red" size="2" >Escolha uma senha com no mínimo 6 <b>NÚMEROS</b></font></i></b></td>
                        </tr>
                        <tr>
                          <td align="left"width="12%"><b>Confirma Senha:</b></td>
                          <td align="left"><%= f.password_field :password_confirmation, :size => "10" %></td>
                          <td></td>
                        </tr>
-                       <tr>
-                         <td align="left" valign="top"><b><i><u>Observação:</u></i></b></td>
-                         <td align="left" colspan="2"><font  color="red" size="2" >
-                           <b>Se for EMPRESA, selecionar o nome da Empresa<br/>
-                              Se for OBREIRO, selecionar o nome do Obreiro</b></font
-                         </td>
 
-                       </tr>
                       <tr>
                         <td align="left"><b>Obreiro:</b></td>
                         <td colspan="2" align="left"><%= f.collection_select :obreiro_id,Obreiro.all(:order => 'nome ASC'),:id,:nome, :include_blank => true %></td>
@@ -67,15 +71,7 @@
       </tr>
     </table>
    </div>
-<<<<<<< HEAD
 </div>
 <br/>
 </div>
-=======
-</div>
-<br/>
-</div>
-<\center>
-
->>>>>>> 80896ea99e31767f57b8c12b3111ef1c26dd882e
 <br/>

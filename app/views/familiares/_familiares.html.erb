@@ -23,7 +23,15 @@
                   <td align="left">Não Cadastrado</td>
                 <%else%>
                      <td align="left"><%=h familiar.funcionario.nome%></td>
-                     <td align="left"><%=h familiar.funcionario.unidade.nome%></td>
+                     <td align="left"><%=h familiar.funcionario.unidade.nome%>
+                          <%if familiar.funcionario.unidade.em_atividade == true then%>
+                             (<font color ="red "><b>INATIVO</b></font>)
+                          <%else%>
+                          <%end%>
+
+
+
+                     </td>
                 <%end%>
                 <td align="center"><%= link_to image_tag("/stylesheets/images/exibir.gif", :size => "15x15"), familiar, :title => "Exibir Familiar" %></td>
                 <% if current_user.has_role?('admin') or current_user.has_role?('obreiro')%>

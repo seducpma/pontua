@@ -21,7 +21,13 @@
                   <td align="left">Não Cadastrado</td>
                 <%else%>
                   <td><strong>Empresa</strong></td>
-                  <td><%=h @familiare.funcionario.unidade.nome %></td>
+                  <td><%=h @familiare.funcionario.unidade.nome %>
+                        <%if @familiare.funcionario.unidade.em_atividade == true then%>
+                          ( <font color ="red "><b>INATIVO</b></font> )
+                       <%else%>
+                          ( <font color ="blue "><b>ATIVO</b></font> )
+                       <%end%>
+                  </td>
               <%end%>
             </tr>
            </table>

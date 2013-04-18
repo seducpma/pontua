@@ -80,7 +80,13 @@
                 </tr>
                 <tr bgcolor="#F5F5F5">
                   <td align="left"><b> Trabalho:</b></td>
-                  <td align="left" colspan="3"><%=h  @funcionario.unidade.nome%></td>
+                  <td align="left" colspan="3"><%=h  @funcionario.unidade.nome%>
+                  <%if @funcionario.unidade.em_atividade == true then%>
+                   - <font color ="red "><b>INATIVO</b></font>
+                  <%else%>
+                   - <font color ="blue "><b>ATIVO</b></font
+                  <%end%>
+                 </td>
                 </tr>
                 <tr bgcolor="#F5F5F5">
                   <td align="left"><b> Cargo:</b></td>
