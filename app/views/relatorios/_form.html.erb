@@ -4,7 +4,7 @@
     <fieldset><legend><font  size=3> RELATÓRIO DE ATIVIADE DESENVOLVIDA</font></legend>
       <table width="100%" align="center"  bgcolor="#F5F5F5">
         <tr>
-           <td width="50%"><b>Obreiro: </b><%= collection_select :relatorio, :obreiro_id, @obreiros, :id, :nome, :include_blank => ' --- Selecionar ---'  %></td>
+           <td width="50%"><font  size="3" color ="red"><b>* </b></font><b>Obreiro: </b><%= collection_select :relatorio, :obreiro_id, @obreiros, :id, :nome, :include_blank => ' --- Selecionar ---'  %></td>
            <%= observe_field 'relatorio_obreiro_id',
                     :with   => :relatorio_obreiro_id,
                     :url    => { :action => 'lista_unidade_obreiro' },
@@ -23,8 +23,9 @@
           </td>
        </tr>
       </table>
+      <font  size="2" color ="red"><b>Campos com * preenchimento obrigatório</b></font>
       <fieldset>
-       <table width="100%" >
+        <table width="100%" >
          <tr>
             <td width="4%"align="left" > <%= link_to image_tag("/stylesheets/images/voltar.png", :size => "40x40"), home_path, :title => "Voltar" %></td>
             <td width="4%"><input type="image" src="/stylesheets/images/salvar.PNG" title="Gravar"></td>

@@ -65,12 +65,10 @@ pt-br:
       errors:
         template:
           header:
-            one: "{{model}} não pôde ser salvo 1 erro"
+            one: "ERRO NO SALVAR"
             other: "{{model}} não pôde ser salvo {{count}} erros."
 
-          body: "Por favor, cheque os seguintes campos"
-
-
+          body: "EXISTEM CAMPOS NÃO PREENCHIDOS, FAVOR REFAZER A OPERAÇÃO E PREENCHER TODOS OS CAMPOS COM *"
         messages:
           inclusion: "não está incluso na lista"
           exclusion: "não está disponível"

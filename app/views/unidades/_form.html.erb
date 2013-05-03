@@ -4,7 +4,7 @@
     <fieldset><legend><font  size=3> Dados da Empresa</font></legend>
       <table width="100%" align="center"  bgcolor="#F5F5F5">
         <tr>
-          <td><b>Atividade Empresarial: </b><%= f.select :atividade, Unidade::ATIVIDADE%></td>
+          <td><font  size="3" color ="red"><b>*</b></font><b>Atividade Empresarial: </b><%= f.select :atividade, Unidade::ATIVIDADE%></td>
           <td></td>
         </tr>
         <tr>
@@ -64,14 +64,18 @@
           </td>
         </tr>
          <tr>
-           <td colspan="2"><b>Obreiro: </b><%= collection_select :unidade, :obreiro_id, @obreiros, :id, :nome, :include_blank => ' --- Selecionar ---'  %></td>
+           <td colspan="2"><font  size="3" color ="red"><b>*</b></font>
+             <b>Obreiro: </b><%= collection_select :unidade, :obreiro_id, @obreiros, :id, :nome, :include_blank => ' --- Selecionar ---'  %>
+           </td>
          </tr>  
         <tr>
           <td colspan="2"><b>Observações:</b><br/>
              <%= f.text_area(:obs, :cols =>"101", :rows => "2") %>
           </td>
        </tr>
+
       </table>
+      <font  size="2" color ="red"><b>Campos com * preenchimento obrigatório</b></font>
       <fieldset>
        <table width="100%" >
          <tr>

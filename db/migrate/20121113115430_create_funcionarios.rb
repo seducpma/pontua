@@ -6,8 +6,12 @@ class CreateFuncionarios < ActiveRecord::Migration
       t.datetime :nascimento
       t.string :sexo
       t.string :cargo
+      t.datetime :contratacao
+      t.boolean    :em_atividade, :default => 0
+      t.datetime :demissao
       t.string :estado_civil
       t.string :conjuge
+      t.string :filhos
       t.string :participante
       t.string :igreja
       t.string :endereco

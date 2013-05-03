@@ -48,6 +48,10 @@
              <td><strong>Estado Civil:</strong></td>
              <td><%=h @familiare.estado_civil %></td>
             </tr>
+                <tr bgcolor="#F5F5F5">
+                  <td align="left" width="15%"><b> Cadastrado em:</b></td>
+                  <td align="left" colspan="3"><%=h  @familiare.created_at.strftime("%d de %B de %Y")%></td>
+                </tr>
           </table>
          </fieldset>
         </td>

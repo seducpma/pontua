@@ -180,7 +180,9 @@ end
     render :partial => 'funcionarios'
   end
 
-
+ def data_demissao
+    render  :partial => 'datademissao'
+ end
 end
 
 

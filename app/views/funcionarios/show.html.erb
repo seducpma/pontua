@@ -27,8 +27,6 @@
                    <td align="left"  width="20%"><%=h @funcionario.sexo %></td>
                    <td align="left" width="3%"><b>Participante: </b></td>
                    <td align="left" > <font color="red"><%=h @funcionario.participante %></font></td>
-                       
-
                 </tr>
                 <tr bgcolor="#F5F5F5">
                    <td align="left"><b>Nascimento:</b></td>
@@ -41,8 +39,12 @@
                   <td align="left"> <%=h @funcionario.conjuge %></td>
                 </tr>
                 <tr bgcolor="#F5F5F5">
+                  <td align="left"><b>Filhos:</b></td>
+                  <td colspan="3" align="left"> <%=h @funcionario.filhos %></td>
+                </tr>
+                <tr bgcolor="#F5F5F5">
                   <td align="left"><b>Igreja:</b></td>
-                  <td colspan="3" align="left"> <%=h @funcionario.conjuge %></td>
+                  <td colspan="3" align="left"> <%=h @funcionario.igreja %></td>
                 </tr>
                 <tr bgcolor="#F5F5F5">
                   <td align="left"><b> Endereço:</b></td>
@@ -92,6 +94,24 @@
                   <td align="left"><b> Cargo:</b></td>
                   <td align="left" colspan="3"><%=h  @funcionario.cargo%></td>
                 </tr>
+                <tr bgcolor="#F5F5F5">
+                  <td align="left"><b> Contratada em:</b></td>
+                  <td align="left" colspan="3"><%=h  @funcionario.contratacao.strftime("%d de %B de %Y")%></td>
+                </tr>
+                <%if @funcionario.em_atividade == true %>
+                 <tr bgcolor="#F5F5F5">
+                  <td align="left"><b> Demitido em:</b></td>
+                  <td align="left" colspan="3"> <font color ="red "><%=h  @funcionario.demissao.strftime("%d de %B de %Y")%></td></font>
+                </tr>
+                <%else%>
+                <%end%>
+                <tr bgcolor="#F5F5F5">
+                  <td align="left" width="15%"><b> Cadastrado em:</b></td>
+                  <td align="left" colspan="3"><%=h  @funcionario.created_at.strftime("%d de %B de %Y")%></td>
+                </tr>
+
+
+
                 <tr bgcolor="#F5F5F5">
                   <td align="left"><b> Observações:</b></td>
                   <td align="left" colspan="3"><%=h  @funcionario.obs%></td>

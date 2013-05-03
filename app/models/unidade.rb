@@ -6,7 +6,9 @@ class Unidade < ActiveRecord::Base
   belongs_to :obreiro
   has_many :users
 
-  ATIVIDADE = %w(COMÉRCIAL EDUCAÇÃO INDUSTRIAL PRESTAÇÃO_SERVIÇOS SERVIÇO_PÚBLICO OUTROS)
+  validates_presence_of :obreiro_id, :message => ' Selecionar OBREIRO'
+
+  ATIVIDADE = %w(COMERCIAL EDUCAÇÃO INDUSTRIAL PRESTAÇÃO_SERVIÇOS SERVIÇO_PÚBLICO OUTROS)
 
 
   def simplificada

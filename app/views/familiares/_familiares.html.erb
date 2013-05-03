@@ -2,20 +2,26 @@
     <table bgcolor="#DCDCDC" width="100%">
         <tr bgcolor="#DCDCDC" >
             <th width="300">Nome</th>
-            <th width="10">Idade</th>
             <th width="100">Estado Civil</th>
             <th width="100">Parentesco</th>
             <th width="100">Funcionario</th>
+            <th width="10">Situação</th>
             <th width="100">Empresa</th>
+            <th width="10">Situação</th>
             <th colspan="3">Administração</th>
         </tr>
          <%$t=0%>
-         <%$t1=0%>
          <%$t2=0%>
+         <%$ativo=0%>
+         <%$inativo=0%>
             <% @familiares.each do |familiar| %>
+             <%$t = $t+1%>
+                 <% if (familiar.funcionario.participante == 'SIM') %>
+                <%$t2 = $t2+1%>
+              <%end%>
+
             <tr bgcolor="#F5F5F5">
                 <td align="left"><%=h familiar.nome%></td>
-                <td align="center"><%=h familiar.idade%></td>
                 <td align="left"><%=h familiar.estado_civil%></td>
                 <td align="left"><%=h familiar.parentesco%></td>
                 <% if (familiar.funcionario_id == nil)  %>
@@ -23,16 +29,26 @@
                   <td align="left">Não Cadastrado</td>
                 <%else%>
                      <td align="left"><%=h familiar.funcionario.nome%></td>
+                      <%if familiar.funcionario.em_atividade == true %>
+                         <td><font color ="red ">DEMITIDO </font></td>
+                       <%else%>
+                          <td>CONTRATADO</font></td>
+                       <%end%>
+
                      <td align="left"><%=h familiar.funcionario.unidade.nome%>
                           <%if familiar.funcionario.unidade.em_atividade == true then%>
-                             (<font color ="red "><b>INATIVO</b></font>)
+                             <td><font color ="red ">INATIVA</font></td>
                           <%else%>
+                            <td>ATIVA</font></td>
                           <%end%>
-
-
-
                      </td>
-                <%end%>
+                 <%if (familiar.funcionario.unidade.em_atividade == true)%>
+                    <%$inativo=$inativo+1%>
+                 <%else%>
+                      <%$ativo=$ativo+1%>
+                 <%end%>
+
+               <%end%>
                 <td align="center"><%= link_to image_tag("/stylesheets/images/exibir.gif", :size => "15x15"), familiar, :title => "Exibir Familiar" %></td>
                 <% if current_user.has_role?('admin') or current_user.has_role?('obreiro')%>
                     <td align="center"><%= link_to image_tag("/stylesheets/images/edit.png", :size => "15x15"), edit_familiare_path(familiar), :title => "Editar Familiar" %></td>
@@ -47,4 +63,23 @@
               </tr>
             <% end %>
      </table>
+         <table bgcolor="#DCDCDC" width="100%">
+      <tr >
+          <td align="left"><b>TOTAL FAMILIARES CADASTRADOS: </b>
+            <font color ="red "size="2"><b><%=$t %></b></font>
+          </td>
+      </tr>
+      <tr>
+          <td align="left"><b>TOTAL FAMILIARES EMPRESAS ATIVAS: </b>
+            <font color ="red "size="2"><b><%=  $ativo%></b></font>
+          </td>
+      </tr>
+      <tr>
+        <td align="left"><b>TOTAL FAMILIARES CUJOS FUNCIONÁRIOS PARTICIPAM: </b>
+            <font color ="red "size="2"><b><%=$t2 %></b></font>
+          </td>
+      </tr>
+    </table>
+
+  
   </div>

@@ -1,6 +1,6 @@
 class Funcionario < ActiveRecord::Base
 
-validates_presence_of :unidade_id, :message => ' Selecionar EMPRESA'
+
 
 CIVIL = %w(SOLTEIRO(A) CASADO(A) DIVORCIADO(A) VIÚVO(A) UNIÃO_ESTÁVEL OUTROS)
 SEXO = %w(MASCULINO FEMININO HOMOAFETIVO)
@@ -11,7 +11,7 @@ PARTICIPANTE = %w(SIM NÃO ESPORÁDICO)
   has_many :familiares
   #has_and_belongs_to_many :familiares
   after_create :salva_familiar
-
+validates_presence_of :unidade_id, :message => ' Selecionar EMPRESA'
  def salva_familiar
    t=Familiare.all(:conditions =>["funcionario_id is null"])
    t.each do |f|
