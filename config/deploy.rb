@@ -1,4 +1,4 @@
-set :application, "192.168.0.25"
+set :application, "192.168.0.5"
 set :repository, "git://github.com/seducpma/Siscap.git"
 set :user, "servidor"
 set :use_sudo, false
