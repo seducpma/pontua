@@ -1,5 +1,5 @@
 class RolesUsersController < ApplicationController
-  require_role ["admin"]
+  #require_role ["admin"]
   before_filter :load_user
   before_filter :load_role
   layout "application"
@@ -22,7 +22,7 @@ class RolesUsersController < ApplicationController
   end
 
   def load_user
-    @users = User.find_by_sql("SELECT login,id FROM users where id in (select user_id from roles_users where role_id = 4)")
+    @users = User.find_by_sql("SELECT login,id FROM users where id in (select user_id from roles_users where role_id = 6)")
   end
 
   def listar_user_ass
@@ -109,14 +109,14 @@ class RolesUsersController < ApplicationController
     #    format.xml  { render :xml => @role_user.errors, :status => :unprocessable_entity }
     #  end
 
-   $user_id= @role_user.user_id
-    @user = User.find(:all, :conditions => ['id =' +($user_id).to_s])
+#   $user_id= @role_user.user_id
+#    @user = User.find(:all, :conditions => ['id =' +($user_id).to_s])
     #@user = User.find_by_sql("SELECT * FROM roles_users,users WHERE roles_users.user_id = users.id and users.id = "+($user_id).to_s)
     #$user_id = params[:user_id]
-    for user in @user
-      user.activate
+#    for user in @user
+#      user.activate
 
-  end
+#  end
 
 
   end

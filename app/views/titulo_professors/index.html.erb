@@ -1,0 +1,34 @@
+<h1>Listing titulo_professors</h1>
+
+<table>
+  <tr>
+    <th>Titulo</th>
+    <th>Professor</th>
+    <th>Obs</th>
+    <th>Quantidade</th>
+    <th>Pontuacao titulo</th>
+    <th>Dt titulo</th>
+    <th>Dt validade</th>
+    <th>Status</th>
+  </tr>
+
+<% @titulo_professors.each do |titulo_professor| %>
+  <tr>
+    <td><%=h titulo_professor.titulo %></td>
+    <td><%=h titulo_professor.professor %></td>
+    <td><%=h titulo_professor.obs %></td>
+    <td><%=h titulo_professor.quantidade %></td>
+    <td><%=h titulo_professor.pontuacao_titulo %></td>
+    <td><%=h titulo_professor.dt_titulo %></td>
+    <td><%=h titulo_professor.dt_validade %></td>
+    <td><%=h titulo_professor.status %></td>
+    <td><%= link_to 'Show', titulo_professor %></td>
+    <td><%= link_to 'Edit', edit_titulo_professor_path(titulo_professor) %></td>
+    <td><%= link_to 'Destroy', titulo_professor, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New titulo_professor', new_titulo_professor_path %>

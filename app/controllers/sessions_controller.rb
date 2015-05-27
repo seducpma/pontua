@@ -7,7 +7,28 @@ class SessionsController < ApplicationController
   def new
   end
 
-  def create
+  
+   def create
+    self.current_user = User.authenticate(params[:login], params[:password])
+    if logged_in?
+      if params[:remember_me] == "1"
+        current_user.remember_me unless current_user.remember_token?
+        cookies[:auth_token] = { :value => self.current_user.remember_token , :expires => self.current_user.remember_token_expires_at }
+      end
+    #  session[:ip] = request.remote_ip
+    #  if session[:ip] == '200.232.60.242' or session[:ip] == '201.77.127.49' # or session[:ip] == '201.92.73.126'
+        redirect_back_or_default(home_path)
+        flash[:notice] = "BEM VINDO AO SISTEMA PONTUA."
+    #  else
+    #    redirect_to(visaos_path)
+    #    flash[:notice] = "SISTEMA INDISPONÍVEL - NÃO PODE SERACESSADO"
+    #  end
+    else
+      render :action => 'new'
+  end
+  end
+  
+  def createanterior
    logout_keeping_session!
     user = User.authenticate(params[:login], params[:password])
     if user
@@ -19,7 +40,7 @@ class SessionsController < ApplicationController
       new_cookie_flag = (params[:remember_me] == "1")
       handle_remember_cookie! new_cookie_flag
       redirect_back_or_default('/')
-      flash[:notice] = "BEM VINDO AO SISCAP"
+      flash[:notice] = "PONTUA ver4.1"
     else
       note_failed_signin
       @login       = params[:login]
@@ -31,7 +52,7 @@ class SessionsController < ApplicationController
 
   def destroy
     logout_killing_session!
-    flash[:notice] = "VOCẼ ACABOU DE SAIR DO SISCAP"
+    flash[:notice] = "VOCẼ ACABOU DE SAIR DO PONTUA"
     redirect_back_or_default('/')
   end
 

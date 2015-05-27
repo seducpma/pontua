@@ -6,10 +6,10 @@ class Unidade < ActiveRecord::Base
   belongs_to :obreiro
   has_many :users
 
-  validates_presence_of :obreiro_id, :message => ' Selecionar OBREIRO'
+
 
   ATIVIDADE = %w(COMERCIAL EDUCAÇÃO INDUSTRIAL PRESTAÇÃO_SERVIÇOS SERVIÇO_PÚBLICO OUTROS)
-
+TIPO = ['CASA DA CRIANÇA', 'CIEP', 'CRECHE', 'EDUCAÇÃO ESPECIAL', 'EMEF', 'EMEI','SEDUC']
 
   def simplificada
     truncate(self.nome, :length=> 50)

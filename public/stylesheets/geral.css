@@ -544,6 +544,23 @@ margin:25px;
 
  }
 
+ #img{
+   background-image:url(Imagens/professores.jpg);
+   background-repeat: no-repeat;
+   background-position:center;
+   text-align: center;
+   color:white;
+   width:95%;
+   height:270px;
+   margin:0;
+   font-weight:bold;
+   border-color:black;
+   border-left: double;
+   border-bottom: double;
+   border-top: double;
+   border-right: double;
+}
+
    #rodape_login{
     background-image:url(Imagenzs/fundo_rodape.jpg);
     position:relative;
@@ -568,13 +585,23 @@ margin:25px;
    top: 200px;
 }
 
+#topo1não
+{
+        background-image:url(Imagens/americana.jpg);
+        color:white;
+        height:80px;
+        margin:0;
+        font-weight:bold;
+}
+
+
 #topo {
 background-image:url(Imagens/americana.jpg);
 background-repeat: no-repeat;
 text-align: center;
 color:black;
 width:100%;
-height:114px;
+height:88px;
 margin:0;
 font:bold;
 border-color:black;
@@ -638,19 +665,14 @@ border-right: double;
 }
 
 #principal{
-    float:right;
-    width:945px;
+    float: right;
+    width:950px;
     height:auto;
     overflow: auto;
     margin:0;
     background-image:url(Imagens/principal_body.jpg);
     background-repeat:repeat;
-    font-size:12px;
-    border-color:black;
-    border-left: double;
-    border-bottom: double;
-    border-top: double;
-    border-right: double;
+    font-size:2px;
 
 }
 
@@ -695,12 +717,14 @@ border-right: double;
 
 
 #principal2{
+    float:right;
+    width:945px;
     height:auto;
-    width:950px;
+    overflow: auto;
+    margin:0;
     background-image:url(Imagens/principal_body.jpg);
-    font-size:10px;
-    text-align: center;
-    color:white;
+    background-repeat:repeat;
+    font-size:12px;
     border-color:black;
     border-left: double;
     border-bottom: double;
@@ -712,8 +736,6 @@ border-right: double;
     width:950px;
     background-image:url(Imagens/principal_body.jpg);
     font-size:10px;
-    text-align: center;
-    color:white;
     border-color:black;
     border-left: double;
     border-bottom: double;

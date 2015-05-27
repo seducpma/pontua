@@ -12,11 +12,7 @@
       <tr>
        <td  width="30%"><%= f.label :user_id,'Selecionar o Usuário' %></td>
        <td align="left"><%= f.collection_select  :user_id,@user, :id, :login, :include_blank => ' -- Selecionar -- ' %></td>
-       <%if @role_user.user.obreiro_id.nil?%>
-           <td align="left"><b>Unidade:</b> <%=h @role_user.user.unidade.nome%> </td>
-       <%else%>
-           <td align="left"><b>Obreiro:</b>  <%=h @role_user.user.obreiro.nome%> </td>
-       <%end%>
+
       </tr>
       <tr>
        <td><%= f.label :role_id,'Selecionar o nível de acesso :' %></td>
@@ -30,9 +26,10 @@
   </div>
  <table>
   <tr>
-    <td width="6%"align="left" > <%= link_to image_tag("/stylesheets/images/voltar.png", :size => "40x40"), root_path, :title => "Voltar" %></td>
-    <td align="left"><input type="image" src="/stylesheets/images/associar.png" title="Associar Usuários"></td>
+    
+    <td width="8%" align="left"><input type="image" src="/stylesheets/images/associar.png" title="Associar Usuários"></td>
    <% end %>
+   <td ><%= button_to 'Voltar', home_path, {:method => "get"}  %></td>
    </tr>
 </table>
 </div>

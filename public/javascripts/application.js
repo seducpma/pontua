@@ -362,6 +362,8 @@ $("#localizacao_data_aquisicao").datepicker({dateFormat: 'dd-mm-yy', changeYear:
      $(".label_busca").show();
      $(".txt_busca").val("Digite parte da busca").css("color","gray");
      $(".consulta1").hide();
+     $(".consulta_unidade").hide();
+     $(".consulta_professor").hide();
      $(".consulta2").hide();
    });
 
@@ -370,8 +372,46 @@ $(".filtro_nome").click(function ()
      $(".consulta1").show();
      $(".txt_busca1").show();
      $(".label_busca1").show();
+
      $(".consulta").hide();
      $(".consulta2").hide();
+     $(".txt_busca2").hide();
+     $(".label_busca1").hide();
+
+   });
+
+   $(".filtro_tipo").click(function ()
+   { $(".consulta2").show();
+     $(".txt_busca2").show();
+     $(".label_busca2").show();
+
+     $(".consulta2").show();
+     $(".txt_busca2").show();
+     $(".label_busca2").show();
+     $(".consulta").hide();
+     $(".consulta1").hide();
+
+  });
+$(".sem_filtro").click(function ()
+    { $(".txt_busca2").hide();
+      $(".label_busca2").hide();
+      $(".txt_busca").val("");
+      $(".txt_busca").hide();
+      $(".label_busca").hide();
+      $(".consulta").show();
+      $("#unidade_corrente").hide();
+      $(".consulta1").hide();
+      $(".consulta2").hide();
+      $(".consulta_unidade").hide();
+      $(".consulta_data").hide();
+      $(".txt_busca4").hide();
+      $(".label_busca4").hide();
+      $(".consulta_professor").hide();
+      $(".txt_busca3").hide();
+      $(".label_busca3").hide();
+      $(".txt_busca2").hide();
+      $(".label_busca2").hide();
+      $(".label_busca1").hide();
    });
 
    $(".filtro_funcionario").click(function ()
@@ -383,27 +423,27 @@ $(".filtro_nome").click(function ()
 
   });
 
-   $(".filtro_empresa").click(function ()
+   $(".filtro_unidade").click(function ()
    {
      $(".consulta2").show();
-     $(".consulta_empresa").show();
+     $(".consulta_unidade").show();
      $(".txt_busca2").show()
      $(".label_busca2").show();
      $(".consulta").hide();
      $(".consulta1").hide();
-     $(".consulta_obreiro").hide();
+     $(".consulta_professor").hide();
      $(".consulta_data").hide();
      $(".label_busca1").hide();
    });
 
-   $(".filtro_obreiro").click(function ()
+   $(".filtro_professor").click(function ()
    {
-     $(".consulta_obreiro").show();
+     $(".consulta_professor").show();
      $(".txt_busca3").show()
      $(".label_busca3").show();
      $(".consulta").hide();
      $(".consulta1").hide();
-     $(".consulta_empresa").hide();
+     $(".consulta_unidade").hide();
      $(".consulta_data").hide();
 
    });
@@ -427,27 +467,7 @@ $(".filtro_nome").click(function ()
      $(".consulta_cantor").show();   
    });
 
-   $(".sem_filtro").click(function ()
-    { $(".txt_busca2").hide();
-      $(".label_busca2").hide();
-      $(".txt_busca").val("");
-      $(".txt_busca").hide();
-      $(".label_busca").hide();
-      $(".consulta").show();
-      $("#unidade_corrente").hide();
-      $(".consulta1").hide();
-      $(".consulta_empresa").hide();
-      $(".consulta_data").hide();
-      $(".txt_busca4").hide();
-      $(".label_busca4").hide();
-      $(".consulta_obreiro").hide();
-      $(".txt_busca3").hide();
-      $(".label_busca3").hide();
-      $(".txt_busca2").hide();
-      $(".label_busca2").hide();
-      $(".label_busca1").hide();
-   });
-
+   
    $(".sem_filtro#unidade").click(function ()
     {
       $("#unidade_corrente").show();
@@ -463,9 +483,9 @@ $(".filtro_nome").click(function ()
 
 // Letras em maiusculo
 
-$("input").keyup(function(){
-    $(this).val($(this).val().toUpperCase());
-  })
+//$("input").keyup(function(){
+//    $(this).val($(this).val().toUpperCase());
+//  })
 
 // Fim Letra em maiusculo
 

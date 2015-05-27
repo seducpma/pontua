@@ -18,7 +18,7 @@ development:
   adapter: mysql
   encoding: utf8
   reconnect: false
-  database: SisCap_development
+  database: pontua_development
   pool: 5
   username: root
   password: s3inf0
@@ -31,7 +31,7 @@ test:
   adapter: mysql
   encoding: utf8
   reconnect: false
-  database: SisCap_test
+  database: pontua_test
   pool: 5
   username: root
   password: s3inf05
@@ -41,7 +41,7 @@ production:
   adapter: mysql
   encoding: utf8
   reconnect: false
-  database: SisCap_production
+  database: pontua_production
   pool: 5
   username: root
   password: s3inf05

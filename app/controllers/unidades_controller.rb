@@ -1,26 +1,14 @@
 class UnidadesController < ApplicationController
     
  before_filter :load_unidades
- before_filter :load_obreiros
 
-  def load_obreiros
-      @obreiros = Obreiro.find(:all, :order => 'nome ASC')
-  end
 
   def load_unidades
-      if (current_user.unidade_id==9999)
-          @unidades = Unidade.find(:all, :order => 'nome ASC')
-       else if (current_user.obreiro_id == nil)
-            @unidades = Unidade.find(:all,:conditions => ["id = ?", current_user.unidade_id], :order => 'nome ASC')
-            else if (current_user.unidade_id ==  nil)
-                  @unidades = Unidade.find(:all,:conditions => ["obreiro_id = ?", current_user.obreiro_id], :order => 'nome ASC')
-                  end
-             end
-       end
+      @unidades = Unidade.find(:all, :order => 'nome ASC')
   end
 
   def index
-    @unidades = Unidade.all
+    @unidades = Unidade.find(:all, :order => 'nome ASC')
   end
 
   def show
@@ -78,33 +66,24 @@ class UnidadesController < ApplicationController
     end
   end
 
-  def consultaempresa
-   unless params[:search].present?
+  def consulta_tipo_unidade
+   
      if params[:type_of].to_i == 3
-       @contador = Unidade.all(:conditions => ["id = ?", current_user.unidade_id]).count
-             if (current_user.unidade_id==9999)
-          @unidades = Unidade.find(:all, :order => 'nome ASC')
-       else if (current_user.obreiro_id == nil)
-            @unidades = Unidade.find(:all,:conditions => ["id = ?", current_user.unidade_id], :order => 'nome ASC')
-            else if (current_user.unidade_id ==  nil)
-                  @unidades = Unidade.find(:all,:conditions => ["obreiro_id = ?", current_user.obreiro_id], :order => 'nome ASC')
-                  end
-             end
-       end
-          render :update do |page|
-         page.replace_html 'empresas', :partial => "empresas"
-       end
-     end
-   else
+        @unidades = Unidade.find(:all, :order => 'nome ASC')
+        render :update do |page|
+         page.replace_html 'unidades', :partial => "unidades"
+        end
+     else
       if params[:type_of].to_i == 1
-          @contador = Unidade.all(:conditions => ["nome like ?", "%" + params[:search].to_s + "%"]).count
+          
           @unidades = Unidade.paginate( :all,:page => params[:page], :per_page => 50, :conditions => ["nome like ?", "%" + params[:search].to_s + "%"],:order => 'nome ASC')
           render :update do |page|
-            page.replace_html 'empresas', :partial =>  'lista_empresas_nome'
+            page.replace_html 'unidades', :partial =>  'unidades'
           end
           else if params[:type_of].to_i == 2
-            render :update do |page|
-              page.replace_html 'empresaslivros', :partial =>  'lista_empresas_nome'
+          @unidades = Unidade.all(:conditions => ["tipo =?", params[:search]])
+          render :update do |page|
+              page.replace_html 'unidades', :partial =>  'unidades'
             end
           end
       end
@@ -115,9 +94,9 @@ end
     render 'consulta_nome'
   end
 
- def lista_empresa_nome
+ def lista_unidade_nome
     $unidade = params[:unidade_unidade_id]
     @unidades = Unidade.find(:all, :conditions => ['id=' + $unidade])
-    render :partial => 'lista_empresas_nome'
+    render :partial => 'unidades'
   end
 end

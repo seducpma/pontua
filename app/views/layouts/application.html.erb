@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 
-    <title><%= "Capelania Empresarial. Você está em: #{h(yield(:title) || 'Sem titulo')}" %></title>
+    <title><%= "PONTUA Você está em: #{h(yield(:title) || 'Sem titulo')}" %></title>
 
     
     <%= stylesheet_link_tag 'application' %>
@@ -39,33 +39,48 @@ display: none;
     </div>
    <h3 align="center"><b><%= link_to_remote("Ocultar esta mensagem", :url => {:controller => 'javascripts', :action => 'hide_announcement'}) %></b></h3>
   </div>
-   <%end%>
+  <%end%>
   <div id="header">
     <br/>
     <div id="topo"></div>
     <%if logged_in? then%>
-      <font size="4" color="green"><%= link_to h(current_user.login.capitalize), edit_user_path(current_user) %>  </font>
-      <% if current_user.has_role?('admin') %>
-       Acesso de Administrador do Sistema<font size="1"> ........................................</font> <font size ="2"><b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b></font>
-      <%else%>
-         <% if current_user.has_role?('obreiro') %>
-            Acesso de Obreiro(a)<font size="1"> ..................................................</font> <font size ="2"><b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b></font>
-         <%else%>
-            <% if current_user.has_role?('empresa') %>
-                  Acesso de Usuário<font size="1"> ................................................</font> <font size ="2"><b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b></font>
-            <%else%>
-                   Acesso de Visitante<font size="1"> .............................................................................................................................................................</font> <font size ="2"><b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b></font>
-            <%end%>
-         <%end%>
-     <%end%>
-   <font style="color: red"><%= flash[:notice] %></font>
+      <table width="100%">
+      <tr>
+        <td width ="10%">
+           <font size="4" color="green"><%= link_to h(current_user.login.capitalize), edit_user_path(current_user) %>  </font>
+        </td>
+        <% if current_user.has_role?('admin') %>
+         <td>Acesso de Administrador do Sistema<font size="1">
+         <td align="right"></font> <font size ="2"><b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b></font>
+        <%else%>
+           <% if current_user.has_role?('supervisao') %>
+              <td>Acesso SEDUC</td>
+              <td align="right"><font size ="2"><b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b></font></td>
+           <%else%>
+              <% if current_user.has_role?('direcao') %>
+                  <td>Acesso Direção UE</td>
+                  <td align="right"><font size ="2"><b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b></font></td>
+              <%else%>
+                 <% if current_user.has_role?('planejamento') %>
+                    <td>Acesso RH - SEDUC</td>
+                    <td align="right"><font size ="2"><b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b></font></td>
+                <%else%>
+                    <td>Acesso secretaria UE</td>
+                    <td align="right"><font size ="2"><b>Americana, <%= Time.now.strftime("%d de %B de %Y") %></b></font></td>
+                <%end%>
+              <%end%>
+           <%end%>
+       <%end%>
+      </tr>
+
+      </table>
+      <center><font style="color: red"><%= flash[:notice] %></font></center>
    <%else%>
       <%= link_to '|Entrar|', login_path %>
         <font style="color: red"><%= flash[:notice] %></font>
    <%end%>
  </div>
-
- <% if current_user.has_role?('admin') or current_user.has_role?('empresa') or current_user.has_role?('obreiro') %>
+ 
    <div class="nav">
    <div class="nav-container-outer">
      <img src="/stylesheets/images/nav-bg-l.jpg" alt="" class="float-left" />
@@ -77,6 +92,33 @@ display: none;
                   <li><%= link_to 'Sair', logout_path,:confirm => "Tem certeza que deseja fazer logout?" %></li>
                 </ul>
               </li>
+
+              <li><span class="divider divider-vert" ></span></li>
+              <li><a class="item-primary" href="#;">Professor</a>
+                 <ul style="width:108px;">
+                     <% if current_user.has_role?('admin')%>
+                        <li><%= link_to "Cadastrar",new_professor_path %></li>
+                     <%end%>
+                        <li><%= link_to "Consultar",consulta_professor_nome_path %></li>
+                 </ul>
+              </li>
+              <li><span class="divider divider-vert" ></span></li>
+              <li><a class="item-primary" href="#;">Titulação
+              </a>
+                 <ul style="width:108px;">
+                     <% if current_user.has_role?('admin')%>
+                        <li><%= link_to "Cadastrar",new_titulo_professor_path %></li>
+                     <%end%>
+                        <li><%= link_to "Consultar",consulta_professor_nome_path %></li>
+                 </ul>
+              </li>
+
+
+
+
+
+
+
               <li><span class="divider divider-vert" ></span></li>
               <li><a class="item-primary" href="#;">Cadastros</a>
                  <ul style="width:108px;">
@@ -99,7 +141,7 @@ display: none;
                          <li><%= link_to "Empresa",consulta_unidade_nome_path %></li>
                          <li><%= link_to "Familiares",familiares_path %></li>
                          <li><%= link_to "Funcionário",consulta_funcionario_nome_path %></li>
-                         <li><%= link_to "Obreiro",consulta_obreiro_nome_path %></li>
+                         <li></li>
                        </ul>
                      </li>
                  </ul>
@@ -124,19 +166,33 @@ display: none;
                      </li>
                  </ul>
               </li>
+
+
+<!--=========================================== NOVO MENU==============-->
+
               <% if current_user.has_role?('admin')%>
               <li><span class="divider divider-vert" ></span></li>
-              <li><a class="item-primary" href="#;">Gerenciamento</a>
+              <li><a class="item-primary" href="#;">Gerenciar</a>
                  <ul style="width:108px;">
-
-                     <li><a>Usuários</a>
+                        <li><a>Usuários</a>
                         <ul>
                           <li><%= link_to 'Gerenciar', roles_users_path %></li>
                         </ul>
                      </li>
+                     <li><a>Unidades</a>
+                        <ul>
+                          <li><%= link_to 'Cadastrar', new_unidade_path %></li>
+                          <li><%= link_to 'Consultar', unidades_path  %></li>
+                        </ul>
+                     </li>
+
                  </ul>
               </li>
-             <%end%>
+              <%end%>
+
+
+
+
        </ul>
      </div>
    </div>
@@ -146,36 +202,9 @@ display: none;
      </div>
    </div>
 
- <%else%>
-
-    <div class="nav">
-   <div class="nav-container-outer">
-     <img src="/stylesheets/images/nav-bg-l.jpg" alt="" class="float-left" />
-     <img src="/stylesheets/images/nav-bg-r.jpg" alt="" class="float-right" />
-            <ul id="nav-container" class="nav-container">
-              <li><a class="item-primary" href="#">Arquivo</a>
-                <ul style="width:108px;">
-                  <li><%= link_to 'Inicio', root_path %></li>
-                  <li><%= link_to 'Sair', logout_path,:confirm => "Tem certeza que deseja fazer logout?" %></li>
-                </ul>
-              </li>
-              <li><span class="divider divider-vert" ></span></li>
-              <li><a class="item-primary" href="#;">Cadastros</a></li>
-              <li><a class="item-primary" href="#;">Relatórios</a> </li>
-
-       </ul>
-     </div>
-   </div>
-    <div id="principal_usuario">
-     <div id="conteudo">
-        <%= yield  %>
-     </div>
-   </div>
-
- <%end%>
-
+ 
    <div id="rodape">
-     <font size="2"><b> © CAPELANIA EMPRESARIAL +1 - Todos os direitos reservados</b></font>
+     <font size="2"><b> © SEDUC-PMA - Secretaria de Educação da Prefeitura Municipal de Americana</b></font>
    </div>
  </div>
 

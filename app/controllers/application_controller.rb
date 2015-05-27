@@ -28,4 +28,23 @@ class ApplicationController < ActionController::Base
   end
 
 end
+CARGO = {'Diretor Ed. Básica'=> 'Diretor Ed. Básica',
+          'Prof. Coordenador'=>'Prof. Coordenador',
+          'Pedagogo'=> 'Pedagogo',
+          'ADI'=>'ADI',
+          'Prof. de Creche'=>'Prof. de Creche',
+          'PEB1 - Ed. Infantil'=> 'PEB1 - Ed. Infantil',
+          'PEB1 - Ensino Fundamental'=> 'PEB1 - Ensino Fundamental',
+          'PEB2 - Artes'=> 'PEB2 - Artes',
+          'PEB2 - Ed. Física'=> 'PEB2 - Ed. Física',
+          'PEB2 - História'=> 'PEB2 - História',
+          'PEB2 - Geografia'=> 'PEB2 - Geografia',
+          'PEB2 - Matemática'=> 'PEB2 - Matemática',
+          'PEB2 - Português'=> 'PEB2 - Português',
+          'PEB2 - Inglês'=> 'PEB2 - Inglês',
+          'PEB2 - Ciências'=> 'PEB2 - Ciências',
+          'PEB - Ed. Especial'=> 'PEB - Ed. Especial',
+          'TODOS' => 'TODOS'
+          }
+
   

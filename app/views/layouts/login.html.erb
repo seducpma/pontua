@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <title><%= "SISCAO - Sistema Gerenciamento Capelania Empresarial" %></title>
+    <title><%= "PONTUA" %></title>
     <%= stylesheet_link_tag 'application','layout.css' %>
     <%= javascript_include_tag 'jquery-1.7','jrails','verify'  %>
 
@@ -16,11 +16,12 @@
  <body>
     <div id="contents">
       <div id="header">
+        <br/>
         <div id="topo">
-          <br/><br/><br/><br/><br/>
+          <br/><br/><br/><br/>
           <table>
             <tr>
-              <td width="72%"align="left"></td>
+              <td width="73%"align="left"></td>
               <td align="right"><br/> <h4><font   size ="2"> Americana <%= Time.now.strftime("%d de %B de %Y") %></font></h4></td>
             </tr>
           </table>
@@ -31,7 +32,7 @@
             <%= yield  %>
       </div>
       <div id="rodape">
-        <b> © CAPELANIA EMPRESARIAL +1    Todos os Direitos Reservados.</b>
+        <b> © SEDUC-PMA - Secretaria de Educação da Prefeitura Municipal de Americana</b>
       </div>
     </div>
 </body>

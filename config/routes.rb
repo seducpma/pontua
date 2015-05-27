@@ -1,4 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :titulacaos
+
+  map.resources :titulo_professors
+
+  map.resources :professors
+
   map.resources :financeiros, :collection => {:impressao => :get}
 
   map.resources :relatorios, :collection => {:impressao => :get}
@@ -15,13 +21,13 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :logs
   map.resources :unidades
  
-  map.consultaempresa '/consultaempresa', :controller => 'unidades', :action => 'consultaempresa'
-  map.consultaobreiro '/consultaobreiro', :controller => 'obreiros', :action => 'consultaobreiro'
+
+  map.consultaprofessor '/consultaprofessor', :controller => 'professors', :action => 'consultaprofessor'
   map.consultafuncionario '/consultafuncionario', :controller => 'funcionarios', :action => 'consultafuncionario'
   map.consultafamiliar '/consultafamiliar', :controller => 'familiares', :action => 'consultafamiliar'
   map.consulta_unidade_nome '/consulta_unidade_nome', :controller => 'unidades', :action => 'consulta_nome'
   map.consulta_funcionario_nome '/consulta_funcionario_nome', :controller => 'funcionarios', :action => 'consulta_nome'
-  map.consulta_obreiro_nome '/consulta_obreiro_nome', :controller => 'obreiros', :action => 'consulta_nome'
+  map.consulta_professor_nome '/consulta_professor_nome', :controller => 'professors', :action => 'consulta_nome'
   map.lista_familiares '/lista_familiares', :controller => 'funcionarios', :action => 'lista_familiares'
   map.consulta_relatorio '/consulta_relatorio', :controller => 'relatorios', :action => 'consulta_relatorio'
   map.consultarelatorio '/consultarelatorio', :controller => 'relatorios', :action => 'consultarelatorio'

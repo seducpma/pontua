@@ -6,109 +6,23 @@
        <table bgcolor="#DCDCDC" width="100%">
         <tr bgcolor="#DCDCDC"  width="100%">
          <td>
-         <fieldset><legend><font  size=3> Dados da Empresa</font></legend>
+         <fieldset><legend><font  size=3> UNIDADE SEDUC</font></legend>
            <table  width="100%">
             <tr bgcolor="#F5F5F5"  width="100%">
-             <td  width="10%"><strong>Nome: </strong></td>
-             <td><%=h "#{@unidade.nome}" %>
-                  <% if @unidade.em_atividade == true %>
-                    <% if @unidade.data_desliga.nil? then %>
-                       <strong><font color ="red "> - INATIVA desde </strong><%=h @unidade.data_desliga("%d/%m/%Y") %></font><br/>
-                    <%else%>
-                       <strong><font color ="red "> - INATIVA desde </strong><%=h @unidade.data_desliga.strftime("%d/%m/%Y") %></font><br/>                  <%end%>
-                  <%else%>
-                     <strong><font color ="blue"> - EM ATIVIDADE</strong></font><br/>
-                  <%end%>
-             </td>
+             <td  width="10%"><strong>Tipo: </strong></td>
+             <td><%=h "#{@unidade.tipo}" %></td>
             <tr bgcolor="#F5F5F5">
-             <td><strong>Atividade:</strong></td>
-             <td><%=h @unidade.atividade %></td>
+             <td><strong>Nome:</strong></td>
+             <td><%=h @unidade.nome%></td>
             </tr>
-            <tr bgcolor="#F5F5F5">
-             <td><strong>Endereço:</strong></td>
-             <td><%=h @unidade.endereco%> <%=h @unidade.num%></td>
-            </tr>
-            <tr bgcolor="#F5F5F5">
-             <td><strong>Complemento:</strong></td>
-             <td><%=h @unidade.complemento%></td>
-            </tr>
-            <tr bgcolor="#F5F5F5">
-             <td><strong>Bairro:</strong></td>
-             <td><%=h @unidade.bairro %></td>
-            </tr>
-            <tr bgcolor="#F5F5F5">          
-             <td><strong>Cidade/Estado:</strong></td>
-             <td><%=h @unidade.cidade %></td>
-            </tr>
-            <tr bgcolor="#F5F5F5">
-             <td><strong>Fone:</strong></td>
-             <td><%=h @unidade.fone%></td>
-            </tr>
-            <tr bgcolor="#F5F5F5">
-             <td><strong>E_mail:</strong></td>
-             <td><%=h @unidade.email%></td>
-            </tr>
-            <tr bgcolor="#F5F5F5">
-             <td><strong>Observações:</strong></td>
-             <td><%=h @unidade.obs%></td>
-            </tr>
-            <tr bgcolor="#F5F5F5">
-             <td><strong>Obreiro:</strong></td>
-             <td><%=h @unidade.obreiro.nome%></td>
-            </tr>
-
-            <tr>
-              <td colspan="2">
-                <table>
-                  <tr bgcolor="#F5F5F5">
-                     <td><strong>Responsável:</strong></td>
-                     <td width="50%"><%=h @unidade.responsavel1%></td>
-                     <td bgcolor="#DCDCDC"></td>
-                     <td><strong>Contato</strong></td>
-                     <td width="50%"><%=h @unidade.responsavel2%></td>
-                  </tr>
-                  <tr bgcolor="#F5F5F5">
-                      <td><strong>Cargo:</strong></td>
-                      <td><%=h @unidade.cargoresp1%></td>
-                      <td bgcolor="#DCDCDC"></td>
-                      <td><strong>Cargo:</strong></td>
-                      <td><%=h @unidade.cargoresp2%></td>
-                  </tr>
-                  <tr bgcolor="#F5F5F5">
-                      <td><strong>Fone:</strong></td>
-                      <td><%=h @unidade.foneresp1 %></td>
-                      <td bgcolor="#DCDCDC"></td>
-                      <td><strong>Fone:</strong></td>
-                      <td><%=h @unidade.foneresp2 %></td>
-                  </tr>
-                  <tr bgcolor="#F5F5F5">
-                       <td><strong>E_mail:</strong></td>
-                       <td> <%=h @unidade.emailresp1 %></td>
-                       <td bgcolor="#DCDCDC"></td>
-                       <td><strong>E_mail:</strong></td>
-                       <td><%=h @unidade.emailresp2 %></td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-
-
-
            </table>
           </fieldset>
         </td>
       </tr>
        <table>
           <tr>
-            <td width="6%"align="left" > <%= link_to image_tag("/stylesheets/images/voltar.png", :size => "35x35"), root_path, :title => "Voltar" %></td>
-            <td width="6%"align="left" ><%= link_to image_tag("/stylesheets/images/consulta.png", :size => "35x35"), consulta_unidade_nome_path, :title => "Consultar Empresas" %></td>
-            <% if current_user.has_role?('admin') or current_user.has_role?('escola') or current_user.has_role?('responsavel')%>
-                <td width="6%"align="left" ><%= link_to image_tag("/stylesheets/images/edit.png", :size => "25x25"), edit_unidade_path(@unidade), :title => "Editar Empresa" %></td>
-                <td align="left"><%= link_to image_tag("/stylesheets/images/excluir.PNG", :size => "25x25"), @unidade, :confirm => 'Confirma Exclusão?', :method => :delete, :title => "Excluir Empresa" %></td>
-           <%else%>
-                <td align="center"> </td>
-                <td align="center"> </td>
-           <%end%>
+            <td width="6%"align="left" > <%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+            <td align="left"><%= button_to 'Consultar', {:action => "index"},:method => "get", :title => "Consultar" %></td>
           </tr>
         </table>
 </div>

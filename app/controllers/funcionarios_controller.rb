@@ -113,7 +113,7 @@ class FuncionariosController < ApplicationController
     end
   end
 
-    def create_familiares
+  def create_familiares
       @familiar = Familiare.new(params[:familiare])
       $teste=@familiar.nome
       $teste2=@familiar.parentesco

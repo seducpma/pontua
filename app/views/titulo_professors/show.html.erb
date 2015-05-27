@@ -1,0 +1,43 @@
+<p>
+  <b>Titulo:</b>
+  <%=h @titulo_professor.titulo %>
+</p>
+
+<p>
+  <b>Professor:</b>
+  <%=h @titulo_professor.professor %>
+</p>
+
+<p>
+  <b>Obs:</b>
+  <%=h @titulo_professor.obs %>
+</p>
+
+<p>
+  <b>Quantidade:</b>
+  <%=h @titulo_professor.quantidade %>
+</p>
+
+<p>
+  <b>Pontuacao titulo:</b>
+  <%=h @titulo_professor.pontuacao_titulo %>
+</p>
+
+<p>
+  <b>Dt titulo:</b>
+  <%=h @titulo_professor.dt_titulo %>
+</p>
+
+<p>
+  <b>Dt validade:</b>
+  <%=h @titulo_professor.dt_validade %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%=h @titulo_professor.status %>
+</p>
+
+
+<%= link_to 'Edit', edit_titulo_professor_path(@titulo_professor) %> |
+<%= link_to 'Back', titulo_professors_path %>
