@@ -1,3 +1,4 @@
+
 <div id="interno2">
 <% title "PROFESSORS".singularize %>
 <div class="tabs">
@@ -12,29 +13,29 @@
                 <table width="100%" align="center"  bgcolor="#F5F5F5">
                   <tr>
                     <td><b>Matricula: </b><%= f.text_field :matricula, :size => 24 %></td>
-                    <td><b>Nome: </b><%= f.text_field :nome, :size => 60 %></td>
+                    <td><b>Nome: </b><%= f.text_field :nome, :size => 59 %></td>
                   </tr>
                   <tr>
                     <td><b>Nascimento: </b><%= f.date_select(:dt_nasc, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year - 80)) %></td>
-                    <td><b>RG: </b><%= f.text_field :RG, :size => 9 %>&nbsp&nbsp&nbsp&nbsp
+                    <td><b>RG: </b><%= f.text_field :RG, :size => 9 %>&nbsp&nbsp&nbsp
                         <b>CPF: </b><%= f.text_field :CPF, :size => 9 %>&nbsp&nbsp&nbsp
-                         <b>RD: </b><%= f.text_field :RD, :size => 9 %>&nbsp&nbsp&nbsp&nbsp
+                         <b>RD: </b><%= f.text_field :RD, :size => 9 %>&nbsp&nbsp&nbsp
                         <b>INEP: </b><%= f.text_field :INEP, :size => 9 %></td>
                   </tr>
 
                   <tr>
                     <td colspan="2"><b> Endereço: </b><%= f.text_field :endres,:size =>57 %>
                         <b>Nº </b><%= f.text_field :num, :size => 4 %>&nbsp&nbsp&nbsp&nbsp
-                        <b>Complemento: </b><%= f.text_field :complemento, :size =>15 %><td>
+                        <b>Complemento: </b><%= f.text_field :complemento, :size =>13 %><td>
                   </tr>
                   <tr>
-                    <td><b>Bairro: </b><%= f.text_field :bairro,:size =>32 %></td>
-                    <td><b>Cidade: </b><%= f.text_field :cidade, :size =>40 %>&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <td><b>Bairro: </b><%= f.text_field :bairro,:size =>30 %></td>
+                    <td><b>Cidade: </b><%= f.text_field :cidade, :size =>40 %>&nbsp&nbsp&nbsp&nbsp
                       <b>CEP: </b><%= f.text_field :cep, :size =>9 %></td>
                   </tr>
                   <tr>
-                    <td><b>Telefone(s): </b><%= f.text_field :telefone, :size =>28%>
-                    <td><b>Celular(es): </b><%= f.text_field :cel, :size =>34 %>&nbsp&nbsp&nbsp&nbsp
+                    <td><b>Telefone(s): </b><%= f.text_field :telefone, :size =>26%>
+                    <td><b>Celular(es): </b><%= f.text_field :cel, :size =>32 %>&nbsp&nbsp&nbsp&nbsp
                     <b>Nº Filhos: </b><%= f.text_field :n_filhos, :size => 9 %></td>
                   </tr>
                   <tr>
@@ -51,12 +52,11 @@
 
                   </tr>
                   <tr>
-                     <td><b>Função/Cargo: </b><%= f.text_field :funcao, :size =>25 %></td>
-                     <td>
-                         <b>Observações:</b><%= f.text_field :obs, :size => 29 %></td>
+                    <td colspan="2"><b>Função/Cargo: </b><%= f.text_field :funcao, :size =>25 %></td>
+                     
                    </tr>
                   <tr>
-                     <td colspan="6"><b>Observações:</b><%= f.text_field :obs, :size => 95 %></td>
+                     <td colspan="6"><b>Observações:</b><%= f.text_field :obs, :size => 94 %></td>
                    </tr>
                  <tr>
                     <td colspan="4"><b>Desligado:</b>SIM <%= f.check_box :desligado %><b> em </b><%= f.date_select(:data_desligado, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year - 10)) %> &nbsp&nbsp&nbsp&nbsp

@@ -1,34 +1,36 @@
-<h1>Listing titulo_professors</h1>
+<div id="interno2">
+<% title "TITULO_PROFESSORS".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>ALTERAÇÃO DE TITULOS</strong></font><br/>
+ </div>
+      <div class="tabs">
+         <% $subtot_perm = 0 %>
+         <div id ="conteudo">
+         <fieldset>
+           <table>
+             <tr>
+              <td align="left"><b>PROFESSOR: </b>
+                    <%= collection_select :altera, :professor_id, @professor_sede, :id, :matricula, :include_blank => ' -- Selecione -- ' %>
+                    <%= observe_field 'altera_professor_id',
+                      :with => :altera_professor_id,
+                      :url => { :action => 'titulos_busca' } %>
+               </td>
+               <td>
+                     <b><div id="nomeprof"></div></b>
+               </td>
+             </tr>
+            </table>
+          </fieldset>
+              <div id="alteracao"></div>
+              </div>
+  </div>
 
-<table>
-  <tr>
-    <th>Titulo</th>
-    <th>Professor</th>
-    <th>Obs</th>
-    <th>Quantidade</th>
-    <th>Pontuacao titulo</th>
-    <th>Dt titulo</th>
-    <th>Dt validade</th>
-    <th>Status</th>
-  </tr>
-
-<% @titulo_professors.each do |titulo_professor| %>
-  <tr>
-    <td><%=h titulo_professor.titulo %></td>
-    <td><%=h titulo_professor.professor %></td>
-    <td><%=h titulo_professor.obs %></td>
-    <td><%=h titulo_professor.quantidade %></td>
-    <td><%=h titulo_professor.pontuacao_titulo %></td>
-    <td><%=h titulo_professor.dt_titulo %></td>
-    <td><%=h titulo_professor.dt_validade %></td>
-    <td><%=h titulo_professor.status %></td>
-    <td><%= link_to 'Show', titulo_professor %></td>
-    <td><%= link_to 'Edit', edit_titulo_professor_path(titulo_professor) %></td>
-    <td><%= link_to 'Destroy', titulo_professor, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New titulo_professor', new_titulo_professor_path %>
+          <table width ="100%"
+          <tr>
+             <td width="8%"><%= button_to 'Fechar', new_titulo_professor_path, {:method => "get"}  %></td>
+                  </tr>
+        </table>
+</div>
+  <br/>
+</div>

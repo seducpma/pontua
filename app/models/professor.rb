@@ -1,6 +1,9 @@
 class Professor < ActiveRecord::Base
   belongs_to :unidade, :class_name => "Unidade", :foreign_key => "sede_id"
   belongs_to :sede_id_ant
+  has_one :tempo_servico, :dependent => :delete
+  has_one :titulo_professor, :dependent => :delete
+  
 validates_presence_of :matricula, :message => ' -  MATRÍCULA - PREENCHIMENTO OBRIGATÓRIO'
 validates_presence_of :nome, :message => ' -  NOME - PREENCHIMENTO OBRIGATÓRIO'
 validates_presence_of :funcao, :message => ' -  FUNÇÃO - PREENCHIMENTO OBRIGATÓRIO'

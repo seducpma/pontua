@@ -1,84 +1,108 @@
     <% form_for(@titulo_professor) do |f| %>
       <%= f.error_messages %>
-        <table width="50%">
-          <td valign="top">
+        <table width="100%">
+         <tr>
+           <td>
             <fieldset>
                <legend><font size=4>Cadastrar Titulação</font></legend>
-            <table width="50%">
-              <tr>
-                <td><b><%= f.label :professor_id, 'Professor: ' %></b></td>
-                <td width="10%">
-                  <%= f.collection_select :professor_id, @professor_sede, :id, :matricula, :include_blank => ' -- Selecione -- ' %>
-                    <%= observe_field 'titulo_professor_professor_id',
-                      :with => :titulo_professor_professor_id,
-                      :url => { :action => 'sel_prof' } %>
-                 <td>
-                  <div id="nomeprof"></div>
-                 </td>
-               
-               </tr>
-              <tr>
-                <td><b><%= f.label :titulo_id, 'Titulo: ' %></b></td>
-                <td colspan="2"><%= f.collection_select :titulo_id, @titulacaos, :id, :descricao, :include_blank => ' -- Selecione -- ', :size => 5 %>
-                 <%= observe_field 'titulo_professor_titulo_id',
-                 :frequency => 0.5,
-                 :with => :titulo_professor_titulo_id,
-                 :url => { :action => 'guarda_valor' } %>
-                 </td>
-              </tr>
-              <tr>
-                <td></td>
-                <td colspan="2">
-                  <b><div id="valor"></div></b>
-                  <b><div id="tipo_titulo"><%= f.check_box(:tipo_curso, :disabled => true, :checked => true)  %> Presencial</div></b>
-                </td>
-              </tr>
+               <table width="100%" align="center"  bgcolor="#F5F5F5" >
+                 <tr>
+                   <td width="70%">
+                     <table>
+                        <tr>
+                          <td align="left"><b><font size="2" color ="red"><b>*</font><%= f.label :professor_id, 'Professor: ' %></b></td>
+                          <td width="12%" >
+                              <%= f.collection_select :professor_id, @professor_sede, :id, :matricula, :include_blank => ' -- Selecione -- ' %>
+                                <%= observe_field 'titulo_professor_professor_id',
+                                  :with => :titulo_professor_professor_id,
+                                  :url => { :action => 'sel_prof' } %>
+                            </td>
+                             <td>
+                               <b><div id="nomeprof"></div></b>
+                             </td>
+                          </tr>
+                          <tr>
+                             <td><b><%= f.label :titulo_id, 'Titulo: ' %></b>   </td>
+                             <td><b><div id="tipo_titulo"><%= f.check_box(:tipo_curso, :disabled => true, :checked => true)  %> Presencial</div></b></td>
+                             <td><%= f.collection_select :titulo_id, @titulacaos, :id, :descricao, :include_blank => ' -- Selecione -- ', :size => 5 %>
+                               <%= observe_field 'titulo_professor_titulo_id',
+                               :frequency => 0.5,
+                               :with => :titulo_professor_titulo_id,
+                               :url => { :action => 'guarda_valor' } %>
+                               </td>
+                          </tr>
+                          <tr>
+                            <td><b><%= f.label :obs, 'Descrição:' %></b></td>
+                              <td colspan="2"><%= f.text_area :obs, :size => "62x1"   %></td>
+                            </tr>
+                            <tr>
+                              <td><font size="2" color ="red"><b>*</font><%= f.label :quantidade, 'Quantidade:' %></b></td>
+                              <td colspan="2 id="qtde"><%= f.text_field(:quantidade, :size => 5)%>&nbsp&nbsp&nbsp
+                                   <b><font size="2" color ="red"><b>*</font><%= f.label :dt_titulo, 'Data de Emissão:' %></b><%= datepicker_tag(:titulo_professor, :dt_titulo,{ :size => 10},{:dateFormat => "'dd-mm-yy'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn => "'both'"}) %></td>
+                            </tr>
+                            <tr>
+                              <td colspan="3">
+                                <table width="100%" >
+                                 <tr>
+                                    <td width="4%"align="left"><%= f.submit 'Salvar' %></td>
+                        <%end%>
 
-              <tr>
-               <td><%= f.label :obs, 'Descrição:' %></td>
-               <td colspan="2"><%= f.text_area :obs, :size => "40x1"   %></td>
-              </tr>
+                                     <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
 
-              <tr>
-                <td><%= f.label :quantidade, 'Quantidade:' %></td>
-                <td  colspan="2" id="qtde"><%= f.text_field(:quantidade, :size => 10)%></td>
-              </tr>
-              <tr>
-                <td><%= f.label :dt_titulo, 'Data de Emissão:' %></td>
-                <td  colspan="2"><%= datepicker_tag(:titulo_professor, :dt_titulo,{ :size => 10},{:dateFormat => "'dd-mm-yy'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn => "'both'"}) %></td>
-              </tr>
-              <tr>
-                <td colspan="3">
-                  <%= f.submit "Salvar"%>
-                </td>
-              </tr>
-              </table>
-              <table>
-                <td VALIGN=TOP>
-                  <div id="mensagem">
-                    <br/>
-                    <u>OBSERVAÇÕES:</u> <br /> <br />
-                      1. UTILIZAR  SOMENTE LETRAS MAIÚSCULAS<br />
-                      2. DIGITAR SEMPRE DADOS COMPLETOS <br/>
-                      3. NÃO UTILIZAR ACENTUAÇÃO, TIL E CEDILHA<br />
-                      4. NÃO UTILIZAR ABREVIAÇÕES<br />
-                      5. CURSOS OFER. / ACOMP. PELA SE  E OUTROS CURSOS / SIMPOSIOS / ETC DE<br/>
-                         CURTA DURAÇÃO INFORMAR A QUANTIDADE EM HORAS. <br/>
-                      6. DEMAIS CURSOS, LANÇA-LOS INDIVIDUALMENTE. <br/>
-                      7. APRESENTAÇÃO DE COMUNICAÇÃO QUE<br/>
-                         ULTRAPASSAR A CARGA HORARIA 24 HRS, LANÇAR A CARGA HORÁRIA DO EVENTO<br/>
-                         NA OPÇÃO "OUTROS CURSOS / SIMPOSIOS / ETC".
-                  </div>
-                </td>
-              </table>
-           </fieldset>
-          </td>
-          <td width="60%" align="top">
+
+
+                                 </tr>
+                               </table>
+
+
+                              </td>
+                            </tr>
+
+                     </table>
+                     </td>
+                     <td valign="top">
+                      <fieldset>
+                        <legend><font size=2><b>Observações:</b></font></legend>
+                       <table>
+                        <tr>
+                          <td></td>
+                        </tr>
+                         <tr>
+                            <td><b><div id="a_distancia"></div></b></td>
+                         </tr>
+                         <tr>
+                            <td><b><div id="a_distancia1"></div></b></td>
+                         </tr>
+                         <tr>
+                           <td><b><div id="valor"></div></b></td>
+                          </tr>
+
+                       </table>
+                     </fieldset>
+                     </td>
+                    </tr>
+                            <tr>
+                              <td colspan="4" align="left"><font   size="1" color ="red"><b>Campos com * preenchimento obrigatório</b></font></td>
+                             </tr>
+               </table>
+               </fieldset>
+                  </td>
+                 </tr>
+               </table>
+               <table>
+                <br/>
+
+
+          <td>
             <fieldset>
              <legend><font size=4>Titulos Cadastrados</font></legend>
-               <div id="titulos"></div>
+             <table>
+               <tr>
+                 <td> <div id="titulos"></div> </td>
+               </tr>
+              </table>
             </fieldset>
           </td>
         </table>
         <br/>
-    <% end %>
+  

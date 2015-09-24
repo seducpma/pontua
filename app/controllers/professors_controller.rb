@@ -2,10 +2,33 @@ class ProfessorsController < ApplicationController
 
 before_filter :load_unidades
 before_filter :load_professors
+before_filter :load_consulta_ano
+
+
+ 
+
+def impressao
+
+        @professor= Professor.find(:all,:conditions => ["id = ? and desligado = 0",$teacher])
+        @temposervico = TempoServico.find(:all,:conditions =>['professor_id = ? and ano_letivo = ?', $teacher, $ano])
+
+         @tp = TituloProfessor.all(:joins => "inner join titulacaos on titulo_professors.titulo_id = titulacaos.id", :conditions =>["titulo_professors.professor_id =? and ano_letivo between ? and ? and titulacaos.tipo = 'PERMANENTE'", $teacher, 2009,$ano] )
+         @tp1 = TituloProfessor.all(:joins => "inner join titulacaos on titulo_professors.titulo_id = titulacaos.id", :conditions =>["titulo_professors.professor_id =? and ano_letivo = ? and titulacaos.tipo = 'ANUAL'", $teacher,$ano] )
+       render :layout => "impressao"
+end
 
   def load_unidades
-    @unidades = Unidade.find(:all, :order => "nome")
+
+    if current_user.unidade_id == 53 or current_user.unidade_id == 52 then
+      @unidades = Unidade.find(:all, :order => "nome")
+    else
+      @unidades = Unidade.find(:all,   :conditions => ["id = ? or id = 54", current_user.unidade_id ], :order => 'nome ASC')
+
+    end
   end
+
+
+  
 
 
   def load_professors
@@ -24,6 +47,8 @@ before_filter :load_professors
 
   # GET /professors/1
   # GET /professors/1.xml
+
+
   def show
     @professor = Professor.find(params[:id])
 
@@ -100,30 +125,50 @@ before_filter :load_professors
   end
 
  def consultaprofessor
-   unless params[:search].present?
+ 
      if params[:type_of].to_i == 3
-        @professors = Professor.find(:all,:order => 'nome ASC')
-        render :update do |page|
+      if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then
+          @professors = Professor.find(:all,:order => 'nome ASC')
+      else
+          @professors = Professor.find(:all, :conditions=> ["(sede_id = ? or sede_id = 54)" , current_user.unidade_id] ,:order => 'sede_id,nome ASC ')
+      end
+     render :update do |page|
          page.replace_html 'professores', :partial => "professores"
        end
      end
      if params[:type_of].to_i == 2
-        @professors = Professor.find(:all, :conditions=> ["desligado = 0"],:order => 'nome ASC')
-        render :update do |page|
+      if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then
+          @professors = Professor.find(:all, :conditions=> ["desligado = 0"],:order => 'nome ASC')
+      else
+          @professors = Professor.find(:all, :conditions=> ["desligado = 0 and (sede_id = ? or sede_id = 54)" , current_user.unidade_id], :order => 'sede_id, nome ASC')
+      end
+      render :update do |page|
         page.replace_html 'professores', :partial => "professores"
        end
      end
      if params[:type_of].to_i == 4
-        @professors = Professor.find(:all, :conditions=> ["desligado = 1"],:order => 'nome ASC')
-        render :update do |page|
+       if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then
+          @professors = Professor.find(:all, :conditions=> ["desligado = 1"],:order => 'nome ASC')
+      else
+          @professors = Professor.find(:all, :conditions=> ["desligado = 1 and (sede_id = ? or sede_id = 54)" , current_user.unidade_id], :order => 'sede_id, nome ASC')
+      end
+       render :update do |page|
         page.replace_html 'professores', :partial => "professores"
         end
      end
-  else if params[:type_of].to_i == 1
-         @professors = Professor.paginate( :all,:page => params[:page], :per_page => 50, :conditions => ["nome like ?", "%" + params[:search].to_s + "%"],:order => 'nome ASC')
+      if params[:type_of].to_i == 1
+         if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then
+             @professors = Professor.find(:all,:conditions => ["nome like ?", "%" + params[:search1].to_s + "%"],:order => 'nome ASC')
+         else
+             @professors = Professor.find(:all, :conditions=> ["nome like ? and (sede_id = ? or sede_id = 54)" ,"%" + params[:search1].to_s + "%", current_user.unidade_id], :order => 'sede_id,nome ASC')
+         end
+
+         
+          teste =   params[:search1].to_s
+
           render :update do |page|
-            page.replace_html 'professores', :partial => "professores"
-          end
+                page.replace_html 'professores', :partial => "professores"
+              end
        end
        if params[:type_of].to_i == 5
               render :update do |page|
@@ -131,15 +176,18 @@ before_filter :load_professors
               end
        end
        if params[:type_of].to_i == 6
-         @professors = Professor.find( :all,:conditions => ["funcao like ?", "%" + params[:search].to_s + "%"],:order => 'nome ASC')
-              render :update do |page|
+         if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then
+             @professors = Professor.find( :all,:conditions => ["funcao like ?", "%" + params[:search].to_s + "%"],:order => 'nome ASC')
+         else
+             @professors = Professor.find(:all, :conditions=> ["desligado = 0 and funcao like ? and (sede_id = ? or sede_id = 54)" ,"%" + params[:search].to_s + "%", current_user.unidade_id], :order => 'sede_id,nome ASC')
+         end
+         render :update do |page|
                 page.replace_html 'professores', :partial => "professores"
-              end
+         end
        end
 
 
-
-   end
+  
 end
 
   def lista_professor_unidade
@@ -147,4 +195,31 @@ end
     @professors = Professor.find(:all, :conditions => ['sede_id=' + $sede])
     render :partial => 'professores'
   end
+
+def consulta_ficha_pontuacao
+     $teacher = params[:consulta][:professor_id]
+      $ano = params[:ano_letivo]
+        @professor= Professor.find(:all,:conditions => ["id = ? and desligado = 0",$teacher])
+        @temposervico = TempoServico.find(:all,:conditions =>['professor_id = ? and ano_letivo = ?', $teacher, $ano])
+
+         @tp = TituloProfessor.all(:joins => "inner join titulacaos on titulo_professors.titulo_id = titulacaos.id", :conditions =>["titulo_professors.professor_id =? and ano_letivo between ? and ? and titulacaos.tipo = 'PERMANENTE'", $teacher, 2009,$ano] )
+        @tp1 = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + ($teacher).to_s + " and t.tipo = 'ANUAL'and ano_letivo ="+$ano)
+           render :update do |page|
+
+          page.replace_html 'titulos', :partial => 'mostrar_pontuacao'
+        end
+end
+
+
+def load_consulta_ano
+    @ano = TituloProfessor.find(:all,:select => 'distinct(ano_letivo) as ano',:order => 'ano_letivo DESC')
+
+  end
+
+def consulta_ficha
+@tp = TituloProfessor.all(:joins => "inner join titulacaos on titulo_professors.titulo_id = titulacaos.id", :conditions =>["titulo_professors.professor_id =? and ano_letivo = ? and titulacaos.tipo = 'ANUAL'", $teacher,$ano] )
+end
+
+
+
 end

@@ -174,3 +174,44 @@ a {
 #tooltip.fancy.viewport-right {
 	background: url(images/shadow2-reverse.png);
 }
+
+.botao3d a { color: white;
+
+    }
+
+.botao3d a:visited { color: white; }
+
+.botao3d a {
+    text-decoration:none;
+}
+
+.botao3d{
+        font-size:14px;
+        font-family:Verdana,Helvetica;
+        font-weight:bold;
+        background-color:#a9b9c2;
+        border:0px;
+        text-decoration:none;
+        display:inline;
+        border-top: gray 1px solid;
+        border-right: gray 1px solid;
+        border-bottom: gray 1px solid;
+        border-left: gray 1px solid;
+
+       }
+.botao3d:hover{
+        font-size:14px;
+        font-family:Verdana,Helvetica;
+        font-weight:bold;
+        color:white;
+        background-color:#646566;
+        border:0px;
+        width:100px;
+        height:19px;
+        text-decoration:none;
+        display:inline;
+        border-top: #FF8585 1px solid;
+        border-right: #410000 1px solid;
+        border-bottom: #410000 1px solid;
+        border-left: #FF8585 1px solid;
+    }

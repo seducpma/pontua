@@ -1,3 +1,4 @@
+
 <div id="interno2">
 <% title "PROFESSOR" %>
 <div class ="tabs">
@@ -21,7 +22,7 @@
                 </tr>
                  <tr bgcolor="#F5F5F5">
                    <td align="left"><b>Nascimento:</b></td>
-                   <td align="left">  <%=h @professor.dt_nasc.strftime("%d de %B de %Y")%></td>
+                   <td align="left">  <%=h @professor.dt_nasc.strftime("%d/%m/%Y")%></td>
                    <td align="left"width="5%"><b>Nº Filhos:</b></td>
                    <td colspan="5"align="left">  <%=h @professor.n_filhos %></td>
                  <tr/>
@@ -77,7 +78,7 @@
                   <tr bgcolor="#F5F5F5">
                    <td align="left"><b>Situação:</b></td>
                    <td align="left" colspan="7">
-                      <% if  @professor.desligado == true%>
+                      <% if  @professor.desligado == 1%>
                         <font color="red"> Desligado</font> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                         <b>Data:</b><%=h @professor.data_desligado.strftime("%d de %B de %Y")%>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                         <b>Motivo:</b><%=h @professor.motivo%>
@@ -103,7 +104,7 @@
     <table>
          <tr>
             <td width="4%"align="left"><%= button_to 'Consultar' ,consulta_professor_nome_path, :title => "Consultar" %></td>
-            <% if current_user.has_role?('admin') %>
+            <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao') or current_user.has_role?('supervisao')%>
                 <td width="6%"align="left" ><%= button_to 'Editar', {:action => "edit", :id =>@professor}, :method => "get", :title => "Editar"%></td>
               <%else%>
                 <td align="center"></td>
@@ -111,7 +112,8 @@
              <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
           </tr>
     </table>
-
+ 
+           
 </div>
 <br/>
 </div>
