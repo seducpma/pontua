@@ -1,5 +1,5 @@
 set :application, "192.168.0.5"
-set :repository, "git://github.com/seducpma/Siscap.git"
+set :repository, "git://github.com/seducpma/pontua.git"
 set :user, "servidor"
 set :use_sudo, false
 set :deploy_to, "/home/#{user}/siscap"
