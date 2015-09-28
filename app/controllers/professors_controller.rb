@@ -72,6 +72,7 @@ end
   # GET /professors/1/edit
   def edit
     @professor = Professor.find(params[:id])
+
   end
 
   # POST /professors

@@ -11,11 +11,11 @@ class TempoServicosController < ApplicationController
 end
 
   def index
-    @temposervicos = TempoServico.all
+    @temposervico = TempoServico.all
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @temposervicos }
+      format.xml  { render :xml => @temposervico }
     end
   end
 
@@ -34,6 +34,7 @@ end
   # GET /obreiros/new
   # GET /obreiros/new.xml
   def new
+
     @temposervico = TempoServico.new
 
     respond_to do |format|
@@ -83,9 +84,8 @@ end
   # PUT /obreiros/1.xml
   def update
     @temposervico = TempoServico.find(params[:id])
-
     respond_to do |format|
-      if @temposervico.update_attributes(params[:obreiro])
+      if @temposervico.update_attributes(params[:tempo_servico])
         flash[:notice] = 'CADASTRADO COM SUCESSO.'
         format.html { redirect_to(@temposervico) }
         format.xml  { head :ok }
@@ -109,24 +109,30 @@ end
   end
 
     def sel_prof
-    $teacher = params[:titulo_professor_professor_id]
-    session[:teacher] = params[:titulo_professor_professor_id]
-
-
-
+        $existe = 1
+      $teacher = params[:titulo_professor_professor_id]
         #$professor_id = Professor.find_by_matricula($teacher).id
         $professor_id = $teacher
         $id_professor = $professor_id
         $professor = Professor.find($teacher).nome
         @professor = Professor.find(:all,:conditions => ['id = ? and desligado = 0 ', $teacher])
-        @temposervico = TempoServico.find(:all,:conditions =>['professor_id = ? ', $teacher])
-          
-        #@tp = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + ($teacher).to_s + " and t.tipo = 'PERMANENTE'")
-        #@tp1 = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + ($teacher).to_s + " and t.tipo = 'ANUAL'")
-        #@tp5 = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + ($teacher).to_s + " and t.tipo = '5 ANOS'")
-        render :update do |page|
+        @temposervico = TempoServico.find(:all,:conditions =>['professor_id = ?  and ano_letivo = ?', $teacher, Time.current.strftime("%Y").to_i])
+         if !@temposervico.empty?
+           $existe = 0
+         else
+          $existe = 1
+         end
+         t1=0
+         render :update do |page|
           page.replace_html 'nomeprof', :text => '- ' + ($professor)
-
+          if $existe == 0
+            page.replace_html 'cadastrar', :text => ' JÁ CADASTRADO'
+            page.replace_html 'cadastrar1', :text => ''
+            
+          else
+            page.replace_html 'cadastrar2', :text=> 'ACESSAR NOVAMENTE O MENU'
+            page.replace_html 'new'
+         end
         end
       end
 
@@ -145,7 +151,8 @@ def consulta_tempo_servico
        @professor= Professor.find(:all,:conditions => ["id = ? and desligado = 0",$teacher])
        @temposervico = TempoServico.find(:all,:conditions =>['professor_id = ? and ano_letivo = ?', $teacher, $ano])
         render :update do |page|
-          page.replace_html 'titulos', :partial => 'mostrar_pontuacao_tempo' 
+          page.replace_html 'titulos', :partial => 'mostrar_pontuacao_tempo'
+
         end
 end
  

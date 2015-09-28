@@ -201,10 +201,26 @@
                   </tr>
                  </table>
                </td>
-    <%end%>
+
              </tr>
+ 
              <tr>
-                   <td widht="8%" colspan="5"><b><%= link_to image_tag("/stylesheets/images/imprimir12.png"), onclick="javascript:MM_openBrWindow('#{impressao_tempo_servicos_path(:professor => $teacher)}','impressao', 'scrollbars=yes');", :title => "Imprimir" %></b></td>
+               <td>
+                 <table>
+                   <tr>
+                   <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC')%>
+                       <td><%= link_to image_tag("/stylesheets/images/alterar.png"), {:action => "edit", :id =>@temposervico }, :method => "get"%></td>
+                       <td><%= button_to 'Editar', {:action => "edit", :id =>@temposervico}, :method => "get", :title => "Editar"%></td>
+                   <%end%>
+                       <td widht="8%" colspan="5"><b><%= link_to image_tag("/stylesheets/images/imprimir12.png"), onclick="javascript:MM_openBrWindow('#{impressao_tempo_servicos_path(:professor => $teacher)}','impressao', 'scrollbars=yes');", :title => "Imprimir" %></b></td>
+                   </tr>
+                 </table>
+               </td>
+               
+
+<%end%>
+
+                   
               </tr>
           </table>
  </table>

@@ -10,13 +10,12 @@ ActionController::Routing::Routes.draw do |map|
   #map.resources :relatorios, :collection => {:impressao => :get}
   #map.resources :funcionarios_familiares
   #map.resources :familiares
-  map.resources :funcionarios_moradores
-  map.resources :funcionarios
+
   map.resources :classes
   map.resources :informativos
   map.resources :logs
   map.resources :unidades
-  map.resources :fichas
+
 
   map.resource :consulta, :collection => {:consulta_titulo => :get, :consulta_ppu => :get, :consulta_geral => :get, :impressao_geral => :get, :consulta_funcao => :get,  :consulta_unidade => :get, :consulta_unidade_funcao => :get}
 
@@ -35,12 +34,12 @@ ActionController::Routing::Routes.draw do |map|
   map.consulta_titulacao_professor'/consulta_titulacao_professor', :controller => 'titulo_professors', :action => 'consulta_titulacao_professor'
   map.consulta_titula'/consulta_titula', :controller => 'titulo_professors', :action => 'consulta_titula'
   map.consultaprofessor '/consultaprofessor', :controller => 'professors', :action => 'consultaprofessor'
-  map.consultafuncionario '/consultafuncionario', :controller => 'funcionarios', :action => 'consultafuncionario'
-  map.consultafamiliar '/consultafamiliar', :controller => 'familiares', :action => 'consultafamiliar'
+  
+  
   map.consulta_unidade_nome '/consulta_unidade_nome', :controller => 'unidades', :action => 'consulta_nome'
   map.consulta_funcionario_nome '/consulta_funcionario_nome', :controller => 'funcionarios', :action => 'consulta_nome'
   map.consulta_professor_nome '/consulta_professor_nome', :controller => 'professors', :action => 'consulta_nome'
-  map.lista_familiares '/lista_familiares', :controller => 'funcionarios', :action => 'lista_familiares'
+  
   map.consulta_relatorio '/consulta_relatorio', :controller => 'relatorios', :action => 'consulta_relatorio'
   map.consulta_titulo_professor '/consulta_titulo_professor', :controller => 'relatorios', :action => 'consulta_titulo_professor'
   map.consulta_financeiro '/consulta_financeiro', :controller => 'financeiros', :action => 'consulta_financeiro'
