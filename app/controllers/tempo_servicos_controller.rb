@@ -128,9 +128,9 @@ end
           if $existe == 0
             page.replace_html 'cadastrar', :text => ' JÁ CADASTRADO'
             page.replace_html 'cadastrar1', :text => ''
-            
-          else
             page.replace_html 'cadastrar2', :text=> 'ACESSAR NOVAMENTE O MENU'
+          else
+            
             page.replace_html 'new'
          end
         end

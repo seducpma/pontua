@@ -96,12 +96,14 @@
                  <%  subtotal1= 0%>
                   <%  subtotal2= 0%>
                   <%  subtotal3= 0%>
-                  <%  subtotal4= 0%>
+                  <%  if (Time.current.strftime("%Y").to_i)< 2015 %>
+                      <%  subtotal4= 0%>
+                  <%end%>
 
  <hr>
            <table width="100%" frame="box" rules="all" >
               <tr>
-                <th colspan="15" align="center"> <font size=3><u><b>Contagem Tempo de Serviço</b></u></font><br/></th>
+                <th colspan="12" align="center"> <font size=3><u><b>Contagem Tempo de Serviço</b></u></font><br/></th>
               </tr>
               <tr>
                 <th></th>
@@ -109,32 +111,40 @@
               <tr>
                  <th align="center" width ="5%"><b>Ano</b></th>
                  <th align="center" width ="5%" ><b>Dias</b></th>
-                 <th align="center" width ="5%"><b>Unidade</b></th>
-                 <th align="center" width ="5"><b>Outro<br/>Emprego</b></th>
-                 <th align="center" width ="5"><b>Faltas<br/>Abonadas</b></th>
-                 <th align="center" width ="5%"><b>Faltas<br/>Atestados</b></th>
-                 <th align="center" width ="5%"><b>Faltas<br/>Justif.</b></th>
-                 <th align="center" width ="5%"><b>Faltas<br/>Injustif.</b></th>
-                 <th align="center" width ="5%"><b>Licença<br/>Saúde</b></th>
-                 <th align="center" width ="5%"><b>Afasta-<br/>mento</b></th>
-                 <th align="center" width ="5%"><b>Outras<br/>Ausências</b></th>
-                 <th align="center" width ="8%"><b>Dias<br/>Trabalhados</b></th>
-                 <th align="center" width ="8%"><b>Dias<br/>Efetivos</b></th>
-                 <th align="center" width ="8%"><b>Dias<br/>Rede</b></th>
-                 <th align="center" width ="8%"><b>Dias<br/>Unidade</b></th>
+                 <%  if (Time.current.strftime("%Y").to_i)< 2015 %>
+                     <th align="center" width ="5%"><b>Unidade</b></th>
+                     <th align="center" width ="5"><b>Outro<br/>Emprego</b></th>
+                 <%end%>
+                 <th align="center" width ="8%"><b>Faltas Abonadas</b></th>
+                 <th align="center" width ="8%"><b>Faltas Atestados</b></th>
+                 <th align="center" width ="10%"><b>Faltas Justificadas</b></th>
+                 <th align="center" width ="10%"><b>Faltas Injustificadas</b></th>
+                 <th align="center" width ="10%"><b>Licença Saúde</b></th>
+                 <th align="center" width ="8%"><b>Afastamento</b></th>
+                 <th align="center" width ="8%"><b>Outras Ausências</b></th>
+                 <th align="center" width ="10%"><b>Dias Trabalhados</b></th>
+                 <th align="center" width ="8%"><b>Dias Efetivos</b></th>
+                 <th align="center" width ="8%"><b>Dias Rede</b></th>
+                 <%  if (Time.current.strftime("%Y").to_i)< 2015 %>
+                       <th align="center" width ="8%"><b>Dias Unidade</b></th>
+                 <%end%>
               </tr>
             <% if !((@temposervico.nil?) or (@temposervico.empty?)) %>
               <%for temposervico in @temposervico%>
                  <%  subtotal1= temposervico.dias_trab2 + temposervico.dias_trab1 %>
                  <%  subtotal2= temposervico.dias_efetivos2 + temposervico.dias_efetivos1%>
                  <%  subtotal3= temposervico.dias_rede2 + temposervico.dias_rede1%>
-                 <%  subtotal4= temposervico.dias_unidade2 + temposervico.dias_unidade1%>
+                 <%  if (Time.current.strftime("%Y").to_i)< 2015 %>
+                     <%  subtotal4= temposervico.dias_unidade2 + temposervico.dias_unidade1%>
+                 <%end%>
               <tr>
                 <th align="center"><%= temposervico.ano1%> </th>
                 <th align="center"><%= temposervico.dias1 %> </th>
                 <th align="center"><%= temposervico.unidade1%> </th>
-                <th align="center"><%= temposervico.outro_trab1%> </th>
-                <th align="center"><%= temposervico.f_abonada1%> </th>
+                <%  if (Time.current.strftime("%Y").to_i)< 2015 %>
+                     <th align="center"><%= temposervico.outro_trab1%> </th>
+                     <th align="center"><%= temposervico.f_abonada1%> </th>
+                <%end%>
                 <th align="center"><%= temposervico.f_atestado1%> </th>
                 <th align="center"><%= temposervico.f_justif1%> </th>
                 <th align="center"><%= temposervico.f_injustif1%> </th>
@@ -144,13 +154,17 @@
                 <th align="center"><%= temposervico.dias_trab1%> </th>
                 <th align="center"><%= temposervico.dias_efetivos1%> </th>
                 <th align="center"><%= temposervico.dias_rede1%> </th>
-                <th align="center"><%= temposervico.dias_unidade1%> </th>
+                <%  if (Time.current.strftime("%Y").to_i)< 2015 %>
+                      <th align="center"><%= temposervico.dias_unidade1%> </th>
+                <%end%>
               </tr>
               <tr>
                 <th align="center"><%= temposervico.ano2%> </th>
                 <th align="center"><%= temposervico.dias2%> </th>
-                <th align="center"><%= temposervico.unidade2%> </th>
-                <th align="center"><%= temposervico.outro_trab2%> </th>
+                <%  if (Time.current.strftime("%Y").to_i)< 2015 %>
+                     <th align="center"><%= temposervico.unidade2%> </th>
+                      <th align="center"><%= temposervico.outro_trab2%> </th>
+                <% end%>
                 <th align="center"><%= temposervico.f_abonada2%> </th>
                 <th align="center"><%= temposervico.f_atestado2%> </th>
                 <th align="center"><%= temposervico.f_justif2%> </th>
@@ -161,70 +175,75 @@
                 <th align="center"><%= temposervico.dias_trab2%> </th>
                 <th align="center"><%= temposervico.dias_efetivos2%> </th>
                 <th align="center"><%= temposervico.dias_rede2%> </th>
-                <th align="center"><%= temposervico.dias_unidade2%> </th>
+                <%  if (Time.current.strftime("%Y").to_i)< 2015 %>
+                     <th align="center"><%= temposervico.dias_unidade2%> </th>
+                <%end%>
               </tr>
               <tr>
-                <th colspan="11" align="right"><b>SUB TOTAL (em dias)</b>&nbsp&nbsp&nbsp</th>
+                <th colspan="9" align="right"><b>SUB TOTAL (em dias)</b>&nbsp&nbsp&nbsp</th>
                 <th align="center"><%= subtotal1%> </th>
                 <th align="center"><%= subtotal2%> </th>
                 <th align="center"><%= subtotal3%> </th>
-                <th align="center"><%= subtotal4%> </th>
+                <%  if (Time.current.strftime("%Y").to_i)< 2015 %>
+                       <th align="center"><%= subtotal4%> </th>
+                <%end%>
              </tr>
              <tr>
                 <th colspan="15" align="center"><font size=3> <u><b>Pontuação Tempo de Serviço</b></u></font><br/></th>
               </tr>
               <tr>
                 <th align="center" colspan="3"><b>Descrição</b></th>
-                <th align="center" colspan="2"><b>Total Anterior</b></th>
-                <th align="center"colspan="2" ><b>Total <%= temposervico.ano1%></b></th>
-                <th align="center" colspan="2"><b>Total <%= temposervico.ano2%></b><br/></th>
-                <th align="center" colspan="2"><b>Totalização</b></th>
-                <th align="center" colspan="2"><b>Peso</b></th>
-                <th align="center" colspan="2"><b>Pontuação </b></th>
+                <th align="center"><b>Total Anterior</b></th>
+                <th align="center" ><b>Total <%= temposervico.ano1%></b></th>
+                <th align="center"><b>Total <%= temposervico.ano2%></b><br/></th>
+                <th align="center"colspan="2"><b>Totalização</b></th>
+                <th align="center"><b>Peso</b></th>
+                <th align="center"><b>Pontuação </b></th>
              </tr>
              <tr>
                 <th align="left"colspan="3"><b>Total de dias trabalhados</b></th>
-                <th align="center" colspan="2"><%= temposervico.total_ant_dias%></th>
-                <th align="center" colspan="2"><%= temposervico.dias_trab1%></th>
-                <th align="center" colspan="2"><%= temposervico.dias_trab2%></th>
+                <th align="center"><%= temposervico.total_ant_dias%></th>
+                <th align="center"><%= temposervico.dias_trab1%></th>
+                <th align="center"><%= temposervico.dias_trab2%></th>
                    <%tott1 = temposervico.total_ant_dias + temposervico.dias_trab1 + temposervico.dias_trab2%>
                 <th align="center" colspan="2"><%=  tott1%></th>
-                <th align="center" colspan="2"> 8 </th>
-                <th align="center"colspan="2"> <%= temposervico.total_dias %></th>
+                <th align="center"> 10 </th>
+                <th align="center"> <%= temposervico.total_dias %></th>
              </tr>
              <tr>
                 <th align="left" colspan="3"><b>Total de dias efetivo</b></th>
-                <th align="center" colspan="2"><%= temposervico.total_ant_efetivo%></th>
-                <th align="center" colspan="2"><%= temposervico.dias_efetivos1%></th>
-                <th align="center" colspan="2"><%= temposervico.dias_efetivos2%></th>
+                <th align="center"><%= temposervico.total_ant_efetivo%></th>
+                <th align="center"><%= temposervico.dias_efetivos1%></th>
+                <th align="center"><%= temposervico.dias_efetivos2%></th>
                    <%tott2 = temposervico.total_ant_efetivo + temposervico.dias_efetivos1 + temposervico.dias_efetivos2%>
                 <th align="center" colspan="2"><%=  tott2%></th>
-                <th align="center" colspan="2"> 2 </th>
-                <th align="center" colspan="2"> <%=temposervico.total_efetivo%></th>
+                <th align="center"> 2 </th>
+                <th align="center"> <%=temposervico.total_efetivo%></th>
              </tr>
               <tr>
                 <th align="left" colspan="3"><b>Total de dias rede</b></th>
-                <th align="center" colspan="2"><%= temposervico.total_ant_rede%></th>
-                <th align="center" colspan="2"><%= temposervico.dias_rede1%></th>
-                <th align="center" colspan="2"><%= temposervico.dias_rede2%></th>
+                <th align="center"><%= temposervico.total_ant_rede%></th>
+                <th align="center"><%= temposervico.dias_rede1%></th>
+                <th align="center"><%= temposervico.dias_rede2%></th>
                     <%tott3 = temposervico.total_ant_rede + temposervico.dias_rede1 + temposervico.dias_rede2%>
                 <th align="center" colspan="2"><%=  tott3%></th>
-                <th align="center" colspan="2"> 1 </th>
-                <th align="center" colspan="2"> <%= temposervico.total_rede %></th>
+                <th align="center"> 1 </th>
+                <td align="center"><b> <%= temposervico.total_rede %></b></td>
              </tr>
-             <tr>
-                <th align="left" colspan="3"><b>Total de dias unidade</b></th>
-                <th align="center" colspan="2"><%= temposervico.total_ant_unid%></th>
-                <th align="center" colspan="2"><%= temposervico.dias_unidade1%></th>
-                <th align="center" colspan="2"><%= temposervico.dias_unidade2%></th>
-                    <%tott4 = temposervico.total_ant_unid + temposervico.dias_unidade1 + temposervico.dias_unidade2%>
-                <th align="center" colspan="2"><%=  tott4%></th>
-                <th align="center" colspan="2"> 2 </th>
-                <th align="center"colspan="2"> <%= temposervico.total_unid %></th>
-            </tr>
-           
+             <%  if (Time.current.strftime("%Y").to_i)< 2015 %>
+                 <tr>
+                    <th align="left" colspan="3"><b>Total de dias unidade</b></th>
+                    <th align="center"><%= temposervico.total_ant_unid%></th>
+                    <th align="center"><%= temposervico.dias_unidade1%></th>
+                    <th align="center"><%= temposervico.dias_unidade2%></th>
+                        <%tott4 = temposervico.total_ant_unid + temposervico.dias_unidade1 + temposervico.dias_unidade2%>
+                    <th align="center" colspan="2"><%=  tott4%></th>
+                    <th align="center"> 2 </th>
+                    <th align="center"> <%= temposervico.total_unid %></th>
+                </tr>
+              <%end%>
             <tr>
-                <th  colspan="13" align="right"><b>TOTAL PONTUAÇÂO TEMPO DE SERVIÇO</b>&nbsp&nbsp&nbsp</th>
+                <th  colspan="10" align="right"><b>TOTAL PONTUAÇÂO TEMPO DE SERVIÇO</b>&nbsp&nbsp&nbsp</th>
                 <th colspan="2"align="center"><b><%=  temposervico.total_geral_tempo_servico%></b></th>
            </tr>
          <%end%>
@@ -312,7 +331,7 @@
       <%else%>
           <%  if (tp1.quantidade<30) %>
             <font size="1"> <%= "À DISTÂNCIA" %></br>
-            <font color ="red" size="1"><%= "NÃO VALIDO"%></font></font>
+            <font color ="red" size="2"><%= "NÃO VALIDO"%></font></font>
         <% else %>
             <font size="1"><%= "À DISTÂNCIA" %></font>
         <%end%>
@@ -325,8 +344,7 @@
         <font size="1"><%= tp1.valor %></font>
       </th>
       <th  align="center">
-        <font size="1"><%= tp1.pontuacao_titulo %></font>
-
+            <font size="1"><%= tp1.pontuacao_titulo %></font>
       </th>
       <!--true = a distancia e false = presencial!-->
 

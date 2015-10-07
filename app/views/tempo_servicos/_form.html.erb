@@ -1,3 +1,6 @@
+<%  $dias2104 =100%>
+<%  $dias2105 =150%>
+
 <% form_for(@temposervico) do |f| %>
       <%= f.error_messages %>
         <table width="100%">
@@ -36,8 +39,10 @@
                                <tr>
                                  <td align="center" width ="8%"><b>Ano</b></td>
                                  <td align="center" width ="8%" ><b>Dias</b></td>
-                                 <td align="center" width ="8%"><b>Unidade</b></td>
-                                 <td align="center" width ="8%"><b>Outro<br/>Emprego</b></td>
+                                 <% if (Time.current.strftime("%Y").to_i)< 2015 %>
+                                          <td align="center" width ="8%"><b>Unidade</b></td>
+                                         <td align="center" width ="8%"><b>Outro<br/>Emprego</b></td>
+                                 <%end%>
                                  <td align="center" width ="8%"><b>Faltas<br/>Abonadas</b></td>
                                  <td align="center" width ="8%"><b>Faltas<br/>Atestados</b></td>
                                  <td align="center" width ="8%"><b>Faltas<br/>Justificadas</b></td>
@@ -50,9 +55,11 @@
                               <tr>
 
                                 <td align="center"><%= (Time.current.strftime("%Y").to_i)-1%> </td>
-                                <td align="center"><%= f.text_field :dias1,:size =>5%> </td>
-                                <td align="center"><%= f.text_field :unidade1,:size =>5%> </td>
-                                <td align="center"><%= f.text_field :outro_trab1,:size =>5%> </td>
+                                <td align="center"><%=  $dias2104 %> </td>
+                                <% if (Time.current.strftime("%Y").to_i)< 2015 %>
+                                      <td align="center"><%= f.text_field :unidade1,:size =>5%> </td>
+                                       <td align="center"><%= f.text_field :outro_trab1,:size =>5%> </td>
+                                <%end%>
                                 <td align="center"><%= f.text_field :f_abonada1,:size =>5%> </td>
                                 <td align="center"><%= f.text_field :f_atestado1,:size =>5%> </td>
                                 <td align="center"><%= f.text_field :f_justif1,:size =>5%> </td>
@@ -64,10 +71,12 @@
                               <tr>
 
                                 <td align="center"><%= (Time.current.strftime("%Y").to_i)%> </td>
-                                <td align="center"><%= f.text_field :dias2,:size =>5%> </td>
-                                <td align="center"><%= f.text_field :unidade2,:size =>5%> </td>
-                                <td align="center"><%= f.text_field :outro_trab2,:size =>5%> </td>
-                                <td align="center"><%= f.text_field :f_abonada2,:size =>5%> </td>
+                                <td align="center"><%=  $dias2105%> </td>
+                                <% if (Time.current.strftime("%Y").to_i)< 2015 %>
+                                      <td align="center"><%= f.text_field :unidade2,:size =>5%> </td>
+                                      <td align="center"><%= f.text_field :outro_trab2,:size =>5%> </td>
+                                <%end%>
+                                      <td align="center"><%= f.text_field :f_abonada2,:size =>5%> </td>
                                 <td align="center"><%= f.text_field :f_atestado2,:size =>5%> </td>
                                 <td align="center"><%= f.text_field :f_justif2,:size =>5%> </td>
                                 <td align="center"><%= f.text_field :f_injustif2,:size =>5%> </td>

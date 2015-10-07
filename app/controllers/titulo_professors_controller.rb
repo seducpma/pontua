@@ -258,7 +258,7 @@ def consulta_titulacao_professor
     $id_titulo = params[:titulo_professor_titulo_id]
     $valor = Titulacao.find_by_id($id_titulo).valor
 
-    if $id_titulo.to_i == 8 or $id_titulo.to_i == 6
+    if $id_titulo.to_i == 8 or $id_titulo.to_i == 6 or $id_titulo.to_i == 9 or $id_titulo.to_i == 10 or $id_titulo.to_i == 12
       render :update do |page|
         page.replace_html 'a_distancia', :text => ""
         page.replace_html 'a_distancia1', :text => ""
@@ -274,7 +274,7 @@ def consulta_titulacao_professor
           page.replace_html 'valor', :text => 'Pontuação: ' + ($valor).to_s
         end
       else
-        if $id_titulo.to_i == 7
+        if $id_titulo.to_i == 7 or $id_titulo.to_i == 11
           render :update do |page|
             page.replace_html 'a_distancia', :text => "1) Se CURSO À DISTÂNCIA desmarcar a caixa de seleção PRESENCIAL"
             page.replace_html 'a_distancia1', :text => "2)CURSOS À DISTÂNCIA: válidos somente para cursos com carga horario superior à 30 horas "
@@ -339,6 +339,7 @@ end
 
   def load_titulacao
     @titulacaos = Titulacao.find(:all)
+    @titulacaos1 = Titulacao.find(:all, :conditions =>["ano_letivo_titulacao > 2014 or ano_letivo_titulacao =0"])
   end
 
   def load_professors

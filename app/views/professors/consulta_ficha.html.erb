@@ -16,7 +16,7 @@
                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                <font size="2"><b class="label_busca3">Ano Letivo:</b></font>
                &nbsp&nbsp
-               <%= select_tag :ano_letivo, options_for_select(@ano.collect { |ff| [ff.ano, ff.ano] }.insert(0, '--Selecionar--')) %>
+               <%= select_tag :ano_letivo, options_for_select(@ano1.collect { |ff| [ff.ano, ff.ano] }.insert(0, '--Selecionar--')) %>
                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                <%= submit_tag "Visualizar", :class => "btn_filtrar" %>
           </td>

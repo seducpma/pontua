@@ -24,7 +24,7 @@
                           <tr>
                              <td><b><%= f.label :titulo_id, 'Titulo: ' %></b>   </td>
                              <td><b><div id="tipo_titulo"><%= f.check_box(:tipo_curso, :disabled => true, :checked => true)  %> Presencial</div></b></td>
-                             <td><%= f.collection_select :titulo_id, @titulacaos, :id, :descricao, :include_blank => ' -- Selecione -- ', :size => 5 %>
+                             <td><%= f.collection_select :titulo_id, @titulacaos1, :id, :descricao, :include_blank => ' -- Selecione -- ', :size => 5 %>
                                <%= observe_field 'titulo_professor_titulo_id',
                                :frequency => 0.5,
                                :with => :titulo_professor_titulo_id,

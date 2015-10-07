@@ -214,7 +214,7 @@ end
 
 def load_consulta_ano
     @ano = TituloProfessor.find(:all,:select => 'distinct(ano_letivo) as ano',:order => 'ano_letivo DESC')
-
+    @ano1 = TituloProfessor.find(:all,:select => 'distinct(ano_letivo) as ano', :conditions => ["ano_letivo > 2014"], :order => 'ano_letivo DESC')
   end
 
 def consulta_ficha
