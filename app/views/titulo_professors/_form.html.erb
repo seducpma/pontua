@@ -38,7 +38,8 @@
                             <tr>
                               <td><font size="2" color ="red"><b>*</font><%= f.label :quantidade, 'Quantidade:' %></b></td>
                               <td colspan="2 id="qtde"><%= f.text_field(:quantidade, :size => 5)%>&nbsp&nbsp&nbsp
-                                   <b><font size="2" color ="red"><b>*</font><%= f.label :dt_titulo, 'Data de Emissão:' %></b><%= datepicker_tag(:titulo_professor, :dt_titulo,{ :size => 10},{:dateFormat => "'dd-mm-yy'", :buttonImage => "'/stylesheets/images/datepicker.gif'",:showOn => "'both'"}) %></td>
+                                   <font size="2" color ="red"><b>* </font><%= f.label :dt_titulo, 'Data de Emissão:' %></b>&nbsp <%= f.date_select(:dt_titulo, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year - 20)) %></td>
+                                   
                             </tr>
                             <tr>
                               <td colspan="3">
