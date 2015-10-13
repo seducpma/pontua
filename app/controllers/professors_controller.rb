@@ -33,6 +33,7 @@ end
 
   def load_professors
       @professors = Professor.find(:all, :order => 'nome ASC')
+      @professors1 = Professor.find(:all, :order => 'matricula ASC')
   end
   # GET /professors
   # GET /professors.xml
