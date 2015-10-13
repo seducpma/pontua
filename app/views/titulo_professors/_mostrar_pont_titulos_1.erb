@@ -65,16 +65,19 @@
 
      <tr style="font-size:12px">
        <th>
-        Títuloz
+        Título
        </th>
         <th>
+        Descrição
+       </th>
+       <th>
         Ano
        </th>
        <th>
         Quantidade
        </th>
        <th>
-        Valor do Título
+        Valor
        </th>
        <th colspan="2">
         Pontuação Obtida
@@ -85,7 +88,11 @@
 
      <tr style="font-size:12px">
        <td align="left">
-        <font size="2"><%= Titulacao.find_by_id(tp.titulo_id).descricao %></font>
+        <font size="2"><%= truncate((Titulacao.find_by_id(tp.titulo_id).descricao),:length => 25,:omission => "...") %></font>
+      </td>
+      </td>
+        <td align="center">
+        <font size="2"><%= truncate(tp.obs,:length => 20,:omission => "...") %></font>
       </td>
       </td>
         <td align="center">
@@ -121,13 +128,14 @@
 
 <table width="100%" frame="box" rules="all">
 
-<tr style="font-size:10px"><th width="100%" colspan="6" align="center"><hr/><font size=4>Títulos de Contagem Anual</font><hr/></th></tr>
+<tr style="font-size:10px"><th width="100%" colspan="7" align="center"><hr/><font size=4>Títulos de Contagem Anual</font><hr/></th></tr>
      <tr style="font-size:10px">
        <th align="center"><font size="2">Título</font></th>
+       <th align="center"><font size="2">Descrição</font></th>
        <th align="center"><font size="2">Ano</font></th>
       <th><font size="2">Tipo</font>  </th>
        <th align="center"><font size="2">Quantidade</font></th>
-       <th align="center"><font size="2">Valor Título</font></th>
+       <th align="center"><font size="2">Valor</font></th>
        <th align="center"><font size="2">Pontuação</font></th>
 
     </tr>
@@ -136,9 +144,12 @@
 
      <tr style="font-size:10px">
       <td  align="left">
-        <font size="2"><%= Titulacao.find_by_id(tp1.titulo_id).descricao %></font>
+        <font size="2"><%= truncate((Titulacao.find_by_id(tp1.titulo_id).descricao),:length => 25,:omission => "...") %></font>
       </td>
        <td  align="center">
+        <font size="2"><%= truncate(tp1.obs,:length => 20,:omission => "...") %></font>
+      </td>
+      <td  align="center">
         <font size="2"><%= tp1.ano_letivo %></font>
       </td>
       <td align="center">
@@ -172,20 +183,20 @@
 
 <% end %>
 <tr style="font-size:10px">
-  <th width="80%" colspan="5" align="right"><font size="2">SUB-TOTAL </font></th>
+  <th width="80%" colspan="6" align="right"><font size="2">SUB-TOTAL </font></th>
   <th  align="center">
     <font size="2"><%= session[:anual] %></font>
   </th>
 </tr>
 <% $subtotal_titulos = session[:permanente] +    session[:anual]%>
 <tr>
-  <th width="80%" colspan="5" align="right">TOTAL TÍTULOS</th>
+  <th width="80%" colspan="6" align="right">TOTAL TÍTULOS</th>
   <th align="center">
     <%= "#{$subtotal_titulos}" %>
 </tr>
 <tr>
 
-  <td widht="8%" colspan="5"><b><%= link_to image_tag("/stylesheets/images/imprimir12.png"), onclick="javascript:MM_openBrWindow('#{impressao_titulo_professors_path(:professor => $teacher)}','impressao', 'scrollbars=yes');", :title => "Imprimir" %></b></td>
+  <td widht="8%" colspan="6"><b><%= link_to image_tag("/stylesheets/images/imprimir12.png"), onclick="javascript:MM_openBrWindow('#{impressao_titulo_professors_path(:professor => $teacher)}','impressao', 'scrollbars=yes');", :title => "Imprimir" %></b></td>
 </tr>
 
 

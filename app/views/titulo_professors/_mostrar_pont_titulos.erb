@@ -67,6 +67,7 @@
 <tr style="font-size:10px"><th width="100%" colspan="6" align="center"><hr/><font size=4>Títulos de Contagem Anual</font><hr/></th></tr>
      <tr style="font-size:10px">
        <th align="left"><font size="2">Título</font></th>
+       <th align="center"><font size="2">Descrição</font></th>
        <th align="center"><font size="2">Ano</font></th>
        <th align="center"><font size="2">Tipo</font></th>
        <th align="center"><font size="2">Quantidade</font></th>
@@ -82,6 +83,8 @@
       <td  align="left">
         <font size="2"><%= Titulacao.find_by_id(tp1.titulo_id).descricao %></font>
       </td>
+      <td  align="center">
+        <font size="2"><%= tp1.obs %></font>      </td>
       <td  align="center">
         <font size="2"><%= tp1.ano_letivo %></font>
       </td>
