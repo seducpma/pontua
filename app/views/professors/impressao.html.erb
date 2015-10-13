@@ -103,7 +103,7 @@
  <hr>
            <table width="100%" frame="box" rules="all" >
               <tr>
-                <th colspan="12" align="center"> <font size=3><u><b>Contagem Tempo de Serviço</b></u></font><br/></th>
+                <th colspan="12" align="center"> <font size=2><u><b>CONTAGEM TEMPO DE SERVIÇO</b></u></font><br/></th>
               </tr>
               <tr>
                 <th></th>
@@ -189,7 +189,7 @@
                 <%end%>
              </tr>
              <tr>
-                <th colspan="15" align="center"><font size=3> <u><b>Pontuação Tempo de Serviço</b></u></font><br/></th>
+                <th colspan="15" align="center"><font size=2> <u><b>PONTUAÇÂO TEMPO DE SERVIÇO</b></u></font><br/></th>
               </tr>
               <tr>
                 <th align="center" colspan="3"><b>Descrição</b></th>
@@ -252,38 +252,41 @@
 
  <table width="100%" frame="box" rules="all">
 
-<tr> <th colspan="7" align="center"> <u><font size="3"><b>Pontuação Titulação Permanente</b></font></u><br/></th></th></tr>
-
-     <tr style="font-size:10px">
-       <th  width="45%"> Título </th >
-        <th width="8%"> Ano </th>
-       <th width="10%"> Quantidade </th>
-       <th width="12%"> Valor Título </th>
-       <th width="12%"> Pontuação </th>
-       <th width="20%"> Totalização </th>
+<tr> <th colspan="7" align="center"> <u><font size="2"><b>PONTUAÇÂO TITULAÇÂO PERMANENTE</b></font></u><br/></th></th></tr>
+    <tr style="font-size:10px">
+       <th  width="13%">  Título </th >
+       <th  width="32%"> Descrição </th >
+        <th width="8%">  Ano  </th>
+       <th width="8%"> Quantidade </th>
+       <th width="9%"> Valor </th>
+       <th width="9%">  Pontuação </th>
+       <th width="15%">  Total  </th>
      </tr>
-     <% if !((@tp.nil?) or (@tp.empty?)) %>
+      <% if !((@tp.nil?) or (@tp.empty?)) %>
      <%for tp in @tp%>
 
      <tr style="font-size:10px">
-       <th align="left">
-        <font size="1"><%= Titulacao.find_by_id(tp.titulo_id).descricao %></font>
-      </th>
-        <th align="center">
-        <font size="1"><%= tp.ano_letivo %></font>
-      </th>
-      <th align="center">
+       <td align="left">
+        <%= truncate((Titulacao.find_by_id(tp.titulo_id).descricao),:length => 25,:omission => "...") %>
+      </td>
+        <td align="center">
+         <%= truncate(tp.obs,:length => 25,:omission => "...") %>
+      </td>
+        <td align="center">
+        <%= tp.ano_letivo %>
+      </td>
+      <td align="center">
         <font size="1"><%= tp.quantidade %></font>
-      </th>
-      <th align="center">
+      </td>
+      <td align="center">
         <font size="1"><%= tp.valor %></font>
-      </th>
-      <th align="center">
+      </td>
+      <td align="center">
         <font size="1"><%= tp.pontuacao_titulo %></font>
 
         <% session[:permanente] = tp.total_permanente %>
 
-      </th>
+      </td>
 
    </tr>
 
@@ -304,28 +307,32 @@
 
 <table width="100%" frame="box" rules="all">
 
-  <tr> <th colspan="7" align="center"> <font size="3"><u><b>Pontuação Titulação Anual</b></u></font><br/></th></th></tr>
-     <tr style="font-size:10px">
-       <th align="center"><font size="1"width="45%">Título</font></th>
-       <th align="center"><font size="1"width="10%">Ano</font></th>
-      <th><font size="1"width="12%">Tipo</font>  </th>
-      <th align="center"width="10%"><font size="1">Quantidade</font></th>
-       <th align="center"width="10%"><font size="1">Valor Título</font></th>
-       <th align="center" width="10%"><font size="1">Pontuação</font></th>
-       <th align="center" width="12%"><font size="1">Totalização</font></th>
+  <tr> <th colspan="7" align="center"> <u><font size="2"><b>PONTUAÇÂO TITULAÇÂO ANUAL</b></font></u><br/></th><h></tr>
+    <tr style="font-size:10px">
+       <th  width="14%">  Título </th >
+       <th  width="33%"> Descrição </th >
+       <th width="8%">  Ano  </th>
+        <th width="8%"> Tipo  </th>
+       <th width="7%"> Quantidade </th>
+       <th width="7%"> Valor </th>
+       <th width="7%">  Pontuação </th>
+      <th width="17 %">  Total  </th>
 
     </tr>
 
 <%for tp1 in @tp1%>
 
      <tr style="font-size:10px">
-      <th  align="left">
-        <font size="1"><%= Titulacao.find_by_id(tp1.titulo_id).descricao %></font>
-      </th>
-       <th  align="center">
-        <font size="1"><%= tp1.ano_letivo %></font>
-      </th>
-      <th align="center">
+      <td align="left">
+        <%= truncate((Titulacao.find_by_id(tp1.titulo_id).descricao),:length => 20,:omission => "...") %></font>
+       </td>
+       <td  align="center">
+         <%= truncate(tp1.obs,:length => 25,:omission => "...") %>
+       </td>
+      <td  align="center">
+        <%= tp1.ano_letivo %></font>
+      </td>
+      <td align="center">
         <% if tp1.tipo_curso == true%>
           <font size="1"><%= "PRESENCIAL" %></font>
       <%else%>
@@ -336,16 +343,16 @@
             <font size="1"><%= "À DISTÂNCIA" %></font>
         <%end%>
       <%end%>
-      </th>
-      <th  align="center">
-        <font size="1"><%= tp1.quantidade %></font>
-      </th>
-      <th  align="center">
-        <font size="1"><%= tp1.valor %></font>
-      </th>
-      <th  align="center">
-            <font size="1"><%= tp1.pontuacao_titulo %></font>
-      </th>
+      </td>
+      <td  align="center">
+        <%= tp1.quantidade %></font>
+      </td>
+      <td  align="center">
+        <%= tp1.valor %></font>
+      </td>
+      <td  align="center">
+         <%= tp1.pontuacao_titulo %></font>
+      </td>
       <!--true = a distancia e false = presencial!-->
 
    </tr>
@@ -357,16 +364,16 @@
 <tr style="font-size:10px">
   <th colspan="6" align="right"><font size="1">Sub-Total Títulos Anuais </font>&nbsp&nbsp&nbsp</th>
   <th  align="center">
-    <font size="1"><%= session[:anual] %></font>
+    <%= session[:anual] %></font>
   </th>
 </tr>
 <% $subtotal_titulos = session[:permanente] +    session[:anual]%>
 <tr style="font-size:10px">
-  <th  colspan="6" align="right" font size="1"> TOTAL TÍTULOS TÍTULOS</th>
+  <th  colspan="7" align="right" font size="1"> TOTAL TÍTULOS TÍTULOS</th>
   <th align="center" ><%= "#{$subtotal_titulos}" %></th>
 </tr>
 <tr>
-    <th colspan="6" align="right"><font size="3"><b>TOTAL PONTUAÇÂO TEMPO DE SERVIÇO</b>&nbsp&nbsp&nbsp</font></th>
+    <th colspan="7" align="right"><font size="3"><b>TOTAL PONTUAÇÂO TEMPO DE SERVIÇO</b>&nbsp&nbsp&nbsp</font></th>
     <th width="12%" align="center"><b><font size="3"><%= $pontos%></b></font> </th>
 </tr>
 </table>
