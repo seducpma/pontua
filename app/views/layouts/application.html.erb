@@ -136,6 +136,11 @@ display: none;
                      <%end%>
                  </ul>
               </li>
+
+
+
+                            <% if current_user.has_role?('admin')%>
+
               <li><a class="item-primary" href="#;">Tempo Servico
               </a>
                  <ul style="width:108px;">
@@ -145,6 +150,7 @@ display: none;
                         <li><%= link_to "Consultar",consulta_tempo_path %></li>
                  </ul>
               </li>
+              <%end%>
               <li><span class="divider divider-vert" ></span></li>
 <!--=========================================== NOVO MENU==============-->
 
