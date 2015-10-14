@@ -22,10 +22,24 @@ class TituloProfessor < ActiveRecord::Base
                total_a = self.total_anual
                total_p = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ?" , professor, 1,5] )
            else if ((self.titulo_id == 6) or (self.titulo_id == 7) or (self.titulo_id == 8)or (self.titulo_id == 9)or (self.titulo_id == 10) or (self.titulo_id == 12))
+                 if (self.titulo_id ==12)
+                    if (self.quantidade > 8)
+                       self.pontuacao_titulo= self.quantidade * 1
+                       self.total_anual = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ? and ano_letivo = ?" , professor, 6,12, (Time.current.strftime("%Y")).to_i] )
+                       total_a = self.total_anual
+                       total_p = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ?" , professor, 1,5] )
+                    else
+                       self.pontuacao_titulo= 8
+                       self.total_anual = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ? and ano_letivo = ?" , professor, 6,12, (Time.current.strftime("%Y")).to_i] )
+                       total_a = self.total_anual
+                       total_p = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ?" , professor, 1,5] )
+                    end
+                 else
                    self.pontuacao_titulo= self.quantidade * self.valor
                    self.total_anual = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ? and ano_letivo = ?" , professor, 6,12, (Time.current.strftime("%Y")).to_i] )
                    total_a = self.total_anual
                    total_p = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ?" , professor, 1,5] )
+                 end
                 else if ((self.titulo_id == 1) or (self.titulo_id == 2) or (self.titulo_id == 3) or (self.titulo_id == 4) or (self.titulo_id == 5))
                         self.pontuacao_titulo= self.quantidade * self.valor
                         self.total_permanente = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ?" , professor, 1,5] )
