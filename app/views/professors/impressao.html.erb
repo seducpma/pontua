@@ -7,12 +7,17 @@
      <font size="1"><i><b>Prefeitua Municipal de  Americana </b></i>
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 &nbsp&nbsp&nbsp
-<font size="3"><b><u> TITULAÇÂO PROFESSORES</u></b></i><br/>
+<font size="2"><b><u> TITULAÇÂO PROFESSORES</u></b></i><br/>
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       <font size="1"><b><i> Secretaria da Educação</i></b>
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
        <font size="2">Ano letivo: <%=  $ano%></font><br/>
+ <table  class ="invisible_to_print " >
+   <tr  class ="invisible_to_print ">
+     <td align="right" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
+  </tr>
+ </table>
 <div class="tabs">
   <br/>
     <table width="100%" frame="box" rules="all" >
@@ -24,7 +29,7 @@
                    <th colspan="5"align="left"><%= professor.nome %></th>
                 </tr>
                  <tr style="font-size:8px">
-                   <th align="left"><b>Nascimento:</b></td>
+                   <th align="left"><b>Nascimento:</b></th>
                    <th align="left">  <%= professor.dt_nasc.strftime("%d/%m/%Y")%></th>
                    <th align="left"width="5%"><b>Nº Filhos:</b></th>
                    <th colspan="5"align="left">  <%= professor.n_filhos %></th>
@@ -39,7 +44,7 @@
                    <th align="right"width="5%"><b>RD:</b></th>
                    <th align="left">  <%= professor.RD %></th>
                  </tr>
-                 <tr style="font-size:10px">
+                 <tr style="font-size:8px">
                   <th align="left"><b> Endereço:</b></th>
                   <th colspan="5" align="left"> <%=  professor.endres %> - <%= professor.num %></th>
                   <th align="right"><b> Complemento:</b></th>
@@ -67,7 +72,7 @@
                    <th align="left"><b>Formação:</b></th>
                    <th align="left"colspan="5">  <%= professor.entrada_concurso%></th>
                  </tr
-                 <tr style="font-size:8px">
+                 <tr style="font-size:8px" >
                    <th align="left"><b>Função:</b></th>
                    <th align="left">  <%= professor.funcao%></th>
                    <th align="left"><b>Sede:</b></th>
@@ -105,13 +110,13 @@
               <tr>
                 <th colspan="12" align="center"> <font size=2><u><b>CONTAGEM TEMPO DE SERVIÇO</b></u></font><br/></th>
               </tr>
-              <tr>
+              <tr style="font-size:8px" >
                 <th></th>
               </tr>
               <tr>
-                <th colspan="12">
+                <th  style="font-size:8px" colspan="12">
                   <table  width="100%" frame="box" rules="all">
-                    <tr>
+                    <tr style="font-size:8px" >
                         <th align="center" width ="5%"><b>Ano</b></th>
                          <th align="center" width ="5%" ><b>Dias</b></th>
                          <%  if (Time.current.strftime("%Y").to_i)< 2015 %>
@@ -140,7 +145,7 @@
                          <%  if (Time.current.strftime("%Y").to_i)< 2015 %>
                              <%  subtotal4= temposervico.dias_unidade2 + temposervico.dias_unidade1%>
                          <%end%>
-                      <tr>
+                     <tr style="font-size:8px" >
                         <th align="center"><%= temposervico.ano1%> </th>
                         <th align="center"><%= temposervico.dias1 %> </th>
                         <th align="center"><%= temposervico.unidade1%> </th>
@@ -161,7 +166,7 @@
                               <th align="center"><%= temposervico.dias_unidade1%> </th>
                         <%end%>
                       </tr>
-                      <tr>
+                      <tr style="font-size:8px" >
                         <th align="center"><%= temposervico.ano2%> </th>
                         <th align="center"><%= temposervico.dias2%> </th>
                         <%  if (Time.current.strftime("%Y").to_i)< 2015 %>
@@ -182,7 +187,7 @@
                              <th align="center"><%= temposervico.dias_unidade2%> </th>
                         <%end%>
                       </tr>
-                      <tr>
+                      <tr style="font-size:8px" >
                         <th colspan="9" align="right"><b>SUB TOTAL (em dias)</b>&nbsp&nbsp&nbsp</th>
                         <th align="center"><%= subtotal1%> </th>
                         <th align="center"><%= subtotal2%> </th>
@@ -204,7 +209,7 @@
                 <th colspan="15" align="center"><font size=2> <u><b>PONTUAÇÂO TEMPO DE SERVIÇO</b></u></font><br/></th>
               </tr>
 
-                     <tr>
+             <tr style="font-size:8px" >
                        <th align="center" width ="20%"><b>Descrição</b></th>
                        <th align="center" width ="10%"><b>Total <%= temposervico.ano1%></b></th>
                        <th align="center" width ="10%"><b>Total <%= temposervico.ano2%></b><br/></th>
@@ -215,57 +220,57 @@
                        <th align="center" width ="10%"><b>Pontuação</b></th>
                        <th align="center" width ="20%" colspan="4"><b>Total</b></th>
                      </tr>
-                    <tr>
-                      <td align="left"><b>Total de dias trabalhados</b></td>
-                       <td align="center"><%= temposervico.dias_trab1%></td>
-                       <td align="center"><%= temposervico.dias_trab2%></td>
+                    <tr style="font-size:8px" >
+                      <th align="left"><b>Total de dias trabalhados</b></th>
+                       <th align="center"><%= temposervico.dias_trab1%></th>
+                       <th align="center"><%= temposervico.dias_trab2%></th>
                            <%tott1 = (temposervico.dias_trab1 + temposervico.dias_trab2)%>
-                       <td align="center"><%= tott1%></td>
-                       <td align="center"> 2 </td>
-                       <td align="center"> <%=  tott1* 2%></td>
-                       <td align="center"><%= temposervico.total_ant_dias%></td>
-                      <td align="center"> <%= temposervico.total_dias %></td>
+                       <th align="center"><%= tott1%></th>
+                       <th align="center"> 2 </th>
+                       <th align="center"> <%=  tott1* 2%></th>
+                       <th align="center"><%= temposervico.total_ant_dias%></th>
+                       <th align="center"> <%= temposervico.total_dias %></th>
                     </tr>
-                    <tr>
-                      <td align="left"><b>Total de dias efetivos</b></td>
-                       <td align="center"><%= temposervico.total_ant_efetivo%></td>
-                       <td align="center"><%= temposervico.dias_efetivos1%></td>
+                    <tr style="font-size:8px" >
+                      <th align="left"><b>Total de dias efetivos</b></th>
+                       <th align="center"><%= temposervico.total_ant_efetivo%></th>
+                       <th align="center"><%= temposervico.dias_efetivos1%></th>
                           <%tott2 = temposervico.dias_efetivos1 + temposervico.dias_efetivos2%>
-                       <td align="center"><%= tott2%></td>
-                       <td align="center"> 10 </td>
-                       <td align="center"> <%=  (tott2* 10)%></td>
-                       <td align="center"><%= temposervico.total_ant_efetivo%></td>
-                      <td align="center"> <%= temposervico.total_efetivo %></td>
+                       <th align="center"><%= tott2%></th>
+                       <th align="center"> 10 </th>
+                       <th align="center"> <%=  (tott2* 10)%></th>
+                       <th align="center"><%= temposervico.total_ant_efetivo%></th>
+                       <th align="center"> <%= temposervico.total_efetivo %></th>
                     </tr>
-                    <tr>
-                       <td align="left" width ="20%"><b>Total de dias rede</b></td>
-                      <td align="center"><%= temposervico.dias_rede1%></td>
-                       <td align="center"><%= temposervico.dias_rede2%></td>
+                    <tr style="font-size:8px" >
+                       <th align="left" width ="20%"><b>Total de dias rede</b></th>
+                      <th align="center"><%= temposervico.dias_rede1%></th>
+                       <th align="center"><%= temposervico.dias_rede2%></th>
                        <%tott3 =  temposervico.dias_rede1 + temposervico.dias_rede2%>
-                       <td align="center"><%=  tott3%></td>
-                       <td align="center"> 1 </td>
-                       <td align="center"> <%=  (tott3* 1)%></td>
-                       <td align="center"><%= temposervico.total_ant_rede%></td>
-                      <td align="center"> <%= temposervico.total_rede %></td>
+                       <th align="center"><%=  tott3%></th>
+                       <th align="center"> 1 </th>
+                       <th align="center"> <%=  (tott3* 1)%></th>
+                       <th align="center"><%= temposervico.total_ant_rede%></th>
+                      <th align="center"> <%= temposervico.total_rede %></th>
                     </tr>
                     <%  if (Time.current.strftime("%Y").to_i)< 2015 %>
-                        <tr>
-                            <td align="left" width ="20%"><b>Total de dias unidade</b></td>
-                           <td align="center"><%= temposervico.total_ant_unid%></td>
-                           <td align="center"><%= temposervico.dias_unidade1%></td>
-                           <td align="center"><%= temposervico.dias_unidade2%></td>
+                        <tr style="font-size:8px" >
+                            <th align="left" width ="20%"><b>Total de dias unidade</b></th>
+                           <th align="center"><%= temposervico.total_ant_unid%></th>
+                           <th align="center"><%= temposervico.dias_unidade1%></th>
+                           <th align="center"><%= temposervico.dias_unidade2%></th>
                            <%tott4 = temposervico.total_ant_unid + temposervico.dias_unidade1 + temposervico.dias_unidade2%>
-                           <td align="center"><%=  tott4%></td>
-                           <td align="center"> 2 </td>
-                           <td align="center"> <%= temposervico.total_unid %></td>
+                           <th align="center"><%=  tott4%></th>
+                           <th align="center"> 2 </th>
+                           <th align="center"> <%= temposervico.total_unid %></th>
                         </tr>
                     <%end%>
-                    <tr>
-                      <td  colspan="8" align="right"><b>TOTAL PONTUAÇÂO TEMPO DE SERVIÇO</b>&nbsp&nbsp&nbsp</td>
-                      <td align="center"><b><%= h temposervico.total_geral_tempo_servico%></b> </td>
+                    <tr style="font-size:8px" >
+                      <th  colspan="8" align="right"><b>TOTAL PONTUAÇÂO TEMPO DE SERVIÇO</b>&nbsp&nbsp&nbsp</th>
+                      <th align="center"><b><%= h temposervico.total_geral_tempo_servico%></b> </th>
                   </tr>
              <%  if (Time.current.strftime("%Y").to_i)< 2015 %>
-                 <tr>
+                <tr style="font-size:8px" >
                     <th align="left" colspan="3"><b>Total de dias unidade</b></th>
                     <th align="center"><%= temposervico.total_ant_unid%></th>
                     <th align="center"><%= temposervico.dias_unidade1%></th>
@@ -276,7 +281,7 @@
                     <th align="center"> <%= temposervico.total_unid %></th>
                 </tr>
               <%end%>
-            <tr>
+             <tr style="font-size:8px" >
                 <th  colspan="8" align="right"><b>TOTAL PONTUAÇÂO TEMPO DE SERVIÇO</b>&nbsp&nbsp&nbsp</th>
                 <th colspan="2"align="center"><b><%=  temposervico.total_geral_tempo_servico%></b></th>
            </tr>
@@ -286,8 +291,8 @@
 
  <table width="100%" frame="box" rules="all">
 
-<tr> <th colspan="7" align="center"> <u><font size="2"><b>PONTUAÇÂO TITULAÇÂO PERMANENTE</b></font></u><br/></th></th></tr>
-    <tr style="font-size:10px">
+ <tr style="font-size:8px" > <th colspan="7" align="center"> <u><font size="2"><b>PONTUAÇÂO TITULAÇÂO PERMANENTE</b></font></u><br/></th></th></tr>
+    <tr style="font-size:8px">
        <th  width="13%">  Título </th >
        <th  width="32%"> Descrição </th >
         <th width="8%">  Ano  </th>
@@ -299,34 +304,34 @@
       <% if !((@tp.nil?) or (@tp.empty?)) %>
      <%for tp in @tp%>
 
-     <tr style="font-size:10px">
-       <td align="left">
+     <tr style="font-size:8px">
+       <th align="left">
         <%= truncate((Titulacao.find_by_id(tp.titulo_id).descricao),:length => 25,:omission => "...") %>
-      </td>
-        <td align="center">
+      </th>
+        <th align="center">
          <%= truncate(tp.obs,:length => 25,:omission => "...") %>
-      </td>
-        <td align="center">
+      </th>
+        <th align="center">
         <%= tp.ano_letivo %>
-      </td>
-      <td align="center">
+      </th>
+      <th align="center">
         <font size="1"><%= tp.quantidade %></font>
-      </td>
-      <td align="center">
+      </th>
+      <th align="center">
         <font size="1"><%= tp.valor %></font>
-      </td>
-      <td align="center">
+      </th>
+      <th align="center">
         <font size="1"><%= tp.pontuacao_titulo %></font>
 
         <% session[:permanente] = tp.total_permanente %>
 
-      </td>
+      </th>
 
    </tr>
 
   <%end%>
   <%end%>
-<tr>
+ <tr style="font-size:8px" >
   <th  colspan="5" align="right">Sub-Total Títulos Permanentes &nbsp&nbsp&nbsp</th>
   <th align="center">
     <%= session[:permanente] %>
@@ -341,8 +346,8 @@
 
 <table width="100%" frame="box" rules="all">
 
-  <tr> <th colspan="7" align="center"> <u><font size="2"><b>PONTUAÇÂO TITULAÇÂO ANUAL</b></font></u><br/></th><h></tr>
-    <tr style="font-size:10px">
+   <tr style="font-size:8px" > <th colspan="7" align="center"> <u><font size="1"><b>PONTUAÇÂO TITULAÇÂO ANUAL</b></font></u><br/></th><h></tr>
+    <tr style="font-size:8px">
        <th  width="14%">  Título </th >
        <th  width="33%"> Descrição </th >
        <th width="8%">  Ano  </th>
@@ -356,17 +361,17 @@
 
 <%for tp1 in @tp1%>
 
-     <tr style="font-size:10px">
-      <td align="left">
+     <tr style="font-size:8px">
+      <th align="left">
         <%= truncate((Titulacao.find_by_id(tp1.titulo_id).descricao),:length => 20,:omission => "...") %></font>
-       </td>
-       <td  align="center">
+       </th>
+       <th  align="center">
          <%= truncate(tp1.obs,:length => 25,:omission => "...") %>
-       </td>
-      <td  align="center">
+       </th>
+      <th  align="center">
         <%= tp1.ano_letivo %></font>
-      </td>
-      <td align="center">
+      </th>
+      <th align="center">
         <% if tp1.tipo_curso == true%>
           <font size="1"><%= "PRESENCIAL" %></font>
       <%else%>
@@ -377,16 +382,16 @@
             <font size="1"><%= "À DISTÂNCIA" %></font>
         <%end%>
       <%end%>
-      </td>
-      <td  align="center">
+      </th>
+      <th  align="center">
         <%= tp1.quantidade %></font>
-      </td>
-      <td  align="center">
+      </th>
+      <th  align="center">
         <%= tp1.valor %></font>
-      </td>
-      <td  align="center">
+      </th>
+      <th  align="center">
          <%= tp1.pontuacao_titulo %></font>
-      </td>
+      </th>
       <!--true = a distancia e false = presencial!-->
 
    </tr>
@@ -395,20 +400,20 @@
 
 
 <% end %>
-<tr style="font-size:10px">
+<tr style="font-size:8px">
   <th colspan="6" align="right"><font size="1">Sub-Total Títulos Anuais </font>&nbsp&nbsp&nbsp</th>
   <th  align="center">
     <%= session[:anual] %></font>
   </th>
 </tr>
 <% $subtotal_titulos = session[:permanente] +    session[:anual]%>
-<tr style="font-size:10px">
+<tr style="font-size:8px">
   <th  colspan="7" align="right" font size="1"> TOTAL TÍTULOS TÍTULOS</th>
   <th align="center" ><%= "#{$subtotal_titulos}" %></th>
 </tr>
-<tr>
-    <th colspan="7" align="right"><font size="3"><b>TOTAL PONTUAÇÂO TEMPO DE SERVIÇO</b>&nbsp&nbsp&nbsp</font></th>
-    <th width="12%" align="center"><b><font size="3"><%= $pontos%></b></font> </th>
+ <tr style="font-size:8px" >
+    <th colspan="7" align="right"><font size="1"><b>TOTAL PONTUAÇÂO TEMPO DE SERVIÇO</b>&nbsp&nbsp&nbsp</font></th>
+    <th width="12%" align="center"><b><font size="1"><%= $pontos%></b></font> </th>
 </tr>
 </table>
 
@@ -420,11 +425,7 @@
 
 
   </div>
- <table  class ="invisible_to_print " >
-   <tr  class ="invisible_to_print ">
-     <td align="right" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
-  </tr>
- </table>
+
 <br/>
 <font size="1">
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
