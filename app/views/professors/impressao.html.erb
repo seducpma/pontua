@@ -1,7 +1,7 @@
 
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       <img src="/stylesheets/images/logo.png"   alt=""  class="float-left"  />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
        <font size="3"><i><b><u>SISTEMA DE PONTUAÇÂO</u></b><br/>
 &nbsp&nbsp&nbsp
      <font size="1"><i><b>Prefeitua Municipal de  Americana </b></i>
@@ -17,19 +17,19 @@
   <br/>
     <table width="100%" frame="box" rules="all" >
            <%for professor in @professor%>
-              <tr style="font-size:10px">
+              <tr style="font-size:8px">
                    <td align="left" width="10%"><b>Matrícula:</b></td>
                    <td align="left" width="20%"><%= professor.matricula%></td>
                    <td align="left" width="9%"><b>Nome:</b></td>
                    <td colspan="5"align="left"><%= professor.nome %></td>
                 </tr>
-                 <tr style="font-size:10px">
+                 <tr style="font-size:8px">
                    <td align="left"><b>Nascimento:</b></td>
                    <td align="left">  <%= professor.dt_nasc.strftime("%d/%m/%Y")%></td>
                    <td align="left"width="5%"><b>Nº Filhos:</b></td>
                    <td colspan="5"align="left">  <%= professor.n_filhos %></td>
                  </tr>
-                 <tr style="font-size:10px">
+                 <tr style="font-size:8px">
                    <td align="left"><b>RG:</b></td>
                    <td align="left">  <%= professor.RG %></td>
                    <td align="left"><b>CPF:</b></td>
@@ -39,13 +39,13 @@
                    <td align="right"width="5%"><b>RD:</b></td>
                    <td align="left">  <%= professor.RD %></td>
                  </tr>
-                 <tr style="font-size:10px">
+                 <tr style="font-size:8px">
                   <td align="left"><b> Endereço:</b></td>
                   <td colspan="5" align="left"> <%=  professor.endres %> - <%= professor.num %></td>
                   <td align="right"><b> Complemento:</b></td>
                   <td > <%=  professor.complemento %> - <%=  professor.num %></td>
                 </tr>
-                <tr style="font-size:10px" >
+                <tr style="font-size:8px" >
                   <td align="left" width="10%"><b> Cidade:</b></td>
                   <td colspan="2"align="left"><%=h professor.cidade %></td>
                   <td align="right" ><b> Bairro:</b></td>
@@ -53,7 +53,7 @@
                   <td align="right"><b> CEP:</b></td>
                   <td align="left"><%=  professor.cep %></td>
                 </tr>
-                <tr style="font-size:10px" >
+                <tr style="font-size:8px" >
                    <td align="left"><b>Fone:</b></td>
                    <td align="left"><%=  professor.telefone %></td>
                    <td align="left"><b>Celular</b></td>
@@ -61,13 +61,13 @@
                    <td align="left"><b> e_mail:</b></td>
                    <td align="left"  colspan="3"><%= professor.email %></td>
                 </tr>
-                 <tr style="font-size:10px">
+                 <tr style="font-size:8px">
                    <td align="left"><b>Ingresso:</b></td>
                    <td align="left">  <%= professor.dt_ingresso.strftime("%d/%m/%Y")%></td>
                    <td align="left"><b>Formação:</b></td>
                    <td align="left"colspan="5">  <%= professor.entrada_concurso%></td>
                  </tr>
-                 <tr style="font-size:10px">
+                 <tr style="font-size:8px">
                    <td align="left"><b>Função:</b></td>
                    <td align="left">  <%= professor.funcao%></td>
                    <td align="left"><b>Sede:</b></td>
@@ -75,7 +75,7 @@
                    <td align="right"><b>Jornada:</b></td>
                    <td align="left">  <%= professor.jornada_sem%></td>
                  </tr>
-                  <tr style="font-size:10px">
+                  <tr style="font-size:8px">
                    <td align="left" ><b>Situação:</b></td>
                    <td align="left">
                       <% if  professor.desligado == 1%>
