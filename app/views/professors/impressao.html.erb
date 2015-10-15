@@ -1,8 +1,8 @@
 
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       <img src="/stylesheets/images/logo.png"   alt=""  class="float-left"  />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-       <font size="3"><i><b><u>SISTEMA DE PONTUAÇÂO</u></b><br/>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+       <font size="2"><i><b><u>SISTEMA DE PONTUAÇÂO</u></b><br/>
 &nbsp&nbsp&nbsp
      <font size="1"><i><b>Prefeitua Municipal de  Americana </b></i>
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -18,66 +18,66 @@
     <table width="100%" frame="box" rules="all" >
            <%for professor in @professor%>
               <tr style="font-size:8px">
-                   <td align="left" width="10%"><b>Matrícula:</b></td>
-                   <td align="left" width="20%"><%= professor.matricula%></td>
-                   <td align="left" width="9%"><b>Nome:</b></td>
-                   <td colspan="5"align="left"><%= professor.nome %></td>
+                   <th align="left" width="10%"><b>Matrícula:</b></th>
+                   <th align="left" width="20%"><%= professor.matricula%></th>
+                   <th align="left" width="9%"><b>Nome:</b></th>
+                   <th colspan="5"align="left"><%= professor.nome %></th>
                 </tr>
                  <tr style="font-size:8px">
-                   <td align="left"><b>Nascimento:</b></td>
-                   <td align="left">  <%= professor.dt_nasc.strftime("%d/%m/%Y")%></td>
-                   <td align="left"width="5%"><b>Nº Filhos:</b></td>
-                   <td colspan="5"align="left">  <%= professor.n_filhos %></td>
+                   <th align="left"><b>Nascimento:</b></td>
+                   <th align="left">  <%= professor.dt_nasc.strftime("%d/%m/%Y")%></th>
+                   <th align="left"width="5%"><b>Nº Filhos:</b></th>
+                   <th colspan="5"align="left">  <%= professor.n_filhos %></th>
                  </tr>
                  <tr style="font-size:8px">
-                   <td align="left"><b>RG:</b></td>
-                   <td align="left">  <%= professor.RG %></td>
-                   <td align="left"><b>CPF:</b></td>
-                   <td align="left">  <%= professor.CPF %></td>
-                   <td align="left"width="5%"><b>INEP:</b></td>
-                   <td align="left">  <%= professor.INEP %></td>
-                   <td align="right"width="5%"><b>RD:</b></td>
-                   <td align="left">  <%= professor.RD %></td>
+                   <th align="left"><b>RG:</b></th>
+                   <th align="left">  <%= professor.RG %></th>
+                   <th align="left"><b>CPF:</b></th>
+                   <th align="left">  <%= professor.CPF %></th>
+                   <th align="left"width="5%"><b>INEP:</b></th>
+                   <th align="left">  <%= professor.INEP %></th>
+                   <th align="right"width="5%"><b>RD:</b></th>
+                   <th align="left">  <%= professor.RD %></th>
                  </tr>
-                 <tr style="font-size:8px">
-                  <td align="left"><b> Endereço:</b></td>
-                  <td colspan="5" align="left"> <%=  professor.endres %> - <%= professor.num %></td>
-                  <td align="right"><b> Complemento:</b></td>
-                  <td > <%=  professor.complemento %> - <%=  professor.num %></td>
+                 <tr style="font-size:10px">
+                  <th align="left"><b> Endereço:</b></th>
+                  <th colspan="5" align="left"> <%=  professor.endres %> - <%= professor.num %></th>
+                  <th align="right"><b> Complemento:</b></th>
+                  <th > <%=  professor.complemento %> - <%=  professor.num %></th>
                 </tr>
                 <tr style="font-size:8px" >
-                  <td align="left" width="10%"><b> Cidade:</b></td>
-                  <td colspan="2"align="left"><%=h professor.cidade %></td>
-                  <td align="right" ><b> Bairro:</b></td>
-                  <td colspan="2"align="left"><%=  professor.bairro %></td>
-                  <td align="right"><b> CEP:</b></td>
-                  <td align="left"><%=  professor.cep %></td>
+                  <th align="left" width="10%"><b> Cidade:</b></th>
+                  <th colspan="2"align="left"><%=h professor.cidade %></th>
+                  <th align="right" ><b> Bairro:</b></th>
+                  <th colspan="2"align="left"><%=  professor.bairro %></th>
+                  <th align="right"><b> CEP:</b></th>
+                  <th align="left"><%=  professor.cep %></th>
                 </tr>
                 <tr style="font-size:8px" >
-                   <td align="left"><b>Fone:</b></td>
-                   <td align="left"><%=  professor.telefone %></td>
-                   <td align="left"><b>Celular</b></td>
-                   <td align="left"><%=  professor.cel %></td>
-                   <td align="left"><b> e_mail:</b></td>
-                   <td align="left"  colspan="3"><%= professor.email %></td>
+                   <th align="left"><b>Fone:</b></th>
+                   <th align="left"><%=  professor.telefone %></th>
+                   <th align="left"><b>Celular</b></th>
+                   <th align="left"><%=  professor.cel %></th>
+                   <th align="left"><b> e_mail:</b></th>
+                   <th align="left"  colspan="3"><%= professor.email %></th>
                 </tr>
                  <tr style="font-size:8px">
-                   <td align="left"><b>Ingresso:</b></td>
-                   <td align="left">  <%= professor.dt_ingresso.strftime("%d/%m/%Y")%></td>
-                   <td align="left"><b>Formação:</b></td>
-                   <td align="left"colspan="5">  <%= professor.entrada_concurso%></td>
-                 </tr>
+                   <th align="left"><b>Ingresso:</b></th>
+                   <th align="left">  <%= professor.dt_ingresso.strftime("%d/%m/%Y")%></th>
+                   <th align="left"><b>Formação:</b></th>
+                   <th align="left"colspan="5">  <%= professor.entrada_concurso%></th>
+                 </tr
                  <tr style="font-size:8px">
-                   <td align="left"><b>Função:</b></td>
-                   <td align="left">  <%= professor.funcao%></td>
-                   <td align="left"><b>Sede:</b></td>
-                   <td align="left" colspan="3">  <%= professor.unidade.nome%></td>
-                   <td align="right"><b>Jornada:</b></td>
-                   <td align="left">  <%= professor.jornada_sem%></td>
+                   <th align="left"><b>Função:</b></th>
+                   <th align="left">  <%= professor.funcao%></th>
+                   <th align="left"><b>Sede:</b></th>
+                   <th align="left" colspan="3">  <%= professor.unidade.nome%></th>
+                   <th align="right"><b>Jornada:</b></th>
+                   <th align="left">  <%= professor.jornada_sem%></th>
                  </tr>
                   <tr style="font-size:8px">
-                   <td align="left" ><b>Situação:</b></td>
-                   <td align="left">
+                   <th align="left" ><b>Situação:</b></th>
+                   <th align="left">
                       <% if  professor.desligado == 1%>
                         <font color="red"> Desligado</font> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                         <b>Data:</b><%= professor.data_desligado.strftime("%d/%m/%Y")%>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -85,9 +85,9 @@
                       <%else%>
                         <font color="blue"> Ativo</font>
                       <%end%>
-                   </td>
-                  <td align="left"><b> Observações:</b></td>
-                  <td align="left" colspan="4 "><%=  professor.obs%></td>
+                   </th>
+                  <th align="left"><b> Observações:</b></th>
+                  <th align="left" colspan="4 "><%=  professor.obs%></th>
                 </tr>
                 <%end%>
              </table>
@@ -205,15 +205,15 @@
               </tr>
 
                      <tr>
-                       <td align="center" width ="20%"><b>Descrição</b></td>
-                       <td align="center" width ="10%"><b>Total <%= temposervico.ano1%></b></td>
-                       <td align="center" width ="10%"><b>Total <%= temposervico.ano2%></b><br/></td>
-                       <td align="center" width ="10%"><b>SubTotal
-                       <td align="center" width ="5%"><b>Peso</b></td>
-                       <td align="center" width ="9%"><b>Totalização</td>
-                       <td align="center" width ="10%" ><b>Total Anterior</b></td>
-                       <td align="center" width ="10%"><b>Pontuação</b></td>
-                       <td align="center" width ="20%" colspan="4"><b>Total</b></td>
+                       <th align="center" width ="20%"><b>Descrição</b></th>
+                       <th align="center" width ="10%"><b>Total <%= temposervico.ano1%></b></th>
+                       <th align="center" width ="10%"><b>Total <%= temposervico.ano2%></b><br/></th>
+                       <th align="center" width ="10%"><b>SubTotal</b> </th>
+                       <th align="center" width ="5%"><b>Peso</b></th>
+                       <th align="center" width ="9%"><b>Totalização</th>
+                       <th align="center" width ="10%" ><b>Total Anterior</b></th>
+                       <th align="center" width ="10%"><b>Pontuação</b></th>
+                       <th align="center" width ="20%" colspan="4"><b>Total</b></th>
                      </tr>
                     <tr>
                       <td align="left"><b>Total de dias trabalhados</b></td>
