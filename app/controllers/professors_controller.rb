@@ -164,8 +164,7 @@ end
          else
              @professors = Professor.find(:all, :conditions=> ["nome like ? and (sede_id = ? or sede_id = 54)" ,"%" + params[:search1].to_s + "%", current_user.unidade_id], :order => 'sede_id,nome ASC')
          end
-
-         
+        
           teste =   params[:search1].to_s
 
           render :update do |page|
