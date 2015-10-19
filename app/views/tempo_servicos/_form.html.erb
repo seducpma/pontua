@@ -44,10 +44,10 @@
                                          <td align="center" width ="8%"><b>Outro<br/>Emprego</b></td>
                                  <%end%>
                                  <td align="center" width ="8%"><b>Faltas<br/>Abonadas</b></td>
-                                 <td align="center" width ="8%"><b>Faltas<br/>Atestados</b></td>
-                                 <td align="center" width ="8%"><b>Faltas<br/>Justificadas</b></td>
                                  <td align="center" width ="8%"><b>Faltas<br/>Injustificadas</b></td>
-                                 <td align="center" width ="8%"><b>Licença<br/>Saúde</b></td>
+                                 <td align="center" width ="8%"><b>Faltas<br/>Justificadas</b></td>
+                                  <td align="center" width ="8%"><b>Licença<br/>Saúde</b></td>
+                                 <td align="center" width ="8%"><b>Faltas<br/>Atestados</b></td>
                                  <td align="center" width ="8%"><b>Afastamento</b></td>
                                  <td align="center" width ="8%"><b>Outras<br/>Ausências</b></td>
 
@@ -61,10 +61,10 @@
                                        <td align="center"><%= f.text_field :outro_trab1,:size =>5%> </td>
                                 <%end%>
                                 <td align="center"><%= f.text_field :f_abonada1,:size =>5%> </td>
-                                <td align="center"><%= f.text_field :f_atestado1,:size =>5%> </td>
-                                <td align="center"><%= f.text_field :f_justif1,:size =>5%> </td>
                                 <td align="center"><%= f.text_field :f_injustif1,:size =>5%> </td>
+                                <td align="center"><%= f.text_field :f_justif1,:size =>5%> </td>
                                 <td align="center"><%= f.text_field :lic_saude1,:size =>5%> </td>
+                                <td align="center"><%= f.text_field :f_atestado1,:size =>5%> </td>
                                 <td align="center"><%= f.text_field :afastamento1,:size =>5%> </td>
                                 <td align="center"><%= f.text_field :outras_aus1,:size =>5%> </td>
                               </tr>
@@ -76,11 +76,11 @@
                                       <td align="center"><%= f.text_field :unidade2,:size =>5%> </td>
                                       <td align="center"><%= f.text_field :outro_trab2,:size =>5%> </td>
                                 <%end%>
-                                      <td align="center"><%= f.text_field :f_abonada2,:size =>5%> </td>
-                                <td align="center"><%= f.text_field :f_atestado2,:size =>5%> </td>
+                                <td align="center"><%= f.text_field :f_abonada2,:size =>5%> </td>
+                                                               <td align="center"><%= f.text_field :f_injustif2,:size =>5%> </td>
                                 <td align="center"><%= f.text_field :f_justif2,:size =>5%> </td>
-                                <td align="center"><%= f.text_field :f_injustif2,:size =>5%> </td>
                                 <td align="center"><%= f.text_field :lic_saude2,:size =>5%> </td>
+                                <td align="center"><%= f.text_field :f_atestado2,:size =>5%> </td>
                                 <td align="center"><%= f.text_field :afastamento2,:size =>5%> </td>
                                 <td align="center"><%= f.text_field :outras_aus2,:size =>5%> </td>
                               </tr>
