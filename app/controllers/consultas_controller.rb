@@ -16,7 +16,7 @@ helper_method :sort_column, :sort_direction
 
   def consulta_geral
   $tipo_con = 10
-  @professor_rel_geral = Professor.find(:all,:joins => :tempo_servico, :conditions=> ["tempo_servicos.ano_letivo = ? and desligado = 0", Time.current.strftime("%Y").to_i], :order => 'tempo_servicos.pontuacao_geral DESC', :include => 'unidade')
+  @professor_rel_geral = Professor.find(:all,:joins => :tempo_servico, :conditions=> ["tempo_servicos.ano_letivo = 2015 and desligado = 0"], :order => 'tempo_servicos.pontuacao_geral DESC,dt_ingresso DESC,dt_nasc,n_filhos DESC', :include => 'unidade')
   end
 
   def consulta_funcao
