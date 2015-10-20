@@ -226,13 +226,13 @@ helper_method :sort_column, :sort_direction
  def impressao_geral
         $tipo_con = 10
         if ($tipoclassificacao == 'CLASSIFICACÃO GERAL')
-         @professor_impressao = Professor.find(:all,:joins => :tempo_servico, :conditions=> ["tempo_servicos.ano_letivo = ? and desligado = 0", Time.current.strftime("%Y").to_i], :order => 'tempo_servicos.pontuacao_geral ASC', :include => 'unidade')
+         @professor_impressao = TempoServico.find(:all,:joins => :professor, :conditions=> ["tempo_servicos.ano_letivo = ? and professors.desligado = 0", Time.current.strftime("%Y").to_i], :order => 'tempo_servicos.pontuacao_geral ASC')
         else if ($tipoclassificacao == 'CLASSIFICACÃO P/ FUNÇÂO')
-                 @professor_impressao = Professor.find(:all,:joins => :tempo_servico, :conditions=> ["tempo_servicos.ano_letivo = ? and desligado = 0 and funcao like ?", Time.current.strftime("%Y").to_i, "%" +$funcao+ "%" ], :order => 'tempo_servicos.pontuacao_geral ASC', :include => 'unidade')
+                 @professor_impressao = TempoServico.find(:all,:joins => :professor, :conditions=> ["tempo_servicos.ano_letivo = ? and professors.desligado = 0 and profssors.funcao like ?", Time.current.strftime("%Y").to_i, "%" +$funcao+ "%" ], :order => 'tempo_servicos.pontuacao_geral DESC, ,dt_ingresso DESC,dt_nasc,n_filhos ASC')
              else if ($tipoclassificacao == 'CLASSIFICACÃO P/ UNIDADE')
-                   @professor_impressao = Professor.find(:all,:joins => :tempo_servico, :conditions=> ["tempo_servicos.ano_letivo = ? and desligado = 0 and unidades.nome like ?", Time.current.strftime("%Y").to_i, "%" +$uni+ "%" ], :order => 'tempo_servicos.pontuacao_geral ASC', :include => 'unidade')
+                   @professor_impressao = TempoServico.find(:all,:joins => :professor, :conditions=> ["tempo_servicos.ano_letivo = ? and professors.desligado = 0 and professors.sede_id = ?", Time.current.strftime("%Y").to_i, "%" +$uni+ "%" ], :order => 'tempo_servicos.pontuacao_geral DESC dt_ingresso, DESC,dt_nasc,n_filhos ASC')
                   else if ($tipoclassificacao == 'CLASSIFICACÃO P/ UNIDADE-FUNÇÃO')
-                        @professor_impressao = Professor.find(:all,:joins => :tempo_servico, :conditions=> ["tempo_servicos.ano_letivo = ? and desligado = 0 and unidades.nome = ? and funcao like ?", Time.current.strftime("%Y").to_i, $uni, $funcao ], :order => 'tempo_servicos.pontuacao_geral ASC,dt_ingresso DESC,dt_nasc,n_filhos ASC', :include => 'unidade')
+                        @professor_impressao = TempoServico.find(:all,:joins => :professor, :conditions=> ["tempo_servicos.ano_letivo = ? and professors.desligado = 0 and professors.sede_id = ? and professors.funcao like ?", Time.current.strftime("%Y").to_i, $uni, $funcao ], :order => 'tempo_servicos.pontuacao_geral DESC,dt_ingresso DESC,dt_nasc,n_filhos ASC')
                        end
                   end
              end
