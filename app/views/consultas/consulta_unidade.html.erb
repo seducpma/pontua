@@ -24,18 +24,22 @@
           <table border ="1" cellpadding="1" cellspacing="1" width="100%" >
             <tr>
               <th colspan="6">
-                <font size="3"><b><%=  params[:search]%> - Ano Letivo <%= Time.current.strftime("%Y").to_i%> </b></font>
+                <font size="3"><b> Ano Letivo <%= Time.current.strftime("%Y").to_i%> </b></font>
               </th>
             </tr>
             <tr>
+              <center><th bgcolor="#cccccc" width = "5%">Posição</th></center>
               <center><th bgcolor="#cccccc" width = "7%">Matrícula</th></center>
               <th bgcolor="#cccccc" width = "40%">Nome</th>
               <th bgcolor="#cccccc" width = "25%">Sede</th>
               <th bgcolor="#cccccc" width = "5%">Pontuação</th>
               <th bgcolor="#cccccc"  width = "20%">Função</th>
              </tr>
+             <%num = 0%>
               <% for ts in @professor_consulta_unidade%>
+             <% num= num+1 %>
               <tr>
+                <td width = "5%"><center><%= num%>º</center></td>
                 <td width = "7%"><center><%=h ts.professor.matricula %></center></td>
                 <td width = "40%"><center><%=h ts.professor.nome %></center></td>
                 <td width = "25%"><center><%=h ts.professor.unidade.nome %></center></td>
@@ -45,11 +49,11 @@
                         <td width = "5%"><center><%=h ts.pontuacao_geral%></center></td>
                     <%end%>
                 <td width = "20%"><center><%=h ts.professor.funcao%></center></td>
-             <tr/>
+             </tr>
             <% end %>
 
                      <tr>
-                           <td widht="8%" colspan="5"><b><%= link_to image_tag("/stylesheets/images/imprimir12.png"), onclick="javascript:MM_openBrWindow('#{impressao_geral_consulta_path(:professor => $teacher)}','impressao', 'scrollbars=yes');", :title => "Imprimir" %></b></td>
+                           <td widht="8%" colspan="6"><b><%= link_to image_tag("/stylesheets/images/imprimir12.png"), onclick="javascript:MM_openBrWindow('#{impressao_geral_consulta_path(:professor => $teacher)}','impressao', 'scrollbars=yes');", :title => "Imprimir" %></b></td>
                       </tr>
          </table>
       <%  $tipoclassificacao = 'CLASSIFICACÃO P/ UNIDADE' %>

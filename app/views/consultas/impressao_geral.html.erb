@@ -1,43 +1,47 @@
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       <img src="/stylesheets/images/logo.png"   alt=""  class="float-left"  />
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-       <font size="3"><i><b><u>SISTEMA DE PONTUAÇÂO</u></b><br/>
+       <font size="2"><i><b><u>SISTEMA DE PONTUAÇÂO</u></b><br/>
 &nbsp&nbsp&nbsp
      <font size="1"><i><b>Prefeitua Municipal de  Americana </b></i>
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 
-<font size="3"><b><u><%= $tipoclassificacao %> </u></b></i><br/>
+<font size="2"><b><u><%= $tipoclassificacao %> </u></b></i><br/>
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       <font size="1"><b><i> Secretaria da Educação</i></b>
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 
-<font size="3"><b><u>PONTUAÇÂO DE PROFESSORES </u></b></i><br/>
+<font size="2"><b><u>PONTUAÇÂO DE PROFESSORES </u></b></i><br/>
 
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-       <font size="2">Ano letivo: <%= Time.current.strftime("%Y").to_i%></font><br/>
+       <font size="1">Ano letivo: <%= Time.current.strftime("%Y").to_i%></font><br/>
 <div class="tabs">
   <br/>
     <table width="100%" frame="box" rules="all" >
-     <tr >
-      <center><th bgcolor="#cccccc" width = "7%">Matrícula</th></center>
+     <tr style="font-size:9px">
+     <center><th bgcolor="#cccccc" width = "5%">Posição</th></center>
+     <center><th bgcolor="#cccccc" width = "7%">Matrícula</th></center>
       <th bgcolor="#cccccc" width = "40%">Nome</th>
       <th bgcolor="#cccccc" width = "25%">Sede</th>
       <th bgcolor="#cccccc" width = "5%">Pontuação</th>
       <th bgcolor="#cccccc"  width = "20%">Função</th>
      </tr>
+     <%num=0%>
       <% for ts in @professor_impressao %>
-      <tr>
-        <td width = "7%"><center><%=h ts.professor.matricula %></center></td>
-        <td width = "40%"><center><%=h ts.professor.nome %></center></td>
-        <td width = "25%"><center><%=h ts.professor.unidade.nome %></center></td>
+     <%num = num+1%>
+      <tr style="font-size:9px">
+        <th width = "5%"><center><%= num%>º</center></th>
+        <th width = "7%"><center><%=h ts.professor.matricula %></center></th>
+        <th width = "40%"><center><%=h ts.professor.nome %></center></th>
+        <th width = "25%"><center><%=h ts.professor.unidade.nome %></center></th>
             <% if ts.pontuacao_geral.nil? then %>
-                    <td width="5%"><%=h%></td>
+                    <th width="5%"><%=h%></th>
             <%else%>
-                <td width = "5%"><center><%=h ts.pontuacao_geral%></center></td>
+                <th width = "5%"><center><%=h ts.pontuacao_geral%></center></th>
             <%end%>
-        <td width = "20%"><center><%=h ts.professor.funcao%></center></td>
-     <tr/>
+        <th width = "20%"><center><%=h ts.professor.funcao%></center></th>
+     </tr>
     <% end %>
              </table>
 
@@ -51,7 +55,7 @@
   </div>
  <table  class ="invisible_to_print " >
    <tr  class ="invisible_to_print ">
-     <td align="right" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
+     <td align="right" class ="invisible_to_print " ><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
   </tr>
  </table>
 <br/>
