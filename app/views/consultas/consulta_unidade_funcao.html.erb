@@ -12,7 +12,7 @@
        <table width="100%" align="center" bgcolor="#DCDCDC" >
           <tr>
             <td align="left"> <b>Unidade:</b>
-              <%= select_tag :search, options_for_select(@unidade_sede.collect { |ff| [ff.nome, ff.nome] }.insert(0, '--Selecionar--')) %>
+              <%= select_tag :search, options_for_select(@unidade_sede.collect { |ff| [ff.nome, ff.id] }.insert(0, '--Selecionar--')) %>
                &nbsp&nbsp&nbsp<b>Função:</b>
               <%= select_tag :search1, options_for_select(CARGO).sort, :include_blank => '-- Selecionar --' %>
                &nbsp&nbsp&nbsp
