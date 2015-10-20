@@ -25,10 +25,10 @@ helper_method :sort_column, :sort_direction
       @professor_consulta_funcao=nil
     else
        if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then
-             @professor_consulta_funcao = Professor.find(:all,:joins => :tempo_servico, :conditions=> ["tempo_servicos.ano_letivo = ? and desligado = 0 and funcao like ?", Time.current.strftime("%Y").to_i, "%" +params[:search]+ "%" ], :order => 'tempo_servicos.pontuacao_geral DESC,dt_ingresso DESC,dt_nasc,n_filhos DESC', :include => 'unidade')
+             @professor_consulta_funcao = TempoServico.find(:all,:joins => :professor, :conditions=> ["tempo_servicos.ano_letivo = 2015 and professors.desligado = 0"], :order => 'tempo_servicos.pontuacao_geral DESC,dt_ingresso DESC,dt_nasc,n_filhos DESC')
 
       else
-             @professor_consulta_funcao = Professor.find(:all,:joins => :tempo_servico, :conditions=> ["tempo_servicos.ano_letivo = ? and desligado = 0 and funcao like ? and (professors.sede_id = ? or sede_id = 54)" , Time.current.strftime("%Y").to_i, $funcao, current_user.unidade_id ], :order => 'tempo_servicos.pontuacao_geral DESC,dt_ingresso DESC,dt_nasc,n_filhos DESC', :include => 'unidade')
+             @professor_consulta_funcao = TempoServico.find(:all,:joins => :professor, :conditions=> ["tempo_servicos.ano_letivo = 2015 and professors.desligado = 0"], :order => 'tempo_servicos.pontuacao_geral DESC,dt_ingresso DESC,dt_nasc,n_filhos DESC')
 
        end
 
@@ -46,10 +46,10 @@ helper_method :sort_column, :sort_direction
       @professor_consulta_unidade=nil
     else
        if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then
-            @professor_consulta_unidade = Professor.find(:all,:joins => :tempo_servico, :conditions=> ["tempo_servicos.ano_letivo = ? and desligado = 0 and unidades.nome = ?", Time.current.strftime("%Y").to_i, $uni ], :order => 'tempo_servicos.pontuacao_geral DESC,dt_ingresso DESC,dt_nasc,n_filhos DESC', :include => 'unidade')
+            @professor_consulta_unidade = TempoServico.find(:all,:joins => :professor, :conditions=> ["tempo_servicos.ano_letivo = 2015 and professors.desligado = 0"], :order => 'tempo_servicos.pontuacao_geral DESC,dt_ingresso DESC,dt_nasc,n_filhos DESC')
  
       else
-             @professor_consulta_unidade = Professor.find(:all,:joins => :tempo_servico, :conditions=> ["tempo_servicos.ano_letivo = ? and desligado = 0 and unidades.nome = ? and (professors.sede_id = ? or sede_id = 54)" , Time.current.strftime("%Y").to_i, $uni, current_user.unidade_id ], :order => 'tempo_servicos.pontuacao_geral DESC,dt_ingresso DESC,dt_nasc,n_filhos DESC', :include => 'unidade')
+             @professor_consulta_unidade = TempoServico.find(:all,:joins => :professor, :conditions=> ["tempo_servicos.ano_letivo = 2015 and professors.desligado = 0"], :order => 'tempo_servicos.pontuacao_geral DESC,dt_ingresso DESC,dt_nasc,n_filhos DESC')
 
        end
     end
@@ -65,9 +65,9 @@ helper_method :sort_column, :sort_direction
        @professor_consulta_unidade_funcao=nil
     else
        if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then
-            @professor_consulta_unidade_funcao = Professor.find(:all,:joins => :tempo_servico, :conditions=> ["tempo_servicos.ano_letivo = ? and desligado = 0 and unidades.nome = ? and funcao like ?", Time.current.strftime("%Y").to_i, $uni, $funcao ], :order => 'tempo_servicos.pontuacao_geral DESC,dt_ingresso DESC,dt_nasc,n_filhos DESC', :include => 'unidade')
+            @professor_consulta_unidade_funcao =TempoServico.find(:all,:joins => :professor, :conditions=> ["tempo_servicos.ano_letivo = 2015 and professors.desligado = 0"], :order => 'tempo_servicos.pontuacao_geral DESC,dt_ingresso DESC,dt_nasc,n_filhos DESC')
       else
-            @professor_consulta_unidade_funcao = Professor.find(:all,:joins => :tempo_servico, :conditions=> ["tempo_servicos.ano_letivo = ? and desligado = 0 and unidades.nome = ? and funcao like ? and (professors.sede_id = ? or sede_id = 54)", Time.current.strftime("%Y").to_i, $uni, $funcao, current_user.unidade_id ], :order => 'tempo_servicos.pontuacao_geral DESC,dt_ingresso DESC,dt_nasc,n_filhos DESC', :include => 'unidade')
+            @professor_consulta_unidade_funcao = TempoServico.find(:all,:joins => :professor, :conditions=> ["tempo_servicos.ano_letivo = 2015 and professors.desligado = 0"], :order => 'tempo_servicos.pontuacao_geral DESC,dt_ingresso DESC,dt_nasc,n_filhos DESC')
        end
     end
       render :action => 'consulta_unidade_funcao'
