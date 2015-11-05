@@ -52,11 +52,21 @@ if (Time.current.strftime("%Y").to_i)< 2015
      self.subtot_unid = self.dias_unidade1 + self.dias_unidade2
 else
   #CALCULOS 2015
+  $dias2104 =184
+  $dias2105 =181
   self.dias1= $dias2104
   self.dias2= $dias2105
   if (self.f_abonada1 + self.f_atestado1 + self.f_justif1 + self.f_injustif1 + self.lic_saude1 + self.afastamento1 + self.outras_aus1)== 0
     self.dias_efetivos1 = self.dias1
   else
+    t = self.dias_efetivos1
+    t1 = self.dias1
+    t2 = self.f_abonada1
+    t3 = self.f_atestado1
+    t4 = self.f_justif1
+    t5 = self.f_injustif1
+    t6=  self.lic_saude1
+    t7 =    self.afastamento1
     self.dias_efetivos1 = (self.dias1 - (self.f_abonada1 + self.f_atestado1 + self.f_justif1 + self.f_injustif1 + self.lic_saude1 + self.afastamento1))
   end
   if (self.f_abonada2 + self.f_atestado2 + self.f_justif2 + self.f_injustif2 + self.lic_saude2 + self.afastamento1 + self.outras_aus2)== 0
@@ -119,7 +129,10 @@ end
 
   def total_geral
     self.total_dias= ((self.dias_trab1 + self.dias_trab2 ) * 2)+ self.total_ant_dias
-    self.total_efetivo= ((self.dias_efetivos1 + self.dias_efetivos2) * 10) + self.total_ant_efetivo +
+    t1=self.dias_efetivos1 
+    t2=self.dias_efetivos2
+    t3=self.total_ant_efetivo
+    self.total_efetivo= ((self.dias_efetivos1 + self.dias_efetivos2) * 10) + self.total_ant_efetivo
     self.total_rede= ((self.dias_rede1 + self.dias_rede2) * 1) + self.total_ant_rede
      if (Time.current.strftime("%Y").to_i)< 2015
         self.total_unid= (self.total_ant_unid +  self.dias_unidade1 + self.dias_unidade2) * 2

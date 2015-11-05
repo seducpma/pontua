@@ -205,8 +205,8 @@
 
              <tr style="font-size:9px" >
                        <th align="center" width ="20%"><b>Descrição</b></th>
-                       <th align="center" width ="10%"><b>Total <%= temposervico.ano1%></b></th>
-                       <th align="center" width ="10%"><b>Total <%= temposervico.ano2%></b><br/></th>
+                       <th align="center" width ="10%"><b>2º Sem. <%= temposervico.ano1%></b></th>
+                       <th align="center" width ="10%"><b>1º Sem. <%= temposervico.ano2%></b><br/></th>
                        <th align="center" width ="10%"><b>SubTotal</b> </th>
                        <th align="center" width ="5%"><b>Peso</b></th>
                        <th align="center" width ="9%"><b>Totalização</th>
@@ -227,8 +227,8 @@
                     </tr>
                     <tr style="font-size:9px" >
                       <th align="left"><b>Total de dias efetivos</b></th>
-                       <th align="center"><%= temposervico.total_ant_efetivo%></th>
                        <th align="center"><%= temposervico.dias_efetivos1%></th>
+                       <th align="center"><%= temposervico.dias_efetivos2%></th>
                           <%tott2 = temposervico.dias_efetivos1 + temposervico.dias_efetivos2%>
                        <th align="center"><%= tott2%></th>
                        <th align="center"> 10 </th>

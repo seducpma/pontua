@@ -171,8 +171,8 @@
                      <tr>
 
                        <td align="center" width ="20%"><b>Descrição</b></td>
-                       <td align="center" width ="11%"><b>Total <%= h @temposervico.ano1%></b></td>
-                       <td align="center" width ="11%"><b>Total <%= h @temposervico.ano2%></b><br/></td>
+                       <td align="center" width ="11%"><b>2º Sem. <%= h @temposervico.ano1%> </b></td>
+                       <td align="center" width ="11%"><b>1º Sem. <%= h @temposervico.ano2%></b><br/></td>
                        <td align="center" width ="11%"><b>SubTotal
                        <td align="center" width ="5%"><b>Peso</b></td>
                        <td align="center" width ="11%"><b>Totalização</td>
@@ -193,8 +193,8 @@
                     </tr>
                     <tr>
                       <td align="left"><b>Total de dias efetivos</b></td>
-                       <td align="center"><%=  h @temposervico.total_ant_efetivo%></td>
                        <td align="center"><%=  h @temposervico.dias_efetivos1%></td>
+                       <td align="center"><%=  h @temposervico.dias_efetivos2%></td>
                           <%tott2 = @temposervico.dias_efetivos1 + @temposervico.dias_efetivos2%>
                        <td align="center"><%= tott2%></td>
                        <td align="center"> 10 </td>
