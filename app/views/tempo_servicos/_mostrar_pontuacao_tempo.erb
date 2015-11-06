@@ -220,7 +220,7 @@
                        <td><%= link_to image_tag("/stylesheets/images/alterar.png"), {:action => "edit", :id =>@temposervico }, :method => "get"%></td>
                       
                    <%end%>
-                       <td widht="8%" colspan="5"><b><%= link_to image_tag("/stylesheets/images/imprimir12.png"), onclick="javascript:MM_openBrWindow('#{impressao_tempo_servicos_path(:professor => $teacher)}','impressao', 'scrollbars=yes');", :title => "Imprimir" %></b></td>
+                       <td widht="8%" colspan="5"><b><%= link_to image_tag("/stylesheets/images/imprimir12.png"), onclick="javascript:MM_openBrWindow('#{impressao_tempo_servicos_path(:professor => session[:teacher])}','impressao', 'scrollbars=yes');", :title => "Imprimir" %></b></td>
                    </tr>
                  </table>
                </td>

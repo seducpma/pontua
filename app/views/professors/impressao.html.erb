@@ -12,7 +12,7 @@
       <font size="1"><b><i> Secretaria da Educação</i></b>
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 &nbsp&nbsp&nbsp&nbsp&nbsp
-       <font size="2">Ano letivo: <%=  $ano%></font><br/>
+       <font size="2">Ano letivo: <%=  session[:ano]%></font><br/>
  <table  class ="invisible_to_print " >
    <tr  class ="invisible_to_print ">
      <td align="right" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
@@ -385,7 +385,7 @@
       <!--true = a distancia e false = presencial!-->
 
    </tr>
-  <% $ano = tp1.ano_letivo %>
+  <% session[:ano] = tp1.ano_letivo %>
   <% session[:anual] = tp1.total_anual %>
 
 
@@ -396,14 +396,14 @@
     <%= session[:anual] %></font>
   </th>
 </tr>
-<% $subtotal_titulos = session[:permanente] +    session[:anual]%>
+<%  session[:subtotal_titulos] = session[:permanente] +    session[:anual]%>
 <tr style="font-size:9px">
   <th  colspan="7" align="right" font size="1"> TOTAL TÍTULOS TÍTULOS</th>
-  <th align="center" ><%= "#{$subtotal_titulos}" %></th>
+  <th align="center" ><%= "#{ session[:subtotal_titulos]}" %></th>
 </tr>
  <tr style="font-size:9px" >
     <th colspan="7" align="right"><font size="1"><b>TOTAL GERAL PONTUAÇÂO  </b>&nbsp&nbsp&nbsp</font></th>
-    <th width="12%" align="center"><b><font size="1"><%= $pontos%></b></font> </th>
+    <th width="12%" align="center"><b><font size="1"><%= session[:pontos]%></b></font> </th>
 </tr>
 </table>
 

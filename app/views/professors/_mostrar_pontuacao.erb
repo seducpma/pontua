@@ -1,7 +1,7 @@
-<% $subtotal_titulos = 0 %>
+<%  session[:subtotal_titulos] = 0 %>
 <% session[:permanente]= 0 %>
 <% session[:anual] = 0 %>
-<% $pontos = 0%>
+<% session[:pontos] = 0%>
 <table width="100%"frame="box">
          <tr>
            <td>
@@ -16,7 +16,7 @@
 
                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                       <font size="2">Ano letivo: <%=  $ano%></font><br/>
+                       <font size="2">Ano letivo: <%=  session[:ano]%></font><br/>
 
            </td>
          </tr>
@@ -266,7 +266,7 @@
           </table>
 
 <!--  PONTUAÇÂO TITULAÇÂO -->
-<% $subtotal_titulos = 0 %>
+<%  session[:subtotal_titulos] = 0 %>
 
 <table width="100%" frame="box" rules="all">
 
@@ -392,7 +392,7 @@
       <!--true = a distancia e false = presencial!-->
 
    </tr>
-  <% $ano = tp1.ano_letivo %>
+  <% session[:ano] = tp1.ano_letivo %>
   <% session[:anual] = tp1.total_anual %>
 
 
@@ -403,20 +403,20 @@
     <font size="2"><%= session[:anual] %></font>
   </th>
 </tr>
-<% $subtotal_titulos = session[:permanente] + session[:anual] %>
+<% session[:subtotal_titulos] = session[:permanente] + session[:anual] %>
 <tr>
   <th  colspan="7" align="right">TOTAL TÍTULOS TÍTULOS</th>
   <th align="center">
-    <%= "#{$subtotal_titulos}" %>
+    <%= "#{session[:subtotal_titulos]}" %>
 </tr>
 </table>
- <% $pontos= temposervico.pontuacao_geral%>
+ <% session[:pontos]= temposervico.pontuacao_geral%>
   <%end%>
 <table width="100%" ->
 
-    <td widht="8%"><b><%= link_to image_tag("/stylesheets/images/imprimir12.png"), onclick="javascript:MM_openBrWindow('#{impressao_professors_path(:professor => $teacher)}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
+    <td widht="8%"><b><%= link_to image_tag("/stylesheets/images/imprimir12.png"), onclick="javascript:MM_openBrWindow('#{impressao_professors_path(:professor => session[:teacher])}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
     <td align="right"><font size="3"><b>TOTAL PONTUAÇÂO TEMPO DE SERVIÇO</b>&nbsp&nbsp&nbsp</font></td>
-    <td width="12%" align="center"><b><font size="3"><%= $pontos%></b></font> </td>
+    <td width="12%" align="center"><b><font size="3"><%= session[:pontos]%></b></font> </td>
   </tr>
 </table>
 

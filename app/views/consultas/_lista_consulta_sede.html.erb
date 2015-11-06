@@ -9,7 +9,7 @@ display: none;
 }
 </style>
 
-<%$teste=0%>
+<%session[:teste=0]%>
 <br/>
 <div class="botao">
 
@@ -30,7 +30,7 @@ display: none;
     </tr>
     <% for professor in @professorsnome %>
      <tr>
-      <td><center><%= $teste+1 %></center></td>
+      <td><center><%= session[:teste]+1 %></center></td>
       <td><center><%=h professor.matricula%></center></td>
       <td><center><%=h professor.nome%></center></td>
       <td><center><%=h professor.funcao%></center></td>
@@ -43,13 +43,13 @@ display: none;
 
     
   </tr>
-  <%  $teste = $teste + 1%>
+  <%  session[:teste] = session[:teste] + 1%>
 <% end %>
 </table>  
 </table>
 </div>
 <tr>
- <font size=3 color="green">Consulta realizada, <%=h $teste %> registro(s) encontado(s)</font>
+ <font size=3 color="green">Consulta realizada, <%=h session[:teste] %> registro(s) encontado(s)</font>
 </tr>
 <div class="botao">
 <table width="100%">

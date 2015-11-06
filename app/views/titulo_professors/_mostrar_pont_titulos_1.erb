@@ -57,7 +57,7 @@
                 </tr>
                 <%end%>
              </table>
-<% $subtotal_titulos = 0 %>
+<% session[:subtotal_titulos] = 0 %>
 
 <table width="100%" frame="box" rules="all">
 
@@ -177,7 +177,7 @@
       <!--true = a distancia e false = presencial!-->
 
    </tr>
-  <% $ano = tp1.ano_letivo %>
+  <% session[:ano] = tp1.ano_letivo %>
   <% session[:anual] = tp1.total_anual %>
    
 
@@ -188,15 +188,15 @@
     <font size="2"><%= session[:anual] %></font>
   </th>
 </tr>
-<% $subtotal_titulos = session[:permanente] +    session[:anual]%>
+<%  session[:subtotal_titulos] = session[:permanente] +    session[:anual]%>
 <tr>
   <th width="80%" colspan="6" align="right">TOTAL TÍTULOS</th>
   <th align="center">
-    <%= "#{$subtotal_titulos}" %>
+    <%= "#{ session[:subtotal_titulos]}" %>
 </tr>
 <tr>
 
-  <td widht="8%" colspan="6"><b><%= link_to image_tag("/stylesheets/images/imprimir12.png"), onclick="javascript:MM_openBrWindow('#{impressao_titulo_professors_path(:professor => $teacher)}','impressao', 'scrollbars=yes');", :title => "Imprimir" %></b></td>
+  <td widht="8%" colspan="6"><b><%= link_to image_tag("/stylesheets/images/imprimir12.png"), onclick="javascript:MM_openBrWindow('#{impressao_titulo_professors_path(:professor => session[:teacher])}','impressao', 'scrollbars=yes');", :title => "Imprimir" %></b></td>
 </tr>
 
 

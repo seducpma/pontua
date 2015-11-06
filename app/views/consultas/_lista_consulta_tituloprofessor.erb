@@ -43,9 +43,9 @@ display: none;
     </tr>
    </table>
   
-  <% @tp = TituloProfessor.find(:all,:joins => :titulo, :conditions => ['titulacaos.id = ? and professor_id = ? and ano_letivo = ?',$titulo,professor.id,$data]) %>
+  <% @tp = TituloProfessor.find(:all,:joins => :titulo, :conditions => ['titulacaos.id = ? and professor_id = ? and ano_letivo = ?',session[:titulo],professor.id,session[:data]) %>
 
-  <% $contador=0%> <%$pontos=0%>
+  <% session[:contador]=0%> <%session[:pontos]=0%>
   
     <table border="1"align="right" width="94%" >
       <tr>
@@ -58,12 +58,12 @@ display: none;
        <td align="center"><%=h tp.titulo.descricao %></td>
        <td align="center"><%=h tp.obs%></td>
       <td align="center"><%= tp.dt_titulo.strftime("%d/%m/%y")%></td>
-      <%$pontos= $pontos + tp.pontuacao_titulo%>
+      <%session[:pontos]= session[:pontos]+ tp.pontuacao_titulo%>
      </tr>
-     <% $contador= $contador+1 %>
+     <% session[:contador]= session[:contador]+1 %>
  <%end%>
  <tr>
-   <td colspan="3"><font color="green">Este professor possui <%=$contador%> titulo(s) cadastrado(s) totalizando <%=$pontos%> pontos</font></td>
+   <td colspan="3"><font color="green">Este professor possui <%=session[:contador]%> titulo(s) cadastrado(s) totalizando <%=session[:pontos]%> pontos</font></td>
    </tr>
   </table>
 <% end %>

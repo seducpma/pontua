@@ -81,7 +81,7 @@
       </td>
       <td align="center" colspan="2">
         <font size="2"><%= tp.pontuacao_titulo %></font>
-        <% $subtot_perm = $subtot_perm + (tp.pontuacao_titulo) %>
+        <% session[:subtot_perm] = session[:subtot_perm] + (tp.pontuacao_titulo) %>
         <% permanente = tp.totaliza_permamente(tp.professor_id) %>
 
       </td>
@@ -127,7 +127,7 @@
       </td>
       <td  align="center">
         <font size="2"><%= tp1.pontuacao_titulo %></font>
-        <% $subtot_um = $subtot_um + (tp1.pontuacao_titulo) %>
+        <% session[:subtot_um] = session[:subtot_um] + (tp1.pontuacao_titulo) %>
       </td>
       <!--true = a distancia e false = presencial!-->
       <td align="center">
@@ -145,7 +145,7 @@
 
    </tr>
   <%  tituloprof= tp1.professor_id  %>
-  <% $ano = tp1.ano_letivo %>
+  <% session[:ano] = tp1.ano_letivo %>
   <% anual = tp1.totaliza_anual(tp1.professor_id) %>
    <% permanente = tp.totaliza_permamente(tp.professor_id) %>
   <%end%>
@@ -159,15 +159,15 @@
 <tr>
 
   <td widht="8%" colspan="5"><%= link_to image_tag("/stylesheets/images/alterar.png"),titulo_professors_path(:professor => session[:teacher], :type => 1)%>
-                   <b><%= link_to image_tag("/stylesheets/images/imprimir12.png"), onclick="javascript:MM_openBrWindow('#{impressao_titulo_professors_path(:professor => $teacher)}','impressao', 'scrollbars=yes');", :title => "Imprimir" %></b></td>
+                   <b><%= link_to image_tag("/stylesheets/images/imprimir12.png"), onclick="javascript:MM_openBrWindow('#{impressao_titulo_professors_path(:professor => session[:teacher])}','impressao', 'scrollbars=yes');", :title => "Imprimir" %></b></td>
 
-<% $subtotal_titulos = $subtot_um + $subtot_perm %>
+<% session[:subtotal_titulos] = session[:subtot_um] + session[:subtot_perm] %>
 </table>
  <table width="100%">
 <tr>
   <th width="80%" colspan="4" align="right">TOTAL TÍTULOS</th>
   <th align="center">
-    <%= "#{$subtotal_titulos}" %> 
+    <%= "#{ session[:subtotal_titulos]}" %>
 </tr>
 </table>
 

@@ -49,14 +49,14 @@ display: none;
        <th bgcolor="#cccccc" width="28%">Titulo</th>
        <th bgcolor="#cccccc" width="11%">Data Conclusão</th>
      </tr>
-<% $contador2 = 0%>
+<% session[:contador2] = 0%>
     <%for tp in @tp%>
     <tr>
       <td><%=h tp.titulo.descricao %></td>
       <td><%=h tp.obs%></td>
       <td><center><%=h tp.dt_titulo.strftime("%d/%m/%y")%></center></td>
      <tr/>
-    <% $contador2= $contador2+1 %>
+    <% session[:contador2]= session[:contador2]+1 %>
     <%end%>
 
   <%for tp1 in @tp1%>

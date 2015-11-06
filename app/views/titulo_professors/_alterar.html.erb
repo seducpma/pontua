@@ -42,7 +42,7 @@
       </td>
       <td align="center">
         <%= tp.pontuacao_titulo %>
-        <% $subtot_perm = $subtot_perm + (tp.pontuacao_titulo).to_f %>
+        <% session[:subtot_perm] = session[:subtot_perm] + (tp.pontuacao_titulo).to_f %>
       </td>
       <td align="center">
       <% if tp.tipo_curso == true%>

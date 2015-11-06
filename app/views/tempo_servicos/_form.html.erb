@@ -1,5 +1,5 @@
-<%  $dias2104 =184%>
-<%  $dias2105 =181%>
+<%  session[:dias2104] =184%>
+<%  session[:dias2105] =181%>
 
 <% form_for(@temposervico) do |f| %>
       <%= f.error_messages %>
@@ -55,7 +55,7 @@
                               <tr>
 
                                 <td align="center"><%= (Time.current.strftime("%Y").to_i)-1%> </td>
-                                <td align="center"><%=  $dias2104 %> </td>
+                                <td align="center"><%=  session[:dias2104] %> </td>
                                 <% if (Time.current.strftime("%Y").to_i)< 2015 %>
                                       <td align="center"><%= f.text_field :unidade1,:size =>5%> </td>
                                        <td align="center"><%= f.text_field :outro_trab1,:size =>5%> </td>
@@ -71,7 +71,7 @@
                               <tr>
 
                                 <td align="center"><%= (Time.current.strftime("%Y").to_i)%> </td>
-                                <td align="center"><%=  $dias2105%> </td>
+                                <td align="center"><%=  session[:dias2105]%> </td>
                                 <% if (Time.current.strftime("%Y").to_i)< 2015 %>
                                       <td align="center"><%= f.text_field :unidade2,:size =>5%> </td>
                                       <td align="center"><%= f.text_field :outro_trab2,:size =>5%> </td>

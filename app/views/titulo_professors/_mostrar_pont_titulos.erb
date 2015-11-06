@@ -1,8 +1,8 @@
 
-<% $subtot_perm = 0 %>
-<% $subtot_um = 0 %>
+<% session[:subtot_perm] = 0 %>
+<% session[:subtot_um] = 0 %>
 
-<% $subtotal_titulos = 0 %>
+<%  session[:subtotal_titulos] = 0 %>
 
 <table width="100%" frame="box" rules="all">
 
@@ -42,7 +42,7 @@
       </td>
       <td align="center" colspan="2">
         <font size="2"><%= tp.pontuacao_titulo %></font>
-        <% $subtot_perm = $subtot_perm + (tp.pontuacao_titulo) %>
+        <% session[:subtot_perm] = session[:subtot_perm] + (tp.pontuacao_titulo) %>
        
 
       </td>
@@ -53,7 +53,7 @@
 <tr>
   <th width="80%" colspan="4" align="right">SUB-TOTAL </th>
   <th align="center">
-    <%= $subtot_perm %>
+    <%= session[:subtot_perm] %>
 
   </th>
 </tr>
@@ -109,14 +109,14 @@
       </td>
       <td  align="center">
         <font size="2"><%= tp1.pontuacao_titulo %></font>
-        <% $subtot_um = $subtot_um + (tp1.pontuacao_titulo) %>
+        <% session[:subtot_um] = session[:subtot_um] + (tp1.pontuacao_titulo) %>
       </td>
       <!--true = a distancia e false = presencial!-->
 
 
    </tr>
   <%  tituloprof= tp1.professor_id  %>
-  <% $ano = tp1.ano_letivo %>
+  <% session[:ano] = tp1.ano_letivo %>
   <% anual = tp1.totaliza_anual(tp1.professor_id) %>
    <% permanente = tp.totaliza_permamente(tp.professor_id) %>
   <%end%>
@@ -128,15 +128,15 @@
   </th>
 </tr>
 <tr>
- <% $subtotal_titulos = $subtot_um + $subtot_perm %>
+ <%  session[:subtotal_titulos] = session[:subtot_um] + session[:subtot_perm] %>
 
   <th width="80%" colspan="6" align="right">TOTAL TÍTULOS</th>
   <th align="center">
-    <%= "#{$subtotal_titulos}" %> 
+    <%= "#{session[:subtotal_titulos]}" %>
 </tr>
 <tr>
    <td widht="8%" colspan="7"><%= link_to image_tag("/stylesheets/images/alterar.png"),titulo_professors_path(:professor => session[:teacher], :type => 1)%>
-                   <b><%= link_to image_tag("/stylesheets/images/imprimir12.png"), onclick="javascript:MM_openBrWindow('#{impressao_titulo_professors_path(:professor => $teacher)}','impressao', 'scrollbars=yes');", :title => "Imprimir" %></b></td>
+                   <b><%= link_to image_tag("/stylesheets/images/imprimir12.png"), onclick="javascript:MM_openBrWindow('#{impressao_titulo_professors_path(:professor => session[:teacher])}','impressao', 'scrollbars=yes');", :title => "Imprimir" %></b></td>
 </tr>
 </table>
 

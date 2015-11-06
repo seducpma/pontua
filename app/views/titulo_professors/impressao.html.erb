@@ -11,7 +11,7 @@
       <font size="1"><b><i> Secretaria da Educação</i></b>
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-       <font size="2">Ano letivo: <%=  $ano%></font></br>
+       <font size="2">Ano letivo: <%=  session[:ano]%></font></br>
 <div class="tabs">
   <br/>
     <table width="100%"frame="box" rules="all" >
@@ -71,7 +71,7 @@
                 </tr>
                 <%end%>
              </table>
-<% $subtotal_titulos = 0 %>
+<%  session[:subtotal_titulos] = 0 %>
 
 <table width="100%" frame="box" rules="all">
 
@@ -171,7 +171,7 @@
 
 
    </tr>
-  <% $ano = tp1.ano_letivo %>
+  <% session[:ano] = tp1.ano_letivo %>
   <% session[:anual] = tp1.total_anual %>
 
 <% end %>
@@ -181,12 +181,12 @@
     <font size="1"><%= session[:anual] %></font>
   </th>
 </tr>
-<% $subtotal_titulos = session[:permanente] + session[:anual]  %>
+<%  session[:subtotal_titulos] = session[:permanente] + session[:anual]  %>
 
 
 <tr>
   <th width="80%" colspan="4" align="right"><font size="2">TOTAL TÍTULOS</font></th>
-  <th align="center"><font size="2"><%= $subtotal_titulos %></font></th>
+  <th align="center"><font size="2"><%=  session[:subtotal_titulos] %></font></th>
 </tr>
 </table>
 
