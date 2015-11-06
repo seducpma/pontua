@@ -64,7 +64,7 @@ else
     t4 = self.f_justif1
     t5 = self.f_injustif1
     t6=  self.lic_saude1
-        t7 =    self.afastamento1
+    t7 =    self.afastamento1
     self.dias_efetivos1 = (self.dias1 - (self.f_abonada1 + self.f_atestado1 + self.f_justif1 + self.f_injustif1 + self.lic_saude1 + self.afastamento1))
   end
   if (self.f_abonada2 + self.f_atestado2 + self.f_justif2 + self.f_injustif2 + self.lic_saude2 + self.afastamento1 + self.outras_aus2)== 0
