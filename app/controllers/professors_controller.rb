@@ -198,13 +198,12 @@ end
   end
 
 def consulta_ficha_pontuacao
-     $teacher = params[:consulta][:professor_id]
-      $ano = params[:ano_letivo]
-        @professor= Professor.find(:all,:conditions => ["id = ? and desligado = 0",$teacher])
-        @temposervico = TempoServico.find(:all,:conditions =>['professor_id = ? and ano_letivo = ?', $teacher, $ano])
+     session[:teacher] = params[:consulta][:professor_id]
+      session[:teacher] = params[:ano_letivo]
+        @temposervico = TempoServico.find(:all,:conditions =>['professor_id = ? and ano_letivo = ?', session[:teacher], session[:ano]])
 
-         @tp = TituloProfessor.all(:joins => "inner join titulacaos on titulo_professors.titulo_id = titulacaos.id", :conditions =>["titulo_professors.professor_id =? and ano_letivo between ? and ? and titulacaos.tipo = 'PERMANENTE'", $teacher, 2009,$ano] )
-        @tp1 = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + ($teacher).to_s + " and t.tipo = 'ANUAL'and ano_letivo ="+$ano)
+         @tp = TituloProfessor.all(:joins => "inner join titulacaos on titulo_professors.titulo_id = titulacaos.id", :conditions =>["titulo_professors.professor_id =? and ano_letivo between ? and ? and titulacaos.tipo = 'PERMANENTE'", session[:teacher], 2009,session[:ano]] )
+         @tp1 = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + ($teacher).to_s + " and t.tipo = 'ANUAL'and ano_letivo ="+session[:ano])
            render :update do |page|
 
           page.replace_html 'titulos', :partial => 'mostrar_pontuacao'
