@@ -43,7 +43,7 @@ display: none;
     </tr>
    </table>
   
-  <% @tp = TituloProfessor.find(:all,:joins => :titulo, :conditions => ['titulacaos.id = ? and professor_id = ? and ano_letivo = ?',session[:titulo],professor.id,session[:data]) %>
+  <% @tp = TituloProfessor.find(:all,:joins => :titulo, :conditions => ['titulacaos.id = ? and professor_id = ? and ano_letivo = ?',session[:titulo],professor.id,session[:data]]) %>
 
   <% session[:contador]=0%> <%session[:pontos]=0%>
   
