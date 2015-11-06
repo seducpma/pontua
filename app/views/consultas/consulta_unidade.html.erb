@@ -53,7 +53,7 @@
             <% end %>
 
                      <tr>
-                           <td widht="8%" colspan="6"><b><%= link_to image_tag("/stylesheets/images/imprimir12.png"), onclick="javascript:MM_openBrWindow('#{impressao_geral_consulta_path(:professor => session[:teacher])}','impressao', 'scrollbars=yes');", :title => "Imprimir" %></b></td>
+                           <td widht="8%" colspan="6"><b><%= link_to image_tag("/stylesheets/images/imprimir12.png"), onclick="javascript:MM_openBrWindow('#{impressao_geral_consulta_path(:professor => $teacher)}','impressao', 'scrollbars=yes');", :title => "Imprimir" %></b></td>
                       </tr>
          </table>
       <%  session[:tipoclassificacao] = 'CLASSIFICACÃO P/ UNIDADE' %>

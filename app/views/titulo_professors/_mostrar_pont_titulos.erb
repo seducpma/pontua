@@ -135,8 +135,8 @@
     <%= "#{session[:subtotal_titulos]}" %>
 </tr>
 <tr>
-   <td widht="8%" colspan="7"><%= link_to image_tag("/stylesheets/images/alterar.png"),titulo_professors_path(:professor => session[:teacher], :type => 1)%>
-                   <b><%= link_to image_tag("/stylesheets/images/imprimir12.png"), onclick="javascript:MM_openBrWindow('#{impressao_titulo_professors_path(:professor => session[:teacher])}','impressao', 'scrollbars=yes');", :title => "Imprimir" %></b></td>
+   <td widht="8%" colspan="7"><%= link_to image_tag("/stylesheets/images/alterar.png"),titulo_professors_path(:professor => $teacher, :type => 1)%>
+                   <b><%= link_to image_tag("/stylesheets/images/imprimir12.png"), onclick="javascript:MM_openBrWindow('#{impressao_titulo_professors_path(:professor => $teacher)}','impressao', 'scrollbars=yes');", :title => "Imprimir" %></b></td>
 </tr>
 </table>
 

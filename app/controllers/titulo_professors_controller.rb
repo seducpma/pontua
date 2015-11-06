@@ -206,7 +206,7 @@ def consulta_titulacao_professor
 
   def sel_prof
     $teacher = params[:titulo_professor_professor_id]
-    session[:teacher] = params[:titulo_professor_professor_id]
+    
 
     if !($teacher.nil? or $teacher.empty?) or $teacher == '' then
       if (Professor.find($teacher)).nil? then
