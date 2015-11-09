@@ -98,6 +98,11 @@ end
 
 def pontuacao_anterior
   profant=$teacher
+  diasts =0
+  efetivots=0
+  redets=0
+  unidts=0
+
   anoanteiror =  ((Time.current.strftime("%Y").to_i)-1)
   @total_anterior = TempoServico.find(:all , :conditions => ['professor_id =? and ano_letivo = ?',$teacher, anoanteiror])
 
@@ -110,23 +115,26 @@ def pontuacao_anterior
      end
   else
     @total_anterior.each do |tp|
-      $dias = tp.total_dias
-      $efetivo = tp.total_efetivo
-      $rede = tp.total_rede
+      diasts = tp.total_dias
+      efetivots = tp.total_efetivo
+      redets = tp.total_rede
       if (Time.current.strftime("%Y").to_i)< 2015
-          $unid = tp.total_unid
+          unidts = tp.total_unid
       end
     end
 
-     self.total_ant_dias= $dias
-     self.total_ant_efetivo= $efetivo
-     self.total_ant_rede= $rede
-     self.total_ant_unid= $unid
+     self.total_ant_dias= diasts
+     self.total_ant_efetivo= efetivots
+     self.total_ant_rede= redets
+     self.total_ant_unid= unidts
   end
 end
 
   def total_geral
+        t=self.total_dias
     self.total_dias= ((self.dias_trab1 + self.dias_trab2 ) * 2)+ self.total_ant_dias
+    t1=self.total_dias
+    t=0
     self.total_efetivo= ((self.dias_efetivos1 + self.dias_efetivos2) * 10) + self.total_ant_efetivo
     self.total_rede= ((self.dias_rede1 + self.dias_rede2) * 1) + self.total_ant_rede
      if (Time.current.strftime("%Y").to_i)< 2015
@@ -167,6 +175,6 @@ end
      $pontuacao_geral = self.total_geral_tempo_servico
      $geral =$pontuacao_geral + ($pontostituloA+$pontostituloP)
      self.pontuacao_geral = $geral
-     t1=0
+   
     end
 end

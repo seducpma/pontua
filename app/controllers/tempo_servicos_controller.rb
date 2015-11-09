@@ -147,7 +147,7 @@ end
 
 def consulta_tempo_servico
       $teacher = params[:consulta][:professor_id]
-       $ano = params[:ano_letivo]
+       $ano =2015
        @professor= Professor.find(:all,:conditions => ["id = ? and desligado = 0",$teacher])
        @temposervico = TempoServico.find(:all,:conditions =>['professor_id = ? and ano_letivo = ?', $teacher, $ano])
         render :update do |page|
