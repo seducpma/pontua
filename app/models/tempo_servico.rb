@@ -97,14 +97,12 @@ end
 end
 
 def pontuacao_anterior
-  profant=$teacher
-  diasts =0
+   diasts =0
   efetivots=0
   redets=0
   unidts=0
-
   anoanteiror =  ((Time.current.strftime("%Y").to_i)-1)
-  @total_anterior = TempoServico.find(:all , :conditions => ['professor_id =? and ano_letivo = ?',$teacher, anoanteiror])
+  @total_anterior = TempoServico.find(:all , :conditions => ['professor_id =? and ano_letivo = ?',$teacher_atual, anoanteiror])
 
   if ((@total_anterior.nil?) or (@total_anterior.empty?))
      self.total_ant_dias= 0

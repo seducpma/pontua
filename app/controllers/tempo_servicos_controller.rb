@@ -108,7 +108,7 @@ end
     end
   end
 
-    def sel_prof
+ def sel_prof
         $existe = 1
       $teacher = params[:titulo_professor_professor_id]
         #$professor_id = Professor.find_by_matricula($teacher).id
@@ -146,10 +146,12 @@ end
 
 
 def consulta_tempo_servico
-      $teacher = params[:consulta][:professor_id]
+      
+      teacher = params[:consulta][:professor_id]
+      #$teache_anterior =  session[:teacher]
        $ano =2015
-       @professor= Professor.find(:all,:conditions => ["id = ? and desligado = 0",$teacher])
-       @temposervico = TempoServico.find(:all,:conditions =>['professor_id = ? and ano_letivo = ?', $teacher, $ano])
+       @professor= Professor.find(:all,:conditions => ["id = ? and desligado = 0",teacher])
+       @temposervico = TempoServico.find(:all,:conditions =>['professor_id = ? and ano_letivo = ?', teacher, $ano])
         render :update do |page|
           page.replace_html 'titulos', :partial => 'mostrar_pontuacao_tempo'
 
