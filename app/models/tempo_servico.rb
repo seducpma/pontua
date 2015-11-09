@@ -97,12 +97,13 @@ end
 end
 
 def pontuacao_anterior
-   diasts =0
+  profant=$teacher
+  diasts =0
   efetivots=0
   redets=0
   unidts=0
   anoanteiror =  ((Time.current.strftime("%Y").to_i)-1)
-  @total_anterior = TempoServico.find(:all , :conditions => ['professor_id =? and ano_letivo = ?',$teacher_atual, anoanteiror])
+  @total_anterior = TempoServico.find(:all , :conditions => ['professor_id =? and ano_letivo = ?',$teacher, anoanteiror])
 
   if ((@total_anterior.nil?) or (@total_anterior.empty?))
      self.total_ant_dias= 0
@@ -150,11 +151,11 @@ end
 
   def total_pontuacao
     $ano =  Time.current.strftime("%Y").to_i
-    t =$teacher_atual
+    t =$teacher
     #@tp = TituloProfessor.all(:joins => "inner join titulacaos on titulo_professors.titulo_id = titulacaos.id", :conditions =>["titulo_professors.professor_id =? and ano_letivo = ? ", $teacher,$ano] )
     #@tp = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + ($teacher).to_s + " and tp.ano_letivo="+($ano).to_s )
-    @tp = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + ($teacher_atual).to_s + " and t.tipo = 'PERMANENTE'")
-    @tp1 = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + ($teacher_atual).to_s + " and t.tipo = 'ANUAL'" +" and tp.ano_letivo="+($ano).to_s  )
+    @tp = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + ($teacher).to_s + " and t.tipo = 'PERMANENTE'")
+    @tp1 = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + ($teacher).to_s + " and t.tipo = 'ANUAL'" +" and tp.ano_letivo="+($ano).to_s  )
    
     if @tp.empty?
       $pontostituloP=0
