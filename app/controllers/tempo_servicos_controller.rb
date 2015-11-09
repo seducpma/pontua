@@ -148,6 +148,7 @@ end
 def consulta_tempo_servico
       
       teacher = params[:consulta][:professor_id]
+      $teacher_problema = params[:consulta][:professor_id]
       #$teache_anterior =  session[:teacher]
        $ano =2015
        @professor= Professor.find(:all,:conditions => ["id = ? and desligado = 0",teacher])

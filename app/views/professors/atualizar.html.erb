@@ -1,0 +1,31 @@
+<div id="interno2">
+<% title "PROFESSORS".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>ATUALIZAR CALCULOS FICHA PROFESSORES - <%=  (Time.current.strftime("%Y").to_i)%></strong></font><br/>
+ </div>
+      <div class="tabs">
+        <% form_remote_tag :url => recalcular_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
+        <table border="1" width="100%">
+          <tr>
+            <td align="center">
+              <br/><br/><b><u>IMPORTANTE:</u>
+                 Utiliza esta função somente se houver necessidade de recalcular a pontuação<br/><br/></b>
+               <%= submit_tag "RECALCULAR", :class => "btn_filtrar" %>
+              <br/><br/>
+
+           </td>
+          </tr>
+          <tr>
+            <td>
+               <div id="atualizar"><div id='status' style='display:none;' align="center" ><%= image_tag("/stylesheets/images/loading.gif") %></div></div>
+            </td>
+          </tr>
+        </table>
+
+
+      <% end %>
+    </div>
+</div>
+<br/>
+</div>

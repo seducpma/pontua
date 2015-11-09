@@ -15,11 +15,13 @@
                    <td align="left" width="20%"><%= professor.matricula%></td>
                    <td align="left" width="9%"><b>Nome:</b></td>
                    <td colspan="5"align="left"><%= professor.nome %></td>
-
                 </tr>
                  <tr>
                    <td align="left"><b>Nascimento:</b></td>
-                   <td align="left">  <%= professor.dt_nasc.strftime("%d/%m/%Y")%></td>
+                   <td align="left">  <%if professor.dt_nasc.nil?%>
+                                      <%else%> <%= professor.dt_nasc.strftime("%d/%m/%Y")%>
+                                      <%end%>
+                   </td>
                    <td align="left"width="5%"><b>Nº Filhos:</b></td>
                    <td colspan="5"align="left">  <%= professor.n_filhos %></td>
                  <tr/>
@@ -216,7 +218,7 @@
                <td>
                  <table>
                    <tr>
-                   <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC')%>
+                   <% if current_user.has_role?('admin')%>
                        <td><%= link_to image_tag("/stylesheets/images/alterar.png"), {:action => "edit", :id =>@temposervico }, :method => "get"%></td>
                       
                    <%end%>

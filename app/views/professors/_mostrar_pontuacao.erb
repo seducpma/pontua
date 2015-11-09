@@ -32,7 +32,10 @@
                 </tr>
                  <tr>
                    <td align="left"><b>Nascimento:</b></td>
-                   <td align="left">  <%= professor.dt_nasc.strftime("%d/%m/%Y")%></td>
+                   <td align="left">  <%if professor.dt_nasc.nil?%>
+                                      <%else%> <%= professor.dt_nasc.strftime("%d/%m/%Y")%>
+                                      <%end%>
+                   </td>
                    <td align="left"width="5%"><b>Nº Filhos:</b></td>
                    <td colspan="5"align="left">  <%= professor.n_filhos %></td>
                  <tr/>

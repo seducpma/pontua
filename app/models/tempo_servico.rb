@@ -97,13 +97,14 @@ end
 end
 
 def pontuacao_anterior
-  profant=$teacher
+  
   diasts =0
   efetivots=0
   redets=0
   unidts=0
   anoanteiror =  ((Time.current.strftime("%Y").to_i)-1)
-  @total_anterior = TempoServico.find(:all , :conditions => ['professor_id =? and ano_letivo = ?',$teacher, anoanteiror])
+  @total_anterior = TempoServico.find(:all , :conditions => ['professor_id =? and ano_letivo = ?',$teacher_problema, anoanteiror])
+  @total_atual = TempoServico.find(:all , :conditions => ['professor_id =? and ano_letivo = ?',$teacher_problema, anoanteiror+1])
 
   if ((@total_anterior.nil?) or (@total_anterior.empty?))
      self.total_ant_dias= 0
@@ -120,12 +121,24 @@ def pontuacao_anterior
       if (Time.current.strftime("%Y").to_i)< 2015
           unidts = tp.total_unid
       end
+      t1=diasts
+      t2=efetivots
+      t3= redets
+      t0=0
     end
 
      self.total_ant_dias= diasts
      self.total_ant_efetivo= efetivots
      self.total_ant_rede= redets
      self.total_ant_unid= unidts
+
+
+     a1= self.total_ant_dias
+     a2= self.total_ant_efetivo
+     a3=self.total_ant_rede
+     a4=self.total_ant_unid
+
+    a=0
   end
 end
 
@@ -151,11 +164,11 @@ end
 
   def total_pontuacao
     $ano =  Time.current.strftime("%Y").to_i
-    t =$teacher
+    t =$teacher_problema
     #@tp = TituloProfessor.all(:joins => "inner join titulacaos on titulo_professors.titulo_id = titulacaos.id", :conditions =>["titulo_professors.professor_id =? and ano_letivo = ? ", $teacher,$ano] )
     #@tp = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + ($teacher).to_s + " and tp.ano_letivo="+($ano).to_s )
-    @tp = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + ($teacher).to_s + " and t.tipo = 'PERMANENTE'")
-    @tp1 = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + ($teacher).to_s + " and t.tipo = 'ANUAL'" +" and tp.ano_letivo="+($ano).to_s  )
+    @tp = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + (t).to_s + " and t.tipo = 'PERMANENTE'")
+    @tp1 = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + (t).to_s + " and t.tipo = 'ANUAL'" +" and tp.ano_letivo="+($ano).to_s  )
    
     if @tp.empty?
       $pontostituloP=0
