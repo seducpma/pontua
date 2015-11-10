@@ -202,7 +202,7 @@ def consulta_ficha_pontuacao
      session[:ano] = params[:ano_letivo]
      $ANO_ANO = session[:ano]
      $TEACHER_TEACHER = session[:teacher1]
-     t=0
+     
         @temposervico = TempoServico.find(:all,:conditions =>['professor_id = ? and ano_letivo = ?', session[:teacher1], session[:ano]])
         @professor= Professor.find(:all,:conditions => ["id = ? and desligado = 0",session[:teacher1]])
          @tp = TituloProfessor.all(:joins => "inner join titulacaos on titulo_professors.titulo_id = titulacaos.id", :conditions =>["titulo_professors.professor_id =? and ano_letivo between ? and ? and titulacaos.tipo = 'PERMANENTE'", session[:teacher1], 2009, session[:ano] ])
