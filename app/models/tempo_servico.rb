@@ -142,6 +142,53 @@ def pontuacao_anterior
   end
 end
 
+
+def pontuacao_anterior
+  professor_id = self.professor_id
+  diasts =0
+  efetivots=0
+  redets=0
+  unidts=0
+  anoanteiror =  ((Time.current.strftime("%Y").to_i)-1)
+  @total_anterior = TempoServico.find(:all , :conditions => ['professor_id =? and ano_letivo = ?',professor_id, anoanteiror])
+  
+
+  if ((@total_anterior.nil?) or (@total_anterior.empty?))
+     self.total_ant_dias= 0
+     self.total_ant_efetivo= 0
+     self.total_ant_rede= 0
+     if (Time.current.strftime("%Y").to_i)< 2015
+         self.total_ant_unid= 0
+     end
+  else
+    @total_anterior.each do |tp|
+      diasts = tp.total_dias
+      efetivots = tp.total_efetivo
+      redets = tp.total_rede
+      if (Time.current.strftime("%Y").to_i)< 2015
+          unidts = tp.total_unid
+      end
+      t1=diasts
+      t2=efetivots
+      t3= redets
+      t0=0
+    end
+
+     self.total_ant_dias= diasts
+     self.total_ant_efetivo= efetivots
+     self.total_ant_rede= redets
+     self.total_ant_unid= unidts
+
+
+     a1= self.total_ant_dias
+     a2= self.total_ant_efetivo
+     a3=self.total_ant_rede
+     a4=self.total_ant_unid
+
+  end
+end
+
+
   def total_geral
         t=self.total_dias
     self.total_dias= ((self.dias_trab1 + self.dias_trab2 ) * 2)+ self.total_ant_dias
