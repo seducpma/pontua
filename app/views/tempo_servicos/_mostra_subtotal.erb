@@ -159,7 +159,7 @@
 <tr>
 
   <td widht="8%" colspan="5">
-                   <% if current_user.has_role?('admin')%>
+                   <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC')%>
                         <%= link_to image_tag("/stylesheets/images/alterar.png"),titulo_professors_path(:professor => $teacher, :type => 1)%>
                   <%end%>
                    <b><%= link_to image_tag("/stylesheets/images/imprimir12.png"), onclick="javascript:MM_openBrWindow('#{impressao_titulo_professors_path(:professor => $teacher)}','impressao', 'scrollbars=yes');", :title => "Imprimir" %></b></td>

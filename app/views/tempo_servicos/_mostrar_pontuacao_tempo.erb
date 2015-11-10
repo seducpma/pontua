@@ -221,7 +221,7 @@
                <td>
                  <table>
                    <tr>
-                   <% if current_user.has_role?('admin')%>
+                   <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC')%>
                        <td><%= link_to image_tag("/stylesheets/images/alterar.png"), {:action => "edit", :id =>@temposervico }, :method => "get"%></td>
                       
                    <%end%>
