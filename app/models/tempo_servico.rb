@@ -52,8 +52,9 @@ if (Time.current.strftime("%Y").to_i)< 2015
      self.subtot_unid = self.dias_unidade1 + self.dias_unidade2
 else
   #CALCULOS 2015
-  self.dias1= 184
-  self.dias2= 181
+  a=self.dias1
+  b=self.dias2
+  c=0
   if (self.f_abonada1 + self.f_atestado1 + self.f_justif1 + self.f_injustif1 + self.lic_saude1 + self.afastamento1 + self.outras_aus1)== 0
     self.dias_efetivos1 = self.dias1
   else
