@@ -55,7 +55,7 @@
                               <tr>
 
                                 <td align="center"><%= (Time.current.strftime("%Y").to_i)-1%> </td>
-                                <td align="center"><%=  session[:dias2104] %> </td>
+                                <td align="center"><%= f.text_field :dias1,:size =>5, :value => "#{session[:dias2104]}" %></td>
                                 <% if (Time.current.strftime("%Y").to_i)< 2015 %>
                                       <td align="center"><%= f.text_field :unidade1,:size =>5%> </td>
                                        <td align="center"><%= f.text_field :outro_trab1,:size =>5%> </td>
@@ -71,7 +71,7 @@
                               <tr>
 
                                 <td align="center"><%= (Time.current.strftime("%Y").to_i)%> </td>
-                                <td align="center"><%=  session[:dias2105]%> </td>
+                                <td align="center"><%= f.text_field :dias2,:size =>5, :value => "#{session[:dias2105]}" %></td>
                                 <% if (Time.current.strftime("%Y").to_i)< 2015 %>
                                       <td align="center"><%= f.text_field :unidade2,:size =>5%> </td>
                                       <td align="center"><%= f.text_field :outro_trab2,:size =>5%> </td>
