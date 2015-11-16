@@ -148,11 +148,12 @@
                      <tr style="font-size:9px" >
                         <th align="center"><%= temposervico.ano1%> </th>
                         <th align="center"><%= temposervico.dias1 %> </th>
-                        <th align="center"><%= temposervico.unidade1%> </th>
                         <%  if (Time.current.strftime("%Y").to_i)< 2015 %>
+                            <td align="center"><%= temposervico.unidade1%> </td>
+                             <td align="center"><%= temposervico.outro_trab1%> </td>
                              <th align="center"><%= temposervico.outro_trab1%> </th>
-                             <th align="center"><%= temposervico.f_abonada1%> </th>
                         <%end%>
+                             <th align="center"><%= temposervico.f_abonada1%> </th>
                         <th align="center"><%= temposervico.f_atestado1%> </th>
                         <th align="center"><%= temposervico.f_justif1%> </th>
                         <th align="center"><%= temposervico.f_injustif1%> </th>
