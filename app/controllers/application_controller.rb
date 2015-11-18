@@ -43,8 +43,8 @@ CARGO = {'Diretor Ed. Básica'=> 'Diretor Ed. Básica',
           'PEB2 - Português'=> 'PEB2 - Português',
           'PEB2 - Inglês'=> 'PEB2 - Inglês',
           'PEB2 - Ciências'=> 'PEB2 - Ciências',
-          'PEB - Ed. Especial'=> 'PEB - Ed. Especial',
-          'TODOS' => 'TODOS'
+          'PEE - Ed. Especial'=> 'PEE - Ed. Especial',
+          'PEB'=> 'PEB',
           }
 
   

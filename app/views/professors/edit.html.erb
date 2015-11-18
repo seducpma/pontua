@@ -52,7 +52,9 @@
 
                   </tr>
                   <tr>
-                    <td colspan="2"><b>Função/Cargo: </b><%= f.text_field :funcao, :size =>25 %></td>
+                    <td ><b>Função/Cargo: </b><%=h @professor.funcao%></td>
+                    <td> Alterar <b>Função/Cargo: </b><%= f.select :funcao, (CARGO).sort, :include_blank => '-- Selecionar --' %></td>
+                    
                      
                    </tr>
                   <tr>
