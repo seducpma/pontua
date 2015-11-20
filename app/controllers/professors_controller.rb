@@ -73,7 +73,7 @@ end
   # GET /professors/1/edit
   def edit
     @professor = Professor.find(params[:id])
-
+t=01
   end
 
   # POST /professors
@@ -97,7 +97,7 @@ end
   # PUT /professors/1.xml
   def update
     @professor = Professor.find(params[:id])
-
+    t=0
     respond_to do |format|
       if @professor.update_attributes(params[:professor])
         flash[:notice] = 'Professor was successfully updated.'

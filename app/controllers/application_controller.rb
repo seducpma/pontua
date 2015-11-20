@@ -46,5 +46,22 @@ CARGO = {'Diretor Ed. Básica'=> 'Diretor Ed. Básica',
           'PEE - Ed. Especial'=> 'PEE - Ed. Especial',
           'PEB'=> 'PEB',
           }
+CARGO1 = {'Diretor Ed. Básica'=> 'Diretor Ed. Básica',
+          'Prof. Coordenador'=>'Prof. Coordenador',
+          'Pedagogo'=> 'Pedagogo',
+          'ADI / Prof. de Creche'=>'ADI / Prof. de Creche',
+          'PEB1 - Ed. Infantil'=> 'PEB1 - Ed. Infantil',
+          'PEB1 - Ensino Fundamental'=> 'PEB1 - Ensino Fundamental',
+          'PEB2 - Artes'=> 'PEB2 - Artes',
+          'PEB2 - Ed. Física'=> 'PEB2 - Ed. Física',
+          'PEB2 - História'=> 'PEB2 - História',
+          'PEB2 - Geografia'=> 'PEB2 - Geografia',
+          'PEB2 - Matemática'=> 'PEB2 - Matemática',
+          'PEB2 - Português'=> 'PEB2 - Português',
+          'PEB2 - Inglês'=> 'PEB2 - Inglês',
+          'PEB2 - Ciências'=> 'PEB2 - Ciências',
+          'PEE - Ed. Especial'=> 'PEE - Ed. Especial',
+          'PEB'=> 'PEB',
+          }
 
   
