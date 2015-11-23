@@ -42,7 +42,7 @@
                 <td width = "5%"><center><%= num%>º</center></td>
                <td width = "7%"><center><%=h ts.professor.matricula %></center></td>
                 <td width = "40%"><center><%=h ts.professor.nome %></center></td>
-              
+                    <%session[:prof_imp] = ts.id%>
                     <% if ts.pontuacao_geral.nil? then %>
                             <td width="5%"><%=h%></td>
                     <%else%>
@@ -53,7 +53,7 @@
             <% end %>
 
                      <tr>
-                           <td widht="8%" colspan="6"><b><%= link_to image_tag("/stylesheets/images/imprimir12.png"), onclick="javascript:MM_openBrWindow('#{impressao_geral_consulta_path(:professor => $teacher)}','impressao', 'scrollbars=yes');", :title => "Imprimir" %></b></td>
+                           <td widht="8%" colspan="6"><b><%= link_to image_tag("/stylesheets/images/imprimir12.png"), onclick="javascript:MM_openBrWindow('#{impressao_geral_consulta_path(:professor => session[:prof_imp])}','impressao', 'scrollbars=yes');", :title => "Imprimir" %></b></td>
                       </tr>
          </table>
 
