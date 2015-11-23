@@ -130,7 +130,7 @@
                          <th align="center" width ="10%"><b>Licença Saúde</b></th>
                          <th align="center" width ="8%"><b>Afastamento</b></th>
                          <th align="center" width ="8%"><b>Outras Ausências</b></th>
-                         <th align="center" width ="10%"><b>Dias Trabalhados</b></th>
+                         <th align="center" width ="10%"><b>Dias de Trabalho</b></th>
                          <th align="center" width ="8%"><b>Dias Efetivos</b></th>
                          <th align="center" width ="8%"><b>Dias Rede</b></th>
                          <%  if (Time.current.strftime("%Y").to_i)< 2015 %>
@@ -216,7 +216,7 @@
                        <th align="center" width ="20%" colspan="4"><b>Total</b></th>
                      </tr>
                     <tr style="font-size:9px" >
-                      <th align="left"><b>Total de dias trabalhados</b></th>
+                      <th align="left"><b>Total dias de trabalhados</b></th>
                        <th align="center"><%= temposervico.dias_trab1%></th>
                        <th align="center"><%= temposervico.dias_trab2%></th>
                            <%tott1 = (temposervico.dias_trab1 + temposervico.dias_trab2)%>

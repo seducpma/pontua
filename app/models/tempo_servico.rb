@@ -89,7 +89,10 @@ else
 
    self.subtot_dias = self.dias_trab1 + self.dias_trab2
    self.subtot_efetivo = self.dias_efetivos1 + self.dias_efetivos2
-   self.subtot_rede = self.dias_rede1 + self.dias_rede2
+   self.dias_rede1 = self.dias1
+   self.dias_rede2 = self.dias2
+      self.subtot_rede = self.dias_rede1 + self.dias_rede2
+
     
 end
 end
@@ -188,11 +191,12 @@ end
 
 
   def total_geral
-        t=self.total_dias
-    self.total_dias= ((self.dias_trab1 + self.dias_trab2 ) * 2)+ self.total_ant_dias
+    self.total_efetivo= ((self.dias_efetivos1 + self.dias_efetivos2) * 10) + self.total_ant_dias
+
+    t=self.total_dias
+    self.total_dias= ((self.dias_trab1 + self.dias_trab2 ) * 2)+ self.total_ant_efetivo
     t1=self.total_dias
     t=0
-    self.total_efetivo= ((self.dias_efetivos1 + self.dias_efetivos2) * 10) + self.total_ant_efetivo
     self.total_rede= ((self.dias_rede1 + self.dias_rede2) * 1) + self.total_ant_rede
      if (Time.current.strftime("%Y").to_i)< 2015
         self.total_unid= (self.total_ant_unid +  self.dias_unidade1 + self.dias_unidade2) * 2

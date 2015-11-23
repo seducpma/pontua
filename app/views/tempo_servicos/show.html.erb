@@ -98,7 +98,7 @@
                        <td align="center" width ="8%"><b>Licença<br/>Saúde</b></td>
                        <td align="center" width ="8%"><b>Afasta-<br/>mento</b></td>
                        <td align="center" width ="8%"><b>Outras<br/>Ausências</b></td>
-                       <td align="center" width ="8%"><b>Dias<br/>Trabalhados</b></td>
+                       <td align="center" width ="8%"><b>Dias de<br/>Trabalho</b></td>
                        <td align="center" width ="8%"><b>Dias<br/>Efetivos</b></td>
                        <td align="center" width ="8%"><b>Dias<br/>Rede</b></td>
                        <% if (Time.current.strftime("%Y").to_i)< 2015 %>
@@ -181,17 +181,6 @@
                       <td align="center" width ="8%"><b>Total</b></td>
                      </tr>
                     <tr>
-                      <td align="left"><b>Total de dias trabalhados</b></td>
-                       <td align="center"><%= h @temposervico.dias_trab1%></td>
-                       <td align="center"><%= h @temposervico.dias_trab2%></td>
-                           <%tott1 = (@temposervico.dias_trab1 + @temposervico.dias_trab2)%>
-                       <td align="center"><%= tott1%></td>
-                       <td align="center"> 2 </td>
-                       <td align="center"> <%=  tott1* 2%></td>
-                       <td align="center"><%= h @temposervico.total_ant_dias%></td>
-                      <td align="center"> <%= h @temposervico.total_dias %></td>
-                    </tr>
-                    <tr>
                       <td align="left"><b>Total de dias efetivos</b></td>
                        <td align="center"><%=  h @temposervico.dias_efetivos1%></td>
                        <td align="center"><%=  h @temposervico.dias_efetivos2%></td>
@@ -199,11 +188,23 @@
                        <td align="center"><%= tott2%></td>
                        <td align="center"> 10 </td>
                        <td align="center"> <%=  (tott2* 10)%></td>
-                       <td align="center"><%=  h @temposervico.total_ant_efetivo%></td>
-                      <td align="center"> <%=  h @temposervico.total_efetivo %></td>
+                       <td align="center"><%= h @temposervico.total_ant_dias%></td>
+                      <td align="center"> <%= h @temposervico.total_efetivo %></td>
                     </tr>
                     <tr>
-                       <td align="left" width ="20%"><b>Total de dias rede</b></td>
+                      <td align="left"><b>Total dias de trabalho</b></td>
+                       <td align="center"><%= h @temposervico.dias_trab1%></td>
+                       <td align="center"><%= h @temposervico.dias_trab2%></td>
+                           <%tott1 = (@temposervico.dias_trab1 + @temposervico.dias_trab2)%>
+                       <td align="center"><%= tott1%></td>
+                       <td align="center"> 2 </td>
+                       <td align="center"> <%=  tott1* 2%></td>
+                       <td align="center"><%=  h @temposervico.total_ant_efetivo%></td>
+                      <td align="center"> <%= h @temposervico.total_dias %></td>
+                    </tr>
+
+                    <tr>
+                       <td align="left" width ="20%"><b>Total de dias na rede</b></td>
                       <td align="center"><%=  h @temposervico.dias_rede1%></td>
                        <td align="center"><%=  h @temposervico.dias_rede2%></td>
                        <%tott3 =  @temposervico.dias_rede1 + @temposervico.dias_rede2%>
