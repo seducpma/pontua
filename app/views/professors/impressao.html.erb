@@ -216,17 +216,6 @@
                        <th align="center" width ="20%" colspan="4"><b>Total</b></th>
                      </tr>
                     <tr style="font-size:9px" >
-                      <th align="left"><b>Total dias de trabalhados</b></th>
-                       <th align="center"><%= temposervico.dias_trab1%></th>
-                       <th align="center"><%= temposervico.dias_trab2%></th>
-                           <%tott1 = (temposervico.dias_trab1 + temposervico.dias_trab2)%>
-                       <th align="center"><%= tott1%></th>
-                       <th align="center"> 2 </th>
-                       <th align="center"> <%=  tott1* 2%></th>
-                       <th align="center"><%= temposervico.total_ant_dias%></th>
-                       <th align="center"> <%= temposervico.total_dias %></th>
-                    </tr>
-                    <tr style="font-size:9px" >
                       <th align="left"><b>Total de dias efetivos</b></th>
                        <th align="center"><%= temposervico.dias_efetivos1%></th>
                        <th align="center"><%= temposervico.dias_efetivos2%></th>
@@ -234,8 +223,19 @@
                        <th align="center"><%= tott2%></th>
                        <th align="center"> 10 </th>
                        <th align="center"> <%=  (tott2* 10)%></th>
-                       <th align="center"><%= temposervico.total_ant_efetivo%></th>
+                       <th align="center"><%= temposervico.total_ant_dias%></th>
                        <th align="center"> <%= temposervico.total_efetivo %></th>
+                    </tr>
+                    <tr style="font-size:9px" >
+                      <th align="left"><b>Total dias de trabalhados</b></th>
+                       <th align="center"><%= temposervico.dias_trab1%></th>
+                       <th align="center"><%= temposervico.dias_trab2%></th>
+                           <%tott1 = (temposervico.dias_trab1 + temposervico.dias_trab2)%>
+                       <th align="center"><%= tott1%></th>
+                       <th align="center"> 2 </th>
+                       <th align="center"> <%=  tott1* 2%></th>
+                       <th align="center"><%= temposervico.total_ant_efetivo%></th>
+                       <th align="center"> <%= temposervico.total_dias %></th>
                     </tr>
                     <tr style="font-size:9px" >
                        <th align="left" width ="20%"><b>Total de dias rede</b></th>
