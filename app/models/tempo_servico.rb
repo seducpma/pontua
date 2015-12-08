@@ -6,7 +6,48 @@ class TempoServico < ActiveRecord::Base
   belongs_to :professor
   before_save :salva_dados,  :pontuacao_anterior,  :total_geral,  :geral, :total_pontuacao
 
-  def salva_dados
+ 
+  
+   def salva_dados
+
+    self.ano_letivo = Time.current.strftime("%Y").to_i
+    self.ano1 = (Time.current.strftime("%Y").to_i)-1
+    self.ano2 = Time.current.strftime("%Y").to_i
+    self.dias_rede1 = self.dias1
+    self.dias_rede2 = self.dias2
+  
+    somatoria1 = self.f_abonada1 + self.f_atestado1 + self.f_justif1 + self.f_injustif1 + self.lic_saude1 + self.afastamento1 + self.outras_aus1
+    somatoria2 = self.f_abonada2 + self.f_atestado2 + self.f_justif2 + self.f_injustif2 + self.lic_saude2 + self.afastamento2 + self.outras_aus2
+
+    if somatoria1 > 15
+      self.dias_trab1 = (self.dias1 - (self.f_abonada1 + self.f_atestado1 + self.f_justif1 + self.f_injustif1 + self.lic_saude1 + self.afastamento1 + self.outras_aus1))
+      self.dias_efetivos1 = (self.dias1 - (self.f_abonada1 + self.f_atestado1 + self.f_justif1 + self.f_injustif1 + self.lic_saude1 + self.afastamento1 + self.outras_aus1))
+    else
+      self.dias_trab1 = (self.dias1 - (self.f_justif1 + self.f_injustif1))
+      self.dias_efetivos1 = (self.dias1 - (self.f_abonada1 + self.f_atestado1 + self.f_justif1 + self.f_injustif1 + self.lic_saude1 + self.afastamento1 + self.outras_aus1))
+    end
+     
+    if somatoria2 > 15
+      self.dias_trab2 = (self.dias2 - (self.f_abonada2 + self.f_atestado2 + self.f_justif2 + self.f_injustif2 + self.lic_saude2 + self.afastamento2 + self.outras_aus2))
+      self.dias_efetivos2 = (self.dias2 - (self.f_abonada2 + self.f_atestado2 + self.f_justif2 + self.f_injustif2 + self.lic_saude2 + self.afastamento2 + self.outras_aus2))
+    else
+      self.dias_trab2 = (self.dias2 - (self.f_justif2 + self.f_injustif2))
+      self.dias_efetivos2 = (self.dias2 - (self.f_abonada2 + self.f_atestado2 + self.f_justif2 + self.f_injustif2 + self.lic_saude2 + self.afastamento2 + self.outras_aus2))
+    end
+
+    
+    self.subtot_dias = self.dias_trab1 + self.dias_trab2
+    self.subtot_efetivo = self.dias_efetivos1 + self.dias_efetivos2
+    self.subtot_rede = self.dias_rede1 + self.dias_rede2
+    self.subtot_unid = self.dias_unidade1 + self.dias_unidade2
+     
+     
+end
+
+   
+  
+  
+  def salva_dados_anterior
 
     self.ano_letivo = Time.current.strftime("%Y").to_i
     self.ano1 = (Time.current.strftime("%Y").to_i)-1

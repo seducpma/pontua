@@ -20,10 +20,10 @@
        </fieldset>
       <fieldset>
        <legend><font size=4>Pontuação</font></legend>
-       <% if @professor_consulta_funcao.present? %>
+       <% if  @professor_consulta_funcao.present? %>
           <table border ="1" cellpadding="1" cellspacing="1" width="100%" >
             <tr>
-              <th colspan="6">
+              <th colspan="7">
                 <font size="3"><b><%=  params[:search]%> - Ano Letivo <%= Time.current.strftime("%Y").to_i%> </b></font>
               </th>
             </tr>
@@ -31,24 +31,29 @@
               <center><th bgcolor="#cccccc" width = "5%">Posição</th></center>
               <center><th bgcolor="#cccccc" width = "7%">Matrícula</th></center>
               <th bgcolor="#cccccc" width = "40%">Nome</th>
-              
-              <th bgcolor="#cccccc" width = "5%">Pontuação</th>
+              <th bgcolor="#cccccc" width = "5%">Titulação</th>
+              <th bgcolor="#cccccc" width = "5%">Tempo Serviço</th>
+              <th bgcolor="#cccccc" width = "5%">Pontuação Final</th>
               <th bgcolor="#cccccc"  width = "20%">Função</th>
              </tr>
              <% num=0 %>
-              <% for ts in @professor_consulta_funcao %>
+              <% for ts in  @professor_consulta_funcao %>
              <% num= num+1 %>
               <tr>
                 <td width = "5%"><center><%= num%>º</center></td>
                <td width = "7%"><center><%=h ts.professor.matricula %></center></td>
                 <td width = "40%"><center><%=h ts.professor.nome %></center></td>
-                    <%session[:prof_imp] = ts.id%>
+                  <%titulacao =  ts.pontuacao_geral - ts.total_geral_tempo_servico %>
+                <td width = "5%"><center><%= titulacao%></center></td>
+                <td width = "5%"><center><%=h ts.total_geral_tempo_servico%></center></td>
+                   <%session[:prof_imp] = ts.id%>
                     <% if ts.pontuacao_geral.nil? then %>
                             <td width="5%"><%=h%></td>
                     <%else%>
                         <td width = "5%"><center><%=h ts.pontuacao_geral%></center></td>
                     <%end%>
                 <td width = "20%"><center><%=h ts.professor.funcao%></center></td>
+
              </tr>
             <% end %>
 

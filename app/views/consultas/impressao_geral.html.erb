@@ -23,8 +23,9 @@
      <center><th bgcolor="#cccccc" width = "5%">Posição</th></center>
      <center><th bgcolor="#cccccc" width = "7%">Matrícula</th></center>
       <th bgcolor="#cccccc" width = "40%">Nome</th>
-
-      <th bgcolor="#cccccc" width = "5%">Pontuação</th>
+      <th bgcolor="#cccccc" width = "5%">Titulacao</th>
+      <th bgcolor="#cccccc" width = "5%">Tempo Serviço</th>
+      <th bgcolor="#cccccc" width = "5%">Pontuação Final</th>
       <th bgcolor="#cccccc"  width = "20%">Função</th>
      </tr>
      <%num=0%>
@@ -34,6 +35,10 @@
         <th width = "5%"><center><%= num%>º</center></th>
         <th width = "7%"><center><%=h ts.professor.matricula %></center></th>
         <th width = "40%"><center><%=h ts.professor.nome %></center></th>
+             <%titulacao =  ts.pontuacao_geral - ts.total_geral_tempo_servico %>
+        <th width = "5%"><center><%= titulacao%></center></th>
+        <th width = "5%"><center><%=h ts.total_geral_tempo_servico%></center></th>
+
 
             <% if ts.pontuacao_geral.nil? then %>
                     <th width="5%"><%=h%></th>
