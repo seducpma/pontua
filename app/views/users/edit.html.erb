@@ -7,7 +7,7 @@
      <font size="3"><strong>Alteração de Senha e Email</strong></font><br/>
  </div>
       <div class="tabs">
-      <table  width="80%" align="center">
+      <table  width="90%" align="center">
         <tr>
           <td>
       <fieldset><legend><font  size=4>Usuário</font></legend>
@@ -18,15 +18,6 @@
                 <tr>
                   <td align="left"> <b>Usuários:</b></td>
                   <td align="left"> <b><%= @user.login %></b></td>
-                </tr>
-                <tr>
-                  <%if @user.obreiro_id.nil?%>
-                     <td align="left"><b>Unidade:</b></td>
-                     <td align="left"><%=h @user.unidade.nome%> </td>
-                 <%else%>
-                     <td align="left"><b>Obreiro:</b></td>
-                     <td align="left"><%=h @user.obreiro.nome%> </td>
-                 <%end%>
                 </tr>
                 <tr>
                    <td align="left"><b> Cadastrado desde:</b></td>
@@ -45,6 +36,10 @@
                   <td align="left"> <b>Email:</b></td>
                   <td> <%= f.text_field :email %></td>
                 </tr>
+                      <tr>
+                        <td align="left"><b>Unidade:</b></td>
+                        <td colspan="2" align="left"><%= f.collection_select :unidade_id,Unidade.all(:order => 'nome ASC'),:id,:nome, :include_blank => true %></td>
+                      </tr>
          </table>
        </font>
      </fieldset>
