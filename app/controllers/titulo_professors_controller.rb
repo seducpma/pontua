@@ -272,7 +272,7 @@ def consulta_titulacao_professor
           page.replace_html 'a_distancia', :text => ""
           page.replace_html 'a_distancia1', :text => ""
           page.replace_html "qtde", :text => "1"
-          page.replace_html 'valor', :text => 'Pontuação: ' + ($valor).to_s + 'por título'
+          page.replace_html 'valor', :text => 'Pontuação: ' + ($valor).to_s+ ' por hora'
           page.replace_html 'lanca', :text => " "
         end
       else
@@ -286,11 +286,15 @@ def consulta_titulacao_professor
             page.replace_html 'lanca', :text => "4) Lançar no campo 'QUANTIDADE' a carga horária do curso"
             
           end
-        if $id_titulo.to_i == 100
-          render :update do |page|
-             page.replace_html 'valor', :text => 'Pontuação: ' + ($valor).to_s + 'por título'
-
-          end
+        end
+      end
+      if $id_titulo.to_i == 100
+        render :update do |page|
+          page.replace_html 'a_distancia', :text => ""
+          page.replace_html 'a_distancia1', :text => ""
+          page.replace_html "qtde", :text => "1"
+          page.replace_html 'valor', :text => 'Pontuação: ' + ($valor).to_s+ ' por hora'
+          page.replace_html 'lanca', :text => " "
         end
       end
     end
