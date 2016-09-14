@@ -36,10 +36,15 @@
                               <td colspan="3"><%= f.text_area :obs, :size => "54x2"   %></td>
                             </tr>
                             <tr>
-                              <td><font size="2" color ="red"><b>*</font><%= f.label :quantidade, 'Quantidade:' %></b></td>
-                              <td colspan="2 id="qtde"><%= f.text_field(:quantidade, :size => 5)%>&nbsp&nbsp&nbsp
-                                   <font size="2" color ="red"><b>* </font><%= f.label :dt_titulo, 'Data de Emissão:' %></b>&nbsp <%= f.date_select(:dt_titulo, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year - 20)) %></td>
-                                   
+                              <td valign="top"><font size="2" color ="red"><b>*</font><%= f.label :quantidade, 'Quantidade:' %></b></td>
+                              <td colspan="2 id="qtde"><%= f.text_field(:quantidade, :size => '2')%>
+                                  <font size="2" color ="red">&nbsp&nbsp <b><u>OBS:</u> Lançar somente números inteiros </b></font>
+                              </td>
+                             </tr>
+                             <tr>
+                               <td colspan="3">
+                                   <font size="2" color ="red"><b>* </font><%= f.label :dt_titulo, 'Data de Emissão:' %></b>&nbsp <%= f.date_select(:dt_titulo, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year - 20)) %>
+                               </td>
                             </tr>
                             <tr>
                               <td colspan="3">

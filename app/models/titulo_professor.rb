@@ -36,7 +36,7 @@ class TituloProfessor < ActiveRecord::Base
                        total_p = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ?" , professor, 1,5] )
                     end
                  else
-                   self.pontuacao_titulo= self.quantidade * self.valor
+                   self.pontuacao_titulo= self.quantidade.to_i * self.valor
                    self.total_anual = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ? and ano_letivo = ?" , professor, 6,12, (Time.current.strftime("%Y")).to_i] )
                    total_a = self.total_anual
                    total_p = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ?" , professor, 1,5] )
