@@ -344,6 +344,7 @@ end
 
   def load_professors1
     @professors1 = Professor.find(:all, :conditions => ["desligado = 0"], :order => "nome ASC")
+    @professors11 =  Professor.all(:conditions => ['sede_id = ' + current_user.unidade_id.to_s + ' or sede_id = 54'], :order => 'nome')
   end
 
   def load_professors_consulta
@@ -365,9 +366,9 @@ def lista_professor
 
   def professor_unidade
     if current_user.unidade_id == 53 or current_user.unidade_id == 52 then
-      @professor_sede = Professor.all(:order => 'matricula')
+      @professor_sede = Professor.all(:order => 'nome')
     else
-      @professor_sede = Professor.all(:conditions => ['sede_id = ' + current_user.unidade_id.to_s + ' or sede_id = 54'], :order => 'matricula')
+      @professor_sede = Professor.all(:conditions => ['sede_id = ' + current_user.unidade_id.to_s + ' or sede_id = 54'], :order => 'nome')
     end
   end
 

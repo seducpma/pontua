@@ -7,33 +7,33 @@
                <legend><font size=4>Cadastrar Titulação</font></legend>
                <table width="100%" align="center"  bgcolor="#F5F5F5" >
                  <tr>
-                   <td width="70%">
+                   <td width="65%">
                      <table>
                         <tr>
-                          <td align="left"><b><font size="2" color ="red"><b>*</font><%= f.label :professor_id, 'Professor: ' %></b></td>
+                          <td align="left" width="4%"><b><font size="2" color ="red"><b>*</font><%= f.label :professor_id, 'Professor: ' %></b></td>
                           <td width="12%" >
-                              <%= f.collection_select :professor_id, @professor_sede, :id, :matricula, :include_blank => ' -- Selecione -- ' %>
+                              <%= f.collection_select :professor_id, @professor_sede, :id, :nome, :include_blank => ' -- Selecione -- ' %>
                                 <%= observe_field 'titulo_professor_professor_id',
                                   :with => :titulo_professor_professor_id,
                                   :url => { :action => 'sel_prof' } %>
                             </td>
-                             <td>
-                               <b><div id="nomeprof"></div></b>
-                             </td>
+
                           </tr>
                           <tr>
-                             <td><b><%= f.label :titulo_id, 'Titulo: ' %></b>   </td>
-                             <td><b><div id="tipo_titulo"><%= f.check_box(:tipo_curso, :disabled => true, :checked => true)  %> Presencial</div></b></td>
-                             <td><%= f.collection_select :titulo_id, @titulacaos1, :id, :descricao, :include_blank => ' -- Selecione -- ', :size => 5 %>
+                            <td valign="top"><b><%= f.label :titulo_id, 'Titulo: ' %></b>   </td>
+                             <td colspan="2"><b>
+                             <%= f.collection_select :titulo_id, @titulacaos1, :id, :descricao, :include_blank => ' -- Selecione -- ', :size => 5 %>
                                <%= observe_field 'titulo_professor_titulo_id',
                                :frequency => 0.5,
                                :with => :titulo_professor_titulo_id,
                                :url => { :action => 'guarda_valor' } %>
+                             <div id="tipo_titulo"><%= f.check_box(:tipo_curso, :disabled => true, :checked => true)  %> Presencial</div></b>
                                </td>
+
                           </tr>
                           <tr>
-                            <td><b><%= f.label :obs, 'Descrição:' %></b></td>
-                              <td colspan="2"><%= f.text_area :obs, :size => "62x1"   %></td>
+                            <td valign="top"><b><%= f.label :obs, 'Descrição:' %></b></td>
+                              <td colspan="3"><%= f.text_area :obs, :size => "54x2"   %></td>
                             </tr>
                             <tr>
                               <td><font size="2" color ="red"><b>*</font><%= f.label :quantidade, 'Quantidade:' %></b></td>
