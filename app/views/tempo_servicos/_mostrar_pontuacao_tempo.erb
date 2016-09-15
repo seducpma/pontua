@@ -196,7 +196,7 @@
                        <td align="center"><%= temposervico.total_ant_rede%></td>
                       <td align="center"> <%= temposervico.total_rede %></td>
                     </tr>
-                    <%  if (Time.current.strftime("%Y").to_i)< 2015 %>
+                    <%  if (Time.current.strftime("%Y").to_i)< (Time.now.year) %>
                         <tr>
                             <td align="left" width ="20%"><b>Total de dias unidade</b></td>
                            <td align="center"><%= temposervico.total_ant_unid%></td>

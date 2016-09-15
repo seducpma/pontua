@@ -52,7 +52,7 @@ end
     self.ano_letivo = Time.current.strftime("%Y").to_i
     self.ano1 = (Time.current.strftime("%Y").to_i)-1
     self.ano2 = Time.current.strftime("%Y").to_i
-if (Time.current.strftime("%Y").to_i)< 2015
+if (Time.current.strftime("%Y").to_i)< (Time.now.year)
     self.dias_trab1 = (self.dias1 - (self.f_abonada1 + self.f_atestado1 + self.f_justif1 + self.f_injustif1 + self.lic_saude1 + self.afastamento1))
     self.dias_trab2 = (self.dias2 - (self.f_abonada2 + self.f_atestado2 + self.f_justif2 + self.f_injustif2 + self.lic_saude2 + self.afastamento2))
 
@@ -92,7 +92,7 @@ if (Time.current.strftime("%Y").to_i)< 2015
      self.subtot_rede = self.dias_rede1 + self.dias_rede2
      self.subtot_unid = self.dias_unidade1 + self.dias_unidade2
 else
-  #CALCULOS 2015
+  #CALCULOS 2016
     if (self.f_abonada1 + self.f_atestado1 + self.f_justif1 + self.f_injustif1 + self.lic_saude1 + self.afastamento1 + self.outras_aus1)== 0
     self.dias_efetivos1 = self.dias1
   else
@@ -152,7 +152,7 @@ def pontuacao_anterior
      self.total_ant_dias= 0
      self.total_ant_efetivo= 0
      self.total_ant_rede= 0
-     if (Time.current.strftime("%Y").to_i)< 2015
+     if (Time.current.strftime("%Y").to_i)< (Time.now.year)
          self.total_ant_unid= 0
      end
   else
@@ -160,7 +160,7 @@ def pontuacao_anterior
       diasts = tp.total_dias
       efetivots = tp.total_efetivo
       redets = tp.total_rede
-      if (Time.current.strftime("%Y").to_i)< 2015
+      if (Time.current.strftime("%Y").to_i)< (Time.now.year)
           unidts = tp.total_unid
       end
       t1=diasts
@@ -199,7 +199,7 @@ def pontuacao_anterior
      self.total_ant_dias= 0
      self.total_ant_efetivo= 0
      self.total_ant_rede= 0
-     if (Time.current.strftime("%Y").to_i)< 2015
+     if (Time.current.strftime("%Y").to_i)< (Time.now.year)
          self.total_ant_unid= 0
      end
   else
@@ -207,7 +207,7 @@ def pontuacao_anterior
       diasts = tp.total_dias
       efetivots = tp.total_efetivo
       redets = tp.total_rede
-      if (Time.current.strftime("%Y").to_i)< 2015
+      if (Time.current.strftime("%Y").to_i)< (Time.now.year)
           unidts = tp.total_unid
       end
       t1=diasts
@@ -239,13 +239,13 @@ end
     t1=self.total_dias
     t=0
     self.total_rede= ((self.dias_rede1 + self.dias_rede2) * 1) + self.total_ant_rede
-     if (Time.current.strftime("%Y").to_i)< 2015
+     if (Time.current.strftime("%Y").to_i)< (Time.now.year)
         self.total_unid= (self.total_ant_unid +  self.dias_unidade1 + self.dias_unidade2) * 2
      end
 end
 
   def geral
-     if (Time.current.strftime("%Y").to_i)< 2015
+     if (Time.current.strftime("%Y").to_i)< (Time.now.year)
          self.total_geral_tempo_servico = self.total_dias + self.total_efetivo + self.total_rede + self.total_unid
      else
          self.total_geral_tempo_servico = self.total_dias + self.total_efetivo + self.total_rede

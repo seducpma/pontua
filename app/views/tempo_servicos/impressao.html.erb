@@ -76,7 +76,7 @@
                  <%  subtotal1= 0%>
                   <%  subtotal2= 0%>
                   <%  subtotal3= 0%>
-                  <%  if (Time.current.strftime("%Y").to_i)< 2015%>
+                  <%  if (Time.current.strftime("%Y").to_i)< (Time.now.year).%>
                        <%  subtotal4= 0%>
                   <% end %>
 
@@ -91,7 +91,7 @@
               <tr>
                  <th align="center" width ="5%"><b>Ano</b></th>
                  <th align="center" width ="5%" ><b>Dias</b></th>
-                 <%  if (Time.current.strftime("%Y").to_i)< 2015 %>
+                 <%  if (Time.current.strftime("%Y").to_i)< (Time.now.year) %>
                          <th align="center" width ="5%"><b>Unidade</b></th>
                          <th align="center" width ="5"><b>Outro<br/>Emprego</b></th>
                  <%end%>
@@ -105,7 +105,7 @@
                  <th align="center" width ="8%"><b>Dias de<br/>Trabalho</b></th>
                  <th align="center" width ="8%"><b>Dias<br/>Efetivos</b></th>
                  <th align="center" width ="8%"><b>Dias<br/>Rede</b></th>
-                 <%  if (Time.current.strftime("%Y").to_i)< 2015 %>
+                 <%  if (Time.current.strftime("%Y").to_i)< (Time.now.year) %>
                        <th align="center" width ="8%"><b>Dias<br/>Unidade</b></th>
                  <%end%>
               </tr>
@@ -114,13 +114,13 @@
                  <%  subtotal1= temposervico.dias_trab2 + temposervico.dias_trab1 %>
                  <%  subtotal2= temposervico.dias_efetivos2 + temposervico.dias_efetivos1%>
                  <%  subtotal3= temposervico.dias_rede2 + temposervico.dias_rede1%>
-                 <%  if (Time.current.strftime("%Y").to_i)< 2015 %>
+                 <%  if (Time.current.strftime("%Y").to_i)< (Time.now.year) %>
                       <%  subtotal4= temposervico.dias_unidade2 + temposervico.dias_unidade1%>
                  <%end%>
               <tr>
                 <th align="center"><%= temposervico.ano1%> </th>
                 <th align="center"><%= temposervico.dias1 %> </th>
-                <%  if (Time.current.strftime("%Y").to_i)< 2015 %>
+                <%  if (Time.current.strftime("%Y").to_i)< (Time.now.year) %>
                     <th align="center"><%= temposervico.unidade1%> </th>
                     <th align="center"><%= temposervico.outro_trab1%> </th>
                 <%end%>
@@ -134,14 +134,14 @@
                 <th align="center"><%= temposervico.dias_trab1%> </th>
                 <th align="center"><%= temposervico.dias_efetivos1%> </th>
                 <th align="center"><%= temposervico.dias_rede1%> </th>
-                <%  if (Time.current.strftime("%Y").to_i)< 2015 %>
+                <%  if (Time.current.strftime("%Y").to_i)< (Time.now.year) %>
                      <th align="center"><%= temposervico.dias_unidade1%> </th>
                 <%end%>
               </tr>
               <tr>
                 <th align="center"><%= temposervico.ano2%> </th>
                 <th align="center"><%= temposervico.dias2%> </th>
-                <%  if (Time.current.strftime("%Y").to_i)< 2015 %>
+                <%  if (Time.current.strftime("%Y").to_i)< (Time.now.year) %>
                      <th align="center"><%= temposervico.unidade2%> </th>
                      <th align="center"><%= temposervico.outro_trab2%> </th>
                 <%end%>
@@ -155,7 +155,7 @@
                 <th align="center"><%= temposervico.dias_trab2%> </th>
                 <th align="center"><%= temposervico.dias_efetivos2%> </th>
                 <th align="center"><%= temposervico.dias_rede2%> </th>
-                <%  if (Time.current.strftime("%Y").to_i)< 2015 %>
+                <%  if (Time.current.strftime("%Y").to_i)< (Time.now.year) %>
                        <th align="center"><%= temposervico.dias_unidade2%> </th>
                 <%end%>
                </tr>
@@ -164,7 +164,7 @@
                 <th align="center"><%= subtotal1%> </th>
                 <th align="center"><%= subtotal2%> </th>
                 <th align="center"><%= subtotal3%> </th>
-                <%  if (Time.current.strftime("%Y").to_i)< 2015 %>
+                <%  if (Time.current.strftime("%Y").to_i)< (Time.now.year) %>
                        <th align="center"><%= subtotal4%> </th>
                 <%end%>
              </tr>
@@ -211,7 +211,7 @@
                 <th align="center"> 1 </th>
                 <th align="center" colspan="2"> <%= temposervico.total_rede %></th>
              </tr>
-             <%  if (Time.current.strftime("%Y").to_i)< 2015 %>
+             <%  if (Time.current.strftime("%Y").to_i)< (Time.now.year) %>
                  <tr>
                     <th align="left" colspan="3"><b>Total de dias unidade</b></th>
                     <th align="center" colspan="2"><%= temposervico.total_ant_unid%></th>
