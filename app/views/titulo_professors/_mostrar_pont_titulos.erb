@@ -29,7 +29,7 @@
      <%for tp in @tp%>
      <tr style="font-size:12px">
       <td align="left">
-        <font size="2"><%= truncate((Titulacao.find_by_id(tp.titulo_id).descricao),:length => 25,:omission => "...") %></font>
+        <font size="2"><%= truncate((Titulacao.find_by_id(tp.titulo_id).descricao),:length =>35,:omission => "...") %></font>
       </td>
       <td align="center">
         <font size="2"><%= truncate(tp.obs,:length => 20,:omission => "...") %></font>

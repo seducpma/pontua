@@ -81,11 +81,14 @@
        <th>
         Título
        </th>
-       <th>
-        Quantidade
+      <th>
+        Descrição
        </th>
        <th>
-        Valor do Título
+        Qt
+       </th>
+       <th>
+        Valor
        </th>
        <th colspan="2">
         Pontuação Obtida
@@ -96,7 +99,10 @@
 
      <tr style="font-size:10px">
        <th align="left">
-        <font size="1"><%= Titulacao.find_by_id(tp.titulo_id).descricao %></font>
+         <font size="1"><%= truncate((Titulacao.find_by_id(tp.titulo_id).descricao),:length =>35,:omission => "...") %></font>
+      </th>
+       <th align="left">
+         <font size="1"><%= truncate(tp.obs,:length => 25,:omission => "...") %></font>
       </th>
       <th align="center">
         <font size="1"><%= tp.quantidade %></font>
@@ -106,9 +112,7 @@
       </th>
       <th align="center" colspan="2">
         <font size="1"><%= tp.pontuacao_titulo %></font>
-
             <% session[:permanente] = tp.total_permanente %>
-
       </th>
    </tr>
 
@@ -131,9 +135,10 @@
 <tr style="font-size:10px"><th width="100%" colspan="6" align="center"><hr/><font size=3>Títulos de Contagem Anual</font><hr/></th></tr>
      <tr style="font-size:10px">
        <th align="center"><font size="1">Título</font></th>
+       <th align="center"> Descrição </th>
        <th align="center">Tipo</th>
-       <th align="center"><font size="1">Quantidade</font></th>
-       <th align="center"><font size="1">Valor Título</font></th>
+       <th align="center"><font size="1">Qt</font></th>
+       <th align="center"><font size="1">Valor</font></th>
        <th align="center"><font size="1">Pontuação</font></th>
 
     </tr>
@@ -142,9 +147,12 @@
 
      <tr style="font-size:10px">
       <th  align="left">
-        <font size="1"><%= Titulacao.find_by_id(tp1.titulo_id).descricao %></font>
-      </hd>
-            </th>
+        <font size="1"><%= truncate((Titulacao.find_by_id(tp.titulo_id).descricao),:length =>35,:omission => "...") %></font>
+    </th>
+       <th align="left">
+         <font size="1"><%= truncate(tp1.obs,:length => 25,:omission => "...") %></font>
+      </th>
+
       <th align="center">
         <% if tp1.tipo_curso == true%>
           <font size="1"><%= "PRESENCIAL" %></font>
@@ -185,7 +193,7 @@
 
 
 <tr>
-  <th width="80%" colspan="4" align="right"><font size="2">TOTAL TÍTULOS</font></th>
+  <th width="80%" colspan="5" align="right"><font size="2">TOTAL TÍTULOS</font></th>
   <th align="center"><font size="2"><%=  session[:subtotal_titulos] %></font></th>
 </tr>
 </table>

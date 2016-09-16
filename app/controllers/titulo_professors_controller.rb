@@ -206,10 +206,9 @@ t=0
 
   def sel_prof
     $teacher = params[:titulo_professor_professor_id]
-    
-
-    if !($teacher.nil? or $teacher.empty?) or $teacher == '' then
-      if (Professor.find($teacher)).nil? then
+    session[:teacher]=params[:titulo_professor_professor_id]
+    if !(session[:teacher].nil? or session[:teacher].empty?) or session[:teacher] == '' then
+      if (Professor.find(session[:teacher])).nil? then
          render :update do |page|
            page.replace_html 'nomeprof', :text => 'Matricula não cadastrada'
            page.replace_html 'titulos', :text => ''
@@ -217,13 +216,17 @@ t=0
       else
 
         #$professor_id = Professor.find_by_matricula($teacher).id
-        $professor_id = $teacher
+        
+        
+        $professor_id = session[:teacher]
+        
         $id_professor = $professor_id
-        $professor = Professor.find($teacher).nome
-        @professor = Professor.find(:all,:conditions => ['id = ? and desligado = 0', $teacher])
-        @tp = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + ($teacher).to_s + " and t.tipo = 'PERMANENTE'")
-        @tp1 = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + ($teacher).to_s + " and t.tipo = 'ANUAL'")
+        $professor = Professor.find(session[:teacher]).nome
+        @professor = Professor.find(:all,:conditions => ['id = ? and desligado = 0', session[:teacher]])
+        @tp = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + (session[:teacher]).to_s + " and t.tipo = 'PERMANENTE'")
+        @tp1 = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + (session[:teacher]).to_s + " and t.tipo = 'ANUAL'")
         #@tp5 = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + ($teacher).to_s + " and t.tipo = '5 ANOS'")
+        
         render :update do |page|
           page.replace_html 'nomeprof', :text => '- ' + ($professor)
           page.replace_html 'titulos', :partial => 'mostrar_pont_titulos'
