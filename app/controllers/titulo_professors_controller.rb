@@ -152,7 +152,7 @@ def consulta_titulacao_professor
 t=0
     respond_to do |format|
       if @titulo_professor.save
-        flash[:notice] = 'TITULAÇÂO CADASTRADA COM SUCESSO.'
+        flash[:notice] = 'TITULAÇÃO CADASTRADA COM SUCESSO.'
         format.html { redirect_to(@titulo_professor)}
         format.xml  { render :xml => @titulo_professor, :status => :created, :location => @titulo_professor }
       else

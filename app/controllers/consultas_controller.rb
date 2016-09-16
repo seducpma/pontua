@@ -238,7 +238,7 @@ helper_method :sort_column, :sort_direction
         $tipo_con = 10
         if (session[:tipoclassificacao]== 'CLASSIFICACÃO GERAL')
          @professor_impressao = TempoServico.find(:all,:joins => :professor, :conditions=> ["tempo_servicos.ano_letivo = ? and professors.desligado = 0", Time.current.strftime("%Y").to_i], :order => 'tempo_servicos.pontuacao_geral DESC')
-        else if (session[:tipoclassificacao] == 'CLASSIFICACÃO P/ FUNÇÂO')
+        else if (session[:tipoclassificacao] == 'CLASSIFICACÃO P/ FUNÇÃO')
 
                  if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then
                          if session[:funcao] == 'ADI / Prof. de Creche'
