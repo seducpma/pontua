@@ -38,7 +38,7 @@
         <font size="2"><%= truncate(tp.obs,:length => 20,:omission => "...") %></font>
       </td>
       <td align="center">
-        <font size="2"><%= tp.ano_letivo %></font>
+        <font size="2"><%= tp.created_at.year %> </font>
       </td>
 
       <td align="center">
@@ -106,7 +106,7 @@
       <%end%>
       </td>
       <td  align="center">
-        <font size="2"><%= tp1.ano_letivo %></font>
+              <font size="2"><%= tp1.dt_titulo.year %> </font>
       </td>
       <td  align="center">
         <font size="2"><%= tp1.quantidade %></font>

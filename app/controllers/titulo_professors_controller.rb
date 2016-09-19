@@ -102,7 +102,6 @@ def consulta_titulacao_professor
   
   def index
     @titulo_professors = TituloProfessor.find(:all, :conditions => ['professor_id =?', session[:teacher]])
-    t=0
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @titulo_professors }
@@ -215,20 +214,21 @@ def consulta_titulacao_professor
          end
       else
 
-        #$professor_id = Professor.find_by_matricula($teacher).id
+        # $professor_id = Professor.find_by_matricula($teacher).id
         
         
         $professor_id = session[:teacher]
         
         $id_professor = $professor_id
-        $professor = Professor.find(session[:teacher]).nome
+        # $professor = Professor.find(session[:teacher]).nome
+        session[:professor]=Professor.find(session[:teacher]).nome
         @professor = Professor.find(:all,:conditions => ['id = ? and desligado = 0', session[:teacher]])
         @tp = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + (session[:teacher]).to_s + " and t.tipo = 'PERMANENTE'")
         @tp1 = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + (session[:teacher]).to_s + " and t.tipo = 'ANUAL'")
         #@tp5 = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + ($teacher).to_s + " and t.tipo = '5 ANOS'")
         
         render :update do |page|
-          page.replace_html 'nomeprof', :text => '- ' + ($professor)
+          page.replace_html 'nomeprof', :text => '- ' + (session[:professor])
           page.replace_html 'titulos', :partial => 'mostrar_pont_titulos'
         end
       end
@@ -308,8 +308,8 @@ def consulta_titulacao_professor
   def nome_professor
 
     $id_professor = params[:titulo_professor_titulo_id]
-    $professor = Professor.find_by_id($id_professor).nome
-
+    # $professor = Professor.find_by_id($id_professor).nome
+    session[:professor] = Professor.find_by_id(params[:titulo_professor_titulo_id]).nome
     render :update do |page|
       page.replace_html 'nome', :text => 'Nome:: ' + ($professror)
       #page.replace_html 'titulos', :partial => 'totaliza_titulo'
@@ -319,10 +319,11 @@ def consulta_titulacao_professor
 
 
  def titulos_busca
-     $professor = Professor.find(params[:altera_professor_id]).nome
+    # $professor = Professor.find(params[:altera_professor_id]).nome
+     session[:professor]= Professor.find(params[:altera_professor_id]).nome
      @titulo_busca =  TituloProfessor.find(:all,:conditions =>['professor_id = ? and (ano_letivo = ? or titulo_id in (1,2,3,4,5))',params[:altera_professor_id],Time.current.strftime("%Y")], :order => "created_at DESC")
       render :update do |page|
-        page.replace_html 'nomeprof', :text => '- ' + ($professor)
+        page.replace_html 'nomeprof', :text => '- ' + (session[:professor])
         page.replace_html 'alteracao', :partial => 'alterar'
       end
  end
