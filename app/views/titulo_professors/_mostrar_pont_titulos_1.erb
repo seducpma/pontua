@@ -65,22 +65,22 @@
 <tr><th width="100%" colspan="6" align="center"><hr/><font size=4>Títulos Permanentes</font><hr/></th></tr>
 
      <tr style="font-size:12px">
-       <th>
+       <th  width="30%">
         Título
        </th>
-        <th>
+       <th  width="25%">
         Descrição
        </th>
-       <th>
+       <th width="5%">
         Ano
        </th>
-       <th>
+       <th width="10%">
         Quantidade
        </th>
-       <th>
+       <th width="5%">
         Valor
        </th>
-       <th colspan="2">
+       <th  width="15%">
         Pontuação Obtida
        </th>
      </tr>
@@ -131,13 +131,13 @@
 
 <tr style="font-size:10px"><th width="100%" colspan="7" align="center"><hr/><font size=4>Títulos de Contagem Anual</font><hr/></th></tr>
      <tr style="font-size:10px">
-       <th align="center"><font size="2">Título</font></th>
-       <th align="center"><font size="2">Descrição</font></th>
-       <th align="center"><font size="2">Ano</font></th>
-      <th><font size="2">Tipo</font>  </th>
-       <th align="center"><font size="2">Quantidade</font></th>
-       <th align="center"><font size="2">Valor</font></th>
-       <th align="center"><font size="2">Pontuação</font></th>
+       <th align="left"  width="30%"><font size="2">Título</font></th>
+       <th align="center" width="15%"><font size="2">Descrição</font></th>
+       <th align="center" width="10%"><font size="2">Tipo</font></th>
+              <th align="center" width="5%"><font size="2">Ano</font></th>
+       <th align="center" width="10%"><font size="2">Quantidade</font></th>
+       <th align="center" width="5%"><font size="2">Valor</font></th>
+       <th align="center" width="15%"><font size="2">Pontuação Obtida</font></th>
 
     </tr>
 
@@ -150,9 +150,7 @@
        <td  align="center">
         <font size="2"><%= truncate(tp1.obs,:length => 20,:omission => "...") %></font>
       </td>
-      <td  align="center">
-        <font size="2"><%= tp1.dt_titulo.year %></font>
-      </td>
+
       <td align="center">
         <% if tp1.tipo_curso == true%>
           <font size="2"><%= "PRESENCIAL" %></font>
@@ -164,6 +162,9 @@
             <font size="2"><%= "À DISTÂNCIA" %></font>
         <%end%>
       <%end%>
+      </td>
+      <td  align="center">
+        <font size="2"><%= tp1.dt_titulo.year %></font>
       </td>
       <td  align="center">
         <font size="2"><%= tp1.quantidade %></font>
