@@ -337,6 +337,7 @@ end
 
 def consulta_titulo_professor
      $teacher = params[:consulta][:professor_id]
+     session[:teacher]= params[:consulta][:professor_id]
       $ano = params[:ano_letivo]
       session[:ano]= params[:ano_letivo]
         @professor= Professor.find(:all,:conditions => ["id = ? and desligado = 0",session[:teacher]])
