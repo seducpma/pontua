@@ -149,13 +149,18 @@ display: none;
               <li><a class="item-primary" href="#;">Titulação
               </a>
                  <ul style="width:108px;">
+
                      <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('direcao')  or current_user.has_role?('supervisao') or current_user.has_role?('secretaria'))%>
                         <li><%= link_to "Cadastrar",new_titulo_professor_path %></li>
                      <%end%>
                         <li><%= link_to "Consultar",consulta_titulacao_path %></li>
+                     <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('direcao')  or current_user.has_role?('supervisao') or current_user.has_role?('secretaria'))%>
+                        <li><%= link_to "Excluir",titulo_professors_path %></li>
+                     <%end%>
                      <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao') or current_user.has_role?('supervisao'))%>
                         <li><%= link_to "Titulação",consulta_titulacao_professor_path %></li>
                      <%end%>
+
                  </ul>
               </li>
               <li><a class="item-primary" href="#;">Tempo Servico

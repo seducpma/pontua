@@ -2,17 +2,20 @@
 <p>
 
 <fieldset>
- <legend><font size=4>Alteração de Títulos Cadastrados</font></legend>
+ <legend><font size=4>Títulos Cadastrados</font></legend>
   <table width="100%" frame="box" rules="all">
         <tr>
        <th>
         Título
        </th>
        <th>
-        Quantidade
+        Descrição
        </th>
        <th>
-        Valor do Título
+        Qt
+       </th>
+       <th>
+        Valor
        </th>
        <th>
         Pontuação
@@ -30,10 +33,13 @@
 
     <%for tp in @titulo_busca%>
 
-      <tr>
-        <td align="center">
-          <%= Titulacao.find_by_id(tp.titulo_id).descricao %>
-        </td>
+     <tr>
+      <td  align="left">
+        <font size="2"><%= truncate((Titulacao.find_by_id(tp.titulo_id).descricao),:length => 25,:omission => "...") %></font>
+      </td>
+      <td  align="center">
+        <font size="2"><%= truncate(tp.obs,:length => 20,:omission => "...") %></font>
+      </td>
       <td align="center">
         <%= tp.quantidade %>
       </td>
