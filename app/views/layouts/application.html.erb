@@ -27,17 +27,24 @@ display: none;
     <% unless informativos_corrente.empty? %>
      <div id="announcement">
       <table class="tabelas">
-        <td>
-          <p><h2 align="center">Quadro de Avisos</h2></p>
-          <div id="color"  align="center">
-            <%for informativo in informativos_corrente %>
-            <p><%= informativo.mensagem %></p>
-            <p>===============================================================================================</p>
-            <%end%>
-        </td>
+          <tr>
+               <td>
+                <p><h2 align="center">Quadro de Avisos</h2></p>
+                <div id="color"  align="left">
+                  <%for informativo in informativos_corrente %>
+                    <p><%= informativo.mensagem %></p>
+                  <%end%>
+                </div>
+              </td>
+            <tr>
+              <td>
+                 <h4 align="right"><b><%= link_to_remote("Ocultar esta mensagem", :url => {:controller => 'javascripts', :action => 'hide_announcement'}) %></b></h4>
+              </td>
+            </tr>
+         </tr>
      </table>
     </div>
-   <h3 align="center"><b><%= link_to_remote("Ocultar esta mensagem", :url => {:controller => 'javascripts', :action => 'hide_announcement'}) %></b></h3>
+
   </div>
   <%end%>
   <div id="header">

@@ -57,7 +57,9 @@
       <%end%>
       </td>
       <td align="center">
+      <%if !tp.dt_titulo.nil?%>
         <%= tp.dt_titulo.strftime("%d/%m/%Y") %>
+      <%end%>
       </td>
         <td align="">
            <%= button_to 'Deletar', tp, :confirm => 'Confirma?', :method => :delete %>

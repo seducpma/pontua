@@ -11,7 +11,7 @@
            <table>
              <tr>
               <td align="left"><b>PROFESSOR: </b>
-                    <%= collection_select :altera, :professor_id, @professor_sede, :id, :matricula, :include_blank => ' -- Selecione -- ' %>
+                    <%= collection_select :altera, :professor_id, @professor_sede, :id, :nome, :include_blank => ' -- Selecione -- ' %>
                     <%= observe_field 'altera_professor_id',
                       :with => :altera_professor_id,
                       :url => { :action => 'titulos_busca' } %>
