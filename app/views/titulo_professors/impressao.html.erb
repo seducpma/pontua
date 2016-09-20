@@ -162,9 +162,7 @@
        <th align="left">
          <font size="1"><%= truncate(tp1.obs,:length => 25,:omission => "...") %></font>
       </th>
-      <td  align="center">
-        <font size="2"><%= tp1.dt_titulo.year %></font>
-      </td>
+      
 
       <th align="center">
         <% if tp1.tipo_curso == true%>
@@ -178,6 +176,9 @@
         <%end%>
       <%end%>
       </th>
+       <td  align="center">
+        <font size="2"><%= tp1.dt_titulo.year %></font>
+      </td>
       <th  align="center">
         <font size="1"><%= tp1.quantidade %></font>
       </th>
@@ -197,7 +198,7 @@
 
 <% end %>
 <tr style="font-size:10px">
-  <th width="80%" colspan="5" align="right"><font size="1">SUB-TOTAL </font></th>
+  <th width="80%" colspan="6" align="right"><font size="1">SUB-TOTAL </font></th>
   <th  align="center">
     <font size="1"><%= session[:anual] %></font>
   </th>
