@@ -108,6 +108,9 @@
          <font size="1"><%= truncate(tp.obs,:length => 25,:omission => "...") %></font>
       </th>
       <th align="center">
+        <font size="1"><%= tp.dt_titulo.year %></font>
+      </th>
+      <th align="center">
         <font size="1"><%= tp.quantidade %></font>
       </th>
       <th align="center">
@@ -122,7 +125,7 @@
   <%end%>
   <%end%>
 <tr>
-  <th width="80%" colspan="4" align="right">SUB-TOTAL </th>
+  <th width="80%" colspan="5" align="right">SUB-TOTAL </th>
   <th align="center">
         <%= session[:permanente] %>
 
