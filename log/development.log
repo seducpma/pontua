@@ -19451,3 +19451,724 @@ Rendering professors/show
   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-09-20 15:09:23') AND (starts_at <= '2016-09-20 19:25:41' AND ends_at >= '2016-09-20 19:25:41') [0m
   [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=43) [0m
 Completed in 591ms (View: 34, DB: 51) | 200 OK [http://localhost/professors/199]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2016-09-21 09:36:32) [GET]
+  [4;36;1mUser Columns (3.1ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;36;1mInformativo Load (0.6ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-09-20 15:09:23') AND (starts_at <= '2016-09-21 12:36:33' AND ends_at >= '2016-09-21 12:36:33') [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-09-20 15:09:23') AND (starts_at <= '2016-09-21 12:36:33' AND ends_at >= '2016-09-21 12:36:33') [0m
+  [4;36;1mroles_users Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.8ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (2.6ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (0.6ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=3) [0m
+  [4;36;1mUnidade Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 352ms (View: 215, DB: 12) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ProfessorsController#consulta_nome (for 127.0.0.1 at 2016-09-21 09:36:38) [GET]
+  [4;35;1mUser Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mUnidade Load (0.6ms)[0m   [0mSELECT * FROM `unidades` WHERE (id = 3 or id = 54) ORDER BY nome ASC[0m
+  [4;36;1mProfessor Load (30.7ms)[0m   [0;1mSELECT * FROM `professors` ORDER BY nome ASC[0m
+  [4;35;1mProfessor Load (17.2ms)[0m   [0mSELECT * FROM `professors` ORDER BY matricula ASC[0m
+  [4;36;1mTituloProfessor Load (43.3ms)[0m   [0;1mSELECT distinct(ano_letivo) as ano FROM `titulo_professors` ORDER BY ano_letivo DESC[0m
+  [4;35;1mTituloProfessor Load (5.5ms)[0m   [0mSELECT distinct(ano_letivo) as ano FROM `titulo_professors` WHERE (ano_letivo > 2014) ORDER BY ano_letivo DESC[0m
+Rendering template within layouts/application
+Rendering professors/consulta_nome
+Rendered professors/_consulta (4.8ms)
+  [4;36;1mProfessor Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `professors`[0m
+Rendered professors/_consulta_nome (24.4ms)
+  [4;35;1mUnidade Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Rendered professors/_consulta_unidade (17.0ms)
+Rendered professors/_consulta_professor (1.6ms)
+  [4;36;1mInformativo Load (0.6ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-09-20 15:09:23') AND (starts_at <= '2016-09-21 12:36:39' AND ends_at >= '2016-09-21 12:36:39') [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-09-20 15:09:23') AND (starts_at <= '2016-09-21 12:36:39' AND ends_at >= '2016-09-21 12:36:39') [0m
+  [4;36;1mroles_users Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.4ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=3) [0m
+Completed in 560ms (View: 101, DB: 103) | 200 OK [http://localhost/consulta_professor_nome]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing TituloProfessorsController#consulta (for 127.0.0.1 at 2016-09-21 09:36:42) [GET]
+  [4;36;1mTitulacao Load (0.6ms)[0m   [0;1mSELECT * FROM `titulacaos` [0m
+  [4;35;1mTitulacao Load (0.4ms)[0m   [0mSELECT * FROM `titulacaos` WHERE (ano_letivo_titulacao > 2014 or ano_letivo_titulacao =0) [0m
+  [4;36;1mTituloProfessor Load (0.1ms)[0m   [0;1mSELECT distinct(ano_letivo) as ano FROM `titulo_professors` ORDER BY ano_letivo DESC[0m
+  [4;35;1mProfessor Load (20.8ms)[0m   [0mSELECT * FROM `professors` WHERE (desligado = 0) ORDER BY matricula ASC[0m
+  [4;36;1mProfessor Load (14.9ms)[0m   [0;1mSELECT * FROM `professors` WHERE (desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mUser Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mroles_users Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.3ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mProfessor Load (3.2ms)[0m   [0;1mSELECT * FROM `professors` WHERE (sede_id = 3 or sede_id = 54 and desligado = 0) ORDER BY nome[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mProfessor Load (3.1ms)[0m   [0;1mSELECT * FROM `professors` WHERE (sede_id = 3 or sede_id = 54) ORDER BY nome[0m
+Rendering template within layouts/application
+Rendering titulo_professors/consulta
+  [4;35;1mProfessor Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `professors`[0m
+  [4;36;1mTituloProfessor Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `titulo_professors`[0m
+  [4;35;1mInformativo Load (0.5ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-09-20 15:09:23') AND (starts_at <= '2016-09-21 12:36:43' AND ends_at >= '2016-09-21 12:36:43') [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-09-20 15:09:23') AND (starts_at <= '2016-09-21 12:36:43' AND ends_at >= '2016-09-21 12:36:43') [0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=3) [0m
+  [4;36;1mUnidade Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 490ms (View: 41, DB: 48) | 200 OK [http://localhost/consulta_titulacao]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing TituloProfessorsController#consulta (for 127.0.0.1 at 2016-09-21 09:37:18) [GET]
+  [4;35;1mTitulacao Load (0.2ms)[0m   [0mSELECT * FROM `titulacaos` [0m
+  [4;36;1mTitulacao Load (0.1ms)[0m   [0;1mSELECT * FROM `titulacaos` WHERE (ano_letivo_titulacao > 2014 or ano_letivo_titulacao =0) [0m
+  [4;35;1mTituloProfessor Load (0.2ms)[0m   [0mSELECT distinct(ano_letivo) as ano FROM `titulo_professors` ORDER BY ano_letivo DESC[0m
+  [4;36;1mProfessor Load (1.6ms)[0m   [0;1mSELECT * FROM `professors` WHERE (desligado = 0) ORDER BY matricula ASC[0m
+  [4;35;1mProfessor Load (1.6ms)[0m   [0mSELECT * FROM `professors` WHERE (desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mUser Columns (3.3ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mroles_users Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.4ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.4ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mProfessor Load (25.5ms)[0m   [0mSELECT * FROM `professors` WHERE (desligado = 0) ORDER BY nome[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mProfessor Load (0.5ms)[0m   [0mSELECT * FROM `professors` WHERE (sede_id = 3 or sede_id = 54) ORDER BY nome[0m
+Rendering template within layouts/application
+Rendering titulo_professors/consulta
+  [4;36;1mProfessor Columns (2.4ms)[0m   [0;1mSHOW FIELDS FROM `professors`[0m
+  [4;35;1mTituloProfessor Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `titulo_professors`[0m
+  [4;36;1mInformativo Load (0.5ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-09-20 15:09:23') AND (starts_at <= '2016-09-21 12:37:18' AND ends_at >= '2016-09-21 12:37:18') [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-09-20 15:09:23') AND (starts_at <= '2016-09-21 12:37:18' AND ends_at >= '2016-09-21 12:37:18') [0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=3) [0m
+  [4;35;1mUnidade Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 753ms (View: 53, DB: 40) | 200 OK [http://localhost/consulta_titulacao]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing TituloProfessorsController#consulta (for 127.0.0.1 at 2016-09-21 09:37:39) [GET]
+  [4;36;1mTitulacao Load (0.2ms)[0m   [0;1mSELECT * FROM `titulacaos` [0m
+  [4;35;1mTitulacao Load (0.1ms)[0m   [0mSELECT * FROM `titulacaos` WHERE (ano_letivo_titulacao > 2014 or ano_letivo_titulacao =0) [0m
+  [4;36;1mTituloProfessor Load (0.2ms)[0m   [0;1mSELECT distinct(ano_letivo) as ano FROM `titulo_professors` ORDER BY ano_letivo DESC[0m
+  [4;35;1mProfessor Load (3.4ms)[0m   [0mSELECT * FROM `professors` WHERE (desligado = 0) ORDER BY matricula ASC[0m
+  [4;36;1mProfessor Load (1.6ms)[0m   [0;1mSELECT * FROM `professors` WHERE (desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mUser Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mroles_users Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.4ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mProfessor Load (0.4ms)[0m   [0;1mSELECT * FROM `professors` WHERE (sede_id = 3 or sede_id = 54 and desligado = 0) ORDER BY nome[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mProfessor Load (0.4ms)[0m   [0;1mSELECT * FROM `professors` WHERE (sede_id = 3 or sede_id = 54) ORDER BY nome[0m
+Rendering template within layouts/application
+Rendering titulo_professors/consulta
+  [4;35;1mProfessor Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `professors`[0m
+  [4;36;1mTituloProfessor Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `titulo_professors`[0m
+  [4;35;1mInformativo Load (0.5ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-09-20 15:09:23') AND (starts_at <= '2016-09-21 12:37:39' AND ends_at >= '2016-09-21 12:37:39') [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-09-20 15:09:23') AND (starts_at <= '2016-09-21 12:37:39' AND ends_at >= '2016-09-21 12:37:39') [0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=3) [0m
+  [4;36;1mUnidade Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Completed in 593ms (View: 35, DB: 13) | 200 OK [http://localhost/consulta_titulacao]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing TituloProfessorsController#consulta (for 127.0.0.1 at 2016-09-21 09:38:06) [GET]
+  [4;35;1mTitulacao Load (0.2ms)[0m   [0mSELECT * FROM `titulacaos` [0m
+  [4;36;1mTitulacao Load (0.1ms)[0m   [0;1mSELECT * FROM `titulacaos` WHERE (ano_letivo_titulacao > 2014 or ano_letivo_titulacao =0) [0m
+  [4;35;1mTituloProfessor Load (0.2ms)[0m   [0mSELECT distinct(ano_letivo) as ano FROM `titulo_professors` ORDER BY ano_letivo DESC[0m
+  [4;36;1mProfessor Load (2.2ms)[0m   [0;1mSELECT * FROM `professors` WHERE (desligado = 0) ORDER BY matricula ASC[0m
+  [4;35;1mProfessor Load (1.4ms)[0m   [0mSELECT * FROM `professors` WHERE (desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mUser Columns (1.6ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mroles_users Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.4ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mProfessor Load (0.4ms)[0m   [0mSELECT * FROM `professors` WHERE (sede_id = 3 or sede_id = 54 and desligado = 0) ORDER BY nome[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mProfessor Load (0.4ms)[0m   [0mSELECT * FROM `professors` WHERE (sede_id = 3 or sede_id = 54) ORDER BY nome[0m
+Rendering template within layouts/application
+Rendering titulo_professors/consulta
+  [4;36;1mProfessor Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `professors`[0m
+  [4;35;1mTituloProfessor Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `titulo_professors`[0m
+  [4;36;1mInformativo Load (0.5ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-09-20 15:09:23') AND (starts_at <= '2016-09-21 12:38:06' AND ends_at >= '2016-09-21 12:38:06') [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-09-20 15:09:23') AND (starts_at <= '2016-09-21 12:38:06' AND ends_at >= '2016-09-21 12:38:06') [0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=3) [0m
+  [4;35;1mUnidade Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 528ms (View: 188, DB: 11) | 200 OK [http://localhost/consulta_titulacao]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ProfessorsController#new (for 127.0.0.1 at 2016-09-21 09:38:32) [GET]
+  [4;36;1mUser Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (1.8ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id = 3 or id = 54) ORDER BY nome ASC[0m
+  [4;35;1mProfessor Load (1.7ms)[0m   [0mSELECT * FROM `professors` ORDER BY nome ASC[0m
+  [4;36;1mProfessor Load (1.5ms)[0m   [0;1mSELECT * FROM `professors` ORDER BY matricula ASC[0m
+  [4;35;1mTituloProfessor Load (1.2ms)[0m   [0mSELECT distinct(ano_letivo) as ano FROM `titulo_professors` ORDER BY ano_letivo DESC[0m
+  [4;36;1mTituloProfessor Load (0.1ms)[0m   [0;1mSELECT distinct(ano_letivo) as ano FROM `titulo_professors` WHERE (ano_letivo > 2014) ORDER BY ano_letivo DESC[0m
+  [4;35;1mProfessor Columns (3.6ms)[0m   [0mSHOW FIELDS FROM `professors`[0m
+Rendering template within layouts/application
+Rendering professors/new
+  [4;36;1mUnidade Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Rendered professors/_form (29.6ms)
+  [4;35;1mInformativo Load (0.6ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-09-20 15:09:23') AND (starts_at <= '2016-09-21 12:38:32' AND ends_at >= '2016-09-21 12:38:32') [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-09-20 15:09:23') AND (starts_at <= '2016-09-21 12:38:32' AND ends_at >= '2016-09-21 12:38:32') [0m
+  [4;35;1mroles_users Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.1ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (2.3ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=3) [0m
+Completed in 584ms (View: 67, DB: 17) | 200 OK [http://localhost/professors/new]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ProfessorsController#create (for 127.0.0.1 at 2016-09-21 09:39:24) [POST]
+  Parameters: {"authenticity_token"=>"Rg6t6Tptrz9bexaLU5ur0u2FEstmpJIn5OwvoT/csrc=", "professor"=>{"num"=>"", "CPF"=>"0", "sede_id"=>"3", "dt_ingresso"=>"01-09-2011", "dt_nasc"=>"30-09-1979", "matricula"=>"123", "email"=>"", "n_filhos"=>"0", "cidade"=>"", "endres"=>"", "nome"=>"123", "obs"=>"", "telefone"=>"", "INEP"=>"0", "bairro"=>"", "complemento"=>"", "jornada_sem"=>"0", "funcao"=>"Prof. de Creche", "entrada_concurso"=>"Pedagogia / Normal Superior", "RD"=>"0", "RG"=>"0", "cel"=>"", "cep"=>""}, "commit"=>"Salvar"}
+  [4;35;1mUser Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id = 3 or id = 54) ORDER BY nome ASC[0m
+  [4;36;1mProfessor Load (1.4ms)[0m   [0;1mSELECT * FROM `professors` ORDER BY nome ASC[0m
+  [4;35;1mProfessor Load (3.0ms)[0m   [0mSELECT * FROM `professors` ORDER BY matricula ASC[0m
+  [4;36;1mTituloProfessor Load (0.2ms)[0m   [0;1mSELECT distinct(ano_letivo) as ano FROM `titulo_professors` ORDER BY ano_letivo DESC[0m
+  [4;35;1mTituloProfessor Load (0.1ms)[0m   [0mSELECT distinct(ano_letivo) as ano FROM `titulo_professors` WHERE (ano_letivo > 2014) ORDER BY ano_letivo DESC[0m
+  [4;36;1mProfessor Columns (1.9ms)[0m   [0;1mSHOW FIELDS FROM `professors`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mBEGIN[0m
+  [4;36;1mProfessor Load (2.5ms)[0m   [0;1mSELECT `professors`.id FROM `professors` WHERE (`professors`.`matricula` = 123) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mROLLBACK[0m
+Rendering template within layouts/application
+Rendering professors/new
+  [4;36;1mUnidade Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `unidades`[0m
+Rendered professors/_form (17.1ms)
+  [4;35;1mInformativo Load (0.5ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-09-20 15:09:23') AND (starts_at <= '2016-09-21 12:39:24' AND ends_at >= '2016-09-21 12:39:24') [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-09-20 15:09:23') AND (starts_at <= '2016-09-21 12:39:24' AND ends_at >= '2016-09-21 12:39:24') [0m
+  [4;35;1mroles_users Columns (2.3ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.0ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.3ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=3) [0m
+Completed in 274ms (View: 33, DB: 15) | 200 OK [http://localhost/professors]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ProfessorsController#new (for 127.0.0.1 at 2016-09-21 09:40:34) [GET]
+  [4;35;1mUser Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mUnidade Load (0.2ms)[0m   [0mSELECT * FROM `unidades` WHERE (id = 3 or id = 54) ORDER BY nome ASC[0m
+  [4;36;1mProfessor Load (1.5ms)[0m   [0;1mSELECT * FROM `professors` ORDER BY nome ASC[0m
+  [4;35;1mProfessor Load (1.6ms)[0m   [0mSELECT * FROM `professors` ORDER BY matricula ASC[0m
+  [4;36;1mTituloProfessor Load (0.2ms)[0m   [0;1mSELECT distinct(ano_letivo) as ano FROM `titulo_professors` ORDER BY ano_letivo DESC[0m
+  [4;35;1mTituloProfessor Load (0.1ms)[0m   [0mSELECT distinct(ano_letivo) as ano FROM `titulo_professors` WHERE (ano_letivo > 2014) ORDER BY ano_letivo DESC[0m
+  [4;36;1mProfessor Columns (1.9ms)[0m   [0;1mSHOW FIELDS FROM `professors`[0m
+Rendering template within layouts/application
+Rendering professors/new
+  [4;35;1mUnidade Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Rendered professors/_form (19.6ms)
+  [4;36;1mInformativo Load (0.5ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-09-20 15:09:23') AND (starts_at <= '2016-09-21 12:40:35' AND ends_at >= '2016-09-21 12:40:35') [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-09-20 15:09:23') AND (starts_at <= '2016-09-21 12:40:35' AND ends_at >= '2016-09-21 12:40:35') [0m
+  [4;36;1mroles_users Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.1ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.4ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=3) [0m
+Completed in 279ms (View: 36, DB: 9) | 200 OK [http://localhost/professors/new]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ProfessorsController#create (for 127.0.0.1 at 2016-09-21 09:41:17) [POST]
+  Parameters: {"authenticity_token"=>"Rg6t6Tptrz9bexaLU5ur0u2FEstmpJIn5OwvoT/csrc=", "professor"=>{"num"=>"", "CPF"=>"0", "sede_id"=>"3", "dt_ingresso"=>"30-09-2011", "dt_nasc"=>"30-09-1979", "matricula"=>"123", "email"=>"", "n_filhos"=>"0", "cidade"=>"", "endres"=>"", "nome"=>"asdasda", "obs"=>"", "telefone"=>"", "INEP"=>"0", "bairro"=>"", "complemento"=>"", "jornada_sem"=>"0", "funcao"=>"Prof. de Creche", "entrada_concurso"=>"Pedagogia / Normal Superior", "RD"=>"0", "RG"=>"0", "cel"=>"", "cep"=>""}, "commit"=>"Salvar"}
+  [4;36;1mUser Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id = 3 or id = 54) ORDER BY nome ASC[0m
+  [4;35;1mProfessor Load (1.4ms)[0m   [0mSELECT * FROM `professors` ORDER BY nome ASC[0m
+  [4;36;1mProfessor Load (1.6ms)[0m   [0;1mSELECT * FROM `professors` ORDER BY matricula ASC[0m
+  [4;35;1mTituloProfessor Load (0.2ms)[0m   [0mSELECT distinct(ano_letivo) as ano FROM `titulo_professors` ORDER BY ano_letivo DESC[0m
+  [4;36;1mTituloProfessor Load (0.0ms)[0m   [0;1mSELECT distinct(ano_letivo) as ano FROM `titulo_professors` WHERE (ano_letivo > 2014) ORDER BY ano_letivo DESC[0m
+  [4;35;1mProfessor Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `professors`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mProfessor Load (0.1ms)[0m   [0mSELECT `professors`.id FROM `professors` WHERE (`professors`.`matricula` = 123) LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mROLLBACK[0m
+Rendering template within layouts/application
+Rendering professors/new
+  [4;35;1mUnidade Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Rendered professors/_form (14.1ms)
+  [4;36;1mInformativo Load (0.3ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-09-20 15:09:23') AND (starts_at <= '2016-09-21 12:41:17' AND ends_at >= '2016-09-21 12:41:17') [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-09-20 15:09:23') AND (starts_at <= '2016-09-21 12:41:17' AND ends_at >= '2016-09-21 12:41:17') [0m
+  [4;36;1mroles_users Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `roles_users`[0m
+  [4;35;1mRole Load (0.0ms)[0m   [0mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;36;1mRole Columns (0.3ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mUnidade Load (0.1ms)[0m   [0mSELECT * FROM `unidades` WHERE (id=3) [0m
+Completed in 243ms (View: 32, DB: 8) | 200 OK [http://localhost/professors]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ProfessorsController#create (for 127.0.0.1 at 2016-09-21 09:43:14) [POST]
+  Parameters: {"authenticity_token"=>"Rg6t6Tptrz9bexaLU5ur0u2FEstmpJIn5OwvoT/csrc=", "professor"=>{"num"=>"", "CPF"=>"0", "sede_id"=>"3", "dt_ingresso"=>"05-09-2011", "dt_nasc"=>"04-09-1979", "matricula"=>"12312312121aaa", "email"=>"", "n_filhos"=>"0", "cidade"=>"", "endres"=>"", "nome"=>"asdasda", "obs"=>"", "telefone"=>"", "INEP"=>"0", "bairro"=>"", "complemento"=>"", "jornada_sem"=>"0", "funcao"=>"Prof. de Creche", "entrada_concurso"=>"Pedagogia / Normal Superior", "RD"=>"0", "RG"=>"0", "cel"=>"", "cep"=>""}, "commit"=>"Salvar"}
+  [4;36;1mUser Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id = 3 or id = 54) ORDER BY nome ASC[0m
+  [4;35;1mProfessor Load (1.4ms)[0m   [0mSELECT * FROM `professors` ORDER BY nome ASC[0m
+  [4;36;1mProfessor Load (1.4ms)[0m   [0;1mSELECT * FROM `professors` ORDER BY matricula ASC[0m
+  [4;35;1mTituloProfessor Load (0.2ms)[0m   [0mSELECT distinct(ano_letivo) as ano FROM `titulo_professors` ORDER BY ano_letivo DESC[0m
+  [4;36;1mTituloProfessor Load (0.0ms)[0m   [0;1mSELECT distinct(ano_letivo) as ano FROM `titulo_professors` WHERE (ano_letivo > 2014) ORDER BY ano_letivo DESC[0m
+  [4;35;1mProfessor Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `professors`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mProfessor Load (0.8ms)[0m   [0mSELECT `professors`.id FROM `professors` WHERE (`professors`.`matricula` = 12312312121) LIMIT 1[0m
+  [4;36;1mProfessor Create (0.5ms)[0m   [0;1mINSERT INTO `professors` (`CPF`, `funcao2`, `num`, `matricula`, `dt_ingresso`, `dt_nasc`, `sede_id`, `total_trabalhado`, `log_user`, `prioridade`, `n_filhos`, `endres`, `cidade`, `email`, `created_at`, `nome`, `motivo`, `dt_atual`, `obs`, `total_titulacao`, `sede_id_ant`, `updated_at`, `INEP`, `telefone`, `titulo_arrumado`, `bairro`, `desligado`, `complemento`, `jornada_sem`, `funcao`, `entrada_concurso`, `RG`, `RD`, `data_desligado`, `cel`, `cep`, `pontuacao_final`, `flag`) VALUES('0', NULL, NULL, 12312312121, '2011-09-05', '1979-09-04', 3, 0, NULL, 0, 0, '', '', '', '2016-09-21 12:43:14', 'ASDASDA', NULL, NULL, '', 0, NULL, '2016-09-21 12:43:14', 0, NULL, NULL, '', 0, '', 0, 'PROF. DE CRECHE', 'Pedagogia / Normal Superior', '0', 0, NULL, '', '', 0, 0)[0m
+  [4;35;1mSQL (38.8ms)[0m   [0mCOMMIT[0m
+Redirected to http://localhost:3000/professors/1329
+Completed in 357ms (DB: 46) | 302 Found [http://localhost/professors]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ProfessorsController#show (for 127.0.0.1 at 2016-09-21 09:43:14) [GET]
+  Parameters: {"id"=>"1329"}
+  [4;36;1mUser Columns (2.9ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mUnidade Load (0.1ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id = 3 or id = 54) ORDER BY nome ASC[0m
+  [4;35;1mProfessor Load (18.0ms)[0m   [0mSELECT * FROM `professors` ORDER BY nome ASC[0m
+  [4;36;1mProfessor Load (16.5ms)[0m   [0;1mSELECT * FROM `professors` ORDER BY matricula ASC[0m
+  [4;35;1mTituloProfessor Load (0.2ms)[0m   [0mSELECT distinct(ano_letivo) as ano FROM `titulo_professors` ORDER BY ano_letivo DESC[0m
+  [4;36;1mTituloProfessor Load (0.0ms)[0m   [0;1mSELECT distinct(ano_letivo) as ano FROM `titulo_professors` WHERE (ano_letivo > 2014) ORDER BY ano_letivo DESC[0m
+  [4;35;1mProfessor Columns (2.9ms)[0m   [0mSHOW FIELDS FROM `professors`[0m
+  [4;36;1mProfessor Load (0.3ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 1329) [0m
+Rendering template within layouts/application
+Rendering professors/show
+  [4;35;1mUnidade Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+  [4;36;1mUnidade Load (0.4ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (`unidades`.`id` = 3) [0m
+  [4;35;1mroles_users Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (1.6ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mInformativo Load (0.7ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-09-20 15:09:23') AND (starts_at <= '2016-09-21 12:43:15' AND ends_at >= '2016-09-21 12:43:15') [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-09-20 15:09:23') AND (starts_at <= '2016-09-21 12:43:15' AND ends_at >= '2016-09-21 12:43:15') [0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=3) [0m
+Completed in 507ms (View: 189, DB: 47) | 200 OK [http://localhost/professors/1329]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2016-09-21 10:10:39) [GET]
+  [4;35;1mUser Columns (2.2ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.9ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering home/index
+  [4;35;1mInformativo Load (0.7ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-09-20 15:09:23') AND (starts_at <= '2016-09-21 13:10:39' AND ends_at >= '2016-09-21 13:10:39') [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-09-20 15:09:23') AND (starts_at <= '2016-09-21 13:10:39' AND ends_at >= '2016-09-21 13:10:39') [0m
+  [4;35;1mroles_users Columns (0.5ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.0ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.3ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mUnidade Load (0.3ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=3) [0m
+  [4;35;1mUnidade Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 70ms (View: 28, DB: 6) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing TituloProfessorsController#new (for 127.0.0.1 at 2016-09-21 10:10:42) [GET]
+  [4;36;1mTitulacao Load (0.2ms)[0m   [0;1mSELECT * FROM `titulacaos` [0m
+  [4;35;1mTitulacao Load (0.0ms)[0m   [0mSELECT * FROM `titulacaos` WHERE (ano_letivo_titulacao > 2014 or ano_letivo_titulacao =0) [0m
+  [4;36;1mTituloProfessor Load (0.2ms)[0m   [0;1mSELECT distinct(ano_letivo) as ano FROM `titulo_professors` ORDER BY ano_letivo DESC[0m
+  [4;35;1mProfessor Load (16.0ms)[0m   [0mSELECT * FROM `professors` WHERE (desligado = 0) ORDER BY matricula ASC[0m
+  [4;36;1mProfessor Load (20.7ms)[0m   [0;1mSELECT * FROM `professors` WHERE (desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mUser Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mroles_users Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.0ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.3ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mProfessor Load (2.7ms)[0m   [0;1mSELECT * FROM `professors` WHERE (sede_id = 3 or sede_id = 54 and desligado = 0) ORDER BY nome[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mProfessor Load (2.8ms)[0m   [0;1mSELECT * FROM `professors` WHERE (sede_id = 3 or sede_id = 54) ORDER BY nome[0m
+  [4;35;1mTituloProfessor Columns (2.6ms)[0m   [0mSHOW FIELDS FROM `titulo_professors`[0m
+Rendering template within layouts/application
+Rendering titulo_professors/new
+  [4;36;1mProfessor Columns (1.8ms)[0m   [0;1mSHOW FIELDS FROM `professors`[0m
+  [4;35;1mTitulacao Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `titulacaos`[0m
+Rendered titulo_professors/_form (44.9ms)
+  [4;36;1mInformativo Load (0.7ms)[0m   [0;1mSELECT * FROM `informativos` WHERE (updated_at > '2016-09-20 15:09:23') AND (starts_at <= '2016-09-21 13:10:42' AND ends_at >= '2016-09-21 13:10:42') [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `informativos` WHERE (updated_at > '2016-09-20 15:09:23') AND (starts_at <= '2016-09-21 13:10:42' AND ends_at >= '2016-09-21 13:10:42') [0m
+  [4;36;1mUnidade Load (0.2ms)[0m   [0;1mSELECT * FROM `unidades` WHERE (id=3) [0m
+  [4;35;1mUnidade Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `unidades`[0m
+Completed in 459ms (View: 69, DB: 53) | 200 OK [http://localhost/titulo_professors/new]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing TituloProfessorsController#sel_prof (for 127.0.0.1 at 2016-09-21 10:10:45) [POST]
+  Parameters: {"authenticity_token"=>"Rg6t6Tptrz9bexaLU5ur0u2FEstmpJIn5OwvoT/csrc=", "titulo_professor_professor_id"=>"934"}
+  [4;36;1mTitulacao Load (0.2ms)[0m   [0;1mSELECT * FROM `titulacaos` [0m
+  [4;35;1mTitulacao Load (0.0ms)[0m   [0mSELECT * FROM `titulacaos` WHERE (ano_letivo_titulacao > 2014 or ano_letivo_titulacao =0) [0m
+  [4;36;1mTituloProfessor Load (0.2ms)[0m   [0;1mSELECT distinct(ano_letivo) as ano FROM `titulo_professors` ORDER BY ano_letivo DESC[0m
+  [4;35;1mProfessor Load (1.4ms)[0m   [0mSELECT * FROM `professors` WHERE (desligado = 0) ORDER BY matricula ASC[0m
+  [4;36;1mProfessor Load (1.4ms)[0m   [0;1mSELECT * FROM `professors` WHERE (desligado = 0) ORDER BY nome ASC[0m
+  [4;35;1mUser Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mroles_users Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mRole Load (0.0ms)[0m   [0;1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 2 ) [0m
+  [4;35;1mRole Columns (0.3ms)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mProfessor Load (0.3ms)[0m   [0;1mSELECT * FROM `professors` WHERE (sede_id = 3 or sede_id = 54 and desligado = 0) ORDER BY nome[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (desligado = 0) ORDER BY nome ASC[0m
+  [4;36;1mProfessor Load (0.4ms)[0m   [0;1mSELECT * FROM `professors` WHERE (sede_id = 3 or sede_id = 54) ORDER BY nome[0m
+  [4;35;1mProfessor Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `professors`[0m
+  [4;36;1mProfessor Load (0.3ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;36;1mProfessor Load (0.4ms)[0m   [0;1mSELECT * FROM `professors` WHERE (id = '934' and desligado = 0) [0m
+  [4;35;1mTituloProfessor Load (12.5ms)[0m   [0mSELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=934 and t.tipo = 'PERMANENTE'[0m
+  [4;36;1mTituloProfessor Load (9.6ms)[0m   [0;1mSELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=934 and t.tipo = 'ANUAL'[0m
+  [4;35;1mTituloProfessor Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `titulo_professors`[0m
+  [4;36;1mTitulacao Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `titulacaos`[0m
+  [4;35;1mTitulacao Load (0.5ms)[0m   [0mSELECT * FROM `titulacaos` WHERE (`titulacaos`.`id` = 1) LIMIT 1[0m
+  [4;36;1mTitulacao Load (0.4ms)[0m   [0;1mSELECT * FROM `titulacaos` WHERE (`titulacaos`.`id` = 5) LIMIT 1[0m
+  [4;35;1mTitulacao Load (0.2ms)[0m   [0mSELECT * FROM `titulacaos` WHERE (`titulacaos`.`id` = 2) LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `titulacaos` WHERE (`titulacaos`.`id` = 2) LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `titulacaos` WHERE (`titulacaos`.`id` = 5) LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `titulacaos` WHERE (`titulacaos`.`id` = 2) LIMIT 1[0m
+  [4;35;1mTitulacao Load (0.3ms)[0m   [0mSELECT * FROM `titulacaos` WHERE (`titulacaos`.`id` = 3) LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `titulacaos` WHERE (`titulacaos`.`id` = 5) LIMIT 1[0m
+  [4;35;1mTitulacao Load (0.3ms)[0m   [0mSELECT * FROM `titulacaos` WHERE (`titulacaos`.`id` = 9) LIMIT 1[0m
+  [4;36;1mTituloProfessor Load (8.5ms)[0m   [0;1mSELECT * FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo= 2016) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;35;1mSQL (4.4ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;36;1mSQL (3.9ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `titulacaos` WHERE (`titulacaos`.`id` = 9) LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo= 2016) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `titulacaos` WHERE (`titulacaos`.`id` = 9) LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo= 2016) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mTitulacao Load (0.3ms)[0m   [0mSELECT * FROM `titulacaos` WHERE (`titulacaos`.`id` = 10) LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo= 2016) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `titulacaos` WHERE (`titulacaos`.`id` = 10) LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo= 2016) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mTitulacao Load (0.3ms)[0m   [0mSELECT * FROM `titulacaos` WHERE (`titulacaos`.`id` = 11) LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo= 2016) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mTitulacao Load (0.3ms)[0m   [0mSELECT * FROM `titulacaos` WHERE (`titulacaos`.`id` = 12) LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo= 2016) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `titulacaos` WHERE (`titulacaos`.`id` = 10) LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo= 2016) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `professors` WHERE (`professors`.`id` = 934) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 6 and 12 and ano_letivo = 2016) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT sum(`titulo_professors`.pontuacao_titulo) AS sum_pontuacao_titulo FROM `titulo_professors` WHERE (professor_id = 934 and titulo_id between 1 and 5) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCOMMIT[0m
+Rendered titulo_professors/_mostrar_pont_titulos (473.9ms)
+Completed in 883ms (View: 450, DB: 61) | 200 OK [http://localhost/titulo_professors/sel_prof]

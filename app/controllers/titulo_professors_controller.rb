@@ -363,7 +363,12 @@ end
 
   def load_professors1
     @professors1 = Professor.find(:all, :conditions => ["desligado = 0"], :order => "nome ASC")
-    @professors11 =  Professor.all(:conditions => ['sede_id = ' + current_user.unidade_id.to_s + ' or sede_id = 54'], :order => 'nome')
+
+    if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao'))
+       @professors11 =  Professor.all(:conditions => ['desligado = 0'], :order => 'nome')
+    else  
+      @professors11 =  Professor.all(:conditions => ['sede_id = ' + current_user.unidade_id.to_s + ' or sede_id = 54 and desligado = 0'], :order => 'nome')
+    end  
   end
 
   def load_professors_consulta
