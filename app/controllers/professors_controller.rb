@@ -9,10 +9,10 @@ before_filter :load_consulta_ano
 
 def impressao
 
-        @temposervico = TempoServico.find(:all,:conditions =>['professor_id = ? and ano_letivo = ?', $TEACHER_TEACHER, $ANO_ANO])
-        @professor= Professor.find(:all,:conditions => ["id = ? and desligado = 0",$TEACHER_TEACHER])
-         @tp = TituloProfessor.all(:joins => "inner join titulacaos on titulo_professors.titulo_id = titulacaos.id", :conditions =>["titulo_professors.professor_id =? and ano_letivo between ? and ? and titulacaos.tipo = 'PERMANENTE'", $TEACHER_TEACHER, 2009, $ANO_ANO] )
-         @tp1 = TituloProfessor.all(:joins => "inner join titulacaos on titulo_professors.titulo_id = titulacaos.id", :conditions =>["titulo_professors.professor_id =? and ano_letivo = ? and titulacaos.tipo = 'ANUAL'", $TEACHER_TEACHER, $ANO_ANO] )
+        @temposervico = TempoServico.find(:all,:conditions =>['professor_id = ? and ano_letivo = ?', session[:teacher1], session[:ano]])
+        @professor= Professor.find(:all,:conditions => ["id = ? and desligado = 0",session[:teacher1]])
+         @tp = TituloProfessor.all(:joins => "inner join titulacaos on titulo_professors.titulo_id = titulacaos.id", :conditions =>["titulo_professors.professor_id =? and ano_letivo between ? and ? and titulacaos.tipo = 'PERMANENTE'", session[:teacher1], 2009, session[:ano]] )
+         @tp1 = TituloProfessor.all(:joins => "inner join titulacaos on titulo_professors.titulo_id = titulacaos.id", :conditions =>["titulo_professors.professor_id =? and ano_letivo = ? and titulacaos.tipo = 'ANUAL'", session[:teacher1], session[:ano]] )
       
       render :layout => "impressao"
 end
