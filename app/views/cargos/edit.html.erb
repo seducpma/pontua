@@ -1,0 +1,16 @@
+<h1>Editing cargo</h1>
+
+<% form_for(@cargo) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :nome %><br />
+    <%= f.text_field :nome %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @cargo %> |
+<%= link_to 'Back', cargos_path %>

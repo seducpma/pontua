@@ -18,7 +18,7 @@ def impressao
 end
 
   def load_unidades
-
+     @cargos = Cargo.find(:all, :order=>'id ASC')
     if current_user.unidade_id == 53 or current_user.unidade_id == 52 then
       @unidades = Unidade.find(:all, :order => "nome")
     else
@@ -220,6 +220,7 @@ def load_consulta_ano
   end
 
 def consulta_ficha
+
 @tp = TituloProfessor.all(:joins => "inner join titulacaos on titulo_professors.titulo_id = titulacaos.id", :conditions =>["titulo_professors.professor_id =? and ano_letivo = ? and titulacaos.tipo = 'ANUAL'", $teacher,session[:ano]] )
 end
 

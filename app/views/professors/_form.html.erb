@@ -44,7 +44,7 @@
               <b>Sede: </b><%= f.collection_select :sede_id, @unidades, :id, :nome, :include_blank => ' -- Selecione -- ' %></td>
         </tr>
         <tr>
-           <td><b>Função/Cargo: </b><%= f.select :funcao, (CARGO).sort, :include_blank => '-- Selecionar --' %></td>
+           <td><b>Função/Cargo: </b><%= f.collection_select :funcao, @cargos, :nome, :nome, :include_blank => '-- Selecionar --' %></td>
            <td><b>Jornada Semanal: </b><%= f.text_field :jornada_sem, :size =>6 %>&nbsp&nbsp&nbsp&nbsp
                <b>Observações:</b><%= f.text_field :obs, :size => 29 %></td>
          </tr>

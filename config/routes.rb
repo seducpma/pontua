@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :cargos
+
   map.resources :titulacaos
 
   map.resources :titulo_professors, :collection => {:impressao => :get, :consulta_titulo => :get}
