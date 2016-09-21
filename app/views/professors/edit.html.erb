@@ -53,6 +53,13 @@
                         <td><b>Formação: </b><%= @professor.entrada_concurso %></td>
                         <td><font color="red"> (LANÇAR) </FONT><b>Formação: </b><%= f.select :entrada_concurso, options_for_select(Professor::Curso), :include_blank => '-- Selecionar --'%></td>
                       </tr>
+                   <%else%>
+                      <tr>
+                        <td ><b>Função/Cargo:</b> <%= @professor.funcao  %>&nbsp&nbsp&nbsp&nbsp</td>
+                        <td><b>Formação: </b><%= @professor.entrada_concurso %></td>
+
+                      </tr>
+
                   <%end%>
 
                   <tr>
