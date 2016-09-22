@@ -262,7 +262,7 @@ def consulta_titulacao_professor
     $id_titulo = params[:titulo_professor_titulo_id]
     session[:valor] = Titulacao.find_by_id($id_titulo).valor
 
-    if $id_titulo.to_i == 8 or $id_titulo.to_i == 6 or $id_titulo.to_i == 9 or $id_titulo.to_i == 10 or $id_titulo.to_i == 12
+    if $id_titulo.to_i == 8 or $id_titulo.to_i == 6 or $id_titulo.to_i == 9 or $id_titulo.to_i == 10 
       render :update do |page|
         page.replace_html 'a_distancia', :text => ""
         page.replace_html 'a_distancia1', :text => ""
@@ -299,6 +299,15 @@ def consulta_titulacao_professor
           page.replace_html "qtde", :text => "1"
           page.replace_html 'valor', :text => 'Pontuação: ' + (session[:valor]).to_s
           page.replace_html 'lanca', :text => " "
+        end
+      end
+      if $id_titulo.to_i == 12
+        render :update do |page|
+          page.replace_html 'a_distancia', :text => ""
+          page.replace_html 'a_distancia1', :text => ""
+          page.replace_html "qtde", :text => "1"
+             page.replace_html 'valor', :text => 'Pontuação: ' + session[:valor].to_s + ' pontos até 8 horas'
+          page.replace_html 'lanca', :text => " Quantidade de horas superior a 8 horas é computado 1 ponto por hora "
         end
       end
     end

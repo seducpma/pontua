@@ -166,11 +166,19 @@
       <td  align="center">
        <font size="2"><%= tp1.dt_titulo.year %> </font>
       </td>
-      <td  align="center">
-        <font size="2"><%= tp1.quantidade %></font>
+       <td  align="center">
+         <%if  (tp1.titulo_id == 12) and (tp1.quantidade <= 8) %>
+           <font size="2"> 1</font>
+         <%else%>
+              <font size="2"><%= tp1.quantidade %></font>
+          <%end%>
       </td>
-      <td  align="center">
-        <font size="2"><%= tp1.valor %></font>
+      <td align="center">
+        <%if  (tp1.titulo_id == 12) and (tp1.quantidade > 8) %>
+         <font size="2"> 1</font>
+        <%else%>
+            <font size="2"><%= tp1.valor %></font>
+        <%end%>
       </td>
       <td  align="center">
         <font size="2"><%= tp1.pontuacao_titulo %></font>
