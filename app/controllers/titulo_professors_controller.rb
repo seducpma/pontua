@@ -402,9 +402,9 @@ end
     @professors1 = Professor.find(:all, :conditions => ["desligado = 0"], :order => "nome ASC")
 
     if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('supervisao'))
-       @professors11 =  Professor.all(:conditions => ['desligado = 0'], :order => 'nome')
+       @professors11 =  Professor.all(:conditions => ['desligado = 0'], :order => 'matricula ASC')
     else  
-      @professors11 =  Professor.all(:conditions => ['sede_id = ' + current_user.unidade_id.to_s + ' or sede_id = 54 and desligado = 0'], :order => 'nome')
+      @professors11 =  Professor.all(:conditions => ['sede_id = ' + current_user.unidade_id.to_s + ' or sede_id = 54 and desligado = 0'], :order => 'matricula ASC')
     end  
   end
 

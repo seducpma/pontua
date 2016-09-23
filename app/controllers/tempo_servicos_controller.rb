@@ -176,7 +176,7 @@ end
   end
 
   def load_professors1
-    @professors1 = Professor.find(:all, :conditions => ["desligado = 0"], :order => "nome ASC")
+    @professors1 = Professor.find(:all, :conditions => ["desligado = 0"], :order => "matricula ASC")
   end
 
   def load_consulta_ano
