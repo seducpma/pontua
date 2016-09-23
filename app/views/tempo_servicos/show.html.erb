@@ -119,8 +119,8 @@
                         <td align="center"><%= h @temposervico.lic_saude1%> </td>
                         <td align="center"><%= h @temposervico.afastamento1%> </td>
                         <td align="center"><%= h @temposervico.outras_aus1%> </td>
-                        <td align="center"><%= h @temposervico.dias_trab1%> </td>
                         <td align="center"><%= h @temposervico.dias_efetivos1%> </td>
+                        <td align="center"><%= h @temposervico.dias_trab1%> </td>
                         <td align="center"><%= h @temposervico.dias_rede1%> </td>
                         <% if (Time.current.strftime("%Y").to_i)< (Time.now.year) %>
                              <td align="center"><%= h @temposervico.dias_unidade1%> </td>
@@ -140,8 +140,8 @@
                         <td align="center"><%= h @temposervico.lic_saude2%> </td>
                         <td align="center"><%= h @temposervico.afastamento2%> </td>
                         <td align="center"><%= h @temposervico.outras_aus2%> </td>
-                        <td align="center"><%= h @temposervico.dias_trab2%> </td>
                         <td align="center"><%= h @temposervico.dias_efetivos2%> </td>
+                        <td align="center"><%= h @temposervico.dias_trab2%> </td>
                         <td align="center"><%= h @temposervico.dias_rede2%> </td>
                         <% if (Time.current.strftime("%Y").to_i)< (Time.now.year) %>
                             <td align="center"><%= h @temposervico.dias_unidade2%> </td>
@@ -149,8 +149,8 @@
                     </tr>
                     <tr>
                        <td colspan="9" align="right"><b>SUB TOTAL (em dias)</b>&nbsp&nbsp&nbsp</td>
-                        <td align="center"><%= subtotal1%> </td>
                         <td align="center"><%= subtotal2%> </td>
+                       <td align="center"><%= subtotal1%> </td>
                         <td align="center"><%= subtotal3%> </td>
                         <% if (Time.current.strftime("%Y").to_i)< (Time.now.year) %>
                              <td align="center"><%= subtotal4%> </td>
@@ -181,7 +181,7 @@
                       <td align="center" width ="8%"><b>Total</b></td>
                      </tr>
                     <tr>
-                      <td align="left"><b>Total de dias efetivos</b></td>
+                      <td align="left"><b>Total dias de trabalho</b></td>
                        <td align="center"><%=  h @temposervico.dias_efetivos1%></td>
                        <td align="center"><%=  h @temposervico.dias_efetivos2%></td>
                           <%tott2 = @temposervico.dias_efetivos1 + @temposervico.dias_efetivos2%>
@@ -192,7 +192,7 @@
                       <td align="center"> <%= h @temposervico.total_efetivo %></td>
                     </tr>
                     <tr>
-                      <td align="left"><b>Total dias de trabalho</b></td>
+                      <td align="left"><b>Total de dias efetivos</b></td>
                        <td align="center"><%= h @temposervico.dias_trab1%></td>
                        <td align="center"><%= h @temposervico.dias_trab2%></td>
                            <%tott1 = (@temposervico.dias_trab1 + @temposervico.dias_trab2)%>
@@ -246,7 +246,7 @@
 
     <table>
          <tr>
-            <td width="4%"align="left"><%= button_to 'Consultar' ,consulta_professor_nome_path, :title => "Consultar" %></td>
+            <td width="4%"align="left"><%= button_to 'Consultar' ,consulta_tempo_path, :title => "Consultar" %></td>
             <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC')%>
                 <td width="6%"align="left" ><%= button_to 'Editar', {:action => "edit", :id =>@temposervico}, :method => "get", :title => "Editar"%></td>
               <%else%>

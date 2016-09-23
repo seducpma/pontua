@@ -27,7 +27,7 @@
                    <td align="left">  <%= professor.dt_nasc.strftime("%d/%m/%Y")%></td>
                    <td align="left"width="5%"><b>Nº Filhos:</b></td>
                    <td colspan="5"align="left">  <%= professor.n_filhos %></td>
-                 <tr/>
+                 </tr>
                  <tr>
                    <td align="left"><b>RG:</b></td>
                    <td align="left">  <%= professor.RG %></td>
@@ -37,7 +37,7 @@
                    <td align="left">  <%= professor.INEP %></td>
                    <td align="left"width="5%"><b>RD:</b></td>
                    <td align="left">  <%= professor.RD %></td>
-                 <tr/>
+                 </tr>
                  <tr>
                    <td align="left"><b>Ingresso:</b></td>
                    <td align="left">  <%= professor.dt_ingresso.strftime("%d/%m/%Y")%></td>
@@ -76,7 +76,7 @@
                  <%  subtotal1= 0%>
                   <%  subtotal2= 0%>
                   <%  subtotal3= 0%>
-                  <%  if (Time.current.strftime("%Y").to_i)< (Time.now.year).%>
+                  <%  if (Time.current.strftime("%Y").to_i)< (Time.now.year)%>
                        <%  subtotal4= 0%>
                   <% end %>
 

@@ -112,8 +112,8 @@
                         <td align="center"><%= temposervico.f_atestado1%> </td>
                         <td align="center"><%= temposervico.afastamento1%> </td>
                         <td align="center"><%= temposervico.outras_aus1%> </td>
-                        <td align="center"><%= temposervico.dias_trab1%> </td>
                         <td align="center"><%= temposervico.dias_efetivos1%> </td>
+                        <td align="center"><%= temposervico.dias_trab1%> </td>
                         <td align="center"><%= temposervico.dias_rede1%> </td>
                         <td align="center"><%= temposervico.dias_unidade1%> </td>
                     </tr>
@@ -129,15 +129,16 @@
                         <td align="center"><%= temposervico.f_atestado2%> </td>
                         <td align="center"><%= temposervico.afastamento2%> </td>
                         <td align="center"><%= temposervico.outras_aus2%> </td>
-                        <td align="center"><%= temposervico.dias_trab2%> </td>
                         <td align="center"><%= temposervico.dias_efetivos2%> </td>
+                        <td align="center"><%= temposervico.dias_trab2%> </td>
                         <td align="center"><%= temposervico.dias_rede2%> </td>
                         <td align="center"><%= temposervico.dias_unidade2%> </td>
                     </tr>
                     <tr>
                        <td colspan="10" align="right"><b>SUB TOTAL (em dias)</b>&nbsp&nbsp&nbsp</td>
-                        <td align="center"><%= subtotal1%> </td>
+                        
                         <td align="center"><%= subtotal2%> </td>
+                        <td align="center"><%= subtotal1%> </td>
                         <td align="center"><%= subtotal3%> </td>
                         <td align="center"><%= subtotal4%> </td>
                     </tr>
@@ -162,7 +163,7 @@
                       <td align="center" width ="8%"><b>Total</b></td>
                      </tr>
                     <tr>
-                      <td align="left"><b>Total de dias efetivos</b></td>
+                      <td align="left"><b>Total dias de trabalho</b></td>
                        <td align="center"><%= temposervico.dias_efetivos1%></td>
                        <td align="center"><%= temposervico.dias_efetivos2%></td>
                           <%tott2 = temposervico.dias_efetivos1 + temposervico.dias_efetivos2%>
@@ -173,7 +174,7 @@
                       <td align="center"> <%= temposervico.total_efetivo %></td>
                     </tr>
                     <tr>
-                      <td align="left"><b>Total dias de trabalho</b></td>
+                      <td align="left"><b>Total de dias efetivos</b></td>
                        <td align="center"><%= temposervico.dias_trab1%></td>
                        <td align="center"><%= temposervico.dias_trab2%></td>
                            <%tott1 = (temposervico.dias_trab1 + temposervico.dias_trab2)%>

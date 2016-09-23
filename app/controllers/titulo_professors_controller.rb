@@ -39,6 +39,34 @@ def consulta_titulacao_professor
   end
 
 
+def sel_prof
+  t=0
+        
+       
+        #$professor_id = Professor.find_by_matricula($teacher).id
+       
+        
+        professor = Professor.find(params[:titulo_professor_professor_id]).nome
+        @professor = Professor.find(:all,:conditions => ['id = ? and desligado = 0 ', params[:titulo_professor_professor_id]])
+        @temposervico = TempoServico.find(:all,:conditions =>['professor_id = ?  and ano_letivo = ?', params[:titulo_professor_professor_id], Time.current.strftime("%Y").to_i])
+         if !@temposervico.empty?
+           $existe = 0
+         else
+          $existe = 1
+         end
+         t1=0
+         render :update do |page|
+          page.replace_html 'nomeprof', :text => '- ' + (professor)
+          if $existe == 0
+            page.replace_html 'cadastrar', :text => ' JÁ CADASTRADO'
+            page.replace_html 'cadastrar1', :text => ''
+            page.replace_html 'cadastrar2', :text=> 'ACESSAR NOVAMENTE O MENU'
+          else
+
+            page.replace_html 'new'
+         end
+        end
+      end
 
 
 

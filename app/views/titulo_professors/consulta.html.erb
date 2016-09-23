@@ -7,11 +7,16 @@
     <div class="tabs">
     <% form_remote_tag :url => consulta_titulo_professor_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
       <fieldset>
-       <legend><font size=4>Professor</font></legend>
-       <table width="100%" align="center" bgcolor="#DCDCDC" >
+       <legend><font size=4>Consulta</font></legend>
+       <table width="100%" align="center" bgcolor="#DCDCDC"  >
           <tr>
-            <td colspan="2"align="left"><font size="2"> <b class="label_busca3">Professor:</b></font>
-               <%= collection_select  :consulta, :professor_id, @professors11, :id, :nome, :include_blank => ' -- Selecionar -- ',:class=> "txt_busca2"  %>
+            <td width ="33%"align="left"><font size="2"> <b class="label_busca3"> Professor Matrícula :</b></font>
+               <%= collection_select  :consulta, :professor_id, @professors11, :id, :matricula, :include_blank => ' -- Selecionar -- ',:class=> "txt_busca2"  %>
+                  <%= observe_field 'consulta_professor_id',
+                     :with => :titulo_professor_professor_id,
+                      :url => { :action => 'sel_prof' } %> </td>
+            <td> <b><div id="nomeprof"></div> </b> </td>
+            <td>
                <font size="2"><b class="label_busca3">Ano Letivo:</b></font>
                <%= select_tag :ano_letivo, options_for_select(@ano.collect { |ff| [ff.ano, ff.ano] }.insert(0, '--Selecionar--')) %>
                <%= submit_tag "Visualizar", :class => "btn_filtrar" %>
