@@ -160,8 +160,8 @@
                         <th align="center"><%= temposervico.lic_saude1%> </th>
                         <th align="center"><%= temposervico.afastamento1%> </th>
                         <th align="center"><%= temposervico.outras_aus1%> </th>
-                        <th align="center"><%= temposervico.dias_trab1%> </th>
                         <th align="center"><%= temposervico.dias_efetivos1%> </th>
+                        <th align="center"><%= temposervico.dias_trab1%></th>
                         <th align="center"><%= temposervico.dias_rede1%> </th>
                         <%  if (Time.current.strftime("%Y").to_i)< (Time.now.year) %>
                               <th align="center"><%= temposervico.dias_unidade1%> </th>
@@ -216,7 +216,7 @@
                        <th align="center" width ="20%" colspan="4"><b>Total</b></th>
                      </tr>
                     <tr style="font-size:9px" >
-                      <th align="left"><b>Total de dias efetivos</b></th>
+                      <th align="left"><b>Total dias de trabalho</b></th>
                        <th align="center"><%= temposervico.dias_efetivos1%></th>
                        <th align="center"><%= temposervico.dias_efetivos2%></th>
                           <%tott2 = temposervico.dias_efetivos1 + temposervico.dias_efetivos2%>
@@ -227,7 +227,7 @@
                        <th align="center"> <%= temposervico.total_efetivo %></th>
                     </tr>
                     <tr style="font-size:9px" >
-                      <th align="left"><b>Total dias de trabalho</b></th>
+                      <th align="left"><b>Total de dias efetivos</b></th>
                        <th align="center"><%= temposervico.dias_trab1%></th>
                        <th align="center"><%= temposervico.dias_trab2%></th>
                            <%tott1 = (temposervico.dias_trab1 + temposervico.dias_trab2)%>
