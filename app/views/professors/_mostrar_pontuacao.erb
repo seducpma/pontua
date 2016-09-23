@@ -178,8 +178,8 @@
                         <td align="center"><%= temposervico.lic_saude2%> </td>
                         <td align="center"><%= temposervico.afastamento2%> </td>
                         <td align="center"><%= temposervico.outras_aus2%> </td>
-                        <td align="center"><%= temposervico.dias_trab2%> </td>
                         <td align="center"><%= temposervico.dias_efetivos2%> </td>
+                        <td align="center"><%= temposervico.dias_trab2%> </td>
                         <td align="center"><%= temposervico.dias_rede2%> </td>
                         <%  if (Time.current.strftime("%Y").to_i)< (Time.now.year) %>
                            <td align="center"><%= temposervico.dias_unidade2%> </td>
@@ -188,8 +188,8 @@
                     <tr>
                        <td colspan="9" align="right"><b>SUB TOTAL (em dias)</b>&nbsp&nbsp&nbsp</td>
                         <td align="center"><%= subtotal1%> </td>
-                        <td align="center"><%= subtotal2%> </td>
                         <td align="center"><%= subtotal3%> </td>
+                        <td align="center"><%= subtotal2%> </td>
                         <%  if (Time.current.strftime("%Y").to_i)< (Time.now.year) %>
                            <td align="center"><%= subtotal4%> </td>
                         <%end%>
