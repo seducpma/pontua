@@ -428,9 +428,9 @@ def lista_professor
 
   def professor_unidade
     if current_user.unidade_id == 53 or current_user.unidade_id == 52 then
-      @professor_sede = Professor.all(:order => 'nome')
+      @professor_sede = Professor.all(:conditions => ['desligado = '], :order => 'nome')
     else
-      @professor_sede = Professor.all(:conditions => ['sede_id = ' + current_user.unidade_id.to_s + ' or sede_id = 54'], :order => 'nome')
+      @professor_sede = Professor.all(:conditions => ['(sede_id = ' + current_user.unidade_id.to_s + ' or sede_id = 54) and desligado = 0'], :order => 'nome')
     end
   end
 
