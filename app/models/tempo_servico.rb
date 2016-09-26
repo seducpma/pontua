@@ -18,8 +18,8 @@ class TempoServico < ActiveRecord::Base
   
     somatoria1 = self.f_abonada1 + self.f_atestado1 + self.f_justif1 + self.f_injustif1 + self.lic_saude1 + self.afastamento1 + self.outras_aus1
     somatoria2 = self.f_abonada2 + self.f_atestado2 + self.f_justif2 + self.f_injustif2 + self.lic_saude2 + self.afastamento2 + self.outras_aus2
-
-    if somatoria1 > 15
+    somatoriaTotal = somatoria1+somatoria2
+    if somatoriaTotal > 15
       self.dias_trab1 = (self.dias1 - (self.f_abonada1 + self.f_atestado1 + self.f_justif1 + self.f_injustif1 + self.lic_saude1 + self.afastamento1 + self.outras_aus1))
       self.dias_efetivos1 = (self.dias1 - (self.f_abonada1 + self.f_atestado1 + self.f_justif1 + self.f_injustif1 + self.lic_saude1 + self.afastamento1 + self.outras_aus1))
     else
@@ -27,7 +27,7 @@ class TempoServico < ActiveRecord::Base
       self.dias_efetivos1 = (self.dias1 - (self.f_abonada1 + self.f_atestado1 + self.f_justif1 + self.f_injustif1 + self.lic_saude1 + self.afastamento1 + self.outras_aus1))
     end
      
-    if somatoria2 > 15
+    if somatoriaTotal > 15
       self.dias_trab2 = (self.dias2 - (self.f_abonada2 + self.f_atestado2 + self.f_justif2 + self.f_injustif2 + self.lic_saude2 + self.afastamento2 + self.outras_aus2))
       self.dias_efetivos2 = (self.dias2 - (self.f_abonada2 + self.f_atestado2 + self.f_justif2 + self.f_injustif2 + self.lic_saude2 + self.afastamento2 + self.outras_aus2))
     else

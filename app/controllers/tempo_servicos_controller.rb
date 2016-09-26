@@ -4,9 +4,8 @@ class TempoServicosController < ApplicationController
     before_filter :load_consulta_ano
 
  def impressao
-        @professor= Professor.find(:all,:conditions => ["id = ?  and desligado = 0",$teacher])
-        @temposervico = TempoServico.find(:all,:conditions =>['professor_id = ? and ano_letivo = ?', $teacher, $ano])
-
+        @professor= Professor.find(:all,:conditions => ["id = ?  and desligado = 0",session[:teacher]])
+        @temposervico = TempoServico.find(:all,:conditions =>['professor_id = ? and ano_letivo = ?', session[:teacher], session[:ano_letivo]])
    render :layout => "impressao"
 end
 
@@ -109,23 +108,27 @@ end
   end
 
  def sel_prof
-        $existe = 1
+        existe = 1
       $teacher = params[:titulo_professor_professor_id]
+      session[:teacher]= params[:titulo_professor_professor_id]
         #$professor_id = Professor.find_by_matricula($teacher).id
         $professor_id = $teacher
+        session[:professor_id] = session[:teacher]
         $id_professor = $professor_id
-        $professor = Professor.find($teacher).nome
-        @professor = Professor.find(:all,:conditions => ['id = ? and desligado = 0 ', $teacher])
-        @temposervico = TempoServico.find(:all,:conditions =>['professor_id = ?  and ano_letivo = ?', $teacher, Time.current.strftime("%Y").to_i])
+        session[:id_professor]= session[:professor_id]
+        session[:professor] = Professor.find(session[:teacher]).nome
+        $professor = Professor.find(session[:teacher]).nome
+        @professor = Professor.find(:all,:conditions => ['id = ? and desligado = 0 ', session[:teacher]])
+        @temposervico = TempoServico.find(:all,:conditions =>['professor_id = ?  and ano_letivo = ?', session[:teacher], Time.current.strftime("%Y").to_i])
          if !@temposervico.empty?
-           $existe = 0
+           existe = 0
          else
-          $existe = 1
+          existe = 1
          end
          t1=0
          render :update do |page|
-          page.replace_html 'nomeprof', :text => '- ' + ($professor)
-          if $existe == 0
+          page.replace_html 'nomeprof', :text => '- ' + (session[:professor])
+          if existe == 0
             page.replace_html 'cadastrar', :text => ' JÁ CADASTRADO'
             page.replace_html 'cadastrar1', :text => ''
             page.replace_html 'cadastrar2', :text=> 'ACESSAR NOVAMENTE O MENU'
@@ -151,9 +154,9 @@ def consulta_tempo_servico
       $teacher_ts = params[:consulta][:professor_id]
       #$teache_anterior =  session[:teacher]
        $ano =(Time.now.year)
-       
+       session[:ano_letivo]= params[:ano_letivo]
        @professor= Professor.find(:all,:conditions => ["id = ? and desligado = 0",teacher])
-       @temposervico = TempoServico.find(:all,:conditions =>['professor_id = ? and ano_letivo = ?', teacher, params[:ano_letivo]])
+       @temposervico = TempoServico.find(:all,:conditions =>['professor_id = ? and ano_letivo = ?', teacher, session[:ano_letivo]])
         render :update do |page|
           page.replace_html 'titulos', :partial => 'mostrar_pontuacao_tempo'
 
