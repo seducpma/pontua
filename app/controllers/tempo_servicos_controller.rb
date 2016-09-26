@@ -105,11 +105,10 @@ end
         @professor = Professor.find(:all,:conditions => ['id = ? and desligado = 0 ', session[:teacher]])
         @temposervico = TempoServico.find(:all,:conditions =>['professor_id = ?  and ano_letivo = ?', session[:teacher], Time.current.strftime("%Y").to_i])
          if !@temposervico.empty?
-           existe = 0
+#           existe = 0
          else
-          existe = 1
+#         existe = 1
          end
-         t1=0
          render :update do |page|
           page.replace_html 'nomeprof', :text => '- ' + (session[:professor])
           if existe == 0
