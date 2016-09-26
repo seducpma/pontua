@@ -65,22 +65,6 @@ end
     end
   end
 
-#       if @temposervico.save
-#          flash[:notice] = 'CADASTRADO COM SUCESSO.'
-#         render :update do |page|#
-
-#         page.replace_html 'titulos', :partial => 'mostra_subtotal'
-#       end
-#     else
-#       respond_to do |format|
-#       format.html { render :action => "new" }
-#       format.xml  { render :xml => @temposervico.errors, :status => :unprocessable_entity }
-#        end
-#     end
-
-
-  # PUT /obreiros/1
-  # PUT /obreiros/1.xml
   def update
     @temposervico = TempoServico.find(params[:id])
     respond_to do |format|
