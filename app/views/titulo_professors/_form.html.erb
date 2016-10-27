@@ -11,13 +11,13 @@
                      <table>
                         <tr>
                           <td align="left" width="4%"><b><font size="2" color ="red"><b>*</font><%= f.label :professor_id, 'Professor: ' %></b></td>
-                          <td width="12%" >
-                              <%= f.collection_select :professor_id, @professor_sede, :id, :nome, :include_blank => ' -- Selecione -- ' %>
+                          <td width="5%" >
+                              <%= f.collection_select :professor_id, @professor_sede, :id, :matricula, :include_blank => ' -- Selecione -- ' %>
                                 <%= observe_field 'titulo_professor_professor_id',
                                   :with => :titulo_professor_professor_id,
                                   :url => { :action => 'sel_prof' } %>
                             </td>
-
+                            <td width ="40%"><b><div id="nomeprof"></div></b></td>
                           </tr>
                           <tr>
                             <td valign="top"><b><%= f.label :titulo_id, 'Titulo: ' %></b>   </td>
