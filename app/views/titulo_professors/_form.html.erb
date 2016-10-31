@@ -8,20 +8,19 @@
                <table width="100%" align="center"  bgcolor="#F5F5F5" >
                  <tr>
                    <td width="65%">
-                     <table>
+                     <table >
                         <tr>
                           <td align="left" width="4%"><b><font size="2" color ="red"><b>*</font><%= f.label :professor_id, 'Professor: ' %></b></td>
-                          <td width="5%" >
+                          <td colspan="2" >
                               <%= f.collection_select :professor_id, @professor_sede, :id, :matricula, :include_blank => ' -- Selecione -- ' %>
-                                <%= observe_field 'titulo_professor_professor_id',
+                                  <%= observe_field 'titulo_professor_professor_id',
                                   :with => :titulo_professor_professor_id,
                                   :url => { :action => 'sel_prof' } %>
-                            </td>
-                            <td width ="40%"><b><div id="nomeprof"></div></b></td>
+                          <td><b><div id="nomeprof"></div></b></td>
                           </tr>
                           <tr>
                             <td valign="top"><b><%= f.label :titulo_id, 'Titulo: ' %></b>   </td>
-                             <td colspan="2"><b>
+                             <td colspan="5"><b>
                              <%= f.collection_select :titulo_id, @titulacaos1, :id, :descricao, :include_blank => ' -- Selecione -- ', :size => 5 %>
                                <%= observe_field 'titulo_professor_titulo_id',
                                :frequency => 0.5,
@@ -33,16 +32,17 @@
                           </tr>
                           <tr>
                             <td valign="top"><b><%= f.label :obs, 'Descrição:' %></b></td>
-                              <td colspan="3"><%= f.text_area :obs, :size => "54x2"   %></td>
+                              <td colspan="4"><%= f.text_area :obs, :size => "54x2"   %></td>
                             </tr>
                             <tr>
                               <td valign="top"><font size="2" color ="red"><b>*</font><%= f.label :quantidade, 'Quantidade:' %></b></td>
-                              <td colspan="2 id="qtde"><%= f.text_field(:quantidade, :size => '2')%>
-                                  <font size="2" color ="red">&nbsp&nbsp <b><u>OBS:</u> Lançar somente números inteiros </b></font>
-                              </td>
+                              <td width="1%" ><%= f.text_field(:quantidade, :size => '2')%></td>
+                              <td><div id="horas"></div></td>
+                              <td><font size="2" color ="red">&nbsp&nbsp <b><u>OBS:</u> Lançar somente números inteiros </b></font></td>
+                              
                              </tr>
                              <tr>
-                               <td colspan="3">
+                               <td colspan="5">
                                    <font size="2" color ="red"><b>* </font><%= f.label :dt_titulo, 'Data de Emissão:' %></b>&nbsp <%= f.date_select(:dt_titulo, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year - 20)) %>
                                </td>
                             </tr>
@@ -50,7 +50,7 @@
                               <td colspan="3">
                                 <table width="100%" >
                                  <tr>
-                                    <td width="4%"align="left"><%= f.submit 'Salvar' %></td>
+                                   <td width="4%"align="left"><%= f.submit 'Salvar' %></td>
                         <%end%>
 
                                      <td><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
@@ -74,16 +74,16 @@
                           <td></td>
                         </tr>
                          <tr>
-                            <td><b><div id="a_distancia"></div></b></td>
+                            <td><font color ="red"><b><div id="a_distancia"></div></font></b></td>
                          </tr>
                          <tr>
-                            <td><b><div id="a_distancia1"></div></b></td>
+                            <td><font color ="red"><b><div id="a_distancia1"></div></font></b></td>
                          </tr>
                          <tr>
-                           <td><b><div id="valor"></div></b></td>
+                           <td><b><font color ="red"><div id="valor"></div></font></b></td>
                           </tr>
                          <tr>
-                           <td><b><div id="lanca"></div></b></td>
+                           <td><b><font color ="red"><div id="lanca"></div></font></b></td>
                           </tr>
 
                        </table>

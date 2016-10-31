@@ -294,9 +294,10 @@ def sel_prof
       render :update do |page|
         page.replace_html 'a_distancia', :text => ""
         page.replace_html 'a_distancia1', :text => ""
-        page.replace_html 'valor', :text => 'Pontuação: ' + session[:valor].to_s + ' pontos  por hora'
-        page.replace_html 'qtde', :text => "<input id='titulo_professor_quantidade' type='text' value='0' size='10' name='titulo_professor[quantidade]'>"
-        page.replace_html 'lanca', :text => "Lançar no campo 'QUANTIDADE' a carga horária do curso"
+        page.replace_html 'valor', :text => '1) Pontuação: ' + session[:valor].to_s + ' pontos  por hora'
+        page.replace_html 'qtde', :text => " <input id='titulo_professor_quantidade' type='text' value='0' size='10' name='titulo_professor[quantidade]'>"
+        page.replace_html 'lanca', :text => "2) Lançar no campo 'QUANTIDADE' a carga horária do curso"
+       page.replace_html 'horas', :text => " horas"
       end
     else
       if $id_titulo.to_i == 1 || $id_titulo.to_i == 2 || $id_titulo.to_i == 3 || $id_titulo.to_i == 4 || $id_titulo.to_i == 5
@@ -304,19 +305,20 @@ def sel_prof
           page.replace_html 'a_distancia', :text => ""
           page.replace_html 'a_distancia1', :text => ""
           page.replace_html "qtde", :text => "1"
-          page.replace_html 'valor', :text => 'Pontuação: ' + session[:valor].to_s+ ' por título'
+          page.replace_html 'valor', :text => '1) Pontuação: ' + session[:valor].to_s+ ' por título'
           page.replace_html 'lanca', :text => " "
+          page.replace_html 'horas', :text => " título"
         end
       else
         if $id_titulo.to_i == 7 or $id_titulo.to_i == 11
           render :update do |page|
-            page.replace_html 'a_distancia', :text => "1) Se CURSO À DISTÂNCIA desmarcar a caixa de seleção PRESENCIAL"
-            page.replace_html 'a_distancia1', :text => "2) CURSOS À DISTÂNCIA: válidos somente para cursos com carga horario superior à 30 horas "
+            page.replace_html 'a_distancia', :text => "1) Se CURSO À DISTANCIA desmarcar a caixa de seleção PRESENCIAL"
+            page.replace_html 'a_distancia1', :text => "2) CURSOS À DISTANCIA: válidos somente para cursos com carga horario superior à 30 horas "
             page.replace_html 'tipo_titulo', :text => "<input id='titulo_professor_tipo_curso' type='checkbox' value='0' name='titulo_professor[tipo_curso]' checked='checked'> Presencial"
             page.replace_html 'valor', :text => '3) Pontualçao:' + (session[:valor]).to_s + ' pontos por hora'
             page.replace_html 'qtde', :text => "<input id='titulo_professor_quantidade' type='text' value='0' size='10' name='titulo_professor[quantidade]'>"
             page.replace_html 'lanca', :text => "4) Lançar no campo 'QUANTIDADE' a carga horária do curso"
-            
+            page.replace_html 'horas', :text => " horas"
           end
         end
       end
@@ -325,17 +327,19 @@ def sel_prof
           page.replace_html 'a_distancia', :text => ""
           page.replace_html 'a_distancia1', :text => ""
           page.replace_html "qtde", :text => "1"
-          page.replace_html 'valor', :text => 'Pontuação: ' + (session[:valor]).to_s
+          page.replace_html 'valor', :text => '1) Pontuação: ' + (session[:valor]).to_s
           page.replace_html 'lanca', :text => " "
+          page.replace_html 'horas', :text => " título"
         end
       end
       if $id_titulo.to_i == 12
         render :update do |page|
           page.replace_html 'a_distancia', :text => ""
-          page.replace_html 'a_distancia1', :text => ""
+          page.replace_html 'a_distancia1', :text =>  " 1) Quantidade de horas superior a 8 horas é computado 1 ponto por hora "
           page.replace_html "qtde", :text => "1"
-             page.replace_html 'valor', :text => 'Pontuação: ' + session[:valor].to_s + ' pontos até 8 horas'
-          page.replace_html 'lanca', :text => " Quantidade de horas superior a 8 horas é computado 1 ponto por hora "
+          page.replace_html 'valor', :text => '2) Pontuação: ' + session[:valor].to_s + ' pontos até 8 horas'
+          page.replace_html 'lanca', :text => "3) Lançar no campo 'QUANTIDADE' a carga horária do curso "
+          page.replace_html 'horas', :text => " horas"
         end
       end
     end
