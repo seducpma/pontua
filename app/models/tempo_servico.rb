@@ -4,7 +4,7 @@ class TempoServico < ActiveRecord::Base
   has_many :unidades
   has_many :users
   belongs_to :professor
-  before_save :salva_dados,  :pontuacao_anterior,  :total_geral,  :geral, :total_pontuacao
+  before_save :salva_dados,  :pontuacao_anterior,  :total_geral,  :geral, :total_pontuacao, :atualiza_pontos_tabela_professor
 
  
   
@@ -280,4 +280,18 @@ end
      self.pontuacao_geral = $geral
    
     end
+
+  def atualiza_pontos_tabela_professor
+
+     @professor= Professor.find(:all, :conditions =>['id= ?', self.professor_id])
+    @professor.each do |prof|
+      prof.total_trabalhado = self.total_geral_tempo_servico
+      prof.total_titulacao= ($pontostituloA+$pontostituloP)
+      prof.pontuacao_final= $geral
+      prof.save
+    end
+
+
+  end
+
 end
