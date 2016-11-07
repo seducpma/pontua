@@ -232,10 +232,10 @@ end
 
 
   def total_geral
-    self.total_efetivo= ((self.dias_efetivos1 + self.dias_efetivos2) * 10) + self.total_ant_dias
+    self.total_efetivo= ((self.dias_efetivos1 + self.dias_efetivos2) * 10) + self.total_ant_efetivo
 
     t=self.total_dias
-    self.total_dias= ((self.dias_trab1 + self.dias_trab2 ) * 2)+ self.total_ant_efetivo
+    self.total_dias= ((self.dias_trab1 + self.dias_trab2 ) * 2)+ self.total_ant_dias
     t1=self.total_dias
     t=0
     self.total_rede= ((self.dias_rede1 + self.dias_rede2) * 1) + self.total_ant_rede
