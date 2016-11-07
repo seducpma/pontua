@@ -264,6 +264,7 @@
                     <tr>
                       <td  colspan="8" align="right"><b>TOTAL PONTUAÇÃO TEMPO DE SERVIÇO</b>&nbsp&nbsp&nbsp</td>
                       <td align="center"><b><%= h temposervico.total_geral_tempo_servico%></b> </td>
+                      <% session[:tempo_servico]= temposervico.total_geral_tempo_servico %>
                   </tr>
                  </table>
                </td>
@@ -424,10 +425,10 @@
     <%= "#{session[:subtotal_titulos]}" %>
 </tr>
 </table>
- <% session[:pontos]= temposervico.pontuacao_geral%>
+ <% session[:pontos]= session[:subtotal_titulos] + session[:tempo_servico]%>
   <%end%>
-<table width="100%" ->
-
+<table width="100%" >
+  <tr>
     <td widht="8%"><b><%= link_to image_tag("/stylesheets/images/imprimir12.png"), onclick="javascript:MM_openBrWindow('#{impressao_professors_path(:professor => session[:teacher1111])}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
     <td align="right"><font size="3"><b>TOTAL PONTUAÇÃO TEMPO DE SERVIÇO</b>&nbsp&nbsp&nbsp</font></td>
     <td width="12%" align="center"><b><font size="3"><%= session[:pontos]%></b></font> </td>

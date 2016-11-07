@@ -164,6 +164,7 @@ def sel_prof
   # POST /titulo_professors
   # POST /titulo_professors.xml
   def create
+
     @titulo_professor = TituloProfessor.new(params[:titulo_professor])
     @titulo_professor.valor= session[:valor]
     @titulo_professor.ano_letivo =Time.current.strftime("%Y")
@@ -358,6 +359,10 @@ def sel_prof
 
   end
 
+
+
+
+  
 
  def titulos_busca
     # $professor = Professor.find(params[:altera_professor_id]).nome
