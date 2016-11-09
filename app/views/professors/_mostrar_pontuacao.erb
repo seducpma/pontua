@@ -408,7 +408,7 @@
 
    </tr>
   <% session[:ano] = tp1.ano_letivo %>
-  <% session[:anual] = tp1.total_anual %>
+  <% session[:anual] =   tp1.totaliza_anual(tp1.professor_id) %>
 
 
 <% end %>

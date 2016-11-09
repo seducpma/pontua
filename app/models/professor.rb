@@ -30,7 +30,7 @@ Curso = ['Sem Magistério / Pedagogia','Magistério - Nível Médio','Pedagogia 
   end
 
   def caps_look
-    self.pontuacao_final = (self.total_trabalhado + self.total_titulacao)
+    #self.pontuacao_final = (self.total_trabalhado + self.total_titulacao)
     self.nome.upcase!
     self.endres.upcase!
     self.bairro.upcase!
@@ -50,7 +50,20 @@ Curso = ['Sem Magistério / Pedagogia','Magistério - Nível Médio','Pedagogia 
 
   end
 
-
+def totaliza_anual (professor)
+  if $ano = Time.current.strftime("%Y").to_i
+  if (self.titulo_id == 6) or (self.titulo_id == 7) or (self.titulo_id == 8) or (self.titulo_id == 9) or (self.titulo_id == 10) or (self.titulo_id == 11) or (self.titulo_id == 12)
+       titulos_anual = TituloProfessor.find(:all, :conditions => ['professor_id = ? and titulo_id between ? and ? and ano_letivo= ?', professor, 6, 12 , $ano ])
+    somatoria1 = 0
+       titulos_anual.each do |tp1|
+          somatoria1 = somatoria1 + tp1.pontuacao_titulo
+          self.total_anual = somatoria1
+          tp1.save
+       end
+       somatoria1
+    end
+  end
+  end
 
 
 

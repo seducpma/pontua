@@ -4,7 +4,7 @@ class TituloProfessor < ActiveRecord::Base
   validates_presence_of :professor_id, :message => ' -  PROFESSOR - PREENCHIMENTO OBRIGATÓRIO'
   validates_presence_of :quantidade, :dt_titulo, :message => ' ==> PREENCHER DE DADOS OBRIGATÓRIO <=='
   before_save  :totaliza
-
+  before_destroy :atualiza_pontos_tabela_professor
 
 
   def totaliza
@@ -79,7 +79,6 @@ def totaliza_anual (professor)
   if $ano = Time.current.strftime("%Y").to_i
   if (self.titulo_id == 6) or (self.titulo_id == 7) or (self.titulo_id == 8) or (self.titulo_id == 9) or (self.titulo_id == 10) or (self.titulo_id == 11) or (self.titulo_id == 12)
        titulos_anual = TituloProfessor.find(:all, :conditions => ['professor_id = ? and titulo_id between ? and ? and ano_letivo= ?', professor, 6, 12 , $ano ])
-
     somatoria1 = 0
        titulos_anual.each do |tp1|
           somatoria1 = somatoria1 + tp1.pontuacao_titulo
@@ -89,6 +88,28 @@ def totaliza_anual (professor)
        somatoria1
     end
   end
+  end
+
+
+  def atualiza_pontos_tabela_professor
+   @temposervico = TempoServico.find(:all,:conditions =>['professor_id = ? and ano_letivo = ?', self.professor_id, Time.now.year ])
+
+   @temposervico.each do |ts|
+     $total_geral_tempo_servico = ts.total_geral_tempo_servico
+     $pontuacao_geral = ts.pontuacao_geral - self.pontuacao_titulo
+
+   end
+     if @temposervico.present?
+          @professor= Professor.find(:all, :conditions =>['id= ?', self.professor_id])
+          @professor.each do |prof|
+             prof.total_titulacao = prof.total_titulacao - self.pontuacao_titulo
+             prof.total_trabalhado = $total_geral_tempo_servico
+             prof.pontuacao_final= $pontuacao_geral
+t=0
+             prof.save
+          end
+
+   end
   end
 
 
