@@ -38,7 +38,7 @@
                    </td>
                    <td align="left"width="5%"><b>Nº Filhos:</b></td>
                    <td colspan="5"align="left">  <%= professor.n_filhos %></td>
-                 <tr/>
+                 </tr>
                  <tr>
                    <td align="left"><b>RG:</b></td>
                    <td align="left">  <%= professor.RG %></td>
@@ -48,7 +48,7 @@
                    <td align="left">  <%= professor.INEP %></td>
                    <td align="right"width="5%"><b>RD:</b></td>
                    <td align="left">  <%= professor.RD %></td>
-                 <tr/>
+                 </tr>
                  <tr bgcolor="#F5F5F5">
                   <td align="left"><b> Endereço:</b></td>
                   <td colspan="5" align="left"> <%=  professor.endres %> - <%= professor.num %></td>
@@ -101,6 +101,9 @@
                   <td align="left"><b> Observações:</b></td>
                   <td align="left" colspan="4 "><%=  professor.obs%></td>
                 </tr>
+                <% session[:professor_pontuacao_final] = professor.pontuacao_final %>
+                <% session[:professor_pontuacao_tempo_servico] = professor.total_trabalhado %>
+                <% session[:professor_pontuacao_titulacao] = professor.	total_titulacao%>
                 <%end%>
              </table>
 <HR>
@@ -390,7 +393,7 @@
        <td  align="center">
          <%if  (tp1.titulo_id == 12) and (tp1.quantidade <= 8) %>
            <font size="2"> 1</font>
-         <%else%>
+         <%else%><% session[:professor_pontuacao_final] = professor.pontuacao_final %>
               <font size="2"><%= tp1.quantidade %></font>
           <%end%>
       </td>
@@ -430,8 +433,21 @@
 <table width="100%" >
   <tr>
     <td widht="8%"><b><%= link_to image_tag("/stylesheets/images/imprimir12.png"), onclick="javascript:MM_openBrWindow('#{impressao_professors_path(:professor => session[:teacher1111])}','impressao', 'scrollbars=yes');", :title => "Imprimir" %> </b></td>
-    <td align="right"><font size="3"><b>TOTAL PONTUAÇÃO TEMPO DE SERVIÇO</b>&nbsp&nbsp&nbsp</font></td>
-    <td width="12%" align="center"><b><font size="3"><%= session[:pontos]%></b></font> </td>
+    <td align="right"><font size="3"><% if session[:professor_pontuacao_final]!= session[:pontos] %>
+                                            <font color="red"> Há ERRO Total Geral  </font> 
+                                            <!--  Verificar tabela professor e ou tempo serviço -->  <br/>
+                                     <%end%>
+                                     <% if  session[:professor_pontuacao_tempo_servico]!=  session[:tempo_servico] %>
+                                          <font color="red"> Há ERRO Total Tempo Serviço  </font>
+                                            <!--  Verificar tabela professor e ou tempo serviço -->  <br/>
+                                     <%end%>
+                                     <% if  session[:professor_pontuacao_titulacao]!= session[:subtotal_titulos] %>
+                                          <font color="red"> Há ERRO Total Titulação </font>
+                                            <!--  Verificar tabela professor e ou tempo serviço -->  <br/>
+                                     <%end%>
+                                      <b>TOTAL PONTUAÇÃO TEMPO DE SERVIÇO</b>&nbsp&nbsp&nbsp</font></td>
+    <td width="12%" align="center"><b><font size="3"> <%= session[:pontos]%></b></font> </td>
+    
   </tr>
 </table>
 
