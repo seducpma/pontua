@@ -20,8 +20,8 @@ one:
   telefone: 1
   cidade: MyString
   obs: MyString
-  total_trabalhado: 1
-  total_titulacao: 1
+  #total_trabalhado: 1
+  #total_titulacao: 1
   pontuacao_final: 1
   flag: 1
   sede_id_ant: 
@@ -54,8 +54,8 @@ two:
   telefone: 1
   cidade: MyString
   obs: MyString
-  total_trabalhado: 1
-  total_titulacao: 1
+  #total_trabalhado: 1
+  #total_titulacao: 1
   pontuacao_final: 1
   flag: 1
   sede_id_ant: 

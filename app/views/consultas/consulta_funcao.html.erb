@@ -31,8 +31,6 @@
               <center><th bgcolor="#cccccc" width = "5%">Posição</th></center>
               <center><th bgcolor="#cccccc" width = "7%">Matrícula</th></center>
               <th bgcolor="#cccccc" width = "40%">Nome</th>
-              <th bgcolor="#cccccc" width = "5%">Titulação</th>
-              <th bgcolor="#cccccc" width = "5%">Tempo Serviço</th>
               <th bgcolor="#cccccc" width = "5%">Pontuação Final</th>
               <th bgcolor="#cccccc"  width = "20%">Função</th>
              </tr>
@@ -44,8 +42,6 @@
                <td width = "7%"><center><%=h ts.professor.matricula %></center></td>
                 <td width = "40%"><center><%=h ts.professor.nome %></center></td>
                   <%titulacao =  ts.pontuacao_geral - ts.total_geral_tempo_servico %>
-                <td width = "5%"><center><%= titulacao%></center></td>
-                <td width = "5%"><center><%=h ts.total_geral_tempo_servico%></center></td>
                    <%session[:prof_imp] = ts.id%>
                     <% if ts.pontuacao_geral.nil? then %>
                             <td width="5%"><%=h%></td>

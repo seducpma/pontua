@@ -33,7 +33,7 @@ end
   # GET /obreiros/new
   # GET /obreiros/new.xml
   def new
-
+    $flaggravaprof = 1
     @temposervico = TempoServico.new
 
     respond_to do |format|
@@ -50,6 +50,7 @@ end
   # POST /obreiros
   # POST /obreiros.xml
   def create
+    $flaggravaprof = 1
    @temposervico = TempoServico.new(params[:tempo_servico])
    # @titulo_professor = TituloProfessor.new(params[:titulo_professor])
 

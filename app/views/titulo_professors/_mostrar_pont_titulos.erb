@@ -36,6 +36,10 @@
       </td>
       <td align="center">
         <font size="2"><%= truncate(tp.obs,:length => 20,:omission => "...") %></font>
+         <%  if tp.ano_letivo == Time.now.year %>
+            <font color="red"> - (novo)</font>
+        <%end%>
+
       </td>
       <td align="center">
         <font size="2"><%= tp.dt_titulo.year %> </font>

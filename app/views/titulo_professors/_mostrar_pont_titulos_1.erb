@@ -91,11 +91,15 @@
        <td align="left">
         <font size="2"><%= truncate((Titulacao.find_by_id(tp.titulo_id).descricao),:length => 25,:omission => "...") %></font>
       </td>
-      </td>
+
         <td align="center">
         <font size="2"><%= truncate(tp.obs,:length => 20,:omission => "...") %></font>
+                 <%  if tp.ano_letivo == Time.now.year %>
+            <font color="red"> - (novo)</font>
+        <%end%>
+
       </td>
-      </td>
+
         <td align="center">
         <font size="2"><%= tp.ano_letivo %></font>
       </td>

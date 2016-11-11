@@ -102,8 +102,7 @@
                   <td align="left" colspan="4 "><%=  professor.obs%></td>
                 </tr>
                 <% session[:professor_pontuacao_final] = professor.pontuacao_final %>
-                <% session[:professor_pontuacao_tempo_servico] = professor.total_trabalhado %>
-                <% session[:professor_pontuacao_titulacao] = professor.	total_titulacao%>
+
                 <%end%>
              </table>
 <HR>
@@ -315,6 +314,13 @@
       </td>
         <td align="center">
         <font size="2"> <%= truncate(tp.obs,:length => 25,:omission => "...") %></font>
+         <%  if tp.ano_letivo == Time.now.year %>
+            <font color="red"> - (novo)</font>
+        <%end%>
+
+
+
+
       </td>
     
         <td align="center">

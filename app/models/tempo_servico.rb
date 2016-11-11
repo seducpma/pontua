@@ -277,7 +277,13 @@ end
     end
      $pontuacao_geral = self.total_geral_tempo_servico
      $geral =$pontuacao_geral + ($pontostituloA+$pontostituloP)
-     self.pontuacao_geral = $geral
+     if $flaggravaprof == 1
+        self.pontuacao_geral = $geral
+        t=0
+     else
+       self.pontuacao_geral = $pontuacao_gerall
+       t=0
+     end
    
     end
 
@@ -285,8 +291,8 @@ end
 
      @professor= Professor.find(:all, :conditions =>['id= ?', self.professor_id])
     @professor.each do |prof|
-      prof.total_trabalhado = self.total_geral_tempo_servico
-      prof.total_titulacao= ($pontostituloA+$pontostituloP)
+      #prof.total_trabalhado = self.total_geral_tempo_servico
+      #prof.total_titulacao= ($pontostituloA+$pontostituloP)
       prof.pontuacao_final= $geral
       prof.save
     end

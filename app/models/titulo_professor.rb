@@ -96,17 +96,21 @@ def totaliza_anual (professor)
 
    @temposervico.each do |ts|
      $total_geral_tempo_servico = ts.total_geral_tempo_servico
-     $pontuacao_geral = ts.pontuacao_geral - self.pontuacao_titulo
-
+      ts.pontuacao_geral
+      self.pontuacao_titulo
+     $pontuacao_gerall = ts.pontuacao_geral - self.pontuacao_titulo
+     $flaggravaprof = 0
+     ts.pontuacao_geral= $pontuacao_gerall
+      ts.save
    end
      if @temposervico.present?
           @professor= Professor.find(:all, :conditions =>['id= ?', self.professor_id])
           @professor.each do |prof|
-             prof.total_titulacao = prof.total_titulacao - self.pontuacao_titulo
-             prof.total_trabalhado = $total_geral_tempo_servico
-             prof.pontuacao_final= $pontuacao_geral
-t=0
-             prof.save
+             #prof.total_titulacao = prof.total_titulacao - self.pontuacao_titulo
+             #prof.total_trabalhado = $total_geral_tempo_servico
+             g4=$pontuacao_gerall
+             g5=prof.pontuacao_final= $pontuacao_gerall
+              prof.save
           end
 
    end
