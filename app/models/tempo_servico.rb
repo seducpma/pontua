@@ -278,18 +278,7 @@ end
 
      $pontuacao_geral = self.total_geral_tempo_servico
      $geral =$pontuacao_geral + ($pontostituloA+$pontostituloP)
-     if $flaggravaprof == 1
-        if $altera_tabelas != 1
-            self.pontuacao_geral = $geral
-            $altera_tabelas = 0
-        end
-     else
-       if $altera_tabelas != 1
-           self.pontuacao_geral = $pontuacao_gerall
-           $altera_tabelas = 0
-       end
 
-     end
 
     end
 
