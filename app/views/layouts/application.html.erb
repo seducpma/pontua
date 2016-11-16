@@ -29,8 +29,8 @@ display: none;
       <table class="tabelas">
           <tr>
                <td>
-                <p><h2 align="center">Quadro de Avisos</h2></p>
-                <div id="color"  align="left">
+                <p><h2 align="center"><u>INFORMAÇÕES IMPORTANTES</u></h2></p>
+                <div id="color"  align="center">
                   <%for informativo in informativos_corrente %>
                     <p><%= informativo.mensagem %></p>
                   <%end%>
@@ -38,7 +38,7 @@ display: none;
               </td>
             <tr>
               <td>
-                 <h4 align="right"><b><%= link_to_remote("Ocultar esta mensagem", :url => {:controller => 'javascripts', :action => 'hide_announcement'}) %></b></h4>
+                 <h4 align="right"><b><%= link_to_remote("Ocultar", :url => {:controller => 'javascripts', :action => 'hide_announcement'}) %></b></h4>
               </td>
             </tr>
          </tr>
@@ -122,7 +122,7 @@ display: none;
               <li><span class="divider divider-vert" ></span></li>
               <li><a class="item-primary" href="#;">Pontuação</a>
                  <ul style="width:108px;">
-                    <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao')  or current_user.has_role?('supervisao') or current_user.has_role?('secretaria'))%>
+                    <% if (current_user.has_role?('admin') or current_user.has_role?('corrigir') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao')  or current_user.has_role?('supervisao') or current_user.has_role?('secretaria'))%>
                         <li><%= link_to "Ficha",consulta_ficha_path %></li>
                     <%end%>
                         <li><a>Classificação</a>
@@ -135,11 +135,11 @@ display: none;
                          </li>
                      </ul>
               </li>
-  <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao')  or current_user.has_role?('supervisao') or current_user.has_role?('secretaria'))%>
+  <% if (current_user.has_role?('admin') or current_user.has_role?('corrigir') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao')  or current_user.has_role?('supervisao') or current_user.has_role?('secretaria'))%>
               <li><span class="divider divider-vert" ></span></li>
               <li><a class="item-primary" href="#;">Professor</a>
                  <ul style="width:108px;">
-                     <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('direcao') )%>
+                     <% if (current_user.has_role?('admin') or current_user.has_role?('corrigir') or current_user.has_role?('SEDUC')or current_user.has_role?('direcao') )%>
                         <li><%= link_to "Cadastrar",new_professor_path %></li>
                      <%end%>
                         <li><%= link_to "Consultar",consulta_professor_nome_path %></li>
@@ -150,14 +150,14 @@ display: none;
               </a>
                  <ul style="width:108px;">
 
-                     <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('direcao')  or current_user.has_role?('supervisao') or current_user.has_role?('secretaria'))%>
+                     <% if (current_user.has_role?('admin')or current_user.has_role?('corrigir') or current_user.has_role?('SEDUC')or current_user.has_role?('direcao')  or current_user.has_role?('supervisao') or current_user.has_role?('secretaria'))%>
                         <li><%= link_to "Cadastrar",new_titulo_professor_path %></li>
                      <%end%>
                         <li><%= link_to "Consultar",consulta_titulacao_path %></li>
-                     <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')or current_user.has_role?('direcao')  or current_user.has_role?('supervisao') or current_user.has_role?('secretaria'))%>
+                     <% if (current_user.has_role?('admin') or current_user.has_role?('corrigir') or current_user.has_role?('SEDUC')or current_user.has_role?('direcao')  or current_user.has_role?('supervisao') or current_user.has_role?('secretaria'))%>
                         <li><%= link_to "Excluir",titulo_professors_path %></li>
                      <%end%>
-                     <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao') or current_user.has_role?('supervisao'))%>
+                     <% if (current_user.has_role?('admin') or current_user.has_role?('corrigir') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao') or current_user.has_role?('supervisao'))%>
                         <li><%= link_to "Titulação",consulta_titulacao_professor_path %></li>
                      <%end%>
 
@@ -166,7 +166,7 @@ display: none;
               <li><a class="item-primary" href="#;">Tempo Servico
               </a>
                  <ul style="width:108px;">
-                     <% if (current_user.has_role?('admin') or current_user.has_role?('SEDUC')) or current_user.has_role?('direcao') or current_user.has_role?('supervisao')%>
+                     <% if (current_user.has_role?('admin') or current_user.has_role?('corrigir') or current_user.has_role?('SEDUC')) or current_user.has_role?('direcao') or current_user.has_role?('supervisao')%>
                         <li><%= link_to "Cadastrar",new_tempo_servico_path %></li>
                      <%end%>
                         <li><%= link_to "Consultar",consulta_tempo_path %></li>
@@ -175,7 +175,7 @@ display: none;
               <li><span class="divider divider-vert" ></span></li>
 <!--=========================================== NOVO MENU==============-->
 
-              <% if current_user.has_role?('admin')%>
+              <% if current_user.has_role?('admin') or current_user.has_role?('corrigir')%>
               <li><span class="divider divider-vert" ></span></li>
               <li><a class="item-primary" href="#;">Gerenciar</a>
                  <ul style="width:108px;">

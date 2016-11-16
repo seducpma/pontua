@@ -226,4 +226,24 @@ end
 
 
 
+
+def altera_tabelas
+  t=0
+
+@professor_alteracao = Professor.find(:all,:conditions => ["id = ? and desligado = 0",session[:teacher1]])
+for professor in @professor_alteracao
+  professor.pontuacao_final = session[:pontos]
+  professor.save
+end
+ @temposervico_alteracao = TempoServico.find(:all,:conditions =>['professor_id = ? and ano_letivo = ?', session[:teacher1], session[:ano]])
+for ts in @temposervico_alteracao
+  ts.pontuacao_geral = session[:pontos]
+  ts.save
+  t=0
+end
+
+
+
+end
+
 end

@@ -67,8 +67,12 @@
         <%= tp.dt_titulo.strftime("%d/%m/%Y") %>
       <%end%>
       </td>
-        <td align="">
-           <%= button_to 'Deletar', tp, :confirm => 'Confirma?', :method => :delete %>
+        <td align="center">
+          <% if  (tp.titulo_id != 1) and (tp.titulo_id != 2) and (tp.titulo_id != 3) and (tp.titulo_id != 4)  and (tp.titulo_id != 5)%>
+              <%= button_to 'Deletar', tp, :confirm => 'Confirma?', :method => :delete %>
+          <%else%>
+             ----
+          <%end%>
       </td>
     </tr>
 

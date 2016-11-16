@@ -41,7 +41,7 @@ class TempoServico < ActiveRecord::Base
     self.subtot_rede = self.dias_rede1 + self.dias_rede2
     self.subtot_unid = self.dias_unidade1 + self.dias_unidade2
      
-     
+
 end
 
    
@@ -275,16 +275,22 @@ end
         $pontostituloA= (tp.total_anual)
       end
     end
+
      $pontuacao_geral = self.total_geral_tempo_servico
      $geral =$pontuacao_geral + ($pontostituloA+$pontostituloP)
      if $flaggravaprof == 1
-        self.pontuacao_geral = $geral
-        t=0
+        if $altera_tabelas != 1
+            self.pontuacao_geral = $geral
+            $altera_tabelas = 0
+        end
      else
-       self.pontuacao_geral = $pontuacao_gerall
-       t=0
+       if $altera_tabelas != 1
+           self.pontuacao_geral = $pontuacao_gerall
+           $altera_tabelas = 0
+       end
+
      end
-   
+
     end
 
   def atualiza_pontos_tabela_professor
