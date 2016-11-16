@@ -228,8 +228,6 @@ end
 
 
 def altera_tabelas
-  t=0
-
 @professor_alteracao = Professor.find(:all,:conditions => ["id = ? and desligado = 0",session[:teacher1]])
 for professor in @professor_alteracao
   professor.pontuacao_final = session[:pontos]
