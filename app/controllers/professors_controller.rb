@@ -34,7 +34,10 @@ end
   def load_professors
       @professors = Professor.find(:all, :order => 'nome ASC')
       @professors1 = Professor.find(:all, :order => 'matricula ASC')
+      @professor_erros= Professor.find(:all,:conditions => ["desligado = 0"], :order => 'matricula ASC')
   end
+
+  
   # GET /professors
   # GET /professors.xml
   def index

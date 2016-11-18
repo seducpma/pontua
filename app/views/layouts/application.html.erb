@@ -191,6 +191,9 @@ display: none;
                           <li><%= link_to 'Consultar', unidades_path  %></li>
                         </ul>
                      </li>
+                     <% if (current_user.has_role?('admin') or current_user.has_role?('corrigir') )%>
+                         <li><%= link_to "Verifica Erros",consulta_erros_path %></li>
+                     <%end%>
 
 
                  </ul>
