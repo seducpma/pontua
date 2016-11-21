@@ -98,6 +98,7 @@ def totaliza_anual (professor)
      $total_geral_tempo_servico = ts.total_geral_tempo_servico
       ts.pontuacao_geral
       self.pontuacao_titulo
+
      $pontuacao_gerall = ts.pontuacao_geral - self.pontuacao_titulo
      $flaggravaprof = 0
      ts.pontuacao_geral= $pontuacao_gerall
