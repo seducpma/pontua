@@ -21,7 +21,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resource :consulta, :collection => {:consulta_titulo => :get, :consulta_ppu => :get, :consulta_geral => :get, :impressao_geral => :get, :consulta_funcao => :get,  :consulta_unidade => :get, :consulta_unidade_funcao => :get}
 
-
+  map.sobre '/sobre', :controller => 'professors', :action => 'sobre'
   map.altera_tabelas '/altera_tabelas', :controller => 'professors', :action => 'altera_tabelas'
   map.atualizar '/atualizar', :controller => 'professors', :action => 'atualizar'
   map.relatorio_por_funcao '/relatorio_por_funcao', :controller => 'consultas', :action => 'relatorio_por_funcao'

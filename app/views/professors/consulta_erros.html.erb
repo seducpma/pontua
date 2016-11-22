@@ -34,7 +34,7 @@
       <%end%>
         <% session[:subtotal_titulos] = session[:permanente] + session[:anual] %>
         <% session[:pontos]= session[:subtotal_titulos] + session[:tempo_servico]%>
-        <% if (session[:professor_pontuacao_final]!= session[:pontos]) and (session[:ano_letivo] > 2015)%>
+        <% if ((session[:professor_pontuacao_final]!= session[:pontos]) or (session[:tempo_servico]!= session[:pontos]))and (session[:ano_letivo] > 2015)%>
 
 
       <table  bgcolor="#F5F5F5" width="100%">
@@ -214,7 +214,7 @@
                                             <font color="red"> <%=h cont%>
                                               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                                              <font color="red"> Há ERRO Tabela TS </font>
+                                              <font color="red"> Há ERRO Tabela T.SERVIÇO </font>
                                                     <!--  Verificar tabela professor e ou tempo serviço -->  <br/>
 
                                                       <%cont=cont+1%>

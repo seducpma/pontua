@@ -701,6 +701,12 @@ border-right: double;
     border-right: double;
 
 }
+#internoS{
+    width:50%;
+    margin-top: 20px;
+    margin-left: 230px;
+    font-size:12px;
+}
 
 #interno1{
     width:80%;

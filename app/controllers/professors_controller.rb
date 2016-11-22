@@ -4,7 +4,9 @@ before_filter :load_unidades
 before_filter :load_professors
 before_filter :load_consulta_ano
 
-
+def sobre
+  
+end
 
 
 def impressao
