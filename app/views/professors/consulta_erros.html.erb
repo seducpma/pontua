@@ -21,6 +21,7 @@
       <%@temposervico = TempoServico.find(:all,:conditions =>['professor_id = ? and ano_letivo = ?', professor, Time.now.year]) %>
          <%for temposervico in @temposervico%>
             <% session[:tempo_servico]= temposervico.total_geral_tempo_servico %>
+           <% session[:total_tempo_servico]= temposervico.pontuacao_geral %>
             <% session[:ano_letivo] = temposervico.ano_letivo %>
             <% if !((@tp.nil?) or (@tp.empty?)) %>
                <%for tp in @tp%>
@@ -34,7 +35,7 @@
       <%end%>
         <% session[:subtotal_titulos] = session[:permanente] + session[:anual] %>
         <% session[:pontos]= session[:subtotal_titulos] + session[:tempo_servico]%>
-        <% if ((session[:professor_pontuacao_final]!= session[:pontos]) or (session[:tempo_servico]!= session[:pontos]))and (session[:ano_letivo] > 2015)%>
+        <% if ((session[:professor_pontuacao_final]!= session[:pontos]) or (session[:total_tempo_servico]!= session[:pontos]))and (session[:ano_letivo] > 2015)%>
 
 
       <table  bgcolor="#F5F5F5" width="100%">
@@ -210,7 +211,7 @@
                                                    <%cont=cont+1%>
                                                    <% contado = 0 %>
                                              <%end%>
-                                             <% if (session[:tempo_servico]!= session[:pontos]) and (session[:ano_letivo] > 2015)%>
+                                             <% if (session[:total_tempo_servico]!= session[:pontos]) and (session[:ano_letivo] > 2015)%>
                                             <font color="red"> <%=h cont%>
                                               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
