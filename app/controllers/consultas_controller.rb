@@ -34,7 +34,7 @@ helper_method :sort_column, :sort_direction
              
 
       else
-             @professor_consulta_funcao = TempoServico.find(:all,:joins => :professor, :conditions=> ["tempo_servicos.ano_letivo = ? and professors.desligado = 0 and professors.funcao like ? and (professors.sede_id = ? or sede_id = 54)" , Time.current.strftime("%Y").to_i, session[:funcao], current_user.unidade_id ], :order => 'tempo_servicos.pontuacao_geral DESC,dt_ingresso DESC,dt_nasc,n_filhos DESC')
+             @professor_consulta_funcao = TempoServico.find(:all,:joins => :professor, :conditions=> ["tempo_servicos.ano_letivo = ? and professors.desligado = 0 and professors.funcao like ? " , Time.current.strftime("%Y").to_i, session[:funcao]], :order => 'tempo_servicos.pontuacao_geral DESC,dt_ingresso DESC,dt_nasc,n_filhos DESC')
 
        end
      
