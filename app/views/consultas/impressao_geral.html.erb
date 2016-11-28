@@ -20,28 +20,32 @@
   <br/>
     <table width="100%" frame="box" rules="all" >
      <tr style="font-size:9px">
-     <center><th bgcolor="#cccccc" width = "5%">Posição</th></center>
-     <center><th bgcolor="#cccccc" width = "7%">Matrícula</th></center>
-      <th bgcolor="#cccccc" width = "40%">Nome</th>
-      <th bgcolor="#cccccc" width = "7%">Pontuação</th>
-      <th bgcolor="#cccccc"  width = "25%">Função</th>
+     <center><th bgcolor="#cccccc" width = "1%"></th></center>
+     <center><th bgcolor="#cccccc" width = "5%">Matrícula</th></center>
+      <th bgcolor="#cccccc" width = "44%">Nome</th>
+      <th bgcolor="#cccccc" width = "5%">Unidade</th>
+      <th bgcolor="#cccccc" width = "5%">T.Serviço</th>
+      <th bgcolor="#cccccc" width = "5%">Titulação</th>
+      <th bgcolor="#cccccc" width = "5%">Pontuação</th>
+      <th bgcolor="#cccccc"  width = "10%">Função</th>
      </tr>
      <%num=0%>
       <% for ts in @professor_impressao %>
      <%num = num+1%>
       <tr style="font-size:9px">
 
-        <th width = "5%"><center><%= num%>º</center></th>
-        <th width = "7%"><center><%=h ts.professor.matricula %></center></th>
-        <th width = "40%"><center><%=h ts.professor.nome %></center></th>
-
-                   <%session[:prof_imp] = ts.id%>
-                    <% if ts.pontuacao_geral.nil? then %>
-                            <th width="5%"></td>
-                    <%else%>
-                        <th width = "5%"><center><%=h ts.pontuacao_geral%></center></th>
-                    <%end%>
-       <th width = "20%"><center><%=h ts.professor.funcao%></center></th>
+        <th ><center><%= num%>º</center></td>
+        <th ><center><%=h ts.professor.matricula %></center></th>
+        <th ><center><%=h ts.professor.nome %></center></th>
+        <th ><center><%=h ts.professor.unidade.nome %></center></th>
+        <th > <center><%=h ts.professor.total_trabalhado %></center></th>
+        <th ><center><%=h ts.professor.total_titulacao %></center></th>
+            <% if ts.pontuacao_geral.nil? then %>
+                    <th ></th>
+            <%else%>
+                <th ><center><%=h ts.pontuacao_geral%></center></th>
+            <%end%>
+        <th width = "30%"><center><%=h ts.professor.funcao%></center></th>
      </tr>
     <% end %>
              </table>
