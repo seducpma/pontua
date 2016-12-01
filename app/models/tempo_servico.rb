@@ -48,7 +48,7 @@ end
   
   
   def salva_dados_anterior
-
+ somatoria1
     self.ano_letivo = Time.current.strftime("%Y").to_i
     self.ano1 = (Time.current.strftime("%Y").to_i)-1
     self.ano2 = Time.current.strftime("%Y").to_i

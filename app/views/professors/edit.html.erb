@@ -53,20 +53,24 @@
                         <td><b>Formação: </b><%= @professor.entrada_concurso %></td>
                         <td><font color="red"> (LANÇAR) </FONT><b>Formação: </b><%= f.select :entrada_concurso, options_for_select(Professor::Curso), :include_blank => '-- Selecionar --'%></td>
                       </tr>
+                      <tr>
+                        <td colspan="4"> <b>Sede: </b><%= f.collection_select :sede_id, @unidades, :id, :nome, :include_blank => ' -- Selecione -- ' %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                         <b>Obs:</b><%= f.text_field :obs, :size => 80 %></td>
+
+                      </tr>
                    <%else%>
                       <tr>
                         <td ><b>Função/Cargo:</b> <%= @professor.funcao  %>&nbsp&nbsp&nbsp&nbsp</td>
                         <td><b>Formação: </b><%= @professor.entrada_concurso %></td>
+                      </tr>
+                      <tr>
+                        <td colspan="4"> <b>Sede: </b><%= @professor.unidade.nome%> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                         <b>Obs:</b><%= @professor.obs %></td>
 
                       </tr>
-
                   <%end%>
 
-                  <tr>
-                    <td colspan="4"> <b>Sede: </b><%= f.collection_select :sede_id, @unidades, :id, :nome, :include_blank => ' -- Selecione -- ' %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                     <b>Obs:</b><%= f.text_field :obs, :size => 80 %></td>
 
-                  </tr>
                  <tr>
                     <td colspan="4"><b>Desligado:</b>SIM <%= f.check_box :desligado %><b> em </b><%= f.date_select(:data_desligado, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year - 10)) %> &nbsp&nbsp&nbsp&nbsp
                     <b>Motivo:</b> <%= f.text_field :motivo, :size =>52%></td>
