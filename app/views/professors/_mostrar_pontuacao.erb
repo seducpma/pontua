@@ -289,10 +289,10 @@
        <th  width="25%">
         Descrição
        </th >
-        <th width="8%">
+        <th width="5%">
         Ano
        </th>
-       <th width="10%">
+       <th width="5%">
         Quantidade
        </th>
        <th width="8%">
@@ -310,10 +310,10 @@
 
      <tr style="font-size:12px">
        <td align="left">
-        <font size="2"><%= truncate((Titulacao.find_by_id(tp.titulo_id).descricao),:length => 25,:omission => "...") %></font>
+        <font size="2"><%= truncate((Titulacao.find_by_id(tp.titulo_id).descricao),:length => 31,:omission => "...") %></font>
       </td>
         <td align="center">
-        <font size="2"> <%= truncate(tp.obs,:length => 25,:omission => "...") %></font>
+        <font size="2"> <%= truncate(tp.obs,:length => 36,:omission => "...") %></font>
          <%  if tp.ano_letivo == Time.now.year %>
             <font color="red"> - (novo)</font>
         <%end%>
@@ -360,7 +360,7 @@
        <th align="center"><font size="2"width="25%">Descrição</font></th>
        <th align="center"><font size="2"width="10%">Ano</font></th>
       <th><font size="2"width="12%">Tipo</font>  </th>
-       <th align="center"width="10%">Quantidade</font></th>
+       <th align="center"width="5%">Quantidade</font></th>
        <th align="center"width="5%"><font size="2">Valor</font></th>
        <th align="center" width="5%"><font size="2">Pontuação</font></th>
        <th align="center" width="8%"><font size="2">Total</font></th>
@@ -371,11 +371,11 @@
 
      <tr style="font-size:12px">
       <td  align="left">
-        <font size="2"><%= truncate((Titulacao.find_by_id(tp1.titulo_id).descricao),:length => 20,:omission => "...") %></font>
+        <font size="2"><%= truncate((Titulacao.find_by_id(tp1.titulo_id).descricao),:length => 31,:omission => "...") %></font>
         
       </td>
        <td  align="center">
-        <font size="2"> <%= truncate(tp1.obs,:length => 20,:omission => "...") %></font>
+        <font size="2"> <%= truncate(tp1.obs,:length => 36,:omission => "...") %></font>
       </td>
       <td  align="center">
         <font size="2"><%= tp1.ano_letivo %></font>

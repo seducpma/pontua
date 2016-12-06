@@ -300,7 +300,7 @@
         <%= truncate((Titulacao.find_by_id(tp.titulo_id).descricao),:length => 25,:omission => "...") %>
       </th>
         <th align="center">
-         <%= truncate(tp.obs,:length => 25,:omission => "...") %>
+         <%= truncate(tp.obs,:length => 32,:omission => "...") %>
       </th>
         <th align="center">
         <%= tp.ano_letivo %>
@@ -357,7 +357,7 @@
         <%= truncate((Titulacao.find_by_id(tp1.titulo_id).descricao),:length => 20,:omission => "...") %></font>
        </th>
        <th  align="center">
-         <%= truncate(tp1.obs,:length => 25,:omission => "...") %>
+         <%= truncate(tp1.obs,:length => 32,:omission => "...") %>
        </th>
       <th  align="center">
         <%= tp1.ano_letivo %></font>
