@@ -21,18 +21,22 @@ class TempoServico < ActiveRecord::Base
     somatoriaTotal = somatoria1+somatoria2
     if somatoriaTotal > 15
       self.dias_trab1 = (self.dias1 - (self.f_abonada1 + self.f_atestado1 + self.f_justif1 + self.f_injustif1 + self.lic_saude1 + self.afastamento1 + self.outras_aus1))
-      self.dias_efetivos1 = (self.dias1 - (self.f_abonada1 + self.f_atestado1 + self.f_justif1 + self.f_injustif1 + self.lic_saude1 + self.afastamento1 + self.outras_aus1))
+      # self.dias_efetivos1 = (self.dias1 - (self.f_abonada1 + self.f_atestado1 + self.f_justif1 + self.f_injustif1 + self.lic_saude1 + self.afastamento1 + self.outras_aus1))alterado por solicitação da Alessanda   7/12/2016
+      self.dias_efetivos1 = (self.dias1 - (self.f_abonada1 + self.f_atestado1 + self.f_justif1 + self.f_injustif1 + self.lic_saude1 + self.afastamento1 ))
     else
       self.dias_trab1 = (self.dias1 - (self.f_justif1 + self.f_injustif1))
-      self.dias_efetivos1 = (self.dias1 - (self.f_abonada1 + self.f_atestado1 + self.f_justif1 + self.f_injustif1 + self.lic_saude1 + self.afastamento1 + self.outras_aus1))
+      #self.dias_efetivos1 = (self.dias1 - (self.f_abonada1 + self.f_atestado1 + self.f_justif1 + self.f_injustif1 + self.lic_saude1 + self.afastamento1 + self.outras_aus1))alterado por solicitação da Alessanda   7/12/2016
+      self.dias_efetivos1 = (self.dias1 - (self.f_abonada1 + self.f_atestado1 + self.f_justif1 + self.f_injustif1 + self.lic_saude1 + self.afastamento1))
     end
      
     if somatoriaTotal > 15
       self.dias_trab2 = (self.dias2 - (self.f_abonada2 + self.f_atestado2 + self.f_justif2 + self.f_injustif2 + self.lic_saude2 + self.afastamento2 + self.outras_aus2))
-      self.dias_efetivos2 = (self.dias2 - (self.f_abonada2 + self.f_atestado2 + self.f_justif2 + self.f_injustif2 + self.lic_saude2 + self.afastamento2 + self.outras_aus2))
+      #self.dias_efetivos2 = (self.dias2 - (self.f_abonada2 + self.f_atestado2 + self.f_justif2 + self.f_injustif2 + self.lic_saude2 + self.afastamento2 + self.outras_aus2))alterado por solicitação da Alessanda   7/12/2016
+      self.dias_efetivos2 = (self.dias2 - (self.f_abonada2 + self.f_atestado2 + self.f_justif2 + self.f_injustif2 + self.lic_saude2 + self.afastamento2))
     else
       self.dias_trab2 = (self.dias2 - (self.f_justif2 + self.f_injustif2))
-      self.dias_efetivos2 = (self.dias2 - (self.f_abonada2 + self.f_atestado2 + self.f_justif2 + self.f_injustif2 + self.lic_saude2 + self.afastamento2 + self.outras_aus2))
+      #self.dias_efetivos2 = (self.dias2 - (self.f_abonada2 + self.f_atestado2 + self.f_justif2 + self.f_injustif2 + self.lic_saude2 + self.afastamento2 + self.outras_aus2))alterado por solicitação da Alessanda   7/12/2016
+      self.dias_efetivos2 = (self.dias2 - (self.f_abonada2 + self.f_atestado2 + self.f_justif2 + self.f_injustif2 + self.lic_saude2 + self.afastamento2))
     end
 
     
