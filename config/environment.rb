@@ -26,7 +26,7 @@ Rails::Initializer.run do |config|
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
   
-  config.gem 'i18n', :version => '0.6.1'
+  #config.gem 'i18n', :version => '0.6.1'
   config.gem 'paperclip', :version => '~>2.3'
   config.gem 'rdoc'
   #config.gem "will_paginate", :version => '2.3.15'
