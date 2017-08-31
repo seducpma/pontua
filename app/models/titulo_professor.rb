@@ -12,6 +12,10 @@ class TituloProfessor < ActiveRecord::Base
  total_p=0
  total_a=0
 
+
+#if self.ano_letivo < 2017
+
+
       if ((self.titulo_id == 7) or (self.titulo_id == 11))and (self.quantidade < 30)
          self.pontuacao_titulo = 0
          self.total_anual = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ? and ano_letivo = ?"  , professor, 6,12, (Time.current.strftime("%Y")).to_i] )
