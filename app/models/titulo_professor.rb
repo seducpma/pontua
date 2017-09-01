@@ -7,14 +7,14 @@ class TituloProfessor < ActiveRecord::Base
   before_destroy :atualiza_pontos_tabela_professor
 
 
-  def totaliza
- $totalgeral =0
- total_p=0
- total_a=0
+def totaliza
 
 
-#if self.ano_letivo < 2017
-
+  if self.ano_letivo < 2017
+      t=0
+    $totalgeral =0
+    total_p=0
+     total_a=0
 
       if ((self.titulo_id == 7) or (self.titulo_id == 11))and (self.quantidade < 30)
          self.pontuacao_titulo = 0
@@ -62,6 +62,8 @@ class TituloProfessor < ActiveRecord::Base
      # $subtot_permente =  TituloProfessor.find_by_sql (SELECT sum(`pontuacao_titulo`) FROM `titulo_professors` WHERE `professor_id`=1269)
 
   end
+
+end
 
   def totaliza_permamente (professor)
     if (self.titulo_id == 1) or (self.titulo_id == 2) or (self.titulo_id == 3) or (self.titulo_id == 4) or (self.titulo_id ==5)

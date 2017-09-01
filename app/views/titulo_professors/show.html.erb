@@ -27,15 +27,22 @@
                  <%end%>
              <td align="center" ><%= Titulacao.find_by_id(@titulo_professor.titulo_id).valor  %></td>
                   <% if @titulo_professor.tipo_curso == true%>
-                      <td align="center" ><%=h @titulo_professor.pontuacao_titulo %></td>
+                      <%if session[:criterio]== 0%>
+                              <td align="center" ><font color ="red" size="2"><%= "NÃO VALIDO"%></font></td>
+                              <%else%>
+                               <td align="center" ><%=h @titulo_professor.pontuacao_titulo %></td>
+                             <%end%>
+                
+                      
                   <%else%>
-                      <%  if (@titulo_professor.quantidade<30) %>
+                      <%  if (@titulo_professor.quantidade<30) or (@titulo_professor.pontuacao_titulo==0)%>
                        <td align="center" ><font color ="red" size="2"><%= "NÃO VALIDO"%></font></td>
                     <% else %>
-                        <<td align="center" ><%=h @titulo_professor.pontuacao_titulo %></td>
+                        <td align="center" ><%=h @titulo_professor.pontuacao_titulo %></td>
                     <%end%>
                   <%end%>
                 <td align="center" ><%=h @titulo_professor.dt_titulo.strftime("%d/%m/%Y")%></td>
+                 <% session[:criterio]=1 %>
            </tr>
            <% permanente = @titulo_professor.totaliza_permamente(@titulo_professor.professor_id) %>
            <% anual = @titulo_professor.totaliza_anual(@titulo_professor.professor_id) %>

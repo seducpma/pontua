@@ -168,16 +168,92 @@ def sel_prof
     @titulo_professor = TituloProfessor.new(params[:titulo_professor])
     @titulo_professor.valor= session[:valor]
     @titulo_professor.ano_letivo =Time.current.strftime("%Y")
-    @titulo_professor.tipo_curso
+
+    w1=@titulo_professor.tipo_curso
+    w=@titulo_professor.titulo_id
+    w2=professor =  @titulo_professor.professor_id
+    w3=@titulo_professor.titulo_id
+    w4=@titulo_professor.quantidade.to_i
+    w5= @titulo_professor.valor.to_i
+    t=0
+    #$totalgeral =0
+    total_p=0
+     total_a=0
+
+      if ((@titulo_professor.titulo_id == 7) or (@titulo_professor.titulo_id == 11))and (@titulo_professor.quantidade < 30)
+         @titulo_professor.pontuacao_titulo = 0
+         @titulo_professor.total_anual = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ? and ano_letivo = ?"  , professor, 6,12, (Time.current.strftime("%Y")).to_i] )
+        total_anualA = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ? and ano_letivo = ?" , professor, 6,12, (Time.current.strftime("%Y")).to_i] )
+        total_a = @titulo_professor.total_anual = total_anualA +@titulo_professor.pontuacao_titulo
+         total_p = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ?" , professor, 1,5] )
+         t=0
+      else if  ((@titulo_professor.titulo_id == 7) or (@titulo_professor.titulo_id == 11))and (@titulo_professor.quantidade > 29)
+               @titulo_professor.pontuacao_titulo = @titulo_professor.quantidade * @titulo_professor.valor
+               @titulo_professor.total_anual = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ? and ano_letivo = ?"  , professor, 6,12, (Time.current.strftime("%Y")).to_i] )
+                total_anualA = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ? and ano_letivo = ?" , professor, 6,12, (Time.current.strftime("%Y")).to_i] )
+                total_a = @titulo_professor.total_anual = total_anualA +@titulo_professor.pontuacao_titulo
+                 total_p = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ?" , professor, 1,5] )
+         t=0
+           else if ((@titulo_professor.titulo_id == 6) or (@titulo_professor.titulo_id == 7) or (@titulo_professor.titulo_id == 8)or (@titulo_professor.titulo_id == 9)or (@titulo_professor.titulo_id == 10) or (@titulo_professor.titulo_id == 12))
+                 if (@titulo_professor.titulo_id ==12)
+                    if (@titulo_professor.quantidade > 8)
+                       @titulo_professor.pontuacao_titulo= @titulo_professor.quantidade.to_i * 1
+                       @titulo_professor.total_anual = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ? and ano_letivo = ?" , professor, 6,12, (Time.current.strftime("%Y")).to_i] )
+                        total_anualA = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ? and ano_letivo = ?" , professor, 6,12, (Time.current.strftime("%Y")).to_i] )
+                        total_a = @titulo_professor.total_anual = total_anualA +@titulo_professor.pontuacao_titulo
+                         total_p = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ?" , professor, 1,5] )
+                    else
+                       @titulo_professor.pontuacao_titulo= 8
+                       @titulo_professor.total_anual = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ? and ano_letivo = ?" , professor, 6,12, (Time.current.strftime("%Y")).to_i] )
+                        total_anualA = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ? and ano_letivo = ?" , professor, 6,12, (Time.current.strftime("%Y")).to_i] )
+                        total_a = @titulo_professor.total_anual = total_anualA +@titulo_professor.pontuacao_titulo
+                         total_p = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ?" , professor, 1,5] )
+                    end
+                 else
+
+                   @titulo_professor.pontuacao_titulo=  @titulo_professor.quantidade  * @titulo_professor.valor
+                   total_anualA = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ? and ano_letivo = ?" , professor, 6,12, (Time.current.strftime("%Y")).to_i] )
+                   total_a = @titulo_professor.total_anual = total_anualA +@titulo_professor.pontuacao_titulo
+                   total_p = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ?" , professor, 1,5] )
+                 end
+                else if ((@titulo_professor.titulo_id == 1) or (@titulo_professor.titulo_id == 2) or (@titulo_professor.titulo_id == 3) or (@titulo_professor.titulo_id == 4) or (@titulo_professor.titulo_id == 5))
+                        t=0
+                        if (@titulo_professor.titulo_id == 5)
+                            t=0
+                          tipo5_especializacao= TituloProfessor.count(:id,  :conditions => ["professor_id = ? and titulo_id =? and ano_letivo =?" , professor, 5, @titulo_professor.ano_letivo] )
+                          tipo5_especializacao_limite = TituloProfessor.sum(:pontuacao_titulo,  :conditions => ["professor_id = ? and titulo_id =?" , professor, 5] )
+                              if (tipo5_especializacao < 1) and (tipo5_especializacao_limite <= 7000)
+                                   session[:criterio]=1
+                                   pontuacao_especilizacao= @titulo_professor.quantidade.to_i * @titulo_professor.valor.to_i
+                                   @titulo_professor.pontuacao_titulo= @titulo_professor.quantidade.to_i * @titulo_professor.valor.to_i
+
+                              else
+                                  session[:criterio]=0
+                                   pontuacao_especilizacao= 0
+                                   @titulo_professor.pontuacao_titulo= 0
+
+                              end
+                        else
+                              pontuacao_especilizacao= @titulo_professor.quantidade.to_i * @titulo_professor.valor.to_i
+                              @titulo_professor.pontuacao_titulo= @titulo_professor.quantidade.to_i * @titulo_professor.valor.to_i
+                        end
+                        vartotal_permanente = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and (titulo_id between ? and ?)  " , professor, 1,5] )
+                        @titulo_professor.total_permanente=  vartotal_permanente + pontuacao_especilizacao
+                        total_p = @titulo_professor.total_permanente
+                     end
+                end
+            end
+      end
+
+      @titulo_professor.total_titulacao = total_a + total_p
+      #$totalgeral = @titulo_professor.total_titulacao
+     # $subtot_permente =  TituloProfessor.find_by_sql (SELECT sum(`pontuacao_titulo`) FROM `titulo_professors` WHERE `professor_id`=1269)
 
 
-    #@titulo_professor.user = current_user.id
-    #@titulo_professor.current = Time.current
-    @titulo_professor.tipo_curso
-    #@titulo_professor.begin_period = "#{session[:begin_period]}"
-    #@titulo_professor.end_period =  "#{session[:end_period]}"
-    #@log = Log.new
-    #@log.log(current_user.id, @titulo_professor.professor_id, "Cadastrado Titulo do professor.")
+
+
+t=0
+
     respond_to do |format|
       if @titulo_professor.save
         flash[:notice] = 'TITULAÇÃO CADASTRADA COM SUCESSO.'
@@ -288,10 +364,10 @@ def sel_prof
 
   def guarda_valor
 
-    $id_titulo = params[:titulo_professor_titulo_id]
-    session[:valor] = Titulacao.find_by_id($id_titulo).valor
+    
+    session[:valor] = Titulacao.find_by_id(params[:titulo_professor_titulo_id]).valor
 
-    if $id_titulo.to_i == 8 or $id_titulo.to_i == 6 or $id_titulo.to_i == 9 or $id_titulo.to_i == 10 
+    if params[:titulo_professor_titulo_id].to_i == 8 or params[:titulo_professor_titulo_id].to_i == 6 or params[:titulo_professor_titulo_id].to_i == 9 or params[:titulo_professor_titulo_id].to_i == 10
       render :update do |page|
         page.replace_html 'a_distancia', :text => ""
         page.replace_html 'a_distancia1', :text => ""
@@ -301,7 +377,7 @@ def sel_prof
        page.replace_html 'horas', :text => " horas"
       end
     else
-      if $id_titulo.to_i == 1 || $id_titulo.to_i == 2 || $id_titulo.to_i == 3 || $id_titulo.to_i == 4 || $id_titulo.to_i == 5
+      if params[:titulo_professor_titulo_id].to_i == 1 || params[:titulo_professor_titulo_id].to_i == 2 || params[:titulo_professor_titulo_id].to_i == 3 || params[:titulo_professor_titulo_id].to_i == 4 
         render :update do |page|
           page.replace_html 'a_distancia', :text => ""
           page.replace_html 'a_distancia1', :text => ""
@@ -311,19 +387,42 @@ def sel_prof
           page.replace_html 'horas', :text => " título"
         end
       else
-        if $id_titulo.to_i == 7 or $id_titulo.to_i == 11
-          render :update do |page|
-            page.replace_html 'a_distancia', :text => "1) Se CURSO À DISTANCIA desmarcar a caixa de seleção PRESENCIAL"
-            page.replace_html 'a_distancia1', :text => "2) CURSOS À DISTANCIA: válidos somente para cursos com carga horario superior à 30 horas "
-            page.replace_html 'tipo_titulo', :text => "<input id='titulo_professor_tipo_curso' type='checkbox' value='0' name='titulo_professor[tipo_curso]' checked='checked'> Presencial"
-            page.replace_html 'valor', :text => '3) Pontualçao:' + (session[:valor]).to_s + ' pontos por hora'
-            page.replace_html 'qtde', :text => "<input id='titulo_professor_quantidade' type='text' value='0' size='10' name='titulo_professor[quantidade]'>"
-            page.replace_html 'lanca', :text => "4) Lançar no campo 'QUANTIDADE' a carga horária do curso"
-            page.replace_html 'horas', :text => " horas"
-          end
+        if params[:titulo_professor_titulo_id].to_i == 5
+            render :update do |page|
+              page.replace_html 'a_distancia', :text => "1) Valido somente 1 título por ano"
+              page.replace_html 'a_distancia1', :text => "2) Limite máximo da pontuação = 7000"
+              page.replace_html "qtde", :text => "1"
+              page.replace_html 'valor', :text => '3) Pontuação: ' + session[:valor].to_s+ ' por título'
+              page.replace_html 'lanca', :text => " "
+              page.replace_html 'horas', :text => " título"
+            end
+        else
+            if params[:titulo_professor_titulo_id].to_i == 7 or params[:titulo_professor_titulo_id].to_i == 11
+              render :update do |page|
+                # page.replace_html 'a_distancia', :text => "1) Se CURSO À DISTANCIA verificaque  a caixa de seleção PRESENCIAL esta desmarcada"
+                page.replace_html 'a_distancia1', :text => "1) CURSOS À DISTANCIA: válidos somente para cursos com carga horario superior à 30 horas "
+                page.replace_html 'tipo_titulo', :text => "<input id='titulo_professor_tipo_curso' type='checkbox' value='1' name='titulo_professor[tipo_curso]' value='false'> Presencial"
+                page.replace_html 'valor', :text => '2) Pontualçao:' + (session[:valor]).to_s + ' pontos por hora'
+                page.replace_html 'qtde', :text => "<input id='titulo_professor_quantidade' type='text' value='0' size='10' name='titulo_professor[quantidade]'>"
+                page.replace_html 'lanca', :text => "3) Lançar no campo 'QUANTIDADE' a carga horária do curso"
+                page.replace_html 'horas', :text => " horas"
+              end
+            else
+              if params[:titulo_professor_titulo_id].to_i == 12
+                render :update do |page|
+                  page.replace_html 'a_distancia', :text => ""
+                  page.replace_html 'a_distancia1', :text =>  " 1) Quantidade de horas superior a 8 horas é computado 1 ponto por hora "
+                  page.replace_html "qtde", :text => "1"
+                  page.replace_html 'valor', :text => '2) Pontuação: ' + session[:valor].to_s + ' pontos até 8 horas'
+                  page.replace_html 'lanca', :text => "3) Lançar no campo 'QUANTIDADE' a carga horária do curso "
+                  page.replace_html 'horas', :text => " horas"
+                end
+              end
+           end
         end
       end
-      if $id_titulo.to_i == 100
+    end
+      if params[:titulo_professor_titulo_id].to_i == 100
         render :update do |page|
           page.replace_html 'a_distancia', :text => ""
           page.replace_html 'a_distancia1', :text => ""
@@ -333,17 +432,9 @@ def sel_prof
           page.replace_html 'horas', :text => " título"
         end
       end
-      if $id_titulo.to_i == 12
-        render :update do |page|
-          page.replace_html 'a_distancia', :text => ""
-          page.replace_html 'a_distancia1', :text =>  " 1) Quantidade de horas superior a 8 horas é computado 1 ponto por hora "
-          page.replace_html "qtde", :text => "1"
-          page.replace_html 'valor', :text => '2) Pontuação: ' + session[:valor].to_s + ' pontos até 8 horas'
-          page.replace_html 'lanca', :text => "3) Lançar no campo 'QUANTIDADE' a carga horária do curso "
-          page.replace_html 'horas', :text => " horas"
-        end
-      end
-    end
+
+
+    
   end
 
 
