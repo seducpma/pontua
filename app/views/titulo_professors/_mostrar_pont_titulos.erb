@@ -15,8 +15,8 @@
        <th  width="25%">
         Descrição
        </th>
-       <th width="5%">
-        Ano
+       <th width="10%">
+        Ano Letivo
        </th>
        <th width="10%">
         Quantidade
@@ -24,7 +24,7 @@
        <th width="5%">
         Valor
        </th>
-       <th  width="15%">
+       <th  width="12%">
         Pontuação Obtida
        </th>
      </tr>
@@ -35,14 +35,14 @@
         <font size="2"><%= truncate((Titulacao.find_by_id(tp.titulo_id).descricao),:length =>35,:omission => "...") %></font>
       </td>
       <td align="center">
-        <font size="2"><%= truncate(tp.obs,:length => 20,:omission => "...") %></font>
+        <font size="2"><%= truncate(tp.obs,:length => 30,:omission => "...") %></font>
          <%  if tp.ano_letivo == Time.now.year %>
             <font color="red"> - (novo)</font>
         <%end%>
 
       </td>
       <td align="center">
-        <font size="2"><%= tp.dt_titulo.year %> </font>
+        <font size="2"><%= tp.ano_letivo %> </font>
       </td>
 
       <td align="center">
@@ -77,13 +77,13 @@
 
 <tr style="font-size:10px"><th width="100%" colspan="7" align="center"><hr/><font size=4>Títulos de Contagem Anual</font><hr/></th></tr>
      <tr style="font-size:10px">
-       <th align="left"  width="30%"><font size="2">Título</font></th>
-       <th align="center" width="15%"><font size="2">Descrição</font></th>
+       <th align="left"  width="25%"><font size="2">Título</font></th>
+       <th align="center" width="20%"><font size="2">Descrição</font></th>
        <th align="center" width="10%"><font size="2">Tipo</font></th>
-              <th align="center" width="5%"><font size="2">Ano</font></th>
+       <th align="center" width="5%"><font size="2">Ano</font></th>
        <th align="center" width="10%"><font size="2">Quantidade</font></th>
        <th align="center" width="5%"><font size="2">Valor</font></th>
-       <th align="center" width="15%"><font size="2">Pontuação Obtida</font></th>
+       <th align="center" width="12%"><font size="2">Pontuação Obtida</font></th>
 
     </tr>
 
@@ -92,10 +92,10 @@
 <% if (tp1.ano_letivo).to_s == Time.current.strftime("%Y") %>
      <tr style="font-size:10px">
       <td  align="left">
-        <font size="2"><%= truncate((Titulacao.find_by_id(tp1.titulo_id).descricao),:length => 25,:omission => "...") %></font>
+        <font size="2"><%= truncate((Titulacao.find_by_id(tp1.titulo_id).descricao),:length => 33,:omission => "...") %></font>
       </td>
       <td  align="center">
-        <font size="2"><%= truncate(tp1.obs,:length => 20,:omission => "...") %></font>
+        <font size="2"><%= truncate(tp1.obs,:length => 25,:omission => "...") %></font>
       </td>
       <td align="center">
         <% if tp1.tipo_curso == true%>
@@ -110,7 +110,7 @@
       <%end%>
       </td>
       <td  align="center">
-              <font size="2"><%= tp1.dt_titulo.year %> </font>
+              <font size="2"><%= tp1.ano_letivo %> </font>
       </td>
        <td  align="center">
          <%if  (tp1.titulo_id == 12) and (tp1.quantidade <= 8) %>

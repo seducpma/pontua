@@ -214,8 +214,8 @@
                        <th align="center" width ="10%" ><b>Total Anterior</b></th>
                        <th align="center" width ="10%"><b>Pontuação</b></th>
                        <th align="center" width ="20%" colspan="4"><b>Total</b></th>
-                     </tr>
-                    <tr style="font-size:9px" >
+               </tr>
+               <tr style="font-size:9px" >
                       <th align="left"><b>Total dias de trabalho</b></th>
                        <th align="center"><%= temposervico.dias_efetivos1%></th>
                        <th align="center"><%= temposervico.dias_efetivos2%></th>
@@ -225,8 +225,9 @@
                        <th align="center"> <%=  (tott2* 10)%></th>
                        <th align="center"><%= temposervico.total_ant_efetivo%></th>
                        <th align="center"> <%= temposervico.total_efetivo %></th>
-                    </tr>
-                    <tr style="font-size:9px" >
+                       <th rowspan="3"></th>
+                </tr>
+                <tr style="font-size:9px" >
                       <th align="left"><b>Total de dias efetivos</b></th>
                        <th align="center"><%= temposervico.dias_trab1%></th>
                        <th align="center"><%= temposervico.dias_trab2%></th>
@@ -236,6 +237,7 @@
                        <th align="center"> <%=  tott1* 2%></th>
                        <th align="center"><%= temposervico.total_ant_dias%></th>
                        <th align="center"> <%= temposervico.total_dias %></th>
+
                     </tr>
                     <tr style="font-size:9px" >
                        <th align="left" width ="20%"><b>Total de dias rede</b></th>
@@ -284,15 +286,16 @@
 
  <tr style="font-size:9px" > <th colspan="7" align="center"> <u><font size="2"><b>PONTUAÇÃO TITULAÇÃO PERMANENTE</b></font></u><br/></th></th></tr>
     <tr style="font-size:9px">
-       <th  width="13%">  Título </th >
-       <th  width="32%"> Descrição </th >
+       <th  width="15%">  Título </th >
+       <th  width="33%"> Descrição </th >
         <th width="8%">  Ano  </th>
        <th width="8%"> Quantidade </th>
        <th width="9%"> Valor </th>
        <th width="9%">  Pontuação </th>
-       <th width="15%">  Total  </th>
+       <th width="13%">  Total  </th>
      </tr>
       <% if !((@tp.nil?) or (@tp.empty?)) %>
+
      <%for tp in @tp%>
 
      <tr style="font-size:9px">
@@ -313,12 +316,12 @@
       </th>
       <th align="center">
         <%= tp.pontuacao_titulo %>
-
         <% session[:permanente] = tp.total_permanente %>
-
       </th>
-
-   </tr>
+      <%if tp.id==@tp[0].id %>
+         <th rowspan=<%=@tp.length%>> </th>
+      <%end%>
+    </tr>
 
   <%end%>
   <%end%>
@@ -341,12 +344,12 @@
     <tr style="font-size:9px">
        <th  width="14%">  Título </th >
        <th  width="33%"> Descrição </th >
-       <th width="8%">  Ano  </th>
+       <th width="6%">  Ano  </th>
         <th width="8%"> Tipo  </th>
        <th width="7%"> Quantidade </th>
-       <th width="7%"> Valor </th>
-       <th width="7%">  Pontuação </th>
-      <th width="17 %">  Total  </th>
+       <th width="5%"> Valor </th>
+       <th width="6%">  Pontuação </th>
+      <th width="20 %">  Total  </th>
 
     </tr>
 
@@ -383,7 +386,9 @@
       <th  align="center">
          <%= tp1.pontuacao_titulo %></font>
       </th>
-      <!--true = a distancia e false = presencial!-->
+       <%if tp1.id==@tp1[0].id %>
+             <th rowspan=<%=@tp1.length%>> </th>
+       <%end%>
 
    </tr>
   <% session[:ano] = tp1.ano_letivo %>
@@ -391,15 +396,21 @@
 
 
 <% end %>
-<tr style="font-size:9px">
-  <th colspan="6" align="right">Sub-Total Títulos Anuais>&nbsp&nbsp&nbsp</th>
+<tr style="font-size:10px">
+  <th colspan="7" align="right">Sub-Total Títulos Anuais &nbsp&nbsp&nbsp</th>
   <th  align="center">
     <%= session[:anual] %></font>
   </th>
+  
+
 </tr>
+
+
+
+
 <%  session[:subtotal_titulos] = session[:permanente] +    session[:anual]%>
-<tr style="font-size:9px">
-  <th  colspan="7" align="right" font size="1"> TOTAL TÍTULOS TÍTULOS</th>
+<tr style="font-size:10px">
+  <th  colspan="7" align="right" font size="1"> TOTAL TÍTULOS TÍTULOS &nbsp&nbsp&nbsp</th>
   <th align="center" ><%= "#{ session[:subtotal_titulos]}" %></th>
 </tr>
  <tr style="font-size:9px" >

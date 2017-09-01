@@ -217,7 +217,7 @@ def sel_prof
                    total_p = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ?" , professor, 1,5] )
                  end
                 else if ((@titulo_professor.titulo_id == 1) or (@titulo_professor.titulo_id == 2) or (@titulo_professor.titulo_id == 3) or (@titulo_professor.titulo_id == 4) or (@titulo_professor.titulo_id == 5))
-                        t=0
+
                         if (@titulo_professor.titulo_id == 5)
                             t=0
                           tipo5_especializacao= TituloProfessor.count(:id,  :conditions => ["professor_id = ? and titulo_id =? and ano_letivo =?" , professor, 5, @titulo_professor.ano_letivo] )
@@ -237,6 +237,23 @@ def sel_prof
                               pontuacao_especilizacao= @titulo_professor.quantidade.to_i * @titulo_professor.valor.to_i
                               @titulo_professor.pontuacao_titulo= @titulo_professor.quantidade.to_i * @titulo_professor.valor.to_i
                         end
+                        if (@titulo_professor.titulo_id == 2)
+                            t=0
+                          tipo2_lotosensu= TituloProfessor.count(:id,  :conditions => ["professor_id = ? and titulo_id =? and ano_letivo =?" , professor, 2, @titulo_professor.ano_letivo] )
+                          tipo2_lotosensu_limite = TituloProfessor.count(:id,  :conditions => ["professor_id = ? and titulo_id =?" , professor, 2] )
+                              if (tipo2_lotosensu < 1) and (tipo2_lotosensu_limite < 5)
+                                   session[:criterio]=1
+                                   pontuacao_especilizacao= @titulo_professor.quantidade.to_i * @titulo_professor.valor.to_i
+                                   @titulo_professor.pontuacao_titulo= @titulo_professor.quantidade.to_i * @titulo_professor.valor.to_i
+                              else
+                                  session[:criterio]=0
+                                   pontuacao_especilizacao= 0
+                                   @titulo_professor.pontuacao_titulo= 0
+                              end
+                        else
+                              pontuacao_especilizacao= @titulo_professor.quantidade.to_i * @titulo_professor.valor.to_i
+                              @titulo_professor.pontuacao_titulo= @titulo_professor.quantidade.to_i * @titulo_professor.valor.to_i
+                        end
                         vartotal_permanente = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and (titulo_id between ? and ?)  " , professor, 1,5] )
                         @titulo_professor.total_permanente=  vartotal_permanente + pontuacao_especilizacao
                         total_p = @titulo_professor.total_permanente
@@ -246,13 +263,32 @@ def sel_prof
       end
 
       @titulo_professor.total_titulacao = total_a + total_p
-      #$totalgeral = @titulo_professor.total_titulacao
-     # $subtot_permente =  TituloProfessor.find_by_sql (SELECT sum(`pontuacao_titulo`) FROM `titulo_professors` WHERE `professor_id`=1269)
 
+      @professor=Professor.find(@titulo_professor.professor_id)
+      @tp = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + (@titulo_professor.professor_id).to_s + " and t.tipo = 'PERMANENTE'")
+      @tp1 = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + (@titulo_professor.professor_id).to_s + " and t.tipo = 'ANUAL' and ano_letivo = " + (Time.now.year).to_s + " ")
+      session[:subtot_um_TP]=0
+      session[:subtot_perm_TP]=0
+        for tp1 in @tp1
+          teste = Time.current.strftime("%Y")
+          (tp1.ano_letivo).to_s == Time.current.strftime("%Y")
+               session[:subtot_um_TP] = session[:subtot_um_TP] + (tp1.pontuacao_titulo)
 
-
-
-t=0
+            tituloprof= tp1.professor_id
+           session[:ano] = tp1.ano_letivo
+            anual = session[:subtot_um_TP]
+            permanente = session[:subtot_perm_TP]
+          end
+        if total_anualA.nil? or pontuacao_especilizacao.nil?
+            total_anualA = 0
+            pontuacao_especilizacao = 0
+        end
+        if ((@titulo_professor.titulo_id == 6) or (@titulo_professor.titulo_id == 7) or (@titulo_professor.titulo_id == 8)or (@titulo_professor.titulo_id == 9)or (@titulo_professor.titulo_id == 10) or (@titulo_professor.titulo_id == 11) or (@titulo_professor.titulo_id == 12))
+           @professor.total_titulacao =  total_a + total_p
+        else
+           @professor.total_titulacao =  session[:subtot_um_TP] + total_p
+        end
+      @professor.save
 
     respond_to do |format|
       if @titulo_professor.save
@@ -309,7 +345,7 @@ t=0
 
 
   def sel_prof
-    $teacher = params[:titulo_professor_professor_id]
+    #$teacher = params[:titulo_professor_professor_id]
     session[:teacher]=params[:titulo_professor_professor_id]
     if !(session[:teacher].nil? or session[:teacher].empty?) or session[:teacher] == '' then
       if (Professor.find(session[:teacher])).nil? then
@@ -345,14 +381,14 @@ t=0
       page.replace_html 'titulos', :partial => 'mostrar_pont_titulos'
     end
     $professor_id = nil
-    $teacher = nil
+    #$teacher = nil
     session[:teacher]=nil
   end
 
   def guarda_valor1
 
-    $id_titulo = params[:titulo_professor_titulo_id]
-    $session[:valor] = Titulacao.find_by_id($id_titulo).valor
+    #$id_titulo = params[:titulo_professor_titulo_id]
+    $session[:valor] = Titulacao.find_by_id(params[:titulo_professor_titulo_id]).valor
 
     render :update do |page|
       page.replace_html 'valor', :text => 'Pontuação do Título: ' + session[:valor].to_s
@@ -400,7 +436,7 @@ t=0
             if params[:titulo_professor_titulo_id].to_i == 7 or params[:titulo_professor_titulo_id].to_i == 11
               render :update do |page|
                 # page.replace_html 'a_distancia', :text => "1) Se CURSO À DISTANCIA verificaque  a caixa de seleção PRESENCIAL esta desmarcada"
-                page.replace_html 'a_distancia1', :text => "1) CURSOS À DISTANCIA: válidos somente para cursos com carga horario superior à 30 horas "
+                page.replace_html 'a_distancia1', :text => "1) CURSOS À DISTANCIA NA ÁREA DE ATUAÇÃO DO PROFESSOR: válidos somente para cursos com carga horario superior à 30 horas "
                 page.replace_html 'tipo_titulo', :text => "<input id='titulo_professor_tipo_curso' type='checkbox' value='1' name='titulo_professor[tipo_curso]' value='false'> Presencial"
                 page.replace_html 'valor', :text => '2) Pontualçao:' + (session[:valor]).to_s + ' pontos por hora'
                 page.replace_html 'qtde', :text => "<input id='titulo_professor_quantidade' type='text' value='0' size='10' name='titulo_professor[quantidade]'>"
@@ -474,7 +510,7 @@ t=0
 end
 
 def consulta_titulo_professor
-     $teacher = params[:consulta][:professor_id]
+     #$teacher = params[:consulta][:professor_id]
      session[:teacher]= params[:consulta][:professor_id]
       $ano = params[:ano_letivo]
       session[:ano]= params[:ano_letivo]
@@ -513,7 +549,7 @@ end
   end
 
 def lista_professor
-        $teacher = params[:professor_professor_id]
+        #$teacher = params[:professor_professor_id]
         session[:teacher] = params[:professor_professor_id]
         @professor= Professor.find(:all,:conditions => ["id = ?",session[:teacher]])
         @tp = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + (session[:teacher]).to_s + " and t.tipo = 'PERMANENTE'")
