@@ -249,14 +249,17 @@ end
 end
 
   def geral
+
      if (Time.current.strftime("%Y").to_i)< (Time.now.year)
          self.total_geral_tempo_servico = self.total_dias + self.total_efetivo + self.total_rede + self.total_unid
      else
          self.total_geral_tempo_servico = self.total_dias + self.total_efetivo + self.total_rede
      end
+     t=0
   end
 
   def total_pontuacao
+
     $ano =  Time.current.strftime("%Y").to_i
     professor =self.professor_id
     t=0
@@ -294,19 +297,18 @@ end
        end
 
      end
-
+t=0
     end
 
   def atualiza_pontos_tabela_professor
+      t=0
 
-     @professor= Professor.find(:all, :conditions =>['id= ?', self.professor_id])
-    @professor.each do |prof|
-      #prof.total_trabalhado = self.total_geral_tempo_servico
-      #prof.total_titulacao= ($pontostituloA+$pontostituloP)
-      prof.pontuacao_final= $geral
-      prof.save
-    end
+     @professor= Professor.find(self.professor_id)
+     @professor.total_trabalhado= $pontuacao_geral
+     @professor.pontuacao_final= $geral
+     @professor.save
 
+t=0
   end
 
 end

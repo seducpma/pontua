@@ -15,8 +15,6 @@
 <% session[:permanente]= 0 %>
 <% session[:anual] = 0 %>
 <% session[:pontos] = 0%>
-      <%  @tp = TituloProfessor.all(:joins => "inner join titulacaos on titulo_professors.titulo_id = titulacaos.id", :conditions =>["titulo_professors.professor_id =? and ano_letivo between ? and ? and titulacaos.tipo = 'PERMANENTE'", professor, 2009, Time.now.year ])%>
-      <%  @tp1 = TituloProfessor.all(:joins => "inner join titulacaos on titulo_professors.titulo_id = titulacaos.id", :conditions =>["titulo_professors.professor_id =? and ano_letivo= ? and titulacaos.tipo = 'ANUAL'", professor, Time.now.year ])%>
       <% session[:professor_pontuacao_final] = professor.pontuacao_final %>
       <%@temposervico = TempoServico.find(:all,:conditions =>['professor_id = ? and ano_letivo = ?', professor, Time.now.year]) %>
          <%for temposervico in @temposervico%>
@@ -73,9 +71,6 @@
 <!--  PONTUAÇÂO TEMPO SERVIÇO -->
            <%@temposervico = TempoServico.find(:all,:conditions =>['professor_id = ? and ano_letivo = ?', professor, Time.now.year]) %>
            <table width="100%" bgcolor="#F5F5F5" >
-
-
-
               <%for temposervico in @temposervico%>
                   <%  subtotal1= temposervico.dias_trab2 + temposervico.dias_trab1 %>
                   <%  subtotal2= temposervico.dias_efetivos2 + temposervico.dias_efetivos1%>

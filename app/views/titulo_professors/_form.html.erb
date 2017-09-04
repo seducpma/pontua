@@ -15,7 +15,7 @@
                               <%= f.collection_select :professor_id, @professor_sede, :id, :matricula, :include_blank => ' -- Selecione -- ' %>
                                   <%= observe_field 'titulo_professor_professor_id',
                                   :with => :titulo_professor_professor_id,
-                                  :url => { :action => 'sel_prof' } %>
+                                  :url => { :action => 'sel_prof' } %></td>
                           <td><b><div id="nomeprof"></div></b></td>
                           </tr>
                           <tr>
