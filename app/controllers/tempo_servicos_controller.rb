@@ -112,10 +112,6 @@ end
       if (Time.current.strftime("%Y").to_i)< (Time.now.year)
           unidts = tp.total_unid
       end
-      t1=diasts
-      t2=efetivots
-      t3= redets
-      t0=0
     end
 
       @temposervico.total_ant_dias= diasts
@@ -175,10 +171,7 @@ end
       end
     end
      geral_titulo = (pontostituloA+pontostituloP)
-     w=geral_titulo
-     w1=@temposervico.total_geral_tempo_servico
-
-     pontuacao_geral = @temposervico.total_geral_tempo_servico + geral_titulo
+      pontuacao_geral = @temposervico.total_geral_tempo_servico + geral_titulo
      
         if session[:altera_tabelas] != 1
             @temposervico.pontuacao_geral = geral_titulo+ @temposervico.total_geral_tempo_servico
@@ -188,14 +181,10 @@ end
 
 
 # def atualiza_pontos_tabela_professor
-     w=pontuacao_geral
-     w1=@temposervico.total_geral_tempo_servico
-     w6=geral_titulo
-
-     w2=@professor= Professor.find(@temposervico.professor_id)
-     w5=nome =@professor.nome
-     w3=@professor.total_trabalhado= @temposervico.total_geral_tempo_servico
-     w4=@professor.pontuacao_final= geral_titulo + @temposervico.total_geral_tempo_servico
+     
+     @professor= Professor.find(@temposervico.professor_id)
+     @professor.total_trabalhado= @temposervico.total_geral_tempo_servico
+     @professor.pontuacao_final= geral_titulo + @temposervico.total_geral_tempo_servico
 
      @professor.save
 
