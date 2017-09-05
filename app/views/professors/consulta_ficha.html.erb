@@ -46,7 +46,7 @@
      <td align="left"><%= button_to 'Consultar', consulta_ficha_path, :title => "Consultar" %></td>
 
         <% if current_user.roles_user.role_id == 7 %>
-            <%  $altera_tabelas = 1 %>
+            <% session[:altera_tabelas] = 1 %>
                 <% form_remote_tag :url => altera_tabelas_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
                <td><%= submit_tag "CORRIGIR", :class => "btn_filtrar" %> Pontuação Final Tabela Professores e Tempo Serviço </td>
 

@@ -4,12 +4,12 @@ class TempoServico < ActiveRecord::Base
   has_many :unidades
   has_many :users
   belongs_to :professor
-  before_save :salva_dados,  :pontuacao_anterior,  :total_geral,  :geral, :total_pontuacao, :atualiza_pontos_tabela_professor
+ # before_save :salva_dados,  :pontuacao_anterior,  :total_geral,  :geral, :total_pontuacao, :atualiza_pontos_tabela_professor
+#before_save :salva_dados,  :pontuacao_anterior,  :total_geral,  :geral, :total_pontuacao, :atualiza_pontos_tabela_professor
 
  
   
-   def salva_dados
-
+   def salva_dados  #TRANSFERIDO PARA O CREATE
     self.ano_letivo = Time.current.strftime("%Y").to_i
     self.ano1 = (Time.current.strftime("%Y").to_i)-1
     self.ano2 = Time.current.strftime("%Y").to_i
@@ -51,7 +51,7 @@ end
    
   
   
-  def salva_dados_anterior
+  def salva_dados_anterior  #NÂO UTILIZADO
  somatoria1
     self.ano_letivo = Time.current.strftime("%Y").to_i
     self.ano1 = (Time.current.strftime("%Y").to_i)-1
@@ -140,9 +140,11 @@ else
 
     
 end
+
 end
 
-def pontuacao_anterior
+def pontuacao_anterior #TRANSFERIDO PARA O CREATE
+
   professor = self.professor_id
   diasts =0
   efetivots=0
@@ -184,12 +186,13 @@ def pontuacao_anterior
      a3=self.total_ant_rede
      a4=self.total_ant_unid
 
-    a=0
+
   end
 end
 
 
-def pontuacao_anterior
+def pontuacao_anteriorxxxxxxx
+
   professor_id = self.professor_id
   diasts =0
   efetivots=0
@@ -232,10 +235,12 @@ def pontuacao_anterior
      a4=self.total_ant_unid
 
   end
+  
 end
 
 
-  def total_geral
+  def total_geral   #TRANSFERIDO PARA O CREATE
+
     self.total_efetivo= ((self.dias_efetivos1 + self.dias_efetivos2) * 10) + self.total_ant_efetivo
 
     t=self.total_dias
@@ -255,7 +260,7 @@ end
      else
          self.total_geral_tempo_servico = self.total_dias + self.total_efetivo + self.total_rede
      end
-     t=0
+
   end
 
   def total_pontuacao
@@ -297,18 +302,18 @@ end
        end
 
      end
-t=0
+
     end
 
   def atualiza_pontos_tabela_professor
-      t=0
+
 
      @professor= Professor.find(self.professor_id)
      @professor.total_trabalhado= $pontuacao_geral
      @professor.pontuacao_final= $geral
      @professor.save
 
-t=0
+
   end
 
 end

@@ -1,5 +1,5 @@
 <%  session[:dias2104] =184%>
-<%  session[:dias2105] =182%>
+<%  session[:dias2105] =181%>
 
 <% form_for(@temposervico) do |f| %>
       <%= f.error_messages %>
@@ -26,7 +26,7 @@
                                    <td width ="40%"><b><div id="nomeprof"></div></b></td>
                                    <td align="right"width ="20%"><b> Ano Letivo: </b></td>
                                    <td align="center"><%= Time.current.strftime("%Y").to_i%> </td>
-                                   <% $altera_tabelas = 0 %>
+                                   <% session[:altera_tabelas] = 0 %>
                                 </tr>
                             </table>
                           </td>
@@ -34,7 +34,7 @@
            
                          <tr>
                            <td align="center">
-                             <div id="cadastrar2"></div>
+                             
                              <div id="cadastrar">
                              <table frame="box" rules="all">
                                <tr>

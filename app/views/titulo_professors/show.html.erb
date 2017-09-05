@@ -27,10 +27,10 @@
                  <%end%>
              <td align="center" ><%= Titulacao.find_by_id(@titulo_professor.titulo_id).valor  %></td>
                   <% if @titulo_professor.tipo_curso == true%>
-                      <%if session[:criterio]== 0%>
-                              <td align="center" ><font color ="red" size="2"><%= "NÃO VALIDO"%></font></td>
+                             <%if  @titulo_professor.pontuacao_titulo == 0%>
+                                   <td align="center" ><font color ="red" size="2"><%= "NÃO VALIDO"%></font> <%session[:ver] = 1%></td>
                               <%else%>
-                               <td align="center" ><%=h @titulo_professor.pontuacao_titulo %></td>
+                                   <td align="center" ><%=h @titulo_professor.pontuacao_titulo %></td>
                              <%end%>
                 
                       
@@ -44,6 +44,12 @@
                 <td align="center" ><%=h @titulo_professor.dt_titulo.strftime("%d/%m/%Y")%></td>
                  <% session[:criterio]=1 %>
            </tr>
+           <% if session[:ver] == 1%>
+               <tr bgcolor="#F5F5F5">
+                   <td></td>
+                   <td colspan="5"><font color ="red" size="3"> >>>>   Título fora da legislação vigente <<<<      </font><%session[:ver] = 0%></td>
+               </tr>
+            <%end%>
            <% permanente = @titulo_professor.totaliza_permamente(@titulo_professor.professor_id) %>
            <% anual = @titulo_professor.totaliza_anual(@titulo_professor.professor_id) %>
          </table>
