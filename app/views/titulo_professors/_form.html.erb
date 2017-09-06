@@ -7,10 +7,16 @@
                <legend><font size=4>Cadastrar Titulação</font></legend>
                <table width="100%" align="center"  bgcolor="#F5F5F5" >
                  <tr>
+                     <td colspan="2" align="center">
+                        <b><font size="2" color ="red"> >>>>>>>>>>>>>>>>>>>> CADASTRAR PRIMEIRAMENTE OS TITULOS PERMANENTES E DEPOIS OS TITULOS ANUAIS <<<<<<<<<<<<<<<<<<<<</font></b>
+                     </td>
+                </tr>
+                 <tr>
                    <td width="65%">
                      <table >
+
                         <tr>
-                          <td align="left" width="4%"><b><font size="2" color ="red"><b>*</font><%= f.label :professor_id, 'Professor: ' %></b></td>
+                          <td align="left" width="4%"><b><font size="2" color ="red"><b>* </font><%= f.label :professor_id, 'Professor: ' %></b></td>
                           <td colspan="2" >
                               <%= f.collection_select :professor_id, @professor_sede, :id, :matricula, :include_blank => ' -- Selecione -- ' %>
                                   <%= observe_field 'titulo_professor_professor_id',
