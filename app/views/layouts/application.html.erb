@@ -156,10 +156,11 @@ display: none;
                         <li><%= link_to "Cadastrar",new_titulo_professor_path %></li>
                      <%end%>
                         <li><%= link_to "Consultar",consulta_titulacao_path %></li>
-<!--                     <% if (current_user.has_role?('admin') or current_user.has_role?('corrigir') or current_user.has_role?('SEDUC')or current_user.has_role?('direcao')  or current_user.has_role?('supervisao') or current_user.has_role?('secretaria'))%>
+                     <% if (current_user.has_role?('admin') or current_user.has_role?('corrigir') or current_user.has_role?('SEDUC')or current_user.has_role?('direcao')  or current_user.has_role?('supervisao') or current_user.has_role?('secretaria'))%>
+                        <!-- ###!Alex marcando ponto para não perder! 20170906 -->
                         <li><%= link_to "Excluir",titulo_professors_path %></li>
                      <%end%>
--->
+
                      <% if (current_user.has_role?('admin') or current_user.has_role?('corrigir') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao') or current_user.has_role?('supervisao'))%>
                         <li><%= link_to "Titulação",consulta_titulacao_professor_path %></li>
                      <%end%>

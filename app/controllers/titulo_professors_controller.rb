@@ -332,60 +332,24 @@ def sel_prof
       permanente =0
       anual=0
 
-    @titulo_professor = TituloProfessor.find(params[:id])
-    #@at_log = Log.new
-    #@at_log.titulacao_id = @titulo_professor.id
-    #@at_log.obs = "Atualizado"
-    #@at_log.professor_id = @titulo_professor.professor_id
-    #@at_log.user_id = current_user.id
-    #@at_log.save
+     @titulo_professor = TituloProfessor.find(params[:id])
       @titulo_professor.destroy
       ponto_subtracao =   @titulo_professor.pontuacao_titulo
-      t=0
       @tp = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + (@titulo_professor.professor.id).to_s + " and t.tipo = 'PERMANENTE'")
       @tp1 = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + (@titulo_professor.professor_id).to_s + " and t.tipo = 'ANUAL' and ano_letivo = " + (Time.now.year).to_s + " ")
         for tp1 in @tp1
             session[:subtot_ano_TP] = session[:subtot_ano_TP] + (tp1.pontuacao_titulo)
             anual = session[:subtot_ano_TP]
         end
-
-   #      for tp in @tp
-   #        session[:subtot_perm_TP] = session[:subtot_perm_TP] + (tp.pontuacao_titulo)
-   #        permanente = session[:subtot_perm_TP]
-   #     end
       @professor=Professor.find(@titulo_professor.professor.id)
-   #   @permanente = TituloProfessor.find(:last, :conditions => ["professor_id = ? and (titulo_id between ? and ?)  " , @titulo_professor.professor.id, 1,5] )
       @anual = TituloProfessor.find(:last, :conditions => ["professor_id = ? and (titulo_id between ? and ?)  " , @titulo_professor.professor.id, 6,12] )
-
       @titulo_professor1 =   TituloProfessor.find(:last, :conditions => ["professor_id = ? and (titulo_id between ? and ?)  " , @titulo_professor.professor.id, 1,5] )
-      @titulo_professor =   TituloProfessor.find(:all, :conditions => ["professor_id = ? and (titulo_id between ? and ?) and ano_letivo=?  " , @titulo_professor.professor.id, 6,12, Time.now.year] )
-      #titulo_professor_total_titulacao_ant=@titulo_professor[0].titulacao - ponto_subtracao
-  #
-  #    @titulo_professor1.total_permanente= permanente
-  #    @titulo_professor1.total_anual= anual
-  #    @titulo_professor1.total_titulacao= anual + permanente
-
-      for titulo_professor in @titulo_professor
-          #titulo_professor_total_titulacao= titulo_professor_total_titulacao - ponto_subtracao
-          if titulo_professor.pontuacao_titulo != 0
-            v_total_titulacao = titulo_professor.total_titulacao
-            if titulo_professor.total_anual > titulo_professor.pontuacao_titulo
-                titulo_professor.total_titulacao = v_total_titulacao  
-              else	
-                titulo_professor.total_titulacao = v_total_titulacao - ponto_subtracao
-            end
-            titulo_professor.total_anual = titulo_professor.total_anual - ponto_subtracao
-          end
-          
-
-t=0
-          titulo_professor.save
-      end
-
-      
+      @titulo_professor =   TituloProfessor.find(:last, :conditions => ["professor_id = ? and (titulo_id between ? and ?) and ano_letivo=?  " , @titulo_professor.professor.id, 6,12, Time.now.year] )
+      @titulo_professor.total_anual = @titulo_professor.total_anual - ponto_subtracao
+      @titulo_professor.total_titulacao=  @titulo_professor.total_titulacao - ponto_subtracao
+      @titulo_professor.save
       @professor.total_titulacao = anual + permanente
       @professor.save
-
 
     respond_to do |format|
       format.html { redirect_to(new_titulo_professor_path) }
