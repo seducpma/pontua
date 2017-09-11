@@ -235,7 +235,7 @@ end
         existe = 1
       $teacher = params[:titulo_professor_professor_id]
       session[:teacher]= params[:titulo_professor_professor_id]
-        #$professor_id = Professor.find_by_matricula($teacher).id
+        
         $professor_id = $teacher
         session[:professor_id] = session[:teacher]
         $id_professor = $professor_id

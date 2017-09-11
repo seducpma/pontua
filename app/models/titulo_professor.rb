@@ -3,7 +3,7 @@ class TituloProfessor < ActiveRecord::Base
   belongs_to :professor
   validates_presence_of :professor_id, :message => ' -  PROFESSOR - PREENCHIMENTO OBRIGATÓRIO'
   validates_presence_of :quantidade, :dt_titulo, :message => ' ==> PREENCHER DE DADOS OBRIGATÓRIO <=='
-  before_save  :totaliza
+  #before_save  :totaliza
   before_destroy :atualiza_pontos_tabela_professor
 
 
