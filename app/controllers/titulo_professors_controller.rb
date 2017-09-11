@@ -333,46 +333,56 @@ def sel_prof
       anual=0
 
       @titulo_professor = TituloProfessor.find(params[:id])
-      @titulo_professor.destroy
-      id=@titulo_professor.id
       
-#      @tp = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + (@titulo_professor.professor.id).to_s + " and t.tipo = 'PERMANENTE'")
-#      @tp1 = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + (@titulo_professor.professor_id).to_s + " and t.tipo = 'ANUAL' and ano_letivo = " + (Time.now.year).to_s + " ")
-#        for tp1 in @tp1
-#            session[:subtot_ano_TP] = session[:subtot_ano_TP] + (tp1.pontuacao_titulo)
-#            anual = session[:subtot_ano_TP]
-#        end
-
-
-
-
+      @titulo_professor.destroy
+      
+      id=@titulo_professor.id
 
       ponto_subtracao =   @titulo_professor.pontuacao_titulo
       @professor=Professor.find(@titulo_professor.professor.id)
-      @tempo_servico= TempoServico.find(:all, :conditions=> ['professor_id =? and ano_letivo=?',@titulo_professor.professor.id, Time.now.year])
-
-      @anual = TituloProfessor.find(:last, :conditions => ["professor_id = ? and (titulo_id between ? and ?)  " , @titulo_professor.professor.id, 6,12] )
-      @titulo_professor1 =   TituloProfessor.find(:last, :conditions => ["professor_id = ? and (titulo_id between ? and ?)  " , @titulo_professor.professor.id, 1,5] )
-      @titulo_professor =   TituloProfessor.find(:last, :conditions => ["professor_id = ? and (titulo_id between ? and ?) and ano_letivo=?  " , @titulo_professor.professor.id, 6,12, Time.now.year] )
-      @titulo_professor.total_anual = @titulo_professor.total_anual - ponto_subtracao
-      @titulo_professor.total_titulacao=  @titulo_professor.total_titulacao - ponto_subtracao
-
-      
-      @professor.total_titulacao = @titulo_professor.total_titulacao
-      @professor.pontuacao_final = @professor.total_trabalhado + @professor.total_titulacao 
-
-      if @tempo_servico.present?
-           w=@professor.pontuacao_final
-           w1=@tempo_servico[0].pontuacao_geral
+      @titulo_professor_apos = TituloProfessor.find(:all,:conditions => ['professor_id=? and ano_letivo = ?  AND id > ? ', @titulo_professor.professor_id, Time.now.year, @titulo_professor.id])
+      t=0
+#ANUAL
+      if @titulo_professor.total_permanente == 0
+          for tpp in @titulo_professor_apos
+              if tpp.total_permanente == 0
+                  tpp.total_anual =  tpp.total_anual- ponto_subtracao
+              end
+              tpp.total_titulacao  =  tpp.total_titulacao-ponto_subtracao
+              total_titulacao =  tpp.total_titulacao
 t=0
-           @tempo_servico[0].pontuacao_geral = @professor.pontuacao_final
-           w2=@tempo_servico[0].pontuacao_geral
-t=0
+              tpp.save
+          end
+      else
+#PERMEANENTE
+          for tpp in @titulo_professor_apos
+              if tpp.total_permanente != 0
+                  tpp.total_permanente =  tpp.total_permanente-ponto_subtracao
+
+              end
+              tpp.total_titulacao  =  tpp.total_titulacao-ponto_subtracao
+              total_titulacao =  tpp.total_titulacao
+              tpp.save
+          end
+
       end
-t=0
-      @tempo_servico[0].save
-      @titulo_professor.save
-      @professor.save
+      if !@titulo_professor_apos.present?
+         @titulo_professor_ultimo = TituloProfessor.find(:last,:conditions => ['professor_id=? and ano_letivo = ?  ', @titulo_professor.professor_id, Time.now.year])
+          total_titulacao = @titulo_professor_ultimo.total_titulacao
+      end
+#      @tempo_servico= TempoServico.find(:all, :conditions=> ['professor_id =? and ano_letivo=?',id, Time.now.year])
+      @professor.total_titulacao = total_titulacao
+
+      @professor.pontuacao_final = @professor.total_trabalhado + total_titulacao
+
+          if @tempo_servico.present?
+               @professor.pontuacao_final
+               @tempo_servico[0].pontuacao_geral
+               @tempo_servico[0].pontuacao_geral = @professor.pontuacao_final
+               @tempo_servico[0].pontuacao_geral
+          end
+#       @tempo_servico[0].save
+       @professor.save
 
     respond_to do |format|
       format.html { redirect_to(new_titulo_professor_path) }
