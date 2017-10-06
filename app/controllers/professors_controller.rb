@@ -212,6 +212,7 @@ def consulta_ficha_pontuacao
         @professor= Professor.find(:all,:conditions => ["id = ? and desligado = 0",session[:teacher1]])
          @tp = TituloProfessor.all(:joins => "inner join titulacaos on titulo_professors.titulo_id = titulacaos.id", :conditions =>["titulo_professors.professor_id =? and ano_letivo between ? and ? and titulacaos.tipo = 'PERMANENTE'", session[:teacher1], 2009, session[:ano] ])
          @tp1 = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + (session[:teacher1]).to_s + " and t.tipo = 'ANUAL'and ano_letivo ="+session[:ano])
+
            render :update do |page|
 
           page.replace_html 'titulos', :partial => 'mostrar_pontuacao'

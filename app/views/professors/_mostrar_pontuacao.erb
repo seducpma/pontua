@@ -2,6 +2,8 @@
 <% session[:permanente]= 0 %>
 <% session[:anual] = 0 %>
 <% session[:pontos] = 0%>
+<%if !@professor.empty?%>
+
 <table width="100%"frame="box">
          <tr>
            <td>
@@ -395,7 +397,8 @@
        <td  align="center">
          <%if  (tp1.titulo_id == 12) and (tp1.quantidade <= 8) %>
            <font size="2"> 1</font>
-         <%else%><% session[:professor_pontuacao_final] = professor.pontuacao_final %>
+         <%else%>
+             <% session[:professor_pontuacao_final] = professor.pontuacao_final %>
               <font size="2"><%= tp1.quantidade %></font>
           <%end%>
       </td>
@@ -456,7 +459,13 @@
 
 
 </table>
-
-
-
+<%else%>
+<table width="100%"frame="box">
+         <tr>
+             <td align="center">
+               <font color ="RED"> <b>PROFESSOR DESLIGADO DA REDE</b>
+           </td>
+         </tr>
+</table>
+<%end%>
 
