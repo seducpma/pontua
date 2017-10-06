@@ -69,12 +69,9 @@
       </td>
         <td align="center">
         <% if  tp.ano_letivo == Time.now.year %>
-             <% if ( current_user.has_role?('SEDUC')) or current_user.has_role?('direcao') or current_user.has_role?('supervisao')or current_user.has_role?('secretaria')%>
+             <% if ( current_user.has_role?('SEDUC') or current_user.has_role?('direcao') or current_user.has_role?('supervisao')or current_user.has_role?('secretaria') or current_user.has_role?('admin'))%>
                           <%= button_to 'Deletar', tp, :confirm => 'Confirma?', :method => :delete %>
              <%end%>
-             <% if current_user.has_role?('admin')%>
-                    <%= button_to 'Deletar', tp, :confirm => 'Confirma?', :method => :delete %>
-              <%end%>
          <%else%>
                  ---
           <%end%>
