@@ -456,8 +456,8 @@ t=0
         page.replace_html 'a_distancia1', :text => ""
         page.replace_html 'valor', :text => '1) Pontuação: ' + session[:valor].to_s + ' pontos  por hora'
         page.replace_html 'qtde', :text => " <input id='titulo_professor_quantidade' type='text' value='0' size='10' name='titulo_professor[quantidade]'>"
-        page.replace_html 'lanca', :text => "2) Lançar no campo 'QUANTIDADE' a carga horária do curso"
-       page.replace_html 'horas', :text => " horas"
+        page.replace_html 'lanca', :text => "2) Lançar no campo 'QUANTIDADE' a carga horária do curso. Exemplo: 30 "
+       page.replace_html 'horas', :text => "horas "
        page.replace_html 'ead', :text => ""
       end
     else
@@ -466,9 +466,9 @@ t=0
           page.replace_html 'a_distancia', :text => ""
           page.replace_html 'a_distancia1', :text => ""
           page.replace_html "qtde", :text => "1"
-          page.replace_html 'valor', :text => '1) Pontuação: ' + session[:valor].to_s+ ' por título'
-          page.replace_html 'lanca', :text => " "
-          page.replace_html 'horas', :text => " título"
+          page.replace_html 'valor', :text => '1) Pontuação: ' + session[:valor].to_s+ ' por título' 
+          page.replace_html 'lanca', :text => "2) Lançar no campo 'QUANTIDADE' a quantiade de título. Exemplo: 1"
+          page.replace_html 'horas', :text => "título"
           page.replace_html 'ead', :text => ""
         end
       else
@@ -478,7 +478,7 @@ t=0
               page.replace_html 'a_distancia1', :text => "2) Limite máximo da pontuação = 7000"
               page.replace_html "qtde", :text => "1"
               page.replace_html 'valor', :text => '3) Pontuação: ' + session[:valor].to_s+ ' por título'
-              page.replace_html 'lanca', :text => " "
+              page.replace_html 'lanca', :text => "4) Lançar no campo 'QUANTIDADE' a quantiade de título exemplo: 1"
               page.replace_html 'horas', :text => " título"
                page.replace_html 'ead', :text => ""
             end
@@ -490,7 +490,7 @@ t=0
                 page.replace_html 'tipo_titulo', :text => "<input id='titulo_professor_tipo_curso' type='checkbox' value='1' name='titulo_professor[tipo_curso]' value='false'> Presencial"
                 page.replace_html 'valor', :text => '2) Pontualçao:' + (session[:valor]).to_s + ' pontos por hora'
                 page.replace_html 'qtde', :text => "<input id='titulo_professor_quantidade' type='text' value='0' size='10' name='titulo_professor[quantidade]'>"
-                page.replace_html 'lanca', :text => "3) Lançar no campo 'QUANTIDADE' a carga horária do curso"
+                page.replace_html 'lanca', :text => "3) Lançar no campo 'QUANTIDADE' a carga horária do curso. Exemplo: 30"
                 page.replace_html 'horas', :text => " horas"
                 page.replace_html 'ead', :text => "  CURSOS EAD FORA DA AREA DE ATUAÇÃO DO PROFESSOR NÃO SÃO VÁLIDOS. "
               end
@@ -501,7 +501,7 @@ t=0
                   page.replace_html 'a_distancia1', :text =>  " 1) Quantidade de horas superior a 8 horas é computado 1 ponto por hora "
                   page.replace_html "qtde", :text => "1"
                   page.replace_html 'valor', :text => '2) Pontuação: ' + session[:valor].to_s + ' pontos até 8 horas'
-                  page.replace_html 'lanca', :text => "3) Lançar no campo 'QUANTIDADE' a carga horária do curso "
+                  page.replace_html 'lanca', :text => "3) Lançar no campo 'QUANTIDADE' a carga horária do curso. Exemplo: 8 "
                   page.replace_html 'horas', :text => " horas"
                   page.replace_html 'ead', :text => ""
                 end
