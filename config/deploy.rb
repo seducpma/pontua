@@ -1,4 +1,5 @@
-set :application, "192.168.0.12"
+#set :application, "192.168.0.12"
+set :application, "192.168.1.131"
 set :repository, "git://github.com/seducpma/pontua.git"
 set :user, "servidor"
 set :use_sudo, false

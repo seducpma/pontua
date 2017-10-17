@@ -359,7 +359,7 @@ t=0
 
 
 
-        flash[:notice] = 'CADASTRADO xxxx COM SUCESSO.'
+        flash[:notice] = 'CADASTRADO COM SUCESSO.'
         format.html { redirect_to(@temposervico) }
         format.xml  { head :ok }
       else
