@@ -35,17 +35,17 @@
       <tr style="font-size:9px">
 
         <th ><center><%= num%>º</center></td>
-        <th ><center><%=h ts.professor.matricula %></center></th>
-        <th ><center><%=h ts.professor.nome %></center></th>
-        <th ><center><%=h ts.professor.unidade.nome %></center></th>
-        <th > <center><%=h ts.professor.total_trabalhado %></center></th>
-        <th ><center><%=h ts.professor.total_titulacao %></center></th>
-            <% if ts.pontuacao_geral.nil? then %>
+        <th ><center><%=h ts.matricula %></center></th>
+        <th ><center><%=h ts.nome %></center></th>
+        <th ><center><%=h ts.unidade.nome %></center></th>
+        <th > <center><%=h ts.total_trabalhado %></center></th>
+        <th ><center><%=h ts.total_titulacao %></center></th>
+            <% if ts.pontuacao_final.nil? then %>
                     <th ></th>
             <%else%>
-                <th ><center><%=h ts.pontuacao_geral%></center></th>
+                <th ><center><%=h ts.pontuacao_final%></center></th>
             <%end%>
-        <th width = "30%"><center><%=h ts.professor.funcao%></center></th>
+        <th width = "30%"><center><%=h ts.funcao%></center></th>
      </tr>
     <% end %>
              </table>

@@ -38,17 +38,17 @@ display: none;
      <% num= num+1 %>
       <tr>
         <td ><center><%= num%>º</center></td>
-        <td ><center><%=h ts.professor.matricula %></center></td>
-        <td ><center><%=h ts.professor.nome %></center></td>
-        <td ><center><%=h ts.professor.unidade.nome %></center></td>
-        <td > <center><%=h ts.professor.total_trabalhado %></center></td>
-        <td ><center><%=h ts.professor.total_titulacao %></center></td>
-            <% if ts.pontuacao_geral.nil? then %>
+        <td ><center><%=h ts.matricula %></center></td>
+        <td ><center><%=h ts.nome %></center></td>
+        <td ><center><%=h ts.unidade.nome %></center></td>
+        <td > <center><%=h ts.total_trabalhado %></center></td>
+        <td ><center><%=h ts.total_titulacao %></center></td>
+            <% if ts.pontuacao_final.nil? then %>
                     <td ></td>
             <%else%>
-                <td ><center><%=h ts.pontuacao_geral%></center></td>
+                <td ><center><%=h ts.pontuacao_final%></center></td>
             <%end%>
-        <td width = "30%"><center><%=h ts.professor.funcao%></center></td>
+        <td width = "30%"><center><%=h ts.funcao%></center></td>
      </tr>
     <% end %>
              <tr>

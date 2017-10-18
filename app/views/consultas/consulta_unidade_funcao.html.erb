@@ -12,9 +12,9 @@
        <table width="100%" align="center" bgcolor="#DCDCDC" >
           <tr>
             <td align="left"> <b>Unidade:</b>
-              <%= select_tag :search, options_for_select(@unidade_sede.collect { |ff| [ff.nome, ff.id] }.insert(0, '--Selecionar--')) %>
+              <%= select_tag :unidade, options_for_select(@unidade_sede.collect { |ff| [ff.nome, ff.id] }.insert(0, '--Selecionar--')) %>
                &nbsp&nbsp&nbsp<b>Função:</b>
-              <%= select_tag :search1, options_for_select(CARGO1).sort, :include_blank => '-- Selecionar --' %>
+              <%= select_tag :funcao, options_for_select(CARGO1).sort, :include_blank => '-- Selecionar --' %>
                &nbsp&nbsp&nbsp
               <%= submit_tag "Filtrar", :name => nil %>
             </td>
@@ -43,15 +43,15 @@
              <%num = num+1%>
               <tr>
                 <td width = "7%"><center><%=num%>º</center></td>
-                <td width = "7%"><center><%=h ts.professor.matricula %></center></td>
-                <td width = "40%"><center><%=h ts.professor.nome %></center></td>
-                <td width = "25%"><center><%=h ts.professor.unidade.nome %></center></td>
-                    <% if ts.pontuacao_geral.nil? then %>
+                <td width = "7%"><center><%=h ts.matricula %></center></td>
+                <td width = "40%"><center><%=h ts.nome %></center></td>
+                <td width = "25%"><center><%=h ts.unidade.nome %></center></td>
+                    <% if ts.pontuacao_final.nil? then %>
                             <td width="5%"><%=h%></td>
                     <%else%>
-                        <td width = "5%"><center><%=h ts.pontuacao_geral%></center></td>
+                        <td width = "5%"><center><%=h ts.pontuacao_final%></center></td>
                     <%end%>
-                <td width = "20%"><center><%=h ts.professor.funcao%></center></td>
+                <td width = "20%"><center><%=h ts.funcao%></center></td>
              <tr/>
             <% end %>
 
