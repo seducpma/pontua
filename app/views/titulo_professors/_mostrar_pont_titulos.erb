@@ -153,10 +153,15 @@
   <th align="center">
     <%= "#{session[:subtotal_titulos]}" %>
 </tr>
+
+
+ <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC')%>  <!-- liberar secretaria botão excluir   -->
 <tr>
-   <td widht="8%" colspan="7"><%= link_to image_tag("/stylesheets/images/alterar.png"),titulo_professors_path(:professor => $teacher, :type => 1)%>
+   <td widht="8%" colspan="7"><%= link_to image_tag("/stylesheets/images/alterar.png"),titulo_professors_path(:professor => $teacher, :type => 1)%></td>
                    
 </tr>
+
+<%end%>
 </table>
 
 

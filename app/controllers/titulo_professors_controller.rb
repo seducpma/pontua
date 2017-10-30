@@ -350,7 +350,6 @@ def sel_prof
               end
               tpp.total_titulacao  =  tpp.total_titulacao-ponto_subtracao
               total_titulacao =  tpp.total_titulacao
-t=0
               tpp.save
           end
       else
