@@ -1,6 +1,5 @@
-#set :application, "192.168.0.21"
+set :application, "192.168.0.21"
 #set :application, "192.168.0.12"
-set :application, "170.81.237.114"
 set :repository, "git://github.com/seducpma/pontua.git"
 #set :user, "servidor"
 set :user, "hera"
