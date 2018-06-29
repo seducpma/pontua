@@ -1,8 +1,8 @@
 set :application, "192.168.0.21"
 #set :application, "192.168.0.12"
 set :repository, "git://github.com/seducpma/pontua.git"
-#set :user, "servidor"
-set :user, "hera"
+set :user, "servidor"
+#set :user, "hera"
 set :use_sudo, false
 set :deploy_to, "/home/#{user}/pontua.seducpma.com"
 set :scm, :git
