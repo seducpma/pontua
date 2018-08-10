@@ -47,12 +47,8 @@
                   <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') %>
                       <tr>
                         <td ><b>Função/Cargo:</b> <%= @professor.funcao  %>&nbsp&nbsp&nbsp&nbsp</td>
-                        <td> <font color="red"> (LANÇAR) </FONT><b>Função/Cargo:</b> <%= f.collection_select :funcao, @cargos, :nome, :nome, :include_blank =>@professor.funcao%></td>
-                      </tr>
-                      <tr>
-                        <td><b>Formação: </b><%= @professor.entrada_concurso %></td>
-                        <td><font color="red"> (LANÇAR) </FONT><b>Formação: </b><%= f.select :entrada_concurso, options_for_select(Professor::Curso), :include_blank => @professor.entrada_concurso%></td>
-                      </tr>
+                          <td><b>Formação: </b><%= @professor.entrada_concurso %></td>
+                        </tr>
                       <tr>
                         <td colspan="4"> <b>Sede: </b><%= f.collection_select :sede_id, @unidades, :id, :nome, :include_blank => ' -- Selecione -- ' %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                          <b>Obs:</b><%= f.text_field :obs, :size =>86 %></td>

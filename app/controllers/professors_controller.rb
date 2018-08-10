@@ -78,7 +78,8 @@ end
   # GET /professors/1/edit
   def edit
     @professor = Professor.find(params[:id])
-t=01
+    session[:funcao]= @professor.funcao
+
   end
 
   # POST /professors
@@ -102,7 +103,8 @@ t=01
   # PUT /professors/1.xml
   def update
     @professor = Professor.find(params[:id])
-    t=0
+    @professor.funcao= session[:funcao]
+
     respond_to do |format|
       if @professor.update_attributes(params[:professor])
         flash[:notice] = 'SALVO COM SUCESSO.'

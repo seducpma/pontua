@@ -7,7 +7,7 @@ class Professor < ActiveRecord::Base
 validates_presence_of :matricula, :message => ' -  MATRÍCULA - PREENCHIMENTO OBRIGATÓRIO'
 validates_presence_of :nome, :message => ' -  NOME - PREENCHIMENTO OBRIGATÓRIO'
 validates_presence_of :funcao, :message => ' -  FUNÇÃO - PREENCHIMENTO OBRIGATÓRIO'
-validates_presence_of :sede_id, :message => ' -  SEDE - PREENCHIMENTO OBRIGATÓRIO'
+#validates_presence_of :sede_id, :message => ' -  SEDE - PREENCHIMENTO OBRIGATÓRIO'
 
 validates_numericality_of :INEP, :only_integer => true, :message =>  ' - SOMENTE NÚMEROS'
 validates_numericality_of :RD, :only_integer => true, :message =>  ' - SOMENTE NÚMEROS'
@@ -26,6 +26,13 @@ Curso = ['Sem Magistério / Pedagogia','Magistério - Nível Médio','Pedagogia 
    if self.dt_ingresso.nil?
         self.dt_ingresso = atualiza.dt_ingresso
    end
+   if self.sede_id.nil?
+        self.sede_id = atualiza.sede_id
+   end
+   if self.funcao.nil?
+        self.funcao  = atualiza.funcao 
+   end
+
 
   end
 
