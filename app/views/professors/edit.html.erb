@@ -10,48 +10,49 @@
            <%= f.error_messages %>
             <font  size="2">
               <fieldset><legend><font  size=3> Dados Professor</font></legend>
-                <table width="100%" align="center"  bgcolor="#F5F5F5" >
+                <table width="100%" align="center"   bgcolor="#F5F5F5" >
                   <tr>
                     <td><b>Matricula: </b><%= f.text_field :matricula, :size => 24 %></td>
-                    <td><b>Nome: </b><%= f.text_field :nome, :size => 80 %></td>
+                    <td><b>Nome: </b><%= f.text_field :nome, :size => 58 %></td>
                   </tr>
                   <tr>
                     <td><b>Nascimento: </b><%= f.date_select(:dt_nasc, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year - 80)) %></td>
-                    <td><b>RG: </b><%= f.text_field :RG, :size => 14 %>&nbsp&nbsp&nbsp
-                        <b>CPF: </b><%= f.text_field :CPF, :size => 14 %>&nbsp&nbsp&nbsp
-                         <b>RD: </b><%= f.text_field :RD, :size => 9 %>&nbsp&nbsp&nbsp
-                        <b>INEP: </b><%= f.text_field :INEP, :size => 9 %></td>
+                    <td><b>RG: </b><%= f.text_field :RG, :size => 10 %>&nbsp&nbsp&nbsp
+                        <b>CPF: </b><%= f.text_field :CPF, :size => 10 %>&nbsp&nbsp&nbsp
+                         <b>RD: </b><%= f.text_field :RD, :size => 5 %>&nbsp&nbsp&nbsp
+                        <b>INEP: </b><%= f.text_field :INEP, :size => 5 %></td>
                   </tr>
 
                   <tr>
-                    <td colspan="2"><b> Endereço: </b><%= f.text_field :endres,:size =>57 %>
-                        <b>Nº </b><%= f.text_field :num, :size => 4 %>&nbsp&nbsp&nbsp&nbsp
-                        <b>Complemento: </b><%= f.text_field :complemento, :size =>35 %></td>
+                    <td colspan="2"><b> Endereço: </b><%= f.text_field :endres,:size =>40 %>
+                        <b>Nº </b><%= f.text_field :num, :size => 3 %>&nbsp&nbsp&nbsp
+                        <b>Complemento: </b><%= f.text_field :complemento, :size =>30 %></td>
                   </tr>
                   <tr>
-                    <td><b>Bairro: </b><%= f.text_field :bairro,:size =>40 %></td>
-                    <td><b>Cidade: </b><%= f.text_field :cidade, :size =>58 %>&nbsp&nbsp&nbsp&nbsp
+                    <td><b>Bairro: </b><%= f.text_field :bairro,:size =>28 %></td>
+                    <td><b>Cidade: </b><%= f.text_field :cidade, :size =>38 %>&nbsp&nbsp&nbsp
                       <b>CEP: </b><%= f.text_field :cep, :size =>9 %></td>
                   </tr>
                   <tr>
-                    <td><b>Telefone(s): </b><%= f.text_field :telefone, :size =>34%>
-                    <td><b>Celular(es): </b><%= f.text_field :cel, :size =>50 %>&nbsp&nbsp&nbsp&nbsp
+                    <td><b>Telefone(s): </b><%= f.text_field :telefone, :size =>24%>
+                    <td><b>Celular(es): </b><%= f.text_field :cel, :size =>32 %>&nbsp&nbsp&nbsp&nbsp
                     <b>Nº Filhos: </b><%= f.text_field :n_filhos, :size => 8 %></td>
                   </tr>
                   <tr>
-                    <td><b>E-mail(s): </b><%= f.text_field :email, :size =>29%>
+                    <td><b>E-mail(s): </b><%= f.text_field :email, :size =>26%>
                     <td colspan="3"><b>Data Ingresso: </b> <%= f.date_select(:dt_ingresso, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year - 80)) %>&nbsp&nbsp&nbsp&nbsp
                     <b>Jornada Semanal: </b><%= f.text_field :jornada_sem, :size =>4 %> horas</td>
 
                   </tr>
                   <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') %>
                       <tr>
-                        <td ><b>Função/Cargo:</b> <%= @professor.funcao  %>&nbsp&nbsp&nbsp&nbsp</td>
+                        <td width="35%"><b>Função/Cargo: </b><%= f.collection_select :funcao, @cargos, :nome, :nome, :value => @professor.funcao %></td>
+
                           <td><b>Formação: </b><%= @professor.entrada_concurso %></td>
                         </tr>
                       <tr>
-                        <td colspan="4"> <b>Sede: </b><%= f.collection_select :sede_id, @unidades, :id, :nome, :include_blank => ' -- Selecione -- ' %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                         <b>Obs:</b><%= f.text_field :obs, :size =>86 %></td>
+                        <td colspan="4"> <b>Sede: </b><%= f.collection_select :sede_id, @unidades, :id, :nome, :include_blank => ' -- Selecione -- ' %>&nbsp&nbsp&nbsp&nbsp&nbsp
+                         <b>Obs: </b><%= f.text_field :obs, :size =>62 %></td>
 
                       </tr>
                    <%else%>
@@ -60,7 +61,7 @@
                         <td><b>Formação: </b><%= @professor.entrada_concurso %></td>
                       </tr>
                       <tr>
-                        <td colspan="4"> <b>Sede: </b><%= @professor.unidade.nome%> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        <td colspan="4"> <b>Sede: </b><%= @professor.unidade.nome%> &nbsp&nbsp&nbsp&nbsp&nbsp
                          <b>Obs:</b><%= @professor.obs %></td>
 
                       </tr>
@@ -69,7 +70,7 @@
 
                  <tr>
                     <td colspan="4"><b>Desligado:</b>SIM <%= f.check_box :desligado %><b> em </b><%= f.date_select(:data_desligado, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year - 10)) %> &nbsp&nbsp&nbsp&nbsp
-                    <b>Motivo:</b> <%= f.text_field :motivo, :size =>70%></td>
+                    <b>Motivo:</b> <%= f.text_field :motivo, :size =>50%></td>
                  </tr>
 
                    <tr>
