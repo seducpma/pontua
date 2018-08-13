@@ -29,9 +29,7 @@ Curso = ['Sem Magistério / Pedagogia','Magistério - Nível Médio','Pedagogia 
    if self.sede_id.nil?
         self.sede_id = atualiza.sede_id
    end
-   if self.funcao.nil?
-        self.funcao  = atualiza.funcao 
-   end
+
 
 
   end
