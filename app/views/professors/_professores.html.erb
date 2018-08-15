@@ -5,6 +5,7 @@
             <th width="300">Nome</th>
             <th width="200">Função</th>
             <th width="200">Unidade</th>
+            <th width="40">Situação</th>
             <th colspan="3">Administração</th>
         </tr>
            <%$t=0%>
@@ -15,6 +16,12 @@
                 <td align="left"><%=h professor.nome%></td>
                 <td align="left"><%=h professor.funcao%></td>
                 <td align="left"><%=h professor.unidade.nome%></td>
+                <td align="left"><% if professor.desligado == 0%>
+                                      <font color=" blue"> Ativo </font>
+                                 <%else%>
+                                     <font color=" red"> Desl. </font>
+                                 <%end%>
+                </td>
                 <td align="center"><%= button_to('Visualizar', {:action => "show", :id =>professor},:method => "get", :title => "Visualizar") %></td>
                <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC')  or current_user.has_role?('direcao')  or current_user.has_role?('supervisao') %>
                     <td align="center"><%= button_to 'Editar', {:action => "edit", :id =>professor}, :method => "get", :title => "Editar"%></td>
