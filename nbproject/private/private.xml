@@ -1,3 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?><project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/1">
+        <file>file:/home/seduc/pontua/app/views/professors/_professores.html.erb</file>
+        <file>file:/home/seduc/pontua/app/views/professors/edit.html.erb</file>
+        <file>file:/home/seduc/pontua/app/controllers/professors_controller.rb</file>
+        <file>file:/home/seduc/pontua/app/controllers/titulo_professors_controller.rb</file>
+        <file>file:/home/seduc/pontua/app/views/titulo_professors/edit.html.erb</file>
+        <file>file:/home/seduc/pontua/app/views/layouts/application.html.erb</file>
+        <file>file:/home/seduc/pontua/config/deploy.rb</file>
+    </open-files>
 </project-private>
