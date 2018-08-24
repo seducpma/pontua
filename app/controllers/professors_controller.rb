@@ -198,7 +198,8 @@ end
 
   def lista_professor_unidade
     $sede = params[:unidade_id]
-    @professors = Professor.find(:all, :conditions => ['sede_id=' + $sede])
+    #@professors = Professor.find(:all, :conditions => ['sede_id=' + $sede])
+    @professors = Professor.find(:all, :conditions => ['sede_id=? AND DESLIGADO = 0', params[:unidade_id]], :order => 'nome ASC')
     render :partial => 'professores'
   end
 
