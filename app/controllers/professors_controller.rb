@@ -183,7 +183,7 @@ end
        end
        if params[:type_of].to_i == 6
          if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then
-             @professors = Professor.find( :all,:conditions => ["funcao like ?", "%" + params[:search].to_s + "%"],:order => 'nome ASC')
+             @professors = Professor.find( :all,:conditions => ["funcao like ? AND desligado= 0 ", "%" + params[:search].to_s + "%" ],:order => 'nome ASC')
          else
              @professors = Professor.find(:all, :conditions=> ["desligado = 0 and funcao like ? and (sede_id = ? or sede_id = 54)" ,"%" + params[:search].to_s + "%", current_user.unidade_id], :order => 'sede_id,nome ASC')
          end
