@@ -1,0 +1,55 @@
+<table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
+    <tr  style="border-color: white">
+        <td  style="border-color: white" rowspan="2"><center><img src="/stylesheets/images/logo.png"   alt=""   /></center></td>
+        <td  style="border-color: white" colspan="2"><center><font size="2"><i><b>Prefeitura Municipal de  Americana </b></i></center>
+            <center><font size="1"><b><i> Secretaria da Educação</i></b><br/></center>
+            <font size="4"><i><center><b><u>CADASTRO DE PROFESSORES</u></b></center></i><br/>
+        </td>
+    </tr>
+
+</table>
+      <hr/>
+<table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
+    <tr style="border-color: white">
+      <td style="border-color: white"  colspan="5">
+  
+      </td>
+    </tr>
+   <tr  class ="invisible_to_print ">
+     <td align="right" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
+  </tr>
+ </table>
+
+  <div class="tabs">
+    <table border="1" cellspacing="0" cellpadding="1" width="100%" style="border-color: white">
+        <tr >
+            <th width="40"><font size="2"> Matricula</font></th>
+            <th width="300"><font size="2">Nome</font></th>
+            <th width="200"><font size="2">Função</font></th>
+            <th width="200"><font size="2">Unidade</font></th>
+            <th width="40"><font size="2">Situação</font></th>
+        </tr>
+           <%$t=0%>
+           <% @professors.each do |professor| %>
+           <%$t = $t+1%>
+        <tr>
+                <td align="left"><font size="2"><%=h professor.matricula%></font></td>
+                <td align="left"><font size="2"><%=h professor.nome%></font></td>
+                <td align="left"><font size="2"><%=h professor.funcao%></font></td>
+                <td align="left"><font size="2"><%=h professor.unidade.nome%></font></td>
+                <td align="left"><% if professor.desligado == 0%>
+                                      <font size ="2"color=" blue"> Ativo </font>
+                                 <%else%>
+                                     <font size=" 2"color=" red"> Desl. </font>
+                                 <%end%>
+                </td>
+              </tr>
+            <% end %>
+
+ <table  class ="invisible_to_print " >
+   <tr  class ="invisible_to_print ">
+     <td align="right" class ="invisible_to_print "><%= button_to "Imprimir", onclick="javascript:window.print()", :title => "Imprimir" %></td>
+  </tr>
+ </table>
+
+     </table>

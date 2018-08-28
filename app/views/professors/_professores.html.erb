@@ -41,6 +41,9 @@
             <font color ="red "size="2"><b><%=$t %></b></font> 
           </td>
       </tr>
+       <tr>
+           <td align="ledft" ><%= button_to 'Imprimir', onclick="javascript:MM_openBrWindow('#{impressao_consulta_path}','impressao', 'scrollbars=yes , toolbar=yes, status=yes');", :title => "Imprimir" %> </b></td>
+       </tr>
     </table>
   </div>
 

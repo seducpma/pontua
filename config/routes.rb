@@ -1,17 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :cargos
-
   map.resources :titulacaos
-
   map.resources :titulo_professors, :collection => {:impressao => :get, :consulta_titulo => :get}
   map.resources :tempo_servicos, :collection => {:impressao => :get}
   map.resources :professors, :collection => {:consulta_ficha => :get, :impressao => :get, :consulta_erros => :get}
-
-  #map.resources :financeiros, :collection => {:impressao => :get}
-  #map.resources :impressaos, :collection => {:impressao => :get}
-  #map.resources :relatorios, :collection => {:impressao => :get}
-  #map.resources :funcionarios_familiares
-  #map.resources :familiares
 
   map.resources :classes
   map.resources :informativos
@@ -42,6 +34,7 @@ ActionController::Routing::Routes.draw do |map|
   map.consulta_titulacao_professor'/consulta_titulacao_professor', :controller => 'titulo_professors', :action => 'consulta_titulacao_professor'
   map.consulta_titula'/consulta_titula', :controller => 'titulo_professors', :action => 'consulta_titula'
   map.consultaprofessor '/consultaprofessor', :controller => 'professors', :action => 'consultaprofessor'
+  map.impressao_consulta '/impressao_consulta', :controller => 'professors', :action => 'impressao_consulta'
 
 
   map.consulta_unidade_nome '/consulta_unidade_nome', :controller => 'unidades', :action => 'consulta_nome'

@@ -132,8 +132,9 @@ end
   end
 
  def consultaprofessor
- 
+
      if params[:type_of].to_i == 3
+      session[:tipo] = 3
       if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then
           @professors = Professor.find(:all,:order => 'nome ASC')
       else
@@ -144,6 +145,7 @@ end
        end
      end
      if params[:type_of].to_i == 2
+       session[:tipo] = 2
       if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then
           @professors = Professor.find(:all, :conditions=> ["desligado = 0"],:order => 'nome ASC')
       else
@@ -154,6 +156,7 @@ end
        end
      end
      if params[:type_of].to_i == 4
+       session[:tipo] = 4
        if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then
           @professors = Professor.find(:all, :conditions=> ["desligado = 1"],:order => 'nome ASC')
       else
@@ -164,24 +167,26 @@ end
         end
      end
       if params[:type_of].to_i == 1
+        session[:tipo] = 1
+        session[:nome] = params[:search1].to_s
          if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then
              @professors = Professor.find(:all,:conditions => ["nome like ?", "%" + params[:search1].to_s + "%"],:order => 'nome ASC')
          else
              @professors = Professor.find(:all, :conditions=> ["nome like ? and (sede_id = ? or sede_id = 54)" ,"%" + params[:search1].to_s + "%", current_user.unidade_id], :order => 'sede_id,nome ASC')
          end
-        
-          teste =   params[:search1].to_s
-
           render :update do |page|
                 page.replace_html 'professores', :partial => "professores"
               end
        end
        if params[:type_of].to_i == 5
+         session[:tipo] = 5
               render :update do |page|
                 page.replace_html 'professores', :partial => "professores"
               end
        end
        if params[:type_of].to_i == 6
+         session[:tipo] = 6
+         session[:tipo_prof] = params[:search].to_s
          if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then
              @professors = Professor.find( :all,:conditions => ["funcao like ? AND desligado= 0 ", "%" + params[:search].to_s + "%" ],:order => 'nome ASC')
          else
@@ -193,13 +198,72 @@ end
        end
 
 
-  
+
 end
 
+
+ def impressao_consulta
+
+     if session[:tipo] == 3
+       t=0
+      if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then
+          @professors = Professor.find(:all,:order => 'nome ASC')
+      else
+          @professors = Professor.find(:all, :conditions=> ["(sede_id = ? or sede_id = 54)" , current_user.unidade_id] ,:order => 'sede_id,nome ASC ')
+      end
+     end
+     if session[:tipo] == 2
+       t=0
+      if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then
+          @professors = Professor.find(:all, :conditions=> ["desligado = 0"],:order => 'nome ASC')
+      else
+          @professors = Professor.find(:all, :conditions=> ["desligado = 0 and (sede_id = ? or sede_id = 54)" , current_user.unidade_id], :order => 'sede_id, nome ASC')
+      end
+     end
+     if session[:tipo] == 4
+              t=0
+       if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then
+          @professors = Professor.find(:all, :conditions=> ["desligado = 1"],:order => 'nome ASC')
+      else
+          @professors = Professor.find(:all, :conditions=> ["desligado = 1 and (sede_id = ? or sede_id = 54)" , current_user.unidade_id], :order => 'sede_id, nome ASC')
+      end
+     end
+      if session[:tipo] == 1
+       t=0
+         if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then
+             @professors = Professor.find(:all,:conditions => ["nome like ?", "%" + session[:nome] + "%"],:order => 'nome ASC')
+             t=0
+         else
+             @professors = Professor.find(:all, :conditions=> ["nome like ? and (sede_id = ? or sede_id = 54)" ,"%" + params[:search1].to_s + "%", current_user.unidade_id], :order => 'sede_id,nome ASC')
+          t=0
+         end
+       end
+       if session[:tipo]== 5
+          @professors = Professor.find(:all, :conditions => ['sede_id=? AND DESLIGADO = 0', session[:unidade_id]], :order => 'nome ASC')
+
+       end
+       if session[:tipo] == 6
+         if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then
+             @professors = Professor.find( :all,:conditions => ["funcao like ? AND desligado= 0 ", "%" + session[:tipo_prof] + "%" ],:order => 'nome ASC')
+         else
+             @professors = Professor.find(:all, :conditions=> ["desligado = 0 and funcao like ? and (sede_id = ? or sede_id = 54)" ,"%" + session[:tipo_prof] + "%", current_user.unidade_id], :order => 'sede_id,nome ASC')
+         end
+       end
+
+      render :layout => "impressao"
+end
+
+
+
+
+ 
   def lista_professor_unidade
     $sede = params[:unidade_id]
+    session[:unidade_id]= params[:unidade_id]
+    session[:tipo]= 5
     #@professors = Professor.find(:all, :conditions => ['sede_id=' + $sede])
     @professors = Professor.find(:all, :conditions => ['sede_id=? AND DESLIGADO = 0', params[:unidade_id]], :order => 'nome ASC')
+
     render :partial => 'professores'
   end
 
