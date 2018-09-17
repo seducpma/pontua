@@ -6,11 +6,11 @@ class Professor < ActiveRecord::Base
   
 validates_presence_of :matricula, :message => ' -  MATRÍCULA - PREENCHIMENTO OBRIGATÓRIO'
 validates_presence_of :nome, :message => ' -  NOME - PREENCHIMENTO OBRIGATÓRIO'
-validates_presence_of :funcao, :message => ' -  FUNÇÃO - PREENCHIMENTO OBRIGATÓRIO'
+#validates_presence_of :funcao, :message => ' -  FUNÇÃO - PREENCHIMENTO OBRIGATÓRIO'
 #validates_presence_of :sede_id, :message => ' -  SEDE - PREENCHIMENTO OBRIGATÓRIO'
 
-validates_numericality_of :INEP, :only_integer => true, :message =>  ' - SOMENTE NÚMEROS'
-validates_numericality_of :RD, :only_integer => true, :message =>  ' - SOMENTE NÚMEROS'
+#validates_numericality_of :INEP, :only_integer => true, :message =>  ' - SOMENTE NÚMEROS'
+#validates_numericality_of :RD, :only_integer => true, :message =>  ' - SOMENTE NÚMEROS'
 validates_uniqueness_of :matricula, :message => ' - PROFESSOR JA CADASTRADO'
 Curso = ['Sem Magistério / Pedagogia','Magistério - Nível Médio','Pedagogia / Normal Superior','Licenciatura em Artes','Licenciatura em Educação Física','Licenciatura em Letras - Português','Licenciatura em Letras - Inglês','Licenciatura em Matemática','Licenciatura em História','Licenciatura em Geografia','Licenciatura em Ciências / Biologia']
 

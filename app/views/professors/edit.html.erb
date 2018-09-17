@@ -46,7 +46,7 @@
                   </tr>
                   <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') %>
                       <tr>
-                        <!--<td width="35%"><b>Função/Cargo: </b><%= f.collection_select :funcao, @cargos, :nome, :nome,  :include_blank => @professor.funcao %></td>-->
+                        <!--<td width="35%"><b>Função/Cargo: </b><%#= f.collection_select :funcao, @cargos, :nome, :nome,  :include_blank => @professor.funcao %></td>-->
                         <td width="35%"><b>Função/Cargo: </b><%= @professor.funcao  %></td>
                           <td><b>Formação: </b><%= @professor.entrada_concurso %></td>
                         </tr>
@@ -81,7 +81,7 @@
 
 
                 </table>
-                      <font  size="2" color ="red"><b>Campos com * preenchimento obrigatório</b></font>
+<!--                      <font  size="2" color ="red"><b>Campos com * preenchimento obrigatório</b></font>-->
                 <fieldset>
                  <table>
                    <tr>
