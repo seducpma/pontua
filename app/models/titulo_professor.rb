@@ -10,7 +10,7 @@ class TituloProfessor < ActiveRecord::Base
 def totaliza
 
 
-  if self.ano_letivo < 2017
+  if self.ano_letivo < Time.now.year
       t=0
     $totalgeral =0
     total_p=0
