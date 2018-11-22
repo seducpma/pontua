@@ -17,6 +17,11 @@
 <% session[:pontos] = 0%>
       <% session[:professor_pontuacao_final] = professor.pontuacao_final %>
       <%@temposervico = TempoServico.find(:all,:conditions =>['professor_id = ? and ano_letivo = ?', professor, Time.now.year]) %>
+        <% @tp = TituloProfessor.all(:joins => "inner join titulacaos on titulo_professors.titulo_id = titulacaos.id", :conditions =>["titulo_professors.professor_id =? and ano_letivo between ? and ? and titulacaos.tipo = 'PERMANENTE'", professor.id, 2009, Time.now.year ])%>
+        <% @tp1 = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + (professor.id).to_s + " and t.tipo = 'ANUAL'and ano_letivo ="+Time.now.year.to_s) %>
+
+
+
          <%for temposervico in @temposervico%>
             <% session[:tempo_servico]= temposervico.total_geral_tempo_servico %>
            <% session[:total_tempo_servico]= temposervico.pontuacao_geral %>
@@ -26,10 +31,12 @@
                   <% session[:permanente] = tp.total_permanente %>
                <%end%>
            <%end%>
-           <%for tp1 in @tp1%>
-               <% session[:ano] = tp1.ano_letivo %>
-               <% session[:anual] =   tp1.totaliza_anual(tp1.professor_id) %>
-           <% end %>
+
+               <%for tp1 in @tp1%>
+                   <% session[:ano] = tp1.ano_letivo %>
+                   <% session[:anual] =   tp1.totaliza_anual(tp1.professor_id) %>
+               <% end %>
+
       <%end%>
         <% session[:subtotal_titulos] = session[:permanente] + session[:anual] %>
         <% session[:pontos]= session[:subtotal_titulos] + session[:tempo_servico]%>
@@ -166,10 +173,12 @@
 
              <%end%>
           <%end%>
-          <%for tp1 in @tp1%>
-            <% session[:ano] = tp1.ano_letivo %>
-            <% session[:anual] =   tp1.totaliza_anual(tp1.professor_id) %>
-          <% end %>
+
+              <%for tp1 in @tp1%>
+                <% session[:ano] = tp1.ano_letivo %>
+                <% session[:anual] =   tp1.totaliza_anual(tp1.professor_id) %>
+              <% end %>
+
         <% session[:subtotal_titulos] = session[:permanente] + session[:anual] %>
         <tr>
           <td align="center">
@@ -202,22 +211,22 @@
                                               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                               <font color="red"> Há ERRO Tabela PROFESSOR </font>
-                                                    <!--  Verificar tabela professor e ou tempo serviço -->  <br/>
+                                                    <!--  Verificar tabela professor e ou tempo serviço --><br/>
                                                    <%cont=cont+1%>
                                                    <% contado = 0 %>
                                              <%end%>
-                                             <% if (session[:total_tempo_servico]!= session[:pontos]) and (session[:ano_letivo] > 2015)%>
+<!--                                             <%# if (session[:total_tempo_servico]!= session[:pontos]) and (session[:ano_letivo] > 2015)%>
                                             <font color="red"> <%=h cont%>
                                               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                               <font color="red"> Há ERRO Tabela T.SERVIÇO </font>
                                                     <!--  Verificar tabela professor e ou tempo serviço -->  <br/>
 
-                                                      <%cont=cont+1%>
+                                                      <%#cont=cont+1%>
 
 
-                                             <%end%>
-
+                                             <%#end%>
+-->
                                               <b>TOTAL PONTUAÇÃO TEMPO DE SERVIÇO</b>&nbsp&nbsp&nbsp</font></td>
             <td width="12%" align="center"><b><font size="3"> <%= session[:pontos]%></b></font> </td>
           </tr>

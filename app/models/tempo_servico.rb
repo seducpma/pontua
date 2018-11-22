@@ -272,7 +272,7 @@ end
     #@tp = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + ($teacher).to_s + " and tp.ano_letivo="+($ano).to_s )
     @tp = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + (professor).to_s + " and t.tipo = 'PERMANENTE'")
     @tp1 = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + (professor).to_s + " and t.tipo = 'ANUAL'" +" and tp.ano_letivo="+($ano).to_s  )
-   
+   t=0
     if @tp.empty?
       $pontostituloP=0
     else

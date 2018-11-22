@@ -3,7 +3,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :titulacaos
   map.resources :titulo_professors, :collection => {:impressao => :get, :consulta_titulo => :get}
   map.resources :tempo_servicos, :collection => {:impressao => :get}
-  map.resources :professors, :collection => {:consulta_ficha => :get, :impressao => :get, :consulta_erros => :get}
+  map.resources :professors, :collection => {:consulta_ficha => :get, :impressao => :get}
 
   map.resources :classes
   map.resources :informativos
@@ -26,7 +26,7 @@ ActionController::Routing::Routes.draw do |map|
 
 
   map.consulta_ficha '/consulta_ficha', :controller => 'professors', :action => 'consulta_ficha'
-  map.consulta_erros '/consulta_errosa', :controller => 'professors', :action => 'consulta_erros'
+  map.consulta_erros '/consulta_erros', :controller => 'professors', :action => 'consulta_erros'
   map.consulta_tempo '/consulta_tempo', :controller => 'tempo_servicos', :action => 'consulta'
   map.consulta_tempo_servico '/consulta_tempo_servico', :controller => 'tempo_servicos', :action => 'consulta_tempo_servico'
   map.consulta_titulo_professor '/consulta_titulo_professor', :controller => 'titulo_professors', :action => 'consulta_titulo_professor'
