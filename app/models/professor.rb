@@ -42,7 +42,9 @@ Curso = ['Sem Magistério / Pedagogia','Magistério - Nível Médio','Pedagogia 
     self.complemento.upcase!
     self.cidade.upcase!
     self.funcao.upcase!
-    self.obs.upcase!
+    if !self.obs.nil?
+        self.obs.upcase!
+    end
   end
 
    def log_cadastro

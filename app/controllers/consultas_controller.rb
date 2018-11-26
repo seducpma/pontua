@@ -255,6 +255,7 @@ helper_method :sort_column, :sort_direction
                   else
                          #@professor_impressao = TempoServico.find(:all,:joins => :professor, :conditions=> ["tempo_servicos.ano_letivo = ? and professors.desligado = 0 and professors.funcao like ? and (professors.sede_id = ? or sede_id = 54)" , Time.current.strftime("%Y").to_i, session[:funcao], current_user.unidade_id ], :order => 'tempo_servicos.pontuacao_geral DESC,dt_ingresso DESC,dt_nasc,n_filhos DESC')
                           @professor_impressao = Professor.find(:all, :conditions=> ["desligado = 0 and funcao like ? and (sede_id = ? or sede_id = 54)" ,  session[:funcao], current_user.unidade_id ], :order => 'pontuacao_final DESC,dt_ingresso DESC,dt_nasc,n_filhos DESC')
+                          t=0
                    end
              else if (session[:tipoclassificacao] == 'CLASSIFICACÃO P/ UNIDADE')
                          if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then

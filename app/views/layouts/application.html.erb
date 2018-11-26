@@ -199,7 +199,9 @@ display: none;
                      <% if (current_user.has_role?('admin') or current_user.has_role?('corrigir') )%>
                          <li><%= link_to "Verifica Erros",consulta_erros_path %></li>
                      <%end%>
-
+                     <% if (current_user.has_role?('admin') or current_user.has_role?('corrigir') )%>
+                         <li><%= link_to "Equalizar Tabelas",acerta_tabelas_path %></li>
+                     <%end%>
 
                  </ul>
               </li>

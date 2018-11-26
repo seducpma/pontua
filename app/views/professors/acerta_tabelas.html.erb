@@ -1,0 +1,40 @@
+<div id="interno2">
+<% title "CONSULTA_FICHA".singularize %>
+<div class="tabs">
+ <div id="caixa_titulo">
+     <font size="3"><strong>PONTUAÇÃO PROFESSOR</strong></font><br/>
+ </div>
+    <div class="tabs">
+    <% form_remote_tag :url => acertar_tabelas_path, :method => :get,:loading => "$('#status').show()" , :success => "$('#status').hide()" do %>
+      <fieldset>
+       <legend><font size=4>Professor</font></legend>
+       <table width="100%" align="center" bgcolor="#DCDCDC" >
+          <tr>
+            <td colspan="2"align="left"><font size="2">
+               Equalizar pontuação das tabelas para professor 
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp              <%= submit_tag "Equalizar", :class => "btn_filtrar" %>
+          </td>
+        </tr>
+                  <tr>
+            <td>
+                <div id="OK"><div id='status' style='display:none;' align="center" ><%= image_tag("/stylesheets/images/loading.gif") %></div></div>
+              <br/>
+            </td>
+          </tr
+       </table>
+       </fieldset>
+
+          <% end %>
+
+
+
+       <br/>
+  <table>
+    <tr>
+     <td width="6%"align="left" ><%= button_to 'Fechar', home_path, {:method => "get"}  %></td>
+    </tr>
+  </table>
+ </div>
+
+
+

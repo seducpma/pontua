@@ -27,6 +27,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.consulta_ficha '/consulta_ficha', :controller => 'professors', :action => 'consulta_ficha'
   map.consulta_erros '/consulta_erros', :controller => 'professors', :action => 'consulta_erros'
+  map.acerta_tabelas '/acerta_tabelas', :controller => 'professors', :action => 'acerta_tabelas'
+  map.acertar_tabelas '/acertar_tabelas', :controller => 'professors', :action => 'acertar_tabelas'
   map.consulta_tempo '/consulta_tempo', :controller => 'tempo_servicos', :action => 'consulta'
   map.consulta_tempo_servico '/consulta_tempo_servico', :controller => 'tempo_servicos', :action => 'consulta_tempo_servico'
   map.consulta_titulo_professor '/consulta_titulo_professor', :controller => 'titulo_professors', :action => 'consulta_titulo_professor'

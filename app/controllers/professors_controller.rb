@@ -37,6 +37,7 @@ end
       @professors = Professor.find(:all, :order => 'nome ASC')
       @professors1 = Professor.find(:all, :order => 'matricula ASC')
       @professor_erros= Professor.find(:all,:conditions => ["desligado = 0"], :order => 'matricula ASC')
+t=0
   end
 
   
@@ -310,9 +311,39 @@ for ts in @temposervico_alteracao
   ts.save
   t=0
 end
+end
 
+def acerta_tabelas
+    
+end
+
+
+def acertar_tabelas
+
+  @professor = Professor.find(:all,:conditions => ["desligado = 0"])
+cont=0
+  for professor in @professor
+    @serviço= TempoServico.find(:last, :conditions => ['professor_id=?', professor.id])
+    @titulos = TituloProfessor.find(:last, :conditions => ['professor_id=?', professor.id])
+    t=0
+    if @titulos.present?
+       professor.total_titulacao =   @titulos.total_titulacao
+    else
+      professor.total_titulacao =   0
+    end
+   if @serviço.present?
+      professor.total_trabalhado = @serviço.total_geral_tempo_servico
+    else
+      professor.total_trabalhado =   0
+    end
+   professor.save
+ end
+  render :update do |page|
+     page.replace_html 'OK', :text => 'TABELAS EQUALIZADAS'
+  end
 
 
 end
+
 
 end
