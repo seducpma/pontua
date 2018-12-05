@@ -22,11 +22,11 @@
      <tr style="font-size:9px">
      <center><th bgcolor="#cccccc" width = "1%"></th></center>
      <center><th bgcolor="#cccccc" width = "5%">Matrícula</th></center>
-      <th bgcolor="#cccccc" width = "44%">Nome</th>
-      <th bgcolor="#cccccc" width = "5%">Unidade</th>
-      <th bgcolor="#cccccc" width = "5%">T.Serviço</th>
+      <th bgcolor="#cccccc" width = "50%">Nome</th>
+      <th bgcolor="#cccccc" width = "20%">Unidade</th>
+<!--      <th bgcolor="#cccccc" width = "5%">T.Serviço</th>
       <th bgcolor="#cccccc" width = "5%">Titulação</th>
-
+-->
       <th bgcolor="#cccccc" width = "5%">Pontuação</th>
       <th bgcolor="#cccccc"  width = "10%">Função</th>
      </tr>
@@ -39,8 +39,9 @@
         <th ><center><%=h ts.matricula %></center></th>
         <th ><center><%=h ts.nome %></center></th>
         <th ><center><%=h ts.unidade.nome %></center></th>
-        <th > <center><%=h ts.total_trabalhado %></center></th>
-        <th ><center><%=h ts.total_titulacao %></center></th>
+<!--        <th > <center><%#=h ts.total_trabalhado %></center></th>
+        <th ><center><%#=h ts.total_titulacao %></center></th>
+ -->
             <% if ts.pontuacao_final.nil? then %>
                     <th ></th>
             <%else%>

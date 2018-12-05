@@ -30,11 +30,11 @@
             <tr>
               <center><th bgcolor="#cccccc" width = "1%"></th></center>
               <center><th bgcolor="#cccccc" width = "7%">Matrícula</th></center>
-              <th bgcolor="#cccccc" width = "44%">Nome</th>
-              <th bgcolor="#cccccc" width = "10%">Sede</th>
-              <th bgcolor="#cccccc" width = "5%">T.Serviço</th>
+              <th bgcolor="#cccccc" width = "50%">Nome</th>
+              <th bgcolor="#cccccc" width = "20%">Sede</th>
+<!--              <th bgcolor="#cccccc" width = "5%">T.Serviço</th>
               <th bgcolor="#cccccc" width = "5%">Titulação</th>
-
+-->
               <th bgcolor="#cccccc" width = "5%">Pontuação</th>
               <th bgcolor="#cccccc"  width = "10%">Função</th>
           </tr>
@@ -46,13 +46,15 @@
                 <td ><center><%=h ts.matricula %></center></td>
                 <td ><center><%=h ts.nome %></center></td>
                 <td ><center><%=h ts.unidade.nome %></center></td>
-                <td > <center><%=h ts.total_trabalhado %></center></td>
-                <td ><center><%=h ts.total_titulacao %></center></td>
+<!--                <td > <center><%=h ts.total_trabalhado %></center></td>
+                <td ><center><%#=h ts.total_titulacao %></center></td>
+-->
                     <% if ts.pontuacao_final.nil? then %>
                             <td ></td>
                     <%else%>
                         <td ><center><%=h ts.pontuacao_final%></center></td>
                     <%end%>
+
                 <td width = "30%"><center><%=h ts.funcao%></center></td>
              </tr>
             <% end %>
