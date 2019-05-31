@@ -1,7 +1,7 @@
 #set :application, "192.168.0.21"
 #set :application, "192.168.0.12"
 #set :application, "170.81.237.114" #170.81.237.114 - Servidor oficial (hera)  # 177.36.159.102 - Servidor Teste Alvaro/Alexandre
-set :application, "192.168.0.14" #170.81.237.114 - Servidor oficial (Atena)
+set :application, "200.168.214.58" #170.81.237.114 - Servidor oficial (Atena)
 set :repository, "git://github.com/seducpma/pontua.git"
 set :user, "atena"
 set :use_sudo, false
