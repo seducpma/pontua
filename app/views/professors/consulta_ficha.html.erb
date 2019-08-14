@@ -1,4 +1,5 @@
 <div id="interno2">
+<%@ano1 = TempoServico.find(:all,:select => 'distinct(ano_letivo) as ano', :conditions => ["ano_letivo > 2014"], :order => 'ano_letivo DESC')%>
 <% title "CONSULTA_FICHA".singularize %>
 <div class="tabs">
  <div id="caixa_titulo">

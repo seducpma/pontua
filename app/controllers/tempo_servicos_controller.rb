@@ -393,6 +393,9 @@ t=0
         session[:professor] = Professor.find(session[:teacher]).nome
         $professor = Professor.find(session[:teacher]).nome
         @professor = Professor.find(:all,:conditions => ['id = ? and desligado = 0 ', session[:teacher]])
+        t=Time.current.strftime("%Y").to_i
+        t1=session[:teacher]
+        w=0
         @temposervico = TempoServico.find(:all,:conditions =>['professor_id = ?  and ano_letivo = ?', session[:teacher], Time.current.strftime("%Y").to_i])
          if !@temposervico.empty?
            existe = 0
