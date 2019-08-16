@@ -485,7 +485,7 @@ def sel_prof
             if params[:titulo_professor_titulo_id].to_i == 7 or params[:titulo_professor_titulo_id].to_i == 11
               render :update do |page|
                 # page.replace_html 'a_distancia', :text => "1) Se CURSO À DISTANCIA verificaque  a caixa de seleção PRESENCIAL esta desmarcada"
-                page.replace_html 'a_distancia1', :text => "1) CURSOS À DISTANCIA NA ÁREA DE ATUAÇÃO DO PROFESSOR: válidos somente para cursos com carga horario superior à 30 horas."
+                page.replace_html 'a_distancia1', :text => "1) CURSOS À DISTANCIA NA ÁREA DE ATUAÇÃO DO PROFESSOR: válidos somente para cursos com carga horario mínima de 30 horas."
                 page.replace_html 'tipo_titulo', :text => "<input id='titulo_professor_tipo_curso' type='checkbox' value='1' name='titulo_professor[tipo_curso]' value='false'> Presencial"
                 page.replace_html 'valor', :text => '2) Pontualçao:' + (session[:valor]).to_s + ' pontos por hora'
                 page.replace_html 'qtde', :text => "<input id='titulo_professor_quantidade' type='text' value='0' size='10' name='titulo_professor[quantidade]'>"
