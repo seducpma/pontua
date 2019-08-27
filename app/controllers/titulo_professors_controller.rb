@@ -456,7 +456,7 @@ def sel_prof
         page.replace_html 'valor', :text => '1) Pontuação: ' + session[:valor].to_s + ' pontos  por hora'
         page.replace_html 'qtde', :text => " <input id='titulo_professor_quantidade' type='text' value='0' size='10' name='titulo_professor[quantidade]'>"
         page.replace_html 'lanca', :text => "2) Lançar no campo 'QUANTIDADE' a carga horária do curso. Exemplo: 30 "
-       page.replace_html 'horas', :text => "horas "
+       page.replace_html 'horas', :text => " <b>horas</b>  (Lançar a <b><u>QUANTIDADE de HORAS</b></u> em nº inteiros)"
        page.replace_html 'ead', :text => ""
       end
     else
@@ -467,7 +467,7 @@ def sel_prof
           page.replace_html "qtde", :text => "1"
           page.replace_html 'valor', :text => '1) Pontuação: ' + session[:valor].to_s+ ' por título' 
           page.replace_html 'lanca', :text => "2) Lançar no campo 'QUANTIDADE' a quantiade de título. Exemplo: 1"
-          page.replace_html 'horas', :text => "título"
+          page.replace_html 'horas', :text => " <b>título</b> (Lançar a <b><u>QUANTIDADE de TÍTULOS</b></u> em nº inteiros)"
           page.replace_html 'ead', :text => ""
         end
       else
@@ -478,7 +478,7 @@ def sel_prof
               page.replace_html "qtde", :text => "1"
               page.replace_html 'valor', :text => '3) Pontuação: ' + session[:valor].to_s+ ' por título'
               page.replace_html 'lanca', :text => "4) Lançar no campo 'QUANTIDADE' a quantiade de título exemplo: 1"
-              page.replace_html 'horas', :text => " título"
+              page.replace_html 'horas', :text => " <b>título</b> (Lançar a <b><u>QUANTIDADE de TÍTULOS</b></u> em nº inteiros)"
                page.replace_html 'ead', :text => ""
             end
         else
@@ -490,7 +490,7 @@ def sel_prof
                 page.replace_html 'valor', :text => '2) Pontualçao:' + (session[:valor]).to_s + ' pontos por hora'
                 page.replace_html 'qtde', :text => "<input id='titulo_professor_quantidade' type='text' value='0' size='10' name='titulo_professor[quantidade]'>"
                 page.replace_html 'lanca', :text => "3) Lançar no campo 'QUANTIDADE' a carga horária do curso. Exemplo: 30"
-                page.replace_html 'horas', :text => " horas"
+                page.replace_html 'horas', :text => " <b>horas</b> (Lançar a <b><u>QUANTIDADE de HORAS</b></u> em nº inteiros)"
                 page.replace_html 'ead', :text => "  CURSOS EAD FORA DA AREA DE ATUAÇÃO DO PROFESSOR NÃO SÃO VÁLIDOS. "
               end
             else
@@ -501,7 +501,7 @@ def sel_prof
                   page.replace_html "qtde", :text => "1"
                   page.replace_html 'valor', :text => '2) Pontuação: ' + session[:valor].to_s + ' pontos até 8 horas'
                   page.replace_html 'lanca', :text => "3) Lançar no campo 'QUANTIDADE' a carga horária do curso. Exemplo: 8 "
-                  page.replace_html 'horas', :text => " horas"
+                  page.replace_html 'horas', :text => "<b> horas</b> (Lançar a <b><u> QUANTIDADE de HORAS</b></u> em nº inteiros)"
                   page.replace_html 'ead', :text => ""
                 end
               end
@@ -516,7 +516,7 @@ def sel_prof
           page.replace_html "qtde", :text => "1"
           page.replace_html 'valor', :text => '1) Pontuação: ' + (session[:valor]).to_s
           page.replace_html 'lanca', :text => " "
-          page.replace_html 'horas', :text => " título"
+          page.replace_html 'horas', :text => "<b>título</b> (Lançar a <b><u>QUANTIDADE de TÍTULOS</b></u> em nº inteiros)"
           page.replace_html 'ead', :text => ""
         end
       end
