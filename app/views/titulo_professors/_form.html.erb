@@ -41,10 +41,9 @@
                               <td colspan="4"><%= f.text_area :obs, :size => "54x2"   %></td>
                             </tr>
                             <tr>
-                              <td valign="top"><font size="2" color ="red"><b>*</font><%= f.label :quantidade, 'Quantidade:' %></b></td>
-                              <td width="1%" ><%= f.text_field(:quantidade, :size => '2')%></td>
-                              <td><div id="horas"></div>
-</td>
+                              <td><font size="2" color ="red"><b>*</font><%= f.label :quantidade, 'Quantidade:' %></b></td>
+                              <td width="1%"><div id="tipo"></div></td><td width="1%"> <%= f.text_field(:quantidade, :size => '2')%></td>
+                              <td align="left"><div id="horas"></div></td>
                              </tr>
                              <tr>
                                <td colspan="5">
