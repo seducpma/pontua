@@ -39,9 +39,15 @@
                     <b>Nº Filhos: </b><%= f.text_field :n_filhos, :size => 8 %></td>
                   </tr>
                   <tr>
-                    <td><b>E-mail(s): </b><%= f.text_field :email, :size =>26%>
-                    <td colspan="3"><b>Data Ingresso: </b> <%= f.date_select(:dt_ingresso, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year - 80)) %>&nbsp&nbsp&nbsp&nbsp
-                    <b>Jornada Semanal: </b><%= f.text_field :jornada_sem, :size =>4 %> horas</td>
+                    <td><b>E-mail(s): </b><%= f.text_field :email, :size =>26%></td>
+                    <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') %>
+                        <td colspan="3"><b>Data Ingresso: </b> <%= f.date_select(:dt_ingresso, :order => [:day, :month, :year], :start_year => (Date.today.year), :end_year => (Date.today.year - 80)) %>&nbsp&nbsp&nbsp&nbsp
+                        <b>Jornada Semanal: </b><%= f.text_field :jornada_sem, :size =>4 %> horas</td>
+                    <%else%>
+                        <td colspan="3"><b>Data Ingresso: </b>  <%=h @professor.dt_ingresso.strftime("%d de %B de %Y")%>&nbsp&nbsp&nbsp&nbsp
+                        <b>Jornada Semanal: </b><%=h @professor.jornada_sem%> horas</td>
+
+                    <%end%>
 
                   </tr>
                   <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') %>
