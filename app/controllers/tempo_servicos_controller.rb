@@ -72,7 +72,8 @@ end
       @temposervico.dias_efetivos1 = (@temposervico.dias1 - (@temposervico.f_abonada1 + @temposervico.f_atestado1 + @temposervico.f_justif1 + @temposervico.f_injustif1 + @temposervico.lic_saude1 + @temposervico.afastamento1 ))
     else
       #@temposervico.dias_trab1 = (@temposervico.dias1 - (@temposervico.f_justif1 + @temposervico.f_injustif1))
-      w1=@temposervico.dias_trab1 = (@temposervico.dias1 - (@temposervico.f_justif1 + @temposervico.f_injustif1) + @temposervico.afastamento1)
+      ## + @temposervico.afastamento1  foi substituido por - @temposervico.afastamento1   em 2019
+      w1=@temposervico.dias_trab1 = (@temposervico.dias1 - (@temposervico.f_justif1 + @temposervico.f_injustif1) - @temposervico.afastamento1)
       #self.dias_efetivos1 = (self.dias1 - (self.f_abonada1 + self.f_atestado1 + self.f_justif1 + self.f_injustif1 + self.lic_saude1 + self.afastamento1 + self.outras_aus1))alterado por solicitação da Alessanda   7/12/2016
       w11=@temposervico.dias_efetivos1 = (@temposervico.dias1 - (@temposervico.f_abonada1 + @temposervico.f_atestado1 + @temposervico.f_justif1 + @temposervico.f_injustif1 + @temposervico.lic_saude1 + @temposervico.afastamento1))
     end
@@ -82,7 +83,8 @@ end
       @temposervico.dias_efetivos2 = (@temposervico.dias2 - (@temposervico.f_abonada2 + @temposervico.f_atestado2 + @temposervico.f_justif2 + @temposervico.f_injustif2 + @temposervico.lic_saude2 + @temposervico.afastamento2))
     else
       #@temposervico.dias_trab2 = (@temposervico.dias2 - (@temposervico.f_justif2 + @temposervico.f_injustif2))
-      w2=@temposervico.dias_trab2 = (@temposervico.dias2 - (@temposervico.f_justif2 + @temposervico.f_injustif2)+ @temposervico.afastamento2)
+      ## + @temposervico.afastamento2  foi substituido por - @temposervico.afastamento2   em 2019
+     w2=@temposervico.dias_trab2 = (@temposervico.dias2 - (@temposervico.f_justif2 + @temposervico.f_injustif2)- @temposervico.afastamento2)
       #self.dias_efetivos2 = (self.dias2 - (self.f_abonada2 + self.f_atestado2 + self.f_justif2 + self.f_injustif2 + self.lic_saude2 + self.afastamento2 + self.outras_aus2))alterado por solicitação da Alessanda   7/12/2016
       w22=@temposervico.dias_efetivos2 = (@temposervico.dias2 - (@temposervico.f_abonada2 + @temposervico.f_atestado2 + @temposervico.f_justif2 + @temposervico.f_injustif2 + @temposervico.lic_saude2 + @temposervico.afastamento2))
     end
