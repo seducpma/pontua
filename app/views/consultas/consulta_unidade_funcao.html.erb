@@ -35,6 +35,8 @@
               <center><th bgcolor="#cccccc" width = "7%">Matrícula</th></center>
               <th bgcolor="#cccccc" width = "40%">Nome</th>
               <th bgcolor="#cccccc" width = "25%">Sede</th>
+              <th bgcolor="#cccccc" width = "5%">T.Serviço</th>
+              <th bgcolor="#cccccc" width = "5%">Titulação</th>
               <th bgcolor="#cccccc" width = "5%">Pontuação</th>
               <th bgcolor="#cccccc"  width = "20%">Função</th>
              </tr>
@@ -46,6 +48,8 @@
                 <td width = "7%"><center><%=h ts.matricula %></center></td>
                 <td width = "40%"><center><%=h ts.nome %></center></td>
                 <td width = "25%"><center><%=h ts.unidade.nome %></center></td>
+                <td > <center><%=h ts.total_trabalhado %></center></td>
+                <td ><center><%=h ts.total_titulacao %></center></td>
                     <% if ts.pontuacao_final.nil? then %>
                             <td width="5%"><%=h%></td>
                     <%else%>

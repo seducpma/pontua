@@ -23,7 +23,7 @@
        <% if @professor_consulta_unidade.present? %>
           <table border ="1" cellpadding="1" cellspacing="1" width="100%" >
             <tr>
-              <th colspan="6">
+              <th colspan="8">
                 <font size="3"><b> Ano Letivo <%= Time.current.strftime("%Y").to_i%> </b></font>
               </th>
             </tr>
@@ -32,6 +32,8 @@
               <center><th bgcolor="#cccccc" width = "7%">Matrícula</th></center>
               <th bgcolor="#cccccc" width = "40%">Nome</th>
               <th bgcolor="#cccccc" width = "25%">Sede</th>
+              <th bgcolor="#cccccc" width = "5%">T.Serviço</th>
+              <th bgcolor="#cccccc" width = "5%">Titulação</th>
               <th bgcolor="#cccccc" width = "5%">Pontuação</th>
               <th bgcolor="#cccccc"  width = "20%">Função</th>
              </tr>
@@ -43,6 +45,8 @@
                 <td width = "7%"><center><%=h ts.matricula %></center></td>
                 <td width = "40%"><center><%=h ts.nome %></center></td>
                 <td width = "25%"><center><%=h ts.unidade.nome %></center></td>
+                <td > <center><%=h ts.total_trabalhado %></center></td>
+                <td ><center><%=h ts.total_titulacao %></center></td>
                     <% if ts.pontuacao_final.nil? then %>
                             <td width="5%"><%=h%></td>
                     <%else%>
@@ -53,7 +57,7 @@
             <% end %>
 
                      <tr>
-                           <td widht="8%" colspan="6"><b><%= link_to image_tag("/stylesheets/images/imprimir12.png"), onclick="javascript:MM_openBrWindow('#{impressao_geral_consulta_path(:professor => $teacher)}','impressao', 'scrollbars=yes');", :title => "Imprimir" %></b></td>
+                           <td widht="8%" colspan="8"><b><%= link_to image_tag("/stylesheets/images/imprimir12.png"), onclick="javascript:MM_openBrWindow('#{impressao_geral_consulta_path(:professor => $teacher)}','impressao', 'scrollbars=yes');", :title => "Imprimir" %></b></td>
                       </tr>
          </table>
       <%  session[:tipoclassificacao] = 'CLASSIFICACÃO P/ UNIDADE' %>
