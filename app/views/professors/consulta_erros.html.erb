@@ -244,6 +244,12 @@
 
             <tr>
             <td align="right"><font size="3"><% if (professor.pontuacao_final)!= (professor.total_titulacao    + professor.total_trabalhado)%>
+                                              <% @professor = Professor.find(professor.id) %>
+                                              <% @professor.total_total_titulacao = session[:subtotal_titulos] %>
+                                              <% @professor.save %>
+                                              <% @titulo_professor = TituloProfessor.find(:last, :conditions => ['professor_id= ?',professor.id ]) %>
+                                              <% @titulo_professor.total_titulacao = session[:subtotal_titulos] %>
+                                              <% @titulo_professor.save %>
                                             <font color="GREEN">
                                               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
