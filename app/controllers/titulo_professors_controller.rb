@@ -175,6 +175,9 @@ def sel_prof
     w3=@titulo_professor.titulo_id
     w4=@titulo_professor.quantidade.to_i
     w5= @titulo_professor.valor.to_i
+
+
+
     t=0
     #$totalgeral =0
     total_p=0
@@ -187,13 +190,16 @@ def sel_prof
         total_a = @titulo_professor.total_anual = total_anualA +@titulo_professor.pontuacao_titulo
          total_p = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ?" , professor, 1,5] )
          t=0
-      else if  ((@titulo_professor.titulo_id == 7) or (@titulo_professor.titulo_id == 11))and (@titulo_professor.quantidade > 29)
+      else if  ((@titulo_professor.titulo_id == 7) or (@titulo_professor.titulo_id == 11)) and (@titulo_professor.quantidade > 29)
+            if  ((@titulo_professor.titulo_id == 7) or (@titulo_professor.titulo_id == 11)) and (@titulo_professor.quantidade > 120)
+               @titulo_professor.pontuacao_titulo = 120 * @titulo_professor.valor
+            else
                @titulo_professor.pontuacao_titulo = @titulo_professor.quantidade * @titulo_professor.valor
+            end
                @titulo_professor.total_anual = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ? and ano_letivo = ?"  , professor, 6,12, (Time.current.strftime("%Y")).to_i] )
                 total_anualA = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ? and ano_letivo = ?" , professor, 6,12, (Time.current.strftime("%Y")).to_i] )
                 total_a = @titulo_professor.total_anual = total_anualA +@titulo_professor.pontuacao_titulo
-                 total_p = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ?" , professor, 1,5] )
-         t=0
+                total_p = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ?" , professor, 1,5] )
            else if ((@titulo_professor.titulo_id == 6) or (@titulo_professor.titulo_id == 7) or (@titulo_professor.titulo_id == 8)or (@titulo_professor.titulo_id == 9)or (@titulo_professor.titulo_id == 10) or (@titulo_professor.titulo_id == 12))
                  if (@titulo_professor.titulo_id ==12)
                     if (@titulo_professor.quantidade > 8)
@@ -490,7 +496,7 @@ def sel_prof
                 # page.replace_html 'a_distancia', :text => "1) Se CURSO À DISTANCIA verificaque  a caixa de seleção PRESENCIAL esta desmarcada"
                 page.replace_html 'a_distancia1', :text => "1) CURSOS À DISTANCIA NA ÁREA DE ATUAÇÃO DO PROFESSOR: válidos somente para cursos com carga horario mínima de 30 horas."
                 page.replace_html 'tipo_titulo', :text => "<input id='titulo_professor_tipo_curso' type='checkbox' value='1' name='titulo_professor[tipo_curso]' value='false'> Presencial"
-                page.replace_html 'valor', :text => '2) Pontualçao:' + (session[:valor]).to_s + ' pontos por hora'
+                page.replace_html 'valor', :text => '2) Pontualçao: ' + (session[:valor]).to_s + ' pontos por hora (EAD até o limite de 120 pontos).'
                 page.replace_html 'qtde', :text => "<input id='titulo_professor_quantidade' type='text' value='0' size='10' name='titulo_professor[quantidade]'>"
                 page.replace_html 'lanca', :text => "3) Lançar no campo 'QUANTIDADE' a carga horária do curso. Exemplo: 30"
                 page.replace_html 'tipo', :text => "de <b>horas</b> "
