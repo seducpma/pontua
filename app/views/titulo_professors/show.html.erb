@@ -26,7 +26,7 @@
                     <td align="center" ><%= "DISTÂNCIA" %></td>
                  <%end%>
              <td align="center" ><%= Titulacao.find_by_id(@titulo_professor.titulo_id).valor  %></td>
-                  <% if @titulo_professor.tipo_curso == true%>
+                  <% if (@titulo_professor.tipo_curso == true)  and (@titulo_professor.titulo_id ==7)%>
                              <%if  @titulo_professor.pontuacao_titulo == 0%>
                                    <td align="center" ><font color ="red" size="2"><%= "NÃO VALIDO"%></font> <%session[:ver] = 1%></td>
                               <%else%>
@@ -35,7 +35,7 @@
                 
                       
                   <%else%>
-                      <%  if (@titulo_professor.quantidade<30) or (@titulo_professor.pontuacao_titulo==0)%>
+                      <%  if ((@titulo_professor.quantidade<30)and ((@titulo_professor.titulo_id == 7) or (@titulo_professor.titulo_id == 11))) or (@titulo_professor.pontuacao_titulo==0)%>
                        <td align="center" ><font color ="red" size="2"><%= "NÃO VALIDO"%></font></td>
                     <% else %>
                         <td align="center" ><%=h @titulo_professor.pontuacao_titulo %></td>
