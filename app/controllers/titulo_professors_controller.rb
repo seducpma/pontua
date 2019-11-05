@@ -181,7 +181,8 @@ def sel_prof
     t=0
     #$totalgeral =0
     total_p=0
-     total_a=0
+    total_a=0
+    teste_120=0
 
       if ((@titulo_professor.titulo_id == 7) or (@titulo_professor.titulo_id == 11))and (@titulo_professor.quantidade < 30)
          @titulo_professor.pontuacao_titulo = 0
@@ -191,6 +192,26 @@ def sel_prof
          total_p = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ?" , professor, 1,5] )
          t=0
       else if  ((@titulo_professor.titulo_id == 7) or (@titulo_professor.titulo_id == 11)) and (@titulo_professor.quantidade > 29)
+  #         #mais120 = TituloProfessor.find(:all, :conditons =>[ '(id = 11 or id = 7) AND  pontuacao_titulo >120 AND ano_letivo = ?', Time.now.year])
+  #         quantidade = @titulo_professor.quantidade
+  #         @mais120  = TituloProfessor.find(:all, :conditions =>[ '(titulo_id = 11 or titulo_id = 7) AND ano_letivo = ? AND professor_id=?', Time.now.year, @titulo_professor.professor_id])
+  #          for mais120 in @mais120
+  #            teste_120= mais120 + teste_120
+  #          end
+  #           w=teste_120
+
+ #             t=0
+
+
+
+
+
+
+
+
+
+
+              
             if  ((@titulo_professor.titulo_id == 7) or (@titulo_professor.titulo_id == 11)) and (@titulo_professor.quantidade > 120)
                @titulo_professor.pontuacao_titulo = 120 * @titulo_professor.valor
             else
