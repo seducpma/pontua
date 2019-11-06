@@ -168,7 +168,7 @@ display: none;
                 <%end%>
                      <%end%>
                         <li><%= link_to "Consultar",consulta_titulacao_path %></li>
-                     <% if (current_user.has_role?('admin') or current_user.has_role?('corrigir') or current_user.has_role?('SEDUC') or current_user.has_role?('direcao')  or current_user.has_role?('supervisao'))%><!-- liberar secretaria  --> <!--  or current_user.has_role?('secretaria'))%>-->
+                     <% if (current_user.has_role?('admin') or current_user.has_role?('corrigir') or current_user.has_role?('SEDUC'))%><!-- or current_user.has_role?('direcao')  or current_user.has_role?('supervisao'))%><!-- liberar secretaria  --> <!--  or current_user.has_role?('secretaria'))%>-->
        
                         <li><%= link_to "Excluir",titulo_professors_path %></li>
                      <%end%>
