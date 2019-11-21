@@ -70,24 +70,25 @@ helper_method :sort_column, :sort_direction
 
   def consulta_unidade_funcao
 
-    session[:uni] = params[:unidade]
-    session[:funcao] = params[:funcao]
+    w1=session[:uni] = params[:unidade]
+    w2=session[:funcao] = params[:funcao]
     if session[:uni].nil?
        @professor_consulta_unidade_funcao=nil
     else
        if (current_user.unidade_id == 53 or current_user.unidade_id == 52) then
-            #@professor_consulta_unidade_funcao = TempoServico.find(:all,:joins => :professor, :conditions=> ["tempo_servicos.ano_letivo = ? and professors.desligado = 0 and professors.sede_id = ? and professors.funcao2 = 'ADI / Prof. de Creche'", Time.current.strftime("%Y").to_i, session[:uni] ], :order => 'tempo_servicos.pontuacao_geral DESC,dt_ingresso DESC,dt_nasc,n_filhos DESC')
-             @professor_consulta_unidade_funcao = Professor.find(:all, :conditions=> ["desligado = 0 and sede_id = ? and funcao2  like?",  session[:uni], session[:funcao]  ], :order => 'pontuacao_final DESC,dt_ingresso DESC,dt_nasc,n_filhos DESC')
+             if session[:funcao] == 'ADI / Prof. de Creche'
+                 @professor_consulta_unidade_funcao = Professor.find(:all, :conditions=> ["desligado = 0 and sede_id = ? and funcao2  like?",  session[:uni], session[:funcao]  ], :order => 'pontuacao_final DESC,dt_ingresso DESC,dt_nasc,n_filhos DESC')
+             else
+                  @professor_consulta_unidade_funcao = Professor.find(:all, :conditions=> ["desligado = 0 and sede_id = ? and funcao  like?",  session[:uni], session[:funcao]  ], :order => 'pontuacao_final DESC,dt_ingresso DESC,dt_nasc,n_filhos DESC')
+             end
       else
-            if session[:funcao] == 'ADI/Prof.Creche'
-               #@professor_consulta_unidade_funcao = TempoServico.find(:all,:joins => :professor, :conditions=> ["tempo_servicos.ano_letivo = ? and professors.desligado = 0 and professors.sede_id = ? and professors.funcao like ? and (professors.sede_id = ? or sede_id = 54)", Time.current.strftime("%Y").to_i, session[:uni], session[:funcao], current_user.unidade_id ], :order => 'tempo_servicos.pontuacao_geral DESC,dt_ingresso DESC,dt_nasc,n_filhos DESC')
-                @professor_consulta_unidade_funcao = Professor.find(:all, :conditions=> ["desligado = 0 and sede_id = ? and funcao like ? and (sede_id = ? or sede_id = 54)",  session[:uni], session[:funcao], current_user.unidade_id ], :order => 'pontuacao_final DESC,dt_ingresso DESC,dt_nasc,n_filhos DESC')
-            else
-              #@professor_consulta_unidade_funcao = TempoServico.find(:all,:joins => :professor, :conditions=> ["tempo_servicos.ano_letivo = ? and professors.desligado = 0 and professors.sede_id = ? and professors.funcao like ? and (professors.sede_id = ? or sede_id = 54)", Time.current.strftime("%Y").to_i, session[:uni], session[:funcao], current_user.unidade_id ], :order => 'tempo_servicos.pontuacao_geral DESC,dt_ingresso DESC,dt_nasc,n_filhos DESC')
-              @professor_consulta_unidade_funcao = Professor.find(:all,:conditions=> ["desligado = 0 and sede_id = ? and funcao like ? and (sede_id = ? or sede_id = 54)",session[:uni], session[:funcao], current_user.unidade_id ], :order => 'pontuacao_final DESC,dt_ingresso DESC,dt_nasc,n_filhos DESC')
-
-            end
-
+             if session[:funcao] == 'ADI / Prof. de Creche'
+                 @professor_consulta_unidade_funcao = Professor.find(:all, :conditions=> ["desligado = 0 and sede_id = ? and funcao2  like?",  session[:uni], session[:funcao]  ], :order => 'pontuacao_final DESC,dt_ingresso DESC,dt_nasc,n_filhos DESC')
+                 t=0
+             else
+                 @professor_consulta_unidade_funcao = Professor.find(:all, :conditions=> ["desligado = 0 and sede_id = ? and funcao  like?",  session[:uni], session[:funcao]  ], :order => 'pontuacao_final DESC,dt_ingresso DESC,dt_nasc,n_filhos DESC')
+                 t=0
+             end
 
        end
     end
