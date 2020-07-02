@@ -6,7 +6,14 @@ class TituloProfessor < ActiveRecord::Base
   #before_save  :totaliza
   before_destroy :atualiza_pontos_tabela_professor
 
+  before_save  :maiusculo
 
+ def maiusculo
+   if  !self.obs.nil?
+        self.obs.upcase!
+   end
+   
+ end
 def totaliza
 
 
