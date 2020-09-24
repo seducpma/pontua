@@ -10,11 +10,12 @@
 <% session[:anual] = 0 %>
 <% session[:pontos] = 0%>
 <% cont = 1%>
-    <%for professor in @professor_erros%>
-<% session[:subtotal_titulos] = 0 %>
-<% session[:permanente]= 0 %>
-<% session[:anual] = 0 %>
-<% session[:pontos] = 0%>
+<%for professor in @professor_erros%>
+      <%session[:prof_id]= professor%>
+      <% session[:subtotal_titulos] = 0 %>
+      <% session[:permanente]= 0 %>
+      <% session[:anual] = 0 %>
+      <% session[:pontos] = 0%>
       <% session[:professor_pontuacao_final] = professor.pontuacao_final %>
 
                 <%@temposervico = TempoServico.find(:all,:conditions =>['professor_id = ? and ano_letivo = ?', professor, Time.now.year]) %>
@@ -231,7 +232,7 @@
                                              <%end%>
 
                                               <b>TOTAL PONTUAÇÃO TEMPO DE SERVIÇO</b>&nbsp&nbsp&nbsp</font></td>
-            <td width="12%" align="center"><b><font size="3"> <%= session[:pontos]%></b></font> </td>
+                                              <td width="12%" align="center" valign="baseline"><b><font size="3"> <%= session[:pontos]%></b></font> </td>
           </tr>
 
 
@@ -244,7 +245,7 @@
 
             <tr>
             <td align="right"><font size="3"><% if (professor.pontuacao_final)!= (professor.total_titulacao    + professor.total_trabalhado)%>
-                                              <% @professor = Professor.find(professor.id) %>
+                                              <% @professor = Professor.find(professor.id) %> 
                                               <% @professor.total_titulacao = session[:subtotal_titulos] %>
                                               <% @professor.save %>
                                               <% @titulo_professor = TituloProfessor.find(:last, :conditions => ['professor_id= ?',professor.id ]) %>
@@ -259,7 +260,12 @@
                                              <%end%>
 
 
-                                              <b>TOTAL PONTUAÇÃO TEMPO DE SERVIÇO</b>&nbsp&nbsp&nbsp</font></td>
+                                           <%= link_to image_tag("/stylesheets/images/corrigir.png"),  {:action => "corrigir_totalizacao_tabelas", :id =>professor.id},  :target => '_blank',:title => "CORRIGIR" %>    <b>TABELA PROFESSORS/TEMPO_SERVICO => <%= session[:pontos]%>
+
+                                           
+
+
+    </b>&nbsp&nbsp&nbsp</font></td>
             <td width="12%" align="center"><b><font size="3"> </font> </td>
           </tr>
 

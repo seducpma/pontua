@@ -314,7 +314,7 @@ end
 end
 
 def acerta_tabelas
-    
+ t=0
 end
 
 
@@ -345,5 +345,82 @@ cont=0
 
 end
 
+def corrigir_totalizacao_tabelas # acerta totalização na tabela de professor e tempo_servico
+   @professor = Professor.find(params[:id])
 
+      prof_id= @professor.id
+      subtotal_titulos = 0
+      permanente= 0
+      anual = 0
+      pontos = 0
+      session[:pontos_anterior]= professor_pontuacao_final = @professor.pontuacao_final
+      t=0
+       @temposervico = TempoServico.find(:all,:conditions =>['professor_id = ? and ano_letivo = ?', @professor.id, Time.now.year],:readonly => false)
+       @tp = TituloProfessor.all(:joins => "inner join titulacaos on titulo_professors.titulo_id = titulacaos.id", :conditions =>["titulo_professors.professor_id =? and ano_letivo between ? and ? and titulacaos.tipo = 'PERMANENTE'", @professor.id, 2009, Time.now.year ])
+       @tp1 = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + (@professor.id).to_s + " and t.tipo = 'ANUAL'and ano_letivo ="+Time.now.year.to_s)
+        for temposervico in @temposervico
+           tempo_servico= temposervico.total_geral_tempo_servico
+           total_tempo_servico= temposervico.pontuacao_geral
+           ano_letivo = temposervico.ano_letivo
+            if !((@tp.nil?) or (@tp.empty?))
+               for tp in @tp
+                  permanente = tp.total_permanente
+               end
+            end
+           for tp1 in @tp1
+               ano = tp1.ano_letivo
+               anual =   tp1.totaliza_anual(tp1.professor_id)
+            end
+       end
+        subtotal_titulos = permanente + anual
+        pontos= subtotal_titulos + tempo_servico
+        t=0
+        if ((professor_pontuacao_final!=pontos) or (total_tempo_servico!= pontos))and (ano_letivo > 2015)
+
+           professor_pontuacao_final = @professor.pontuacao_final
+
+             #  PONTUAÇÂO TEMPO SERVIÇO #
+           @temposervico = TempoServico.find(:all,:conditions =>['professor_id = ? and ano_letivo = ?', @professor.id, Time.now.year],:readonly => false)
+
+           for temposervico in @temposervico
+                  subtotal1= temposervico.dias_trab2 + temposervico.dias_trab1
+                  subtotal2= temposervico.dias_efetivos2 + temposervico.dias_efetivos1
+                  subtotal3= temposervico.dias_rede2 + temposervico.dias_rede1
+                  if (Time.current.strftime("%Y").to_i)< (Time.now.year)
+                        subtotal4= temposervico.dias_unidade2 + temposervico.dias_unidade1
+                  end
+                      tempo_servico= temposervico.total_geral_tempo_servico
+                      ano_letivo = temposervico.ano_letivo
+
+             # PONTUAÇÂO TITULAÇÂO -->
+              subtotal_titulos = 0
+              if !((@tp.nil?) or (@tp.empty?))
+                for tp in @tp
+                   permanente = tp.total_permanente
+                 end
+               end
+              for tp1 in @tp1
+              ano = tp1.ano_letivo
+              anual =   tp1.totaliza_anual(tp1.professor_id)
+              end
+              subtotal_titulos = permanente + anual
+
+              session[:pontos_correcao]= pontos = subtotal_titulos +tempo_servico
+              t=0
+
+@professor.pontuacao_final = pontos
+@professor.save
+t=0
+ @temposervico[0].pontuacao_geral = pontos
+ @temposervico[0].save
+      t=0
+       end
+
+
+ end
+
+
+
+
+end
 end
