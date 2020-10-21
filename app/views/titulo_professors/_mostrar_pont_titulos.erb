@@ -32,10 +32,12 @@
      <%for tp in @tp%>
      <tr style="font-size:12px">
       <td align="left">
-        <font size="2"><%= truncate((Titulacao.find_by_id(tp.titulo_id).descricao),:length =>35,:omission => "...") %></font>
+        <font size="2"><%= (Titulacao.find_by_id(tp.titulo_id).descricao) %></font>
+                       <%#= truncate((Titulacao.find_by_id(tp.titulo_id).descricao),:length =>35,:omission => "...") %></font>
       </td>
       <td align="center">
-        <font size="2"><%= truncate(tp.obs,:length => 30,:omission => "...") %></font>
+        <font size="2"><%= tp.obs %>
+                          <%#= truncate(tp.obs,:length => 30,:omission => "...") %></font>
          <%  if tp.ano_letivo == Time.now.year %>
             <font color="red"> - (novo)</font>
         <%end%>
@@ -92,10 +94,12 @@
 <% if (tp1.ano_letivo).to_s == Time.current.strftime("%Y") %>
      <tr style="font-size:10px">
       <td  align="left">
-        <font size="2"><%= truncate((Titulacao.find_by_id(tp1.titulo_id).descricao),:length => 33,:omission => "...") %></font>
+        <font size="2"><%=(Titulacao.find_by_id(tp1.titulo_id).descricao) %>
+                       <%#= truncate((Titulacao.find_by_id(tp1.titulo_id).descricao),:length => 33,:omission => "...") %></font>
       </td>
       <td  align="center">
-        <font size="2"><%= truncate(tp1.obs,:length => 25,:omission => "...") %></font>
+        <font size="2"><%= tp1.obs %>
+                        <%#= truncate(tp1.obs,:length => 25,:omission => "...") %></font>
       </td>
       <td align="center">
         <% if tp1.tipo_curso == true%>

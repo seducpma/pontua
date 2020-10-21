@@ -35,10 +35,12 @@
 
      <tr>
       <td  align="left">
-        <font size="2"><%= truncate((Titulacao.find_by_id(tp.titulo_id).descricao),:length => 25,:omission => "...") %></font>
+        <font size="2"><%= (Titulacao.find_by_id(tp.titulo_id).descricao) %>
+                        <%#= truncate((Titulacao.find_by_id(tp.titulo_id).descricao),:length => 25,:omission => "...") %></font>
       </td>
       <td  align="center">
-        <font size="2"><%= truncate(tp.obs,:length => 20,:omission => "...") %></font>
+        <font size="2"><%= tp.obs %>
+                       <%#= truncate(tp.obs,:length => 20,:omission => "...") %></font>
       </td>
       <td align="center">
         <%= tp.quantidade %>

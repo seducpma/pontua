@@ -100,12 +100,14 @@
      <% if !((@tp.nil?) or (@tp.empty?)) %>
      <%for tp in @tp%>
 
-     <tr style="font-size:10px">
+     <tr style="font-size:8px">
        <th align="left">
-         <font size="1"><%= truncate((Titulacao.find_by_id(tp.titulo_id).descricao),:length =>35,:omission => "...") %></font>
+         <font size="1"><%= (Titulacao.find_by_id(tp.titulo_id).descricao) %>
+                        <%#= truncate((Titulacao.find_by_id(tp.titulo_id).descricao),:length =>35,:omission => "...") %></font>
       </th>
        <th align="left">
-         <font size="1"><%= truncate(tp.obs,:length => 25,:omission => "...") %></font>
+         <font size="1"><%= tp.obs %></font>
+                         <%#= truncate(tp.obs,:length => 25,:omission => "...") %></font>
       </th>
       <th align="center">
         <font size="1"><%= tp.dt_titulo.year %></font>
@@ -155,12 +157,14 @@
 
 <%for tp1 in @tp1%>
 
-     <tr style="font-size:10px">
+     <tr style="font-size:8px">
       <th  align="left">
-        <font size="1"><%= truncate((Titulacao.find_by_id(tp1.titulo_id).descricao),:length =>35,:omission => "...") %></font>
+        <font size="1"><%= (Titulacao.find_by_id(tp1.titulo_id).descricao) %>
+                      <%#= truncate((Titulacao.find_by_id(tp1.titulo_id).descricao),:length =>35,:omission => "...") %></font>
     </th>
        <th align="left">
-         <font size="1"><%= truncate(tp1.obs,:length => 25,:omission => "...") %></font>
+         <font size="1"><%= tp1.obs %>
+                        <%#= truncate(tp1.obs,:length => 25,:omission => "...") %></font>
       </th>
       
 

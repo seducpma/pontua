@@ -298,12 +298,14 @@
 
      <%for tp in @tp%>
 
-     <tr style="font-size:9px">
+     <tr style="font-size:8px">
        <th align="left">
-        <%= truncate((Titulacao.find_by_id(tp.titulo_id).descricao),:length => 25,:omission => "...") %>
+        <%#= truncate((Titulacao.find_by_id(tp.titulo_id).descricao),:length => 25,:omission => "...") %>
+         <%= (Titulacao.find_by_id(tp.titulo_id).descricao) %>
       </th>
         <th align="center">
-         <%= truncate(tp.obs,:length => 32,:omission => "...") %>
+         <%= tp.obs %>
+         <%#= truncate(tp.obs,:length => 32,:omission => "...") %>
       </th>
         <th align="center">
         <%= tp.ano_letivo %>
@@ -357,10 +359,13 @@
 
      <tr style="font-size:9px">
       <th align="left">
-        <%= truncate((Titulacao.find_by_id(tp1.titulo_id).descricao),:length => 20,:omission => "...") %></font>
+        <%#= truncate((Titulacao.find_by_id(tp1.titulo_id).descricao),:length => 20,:omission => "...") %>
+        <%= (Titulacao.find_by_id(tp1.titulo_id).descricao) %>
+        </font>
        </th>
        <th  align="center">
-         <%= truncate(tp1.obs,:length => 32,:omission => "...") %>
+         <%#= truncate(tp1.obs,:length => 32,:omission => "...") %>
+         <%= tp1.obs %>
        </th>
       <th  align="center">
         <%= tp1.ano_letivo %></font>
