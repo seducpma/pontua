@@ -324,17 +324,19 @@ def acertar_tabelas
 cont=0
   for professor in @professor
     @serviço= TempoServico.find(:last, :conditions => ['professor_id=?', professor.id])
-    @titulos = TituloProfessor.find(:last, :conditions => ['professor_id=?', professor.id])
+    @titulos = TituloProfessor.find(:last, :conditions => ['professor_id=?' , professor.id])
     t=0
-    if @titulos.present?
-       professor.total_titulacao =   @titulos.total_titulacao
-    else
-      professor.total_titulacao =   0
-    end
+
    if @serviço.present?
       professor.total_trabalhado = @serviço.total_geral_tempo_servico
     else
       professor.total_trabalhado =   0
+    end
+    if @titulos.present?
+       #professor.total_titulacao =   @titulos.total_titulacao
+        professor.total_titulacao =   professor.pontuacao_final -  professor.total_trabalhado
+    else
+      professor.total_titulacao =   0
     end
    professor.save
  end
