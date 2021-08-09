@@ -151,7 +151,7 @@ display: none;
               <li><span class="divider divider-vert" ></span></li>
               <li><a class="item-primary" href="#;">Professor</a>
                  <ul style="width:108px;">
-                     <% if (current_user.has_role?('admin'))%> <!--or current_user.has_role?('corrigir') or current_user.has_role?('SEDUC')or current_user.has_role?('direcao') )%>-->
+                     <% if (current_user.has_role?('admin')             or current_user.has_role?('corrigir') or current_user.has_role?('SEDUC')or current_user.has_role?('direcao') )%>
                         <li><%= link_to "Cadastrar",new_professor_path %></li>
                      <%end%>
                         <li><%= link_to "Consultar",consulta_professor_nome_path %></li>
@@ -165,14 +165,14 @@ display: none;
                     <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC')  or current_user.has_role?('corrigir') or current_user.has_role?('direcao')  or current_user.has_role?('supervisao') or current_user.has_role?('secretaria') %>
                
     
-               <!-- liberar secretaria  <%# if current_user.has_role?('admin')             or current_user.has_role?('SEDUC')      or current_user.has_role?('direcao')  or current_user.has_role?('supervisao')or current_user.has_role?('secretaria') %> -->
-        <!-- liberar só SEDUC -->  <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') %>
+               <!-- liberar secretaria-->  <% if current_user.has_role?('admin')             or current_user.has_role?('SEDUC')      or current_user.has_role?('direcao')  or current_user.has_role?('supervisao')or current_user.has_role?('secretaria') %>
+        <!-- liberar só SEDUC -->  <%# if current_user.has_role?('admin') or current_user.has_role?('SEDUC') %>
                         <li><%= link_to "Cadastrar",new_titulo_professor_path %></li>
                 <%end%>
                      <%end%>
                         <li><%= link_to "Consultar",consulta_titulacao_path %></li>
-                <!-- liberar secretaria  <%# if current_user.has_role?('admin')             or current_user.has_role?('SEDUC')      or current_user.has_role?('direcao')  or current_user.has_role?('supervisao')or current_user.has_role?('secretaria') %> -->
-        <!-- liberar só SEDUC -->  <% if current_user.has_role?('admin') or current_user.has_role?('SEDUC') %>
+                <!-- liberar secretaria-->  <% if current_user.has_role?('admin')             or current_user.has_role?('SEDUC')      or current_user.has_role?('direcao')  or current_user.has_role?('supervisao')or current_user.has_role?('secretaria') %>
+        <!-- liberar só SEDUC -->  <%# if current_user.has_role?('admin') or current_user.has_role?('SEDUC') %>
        
                         <li><%= link_to "Excluir",titulo_professors_path %></li>
                      <%end%>
