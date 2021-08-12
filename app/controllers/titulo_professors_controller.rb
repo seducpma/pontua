@@ -509,7 +509,7 @@ t=0
           page.replace_html 'valor', :text => '1) Pontuação: ' + session[:valor].to_s+ ' por título' 
           page.replace_html 'lanca', :text => "2) Lançar no campo 'QUANTIDADE' a quantiade de título. Exemplo: 1"
           page.replace_html 'tipo', :text => "de <b>título</b> "
-          page.replace_html 'horas', :text => "(<font color=red><b><u>ATENÇÃO:</b></u></font> Lançar a <b><u>QUANTIDADE de TÍTULOS</b></u>)"
+          page.replace_html 'horas', :text => "(<font color=red><b><u>ATENÇÃO:</b></u></font> Lançar a <b><u>QUANTIDADE de TÍTULOS, <font color=red> </br>               NÂO A QUANTIDADE DE HORAS - Exemplo: 1  [nº inteiros] )</b></u>"
           page.replace_html 'ead', :text => ""
         end
       else
@@ -521,7 +521,7 @@ t=0
               page.replace_html 'valor', :text => '3) Pontuação: ' + session[:valor].to_s+ ' por título'
               page.replace_html 'lanca', :text => "4) Lançar no campo 'QUANTIDADE' a quantiade de título exemplo: 1"
                page.replace_html 'tipo', :text => " de <b>título</b> "
-              page.replace_html 'horas', :text => " (<font color=red><b><u>ATENÇÃO:</b></u></font> Lançar a <b><u>QUANTIDADE de TÍTULOS</b></u>)"
+              page.replace_html 'horas', :text => " (<font color=red><b><u>ATENÇÃO:</b></u></font> Lançar a <b><u>QUANTIDADE de TÍTULOS, <font color=red>  </br>              NÂO A QUANTIDADE DE HORAS - Exemplo: 1  [nº inteiros] )</b></u>"
                page.replace_html 'ead', :text => ""
             end
         else
@@ -560,7 +560,7 @@ t=0
           page.replace_html "qtde", :text => "1"
           page.replace_html 'valor', :text => '1) Pontuação: ' + (session[:valor]).to_s
           page.replace_html 'lanca', :text => " "
-          page.replace_html 'horas', :text => "<b>título</b> (<font color=red><b><u>ATENÇÃO:</b></u></font> Lançar a <b><u>QUANTIDADE de TÍTULOS</b></u> em nº inteiros)"
+          page.replace_html 'horas', :text => "<b>título</b> (<font color=red><b><u>ATENÇÃO:</b></u></font> Lançar a <b><u>QUANTIDADE de TÍTULOS, </br>                <font color=red> NÂO A QUANTIDADE DE HORAS - Exemplo: 1 [nº inteiros] )</b></u>"
           page.replace_html 'ead', :text => ""
         end
       end
