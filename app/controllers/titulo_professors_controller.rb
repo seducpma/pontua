@@ -165,181 +165,193 @@ def sel_prof
   # POST /titulo_professors.xml
   def create
 
-    @titulo_professor = TituloProfessor.new(params[:titulo_professor])
-    @titulo_professor.valor= session[:valor]
-    @titulo_professor.ano_letivo =Time.current.strftime("%Y")
+  @titulo_professor = TituloProfessor.new(params[:titulo_professor])
+  teste1=@titulo_professor.titulo_id
+  teste2=  @titulo_professor.quantidade
 
-    w1=@titulo_professor.tipo_curso
-    w=@titulo_professor.titulo_id
-    w2=professor =  @titulo_professor.professor_id
-    w3=@titulo_professor.titulo_id
-    w4=@titulo_professor.quantidade.to_i
-    w5= @titulo_professor.valor.to_i
+    if teste1 > 5 and teste2 < 4
 
 
+           render :action => 'erro'
 
-    t=0
-    #$totalgeral =0
-    total_p=0
-    total_a=0
-    teste_120=0
+    else
 
-      if ((@titulo_professor.titulo_id == 7) or (@titulo_professor.titulo_id == 11))and (@titulo_professor.quantidade < 30)
-         @titulo_professor.pontuacao_titulo = 0
-         @titulo_professor.total_anual = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ? and ano_letivo = ?"  , professor, 6,12, (Time.current.strftime("%Y")).to_i] )
-        total_anualA = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ? and ano_letivo = ?" , professor, 6,12, (Time.current.strftime("%Y")).to_i] )
-        total_a = @titulo_professor.total_anual = total_anualA +@titulo_professor.pontuacao_titulo
-         total_p = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ?" , professor, 1,5] )
-         t=0
-      else if  ((@titulo_professor.titulo_id == 7) or (@titulo_professor.titulo_id == 11)) and (@titulo_professor.quantidade > 29)
-               #mais120 = TituloProfessor.find(:all, :conditons =>[ '(id = 11 or id = 7) AND  pontuacao_titulo >120 AND ano_letivo = ?', Time.now.year])
-               quantidade = @titulo_professor.quantidade
-               
-               @mais120  = TituloProfessor.find(:all, :conditions =>[ '(titulo_id = 11 or titulo_id = 7) AND ano_letivo = ? AND professor_id=?', Time.now.year, @titulo_professor.professor_id])
-               t=0
-               for mais120 in @mais120
-                  teste_120 = mais120.pontuacao_titulo + teste_120
-               end
-               total_antes = teste_120
-               teste_120 = teste_120 + quantidade
-               if teste_120 > 120
-                  teste_120 = (120 - total_antes)
-               else
-                  teste_120 = quantidade
-               end
-               t=0
-                    if ((@titulo_professor.titulo_id == 7) or (@titulo_professor.titulo_id == 11)) and ((@titulo_professor.quantidade > 120))
-                        t0=0
-                       @titulo_professor.pontuacao_titulo = 120 * @titulo_professor.valor
-                    else
-                      t=0
-                        if ((@titulo_professor.titulo_id == 7) or (@titulo_professor.titulo_id == 11)) and @titulo_professor.quantidade<=120
-                           if (teste_120>=0 and teste_120<=120)
-                              @titulo_professor.pontuacao_titulo = teste_120 * @titulo_professor.valor
-                              t=0
-                           else
 
-                              if ((@titulo_professor.titulo_id == 7) or (@titulo_professor.titulo_id == 11)) and ((@titulo_professor.quantidade > 120) or ((total_antes+quantidade)<120))
-                               @titulo_professor.pontuacao_titulo=0
-t=0
-                              else
-                                 @titulo_professor.pontuacao_titulo = @titulo_professor.quantidade * @titulo_professor.valor
-                              t=0
-                              end
+                @titulo_professor.valor= session[:valor]
+                @titulo_professor.ano_letivo =Time.current.strftime("%Y")
+
+                w1=@titulo_professor.tipo_curso
+                w=@titulo_professor.titulo_id
+                w2=professor =  @titulo_professor.professor_id
+                w3=@titulo_professor.titulo_id
+                w4=@titulo_professor.quantidade.to_i
+                w5= @titulo_professor.valor.to_i
+
+
+
+                t=0
+                #$totalgeral =0
+                total_p=0
+                total_a=0
+                teste_120=0
+
+                  if ((@titulo_professor.titulo_id == 7) or (@titulo_professor.titulo_id == 11))and (@titulo_professor.quantidade < 30)
+                     @titulo_professor.pontuacao_titulo = 0
+                     @titulo_professor.total_anual = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ? and ano_letivo = ?"  , professor, 6,12, (Time.current.strftime("%Y")).to_i] )
+                    total_anualA = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ? and ano_letivo = ?" , professor, 6,12, (Time.current.strftime("%Y")).to_i] )
+                    total_a = @titulo_professor.total_anual = total_anualA +@titulo_professor.pontuacao_titulo
+                     total_p = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ?" , professor, 1,5] )
+                     t=0
+                  else if  ((@titulo_professor.titulo_id == 7) or (@titulo_professor.titulo_id == 11)) and (@titulo_professor.quantidade > 29)
+                           #mais120 = TituloProfessor.find(:all, :conditons =>[ '(id = 11 or id = 7) AND  pontuacao_titulo >120 AND ano_letivo = ?', Time.now.year])
+                           quantidade = @titulo_professor.quantidade
+
+                           @mais120  = TituloProfessor.find(:all, :conditions =>[ '(titulo_id = 11 or titulo_id = 7) AND ano_letivo = ? AND professor_id=?', Time.now.year, @titulo_professor.professor_id])
+                           t=0
+                           for mais120 in @mais120
+                              teste_120 = mais120.pontuacao_titulo + teste_120
                            end
-                        end
-                    end
-                       @titulo_professor.total_anual = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ? and ano_letivo = ?"  , professor, 6,12, (Time.current.strftime("%Y")).to_i] )
-                        total_anualA = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ? and ano_letivo = ?" , professor, 6,12, (Time.current.strftime("%Y")).to_i] )
-                        total_a = @titulo_professor.total_anual = total_anualA +@titulo_professor.pontuacao_titulo
-                        total_p = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ?" , professor, 1,5] )
-           else if ((@titulo_professor.titulo_id == 6) or (@titulo_professor.titulo_id == 7) or (@titulo_professor.titulo_id == 8)or (@titulo_professor.titulo_id == 9)or (@titulo_professor.titulo_id == 10) or (@titulo_professor.titulo_id == 12))
-                         if (@titulo_professor.titulo_id ==12)
-                            if (@titulo_professor.quantidade > 8)
-                               @titulo_professor.pontuacao_titulo= @titulo_professor.quantidade.to_i * 1
-                               @titulo_professor.total_anual = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ? and ano_letivo = ?" , professor, 6,12, (Time.current.strftime("%Y")).to_i] )
-                                total_anualA = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ? and ano_letivo = ?" , professor, 6,12, (Time.current.strftime("%Y")).to_i] )
-                                total_a = @titulo_professor.total_anual = total_anualA +@titulo_professor.pontuacao_titulo
-                                 total_p = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ?" , professor, 1,5] )
-                            else
-                               @titulo_professor.pontuacao_titulo= 8
-                               @titulo_professor.total_anual = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ? and ano_letivo = ?" , professor, 6,12, (Time.current.strftime("%Y")).to_i] )
-                                total_anualA = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ? and ano_letivo = ?" , professor, 6,12, (Time.current.strftime("%Y")).to_i] )
-                                total_a = @titulo_professor.total_anual = total_anualA +@titulo_professor.pontuacao_titulo
-                                 total_p = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ?" , professor, 1,5] )
-                            end
-                         else
-
-                           @titulo_professor.pontuacao_titulo=  @titulo_professor.quantidade  * @titulo_professor.valor
-                           total_anualA = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ? and ano_letivo = ?" , professor, 6,12, (Time.current.strftime("%Y")).to_i] )
-                           total_a = @titulo_professor.total_anual = total_anualA +@titulo_professor.pontuacao_titulo
-                           total_p = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ?" , professor, 1,5] )
-                         end
-                        else if ((@titulo_professor.titulo_id == 1) or (@titulo_professor.titulo_id == 2) or (@titulo_professor.titulo_id == 3) or (@titulo_professor.titulo_id == 4) or (@titulo_professor.titulo_id == 5))
-                                 pontuacao_titulo =0
-                                 pontuacao_latus =0
-                                 pontuacao_especilizacao=0
-                                if (@titulo_professor.titulo_id == 5) or (@titulo_professor.titulo_id == 2)
-                                    if (@titulo_professor.titulo_id == 2)
-                                        tipo2_lotosensu= TituloProfessor.count(:id,  :conditions => ["professor_id = ? and titulo_id =? and ano_letivo =?" , professor, 2, @titulo_professor.ano_letivo] )
-                                        tipo2_lotosensu_limite = TituloProfessor.count(:id,  :conditions => ["professor_id = ? and titulo_id =?" , professor, 2] )
-                                    else
-                                        tipo2_lotosensu= 1000000
-                                        tipo2_lotosensu_limite = 1000000
-                                    end
-                                    if (@titulo_professor.titulo_id == 5)
-                                          tipo5_especializacao= TituloProfessor.count(:id,  :conditions => ["professor_id = ? and titulo_id =? and ano_letivo =?" , professor, 5, @titulo_professor.ano_letivo] )
-                                          tipo5_especializacao_limite = TituloProfessor.sum(:pontuacao_titulo,  :conditions => ["professor_id = ? and titulo_id =?" , professor, 5] )
-                                    else
-                                          tipo5_especializacao=1000000
-                                          tipo5_especializacao_limite =1000000
-                                    end
-                                      if ((tipo5_especializacao < 1) and (tipo5_especializacao_limite <= 7000))
-                                           session[:criterio]=1
-                                           pontuacao_especilizacao= @titulo_professor.quantidade.to_i * @titulo_professor.valor.to_i
-                                           @titulo_professor.pontuacao_titulo= @titulo_professor.quantidade.to_i * @titulo_professor.valor.to_i
-                                      else
-                                           pontuacao_especilizacao= 0
-                                      end
-                                      if ((tipo2_lotosensu < 1) and (tipo2_lotosensu_limite < 5))
-                                           session[:criterio]=1
-                                           pontuacao_latus= @titulo_professor.quantidade.to_i * @titulo_professor.valor.to_i
-                                           @titulo_professor.pontuacao_titulo= @titulo_professor.quantidade.to_i * @titulo_professor.valor.to_i
-                                      else
-                                           pontuacao_latus= 0
-                                      end
+                           total_antes = teste_120
+                           teste_120 = teste_120 + quantidade
+                           if teste_120 > 120
+                              teste_120 = (120 - total_antes)
+                           else
+                              teste_120 = quantidade
+                           end
+                           t=0
+                                if ((@titulo_professor.titulo_id == 7) or (@titulo_professor.titulo_id == 11)) and ((@titulo_professor.quantidade > 120))
+                                    t0=0
+                                   @titulo_professor.pontuacao_titulo = 120 * @titulo_professor.valor
                                 else
-                                      pontuacao_titulo= @titulo_professor.quantidade.to_i * @titulo_professor.valor.to_i
-                                      @titulo_professor.pontuacao_titulo= @titulo_professor.quantidade.to_i * @titulo_professor.valor.to_i
+                                  t=0
+                                    if ((@titulo_professor.titulo_id == 7) or (@titulo_professor.titulo_id == 11)) and @titulo_professor.quantidade<=120
+                                       if (teste_120>=0 and teste_120<=120)
+                                          @titulo_professor.pontuacao_titulo = teste_120 * @titulo_professor.valor
+                                          t=0
+                                       else
+
+                                          if ((@titulo_professor.titulo_id == 7) or (@titulo_professor.titulo_id == 11)) and ((@titulo_professor.quantidade > 120) or ((total_antes+quantidade)<120))
+                                           @titulo_professor.pontuacao_titulo=0
+            t=0
+                                          else
+                                             @titulo_professor.pontuacao_titulo = @titulo_professor.quantidade * @titulo_professor.valor
+                                          t=0
+                                          end
+                                       end
+                                    end
                                 end
-                                vartotal_permanente = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and (titulo_id between ? and ?)  " , professor, 1,5] )
-                                @titulo_professor.total_permanente=  vartotal_permanente + pontuacao_titulo+ pontuacao_latus + pontuacao_especilizacao
-                                total_p = @titulo_professor.total_permanente
-                             end
-                        end
+                                   @titulo_professor.total_anual = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ? and ano_letivo = ?"  , professor, 6,12, (Time.current.strftime("%Y")).to_i] )
+                                    total_anualA = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ? and ano_letivo = ?" , professor, 6,12, (Time.current.strftime("%Y")).to_i] )
+                                    total_a = @titulo_professor.total_anual = total_anualA +@titulo_professor.pontuacao_titulo
+                                    total_p = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ?" , professor, 1,5] )
+                       else if ((@titulo_professor.titulo_id == 6) or (@titulo_professor.titulo_id == 7) or (@titulo_professor.titulo_id == 8)or (@titulo_professor.titulo_id == 9)or (@titulo_professor.titulo_id == 10) or (@titulo_professor.titulo_id == 12))
+                                     if (@titulo_professor.titulo_id ==12)
+                                        if (@titulo_professor.quantidade > 8)
+                                           @titulo_professor.pontuacao_titulo= @titulo_professor.quantidade.to_i * 1
+                                           @titulo_professor.total_anual = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ? and ano_letivo = ?" , professor, 6,12, (Time.current.strftime("%Y")).to_i] )
+                                            total_anualA = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ? and ano_letivo = ?" , professor, 6,12, (Time.current.strftime("%Y")).to_i] )
+                                            total_a = @titulo_professor.total_anual = total_anualA +@titulo_professor.pontuacao_titulo
+                                             total_p = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ?" , professor, 1,5] )
+                                        else
+                                           @titulo_professor.pontuacao_titulo= 8
+                                           @titulo_professor.total_anual = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ? and ano_letivo = ?" , professor, 6,12, (Time.current.strftime("%Y")).to_i] )
+                                            total_anualA = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ? and ano_letivo = ?" , professor, 6,12, (Time.current.strftime("%Y")).to_i] )
+                                            total_a = @titulo_professor.total_anual = total_anualA +@titulo_professor.pontuacao_titulo
+                                             total_p = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ?" , professor, 1,5] )
+                                        end
+                                     else
+
+                                       @titulo_professor.pontuacao_titulo=  @titulo_professor.quantidade  * @titulo_professor.valor
+                                       total_anualA = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ? and ano_letivo = ?" , professor, 6,12, (Time.current.strftime("%Y")).to_i] )
+                                       total_a = @titulo_professor.total_anual = total_anualA +@titulo_professor.pontuacao_titulo
+                                       total_p = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and titulo_id between ? and ?" , professor, 1,5] )
+                                     end
+                                    else if ((@titulo_professor.titulo_id == 1) or (@titulo_professor.titulo_id == 2) or (@titulo_professor.titulo_id == 3) or (@titulo_professor.titulo_id == 4) or (@titulo_professor.titulo_id == 5))
+                                             pontuacao_titulo =0
+                                             pontuacao_latus =0
+                                             pontuacao_especilizacao=0
+                                            if (@titulo_professor.titulo_id == 5) or (@titulo_professor.titulo_id == 2)
+                                                if (@titulo_professor.titulo_id == 2)
+                                                    tipo2_lotosensu= TituloProfessor.count(:id,  :conditions => ["professor_id = ? and titulo_id =? and ano_letivo =?" , professor, 2, @titulo_professor.ano_letivo] )
+                                                    tipo2_lotosensu_limite = TituloProfessor.count(:id,  :conditions => ["professor_id = ? and titulo_id =?" , professor, 2] )
+                                                else
+                                                    tipo2_lotosensu= 1000000
+                                                    tipo2_lotosensu_limite = 1000000
+                                                end
+                                                if (@titulo_professor.titulo_id == 5)
+                                                      tipo5_especializacao= TituloProfessor.count(:id,  :conditions => ["professor_id = ? and titulo_id =? and ano_letivo =?" , professor, 5, @titulo_professor.ano_letivo] )
+                                                      tipo5_especializacao_limite = TituloProfessor.sum(:pontuacao_titulo,  :conditions => ["professor_id = ? and titulo_id =?" , professor, 5] )
+                                                else
+                                                      tipo5_especializacao=1000000
+                                                      tipo5_especializacao_limite =1000000
+                                                end
+                                                  if ((tipo5_especializacao < 1) and (tipo5_especializacao_limite <= 7000))
+                                                       session[:criterio]=1
+                                                       pontuacao_especilizacao= @titulo_professor.quantidade.to_i * @titulo_professor.valor.to_i
+                                                       @titulo_professor.pontuacao_titulo= @titulo_professor.quantidade.to_i * @titulo_professor.valor.to_i
+                                                  else
+                                                       pontuacao_especilizacao= 0
+                                                  end
+                                                  if ((tipo2_lotosensu < 1) and (tipo2_lotosensu_limite < 5))
+                                                       session[:criterio]=1
+                                                       pontuacao_latus= @titulo_professor.quantidade.to_i * @titulo_professor.valor.to_i
+                                                       @titulo_professor.pontuacao_titulo= @titulo_professor.quantidade.to_i * @titulo_professor.valor.to_i
+                                                  else
+                                                       pontuacao_latus= 0
+                                                  end
+                                            else
+                                                  pontuacao_titulo= @titulo_professor.quantidade.to_i * @titulo_professor.valor.to_i
+                                                  @titulo_professor.pontuacao_titulo= @titulo_professor.quantidade.to_i * @titulo_professor.valor.to_i
+                                            end
+                                            vartotal_permanente = TituloProfessor.sum(:pontuacao_titulo, :conditions => ["professor_id = ? and (titulo_id between ? and ?)  " , professor, 1,5] )
+                                            @titulo_professor.total_permanente=  vartotal_permanente + pontuacao_titulo+ pontuacao_latus + pontuacao_especilizacao
+                                            total_p = @titulo_professor.total_permanente
+                                         end
+                                    end
+                                end
+                        # end
+                  end
+                  @titulo_professor.total_titulacao = total_a + total_p
+
+                  @professor=Professor.find(@titulo_professor.professor_id)
+                  @tp = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + (@titulo_professor.professor_id).to_s + " and t.tipo = 'PERMANENTE'")
+                  @tp1 = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + (@titulo_professor.professor_id).to_s + " and t.tipo = 'ANUAL' and ano_letivo = " + (Time.now.year).to_s + " ")
+                  session[:subtot_um_TP]=0
+                  session[:subtot_perm_TP]=0
+                    for tp1 in @tp1
+                      teste = Time.current.strftime("%Y")
+                      (tp1.ano_letivo).to_s == Time.current.strftime("%Y")
+                           session[:subtot_um_TP] = session[:subtot_um_TP] + (tp1.pontuacao_titulo)
+
+                        tituloprof= tp1.professor_id
+                       session[:ano] = tp1.ano_letivo
+                        anual = session[:subtot_um_TP]
+                        permanente = session[:subtot_perm_TP]
+                      end
+                    if total_anualA.nil? or pontuacao_especilizacao.nil?
+                        total_anualA = 0
+                        pontuacao_especilizacao = 0
                     end
-            # end
-      end
-t=0
-      @titulo_professor.total_titulacao = total_a + total_p
+                    if ((@titulo_professor.titulo_id == 6) or (@titulo_professor.titulo_id == 7) or (@titulo_professor.titulo_id == 8)or (@titulo_professor.titulo_id == 9)or (@titulo_professor.titulo_id == 10) or (@titulo_professor.titulo_id == 11) or (@titulo_professor.titulo_id == 12))
+                       @professor.total_titulacao =  total_a + total_p
+                    else
+                       @professor.total_titulacao =  session[:subtot_um_TP] + total_p
+                    end
+                    @professor.pontuacao_final = @professor.total_trabalhado + @professor.total_titulacao
+                  @professor.save
 
-      @professor=Professor.find(@titulo_professor.professor_id)
-      @tp = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + (@titulo_professor.professor_id).to_s + " and t.tipo = 'PERMANENTE'")
-      @tp1 = TituloProfessor.find_by_sql("SELECT * FROM titulo_professors tp inner join titulacaos t on tp.titulo_id=t.id where tp.professor_id=" + (@titulo_professor.professor_id).to_s + " and t.tipo = 'ANUAL' and ano_letivo = " + (Time.now.year).to_s + " ")
-      session[:subtot_um_TP]=0
-      session[:subtot_perm_TP]=0
-        for tp1 in @tp1
-          teste = Time.current.strftime("%Y")
-          (tp1.ano_letivo).to_s == Time.current.strftime("%Y")
-               session[:subtot_um_TP] = session[:subtot_um_TP] + (tp1.pontuacao_titulo)
+                respond_to do |format|
+                  if @titulo_professor.save
+                    flash[:notice] = 'TITULAÇÃO CADASTRADA COM SUCESSO.'
+                    format.html { redirect_to(@titulo_professor)}
+                    format.xml  { render :xml => @titulo_professor, :status => :created, :location => @titulo_professor }
+                  else
+                    format.html { render :action => "new" }
+                    format.xml  { render :xml => @titulo_professor.errors, :status => :unprocessable_entity }
+                  end
+                end
+     end
 
-            tituloprof= tp1.professor_id
-           session[:ano] = tp1.ano_letivo
-            anual = session[:subtot_um_TP]
-            permanente = session[:subtot_perm_TP]
-          end
-        if total_anualA.nil? or pontuacao_especilizacao.nil?
-            total_anualA = 0
-            pontuacao_especilizacao = 0
-        end
-        if ((@titulo_professor.titulo_id == 6) or (@titulo_professor.titulo_id == 7) or (@titulo_professor.titulo_id == 8)or (@titulo_professor.titulo_id == 9)or (@titulo_professor.titulo_id == 10) or (@titulo_professor.titulo_id == 11) or (@titulo_professor.titulo_id == 12))
-           @professor.total_titulacao =  total_a + total_p
-        else
-           @professor.total_titulacao =  session[:subtot_um_TP] + total_p
-        end
-        @professor.pontuacao_final = @professor.total_trabalhado + @professor.total_titulacao
-      @professor.save
-
-    respond_to do |format|
-      if @titulo_professor.save
-        flash[:notice] = 'TITULAÇÃO CADASTRADA COM SUCESSO.'
-        format.html { redirect_to(@titulo_professor)}
-        format.xml  { render :xml => @titulo_professor, :status => :created, :location => @titulo_professor }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @titulo_professor.errors, :status => :unprocessable_entity }
-      end
-    end
   end
 
   # PUT /titulo_professors/1
