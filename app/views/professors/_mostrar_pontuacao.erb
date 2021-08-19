@@ -386,7 +386,7 @@
                         <% if tp1.tipo_curso == true%>
                             <font size="2"><%= "PRESENCIAL" %></font>
                         <%else%>
-                            <%  if (tp1.quantidade<30) or (tp1.pontuacao_titulo ==0) %>
+                            <%  if (tp1.quantidade<30 and ((tp1.titulo_id == 7) or (tp1.titulo_id == 11))) or (tp1.pontuacao_titulo ==0) %>
                                 <font size="2"> <%= "À DISTÂNCIA" %></br>
                                     <font color ="red" size="2"><%= "NÃO VALIDO"%></font></font>
                             <% else %>
