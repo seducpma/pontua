@@ -539,12 +539,12 @@ def sel_prof
         else
             if params[:titulo_professor_titulo_id].to_i == 7 or params[:titulo_professor_titulo_id].to_i == 11
               render :update do |page|
-                # page.replace_html 'a_distancia', :text => "1) Se CURSO À DISTANCIA verificaque  a caixa de seleção PRESENCIAL esta desmarcada"
-                page.replace_html 'a_distancia1', :text => "1) CURSOS À DISTANCIA NA ÁREA DE ATUAÇÃO DO PROFESSOR: válidos somente para cursos com carga horario mínima de 30 horas."
+                page.replace_html 'a_distancia', :text => "1) Se CURSO À DISTÂNCIA verificaque  a caixa de seleção PRESENCIAL esta desmarcada  "
+                page.replace_html 'a_distancia1', :text => "2) CURSOS À DISTÂNCIA NA ÁREA DE ATUAÇÃO DO PROFESSOR: válidos somente para cursos com carga horario mínima de 30 horas."
                 page.replace_html 'tipo_titulo', :text => "<input id='titulo_professor_tipo_curso' type='checkbox' value='1' name='titulo_professor[tipo_curso]' value='false'> Presencial"
-                page.replace_html 'valor', :text => '2) Pontualçao: ' + (session[:valor]).to_s + ' pontos por hora (EAD até o limite de 120 pontos no ano letivo), o que exceder será descontado.'
+                page.replace_html 'valor', :text => '3) Pontualçao: ' + (session[:valor]).to_s + ' pontos por hora (EAD até o limite de 120 pontos no ano letivo), o que exceder será descontado.'
                 page.replace_html 'qtde', :text => "<input id='titulo_professor_quantidade' type='text' value='0' size='10' name='titulo_professor[quantidade]'>"
-                page.replace_html 'lanca', :text => "3) Lançar no campo 'QUANTIDADE' a carga horária do curso. Exemplo: 30"
+                page.replace_html 'lanca', :text => "4) Lançar no campo 'QUANTIDADE' a carga horária do curso. Exemplo: 30"
                 page.replace_html 'tipo', :text => "de <b>horas</b> "
                 page.replace_html 'horas', :text => " (<font color=red><b><u>ATENÇÃO:</b></u></font> Lançar a <b><u>QUANTIDADE de HORAS</b></u>)"
                 page.replace_html 'ead', :text => "  CURSOS EAD FORA DA AREA DE ATUAÇÃO DO PROFESSOR NÃO SÃO VÁLIDOS. "
