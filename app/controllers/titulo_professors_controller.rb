@@ -418,7 +418,7 @@ def sel_prof
 
       end
       if !@titulo_professor_apos.present?
-         @titulo_professor_ultimo = TituloProfessor.find(:last,:conditions => ['professor_id=? and ano_letivo = ?  ', @titulo_professor.professor_id, Time.now.year])
+         @titulo_professor_ultimo = TituloProfessor.find(:last,:conditions => ['professor_id=?  ', @titulo_professor.professor_id])
           total_titulacao = @titulo_professor_ultimo.total_titulacao
       end
 #      @tempo_servico= TempoServico.find(:all, :conditions=> ['professor_id =? and ano_letivo=?',id, Time.now.year])
@@ -602,7 +602,9 @@ def sel_prof
  def titulos_busca
     # $professor = Professor.find(params[:altera_professor_id]).nome
      session[:professor]= Professor.find(params[:altera_professor_id]).nome
-     @titulo_busca =  TituloProfessor.find(:all,:conditions =>['professor_id = ? and (ano_letivo = ? or titulo_id in (1,2,3,4,5))',params[:altera_professor_id],Time.current.strftime("%Y")], :order => "created_at DESC")
+     @titulo_busca =  TituloProfessor.find(:all,:conditions =>['professor_id = ? and (ano_letivo = ? or titulo_id in (1,2,3,4,5,6,7,8,9,10,11,12))',params[:altera_professor_id],Time.current.strftime("%Y")], :order => "created_at DESC")
+     w=session[:professor]
+     t=0
       render :update do |page|
         page.replace_html 'nomeprof', :text => '- ' + (session[:professor])
         page.replace_html 'alteracao', :partial => 'alterar'
